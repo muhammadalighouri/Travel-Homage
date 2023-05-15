@@ -8,7 +8,7 @@ header {
   transition: all 0.3s;
   width: 100%;
   z-index: 1001;
-  background: rgb(0, 98, 129);
+  background: transparent;
   overflow: hidden;
 
   .color {
@@ -38,7 +38,7 @@ header {
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 15px;
-
+      background: #f2f2f2;
       .nav__grid {
         align-items: center;
         display: flex;
@@ -121,6 +121,7 @@ header {
                 }
 
                 a {
+                  color: #2f2b4399;
                   img {
                     max-width: 180px;
                     object-fit: cover;
@@ -153,12 +154,11 @@ header {
                   cursor: pointer;
                   display: inline-block;
                   display: flex;
-                  font-size: 18px;
-                  font-weight: 200;
+                  font-size: 16px;
+                  font-weight: 400;
                   justify-content: start;
                   letter-spacing: 1px;
                   line-height: 1.5em;
-
                   width: 100%;
                   position: relative;
                   text-transform: capitalize;
@@ -166,7 +166,7 @@ header {
                   -webkit-user-select: none;
                   user-select: none;
                   z-index: auto;
-                  color: white;
+                  color: #2f2b4399;
                   @include md {
                     color: #fff;
                     padding: 18px 30px;

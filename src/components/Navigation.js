@@ -5,7 +5,8 @@ import "../scss/navigation.scss";
 import { RxCross2 } from "react-icons/rx";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import logo from "../assests/Icons/logo.1.png";
-import GoogleTranslate from "./GoogleTranslate";
+import avatar from "../assests/Avatar.png"
+import bell from "../assests/bell.png"
 const Navigation = ({ }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
@@ -20,10 +21,13 @@ const Navigation = ({ }) => {
         <div className="outer">
           <div className="container">
             <div className="nav__grid">
-              <div className="logo">
-                <Link to={"/"}>
-                  <img src={logo} alt="" />
-                </Link>
+              <div className="user">
+                <div className="avatar">
+                  <img src={avatar} alt="" />
+                </div>
+                <div className="icon">
+                  <img src={bell} alt="" />
+                </div>
               </div>
               <nav>
                 <div className="nav-wrap">
@@ -35,17 +39,21 @@ const Navigation = ({ }) => {
                     </div>
                     {nav.map((ite, ind) => {
                       return (
-                        <li key={ind} style={{ borderBottom: window.location.pathname === ite.path ? '1px solid white' : null }}>
+                        <li key={ind} >
                           <Link onClick={() => window.scroll(0, 0)} to={ite.path}>{ite.name}</Link>
                         </li>
                       );
                     })}
+                    <li>
+                      <a href="">       الشركة</a>
+                    </li>
                   </ul>
                 </div>
               </nav>
-              <div className="translate" onClick={() => setTranslate(true)}>
-                <GoogleTranslate />
-
+              <div className="logo">
+                <Link to={"/"}>
+                  <img src={logo} alt="" />
+                </Link>
               </div>
               <div
                 className="bars"

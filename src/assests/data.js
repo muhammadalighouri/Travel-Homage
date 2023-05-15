@@ -82,29 +82,18 @@ export const roadmap = [
 ];
 export const nav = [
   {
-    name: "Home",
+    name: "تواصل معنا",
     path: "/",
   },
   {
-    name: "Professionnels",
-    path: "/ProfessionelPage",
+    name: "الفروع",
+    path: "/",
   },
   {
-    name: "Particuliers",
-    path: "/ParticuliersPage",
+    name: "العروض",
+    path: "/",
   },
-  {
-    name: "Nous",
-    path: "/NousPage",
-  },
-  {
-    name: "WholeSale",
-    path: "/WholeSalePage",
-  },
-  {
-    name: "Contact Us",
-    path: "/Contact",
-  },
+
 ];
 export const FAQ = [
   {
