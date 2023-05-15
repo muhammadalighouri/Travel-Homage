@@ -1,0 +1,163 @@
+@import "./variable.scss";
+@import "./media.scss";
+
+#crypoto {
+  padding: 90px 10px;
+
+  .heading {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+    justify-content: center;
+    width: 90%;
+    span {
+      color: #4e0dff;
+      text-align: start;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(10%, 8vw, 3rem);
+      color: #13216e;
+      font-weight: 800;
+      text-align: start;
+    }
+
+    p {
+      text-align: start;
+      font-size: 19px;
+      line-height: 30px;
+      font-weight: 700;
+      color: #13216e;
+    }
+  }
+
+  .container-1 {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    max-width: 1200px;
+    padding: 70px 20px 90px;
+    margin: auto;
+    gap: 30px;
+
+    @include md {
+      grid-template-columns: 1fr;
+    }
+
+    .box-1 {
+      padding: 40px 20px;
+      background-color: #ffffff;
+      border: 1px solid #e1e8ff;
+      border-radius: 20px;
+      text-align: center;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-direction: column;
+      transition: 0.3s all;
+      &:hover {
+        box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.2);
+      }
+      img {
+        width: 100%;
+        max-width: 120px;
+        max-height: 120px;
+        border-radius: 50%;
+      }
+
+      h5 {
+        text-align: center;
+        color: #13216e;
+        font-size: 20px;
+        text-align: center;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: 400;
+        color: #13216e;
+        font-style: normal;
+        text-align: center;
+        font-family: "DM Sans", sans-serif;
+      }
+    }
+  }
+
+  .container-2 {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px 90px;
+
+    @include mobile {
+      padding: 0px 20px 90px;
+    }
+
+    .box-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 150px;
+
+      @include md {
+        gap: 30px;
+        grid-template-columns: 1fr;
+      }
+
+      .h {
+        width: 100%;
+        text-align: start;
+
+        h2 {
+          color: #12183a;
+          font-size: clamp(10%, 9vw, 2rem);
+          font-family: "DM Sans", sans-serif;
+          /* width: clamp(10%, 70vw, 27rem); */
+          font-weight: 500;
+        }
+      }
+
+      .points {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 32px 0px;
+
+        .feature {
+          display: flex;
+          align-items: start;
+          justify-content: center;
+          gap: 8px;
+          flex-direction: column;
+
+          h2 {
+            color: #0a1992 !important;
+            font-size: 25px;
+            font-family: "DM Sans", sans-serif;
+
+            @include mobile {
+              font-size: 22px;
+            }
+          }
+
+          p {
+            color: #677294;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            line-height: 1.5em;
+            text-align: start;
+            width: 148px;
+            font-family: "DM Sans", sans-serif;
+          }
+        }
+      }
+    }
+  }
+}

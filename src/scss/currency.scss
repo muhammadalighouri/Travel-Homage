@@ -1,0 +1,66 @@
+@import "./variable.scss";
+@import "./media.scss";
+
+#currency {
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 60px 20px;
+
+        h1 {
+            font-size: clamp(10%, 11vw, 3.8rem);
+            color: #12183a;
+            font-weight: 600;
+            text-align: center;
+            font-family: "DM Sans", sans-serif;
+            /* padding-bottom: 50px; */
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            align-items: center;
+            gap: 15px;
+            padding-top: 70px;
+
+            @include md {
+                grid-template-columns: 1fr 1fr 1fr;
+
+            }
+
+            @include mobile {
+                grid-template-columns: 1fr 1fr;
+
+            }
+            @include smobile {
+                grid-template-columns: 1fr;
+
+            }
+
+            .box {
+                padding: 30px;
+                border-radius: 12px;
+                background-color: white;
+                box-shadow: 0px 20px 60px rgba(18, 24, 58, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                flex-direction: column;
+
+                svg {
+                    fill: #5927e3;
+                    font-size: 2.8rem;
+                }
+
+                h2 {
+                    font-size: 18px;
+                    color: #415076 !important;
+                    font-weight: 600;
+                    text-align: center;
+                    font-family: "DM Sans", sans-serif;
+                }
+            }
+        }
+    }
+}
