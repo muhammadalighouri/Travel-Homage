@@ -4,7 +4,7 @@ import { nav } from "../assests/data";
 import "../scss/navigation.scss";
 import { RxCross2 } from "react-icons/rx";
 import { HiOutlineBars3 } from "react-icons/hi2";
-import logo from "../assests/Icons/logo.1.png";
+import logo from "../assests/Logo.png";
 import avatar from "../assests/Avatar.png"
 import bell from "../assests/bell.png"
 const Navigation = ({ }) => {
@@ -24,9 +24,21 @@ const Navigation = ({ }) => {
               <div className="user">
                 <div className="avatar">
                   <img src={avatar} alt="" />
+
                 </div>
                 <div className="icon">
                   <img src={bell} alt="" />
+                </div>
+                <span>
+                  اهلا أحمد
+                </span>
+              </div>
+              <div className="translate">
+                <div className="first">
+                  ر.س
+                </div>
+                <div className="second">
+                  English
                 </div>
               </div>
               <nav>

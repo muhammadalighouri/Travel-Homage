@@ -41,9 +41,9 @@ header {
       background: #f2f2f2;
       .nav__grid {
         align-items: center;
-        display: flex;
-        justify-content: space-between;
         position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr 3fr 1fr;
 
         @include md {
           display: flex;
