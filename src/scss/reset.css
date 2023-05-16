@@ -112,15 +112,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Bakbak One", cursive;
-  font-family: "Barlow-bold";
-  font-family: "Quarry Bones";
-  font-family: "RocGrotesk3";
-  font-family: "BerkshireSwash";
-  text-shadow: none !important;
-  font-family: "Raleway", Sans-serif;
-  font-family: "Syne", sans-serif;
-  font-family: "Raleway", Sans-serif;
+  font-family: "Cairo", sans-serif;
   /* color: #f7ea66 !important; */
   /* background: #f7ea66 !important; */
 }
