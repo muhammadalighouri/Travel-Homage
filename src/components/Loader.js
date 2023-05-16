@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import logo from "../assests/Icons/logo.1.png";
 
 import { LinearProgress } from "@mui/material";
 import "../scss/loader.scss";
+import logo from "../assests/Logo.png";
 const Loader = ({ setLoading }) => {
   const [progress, setProgress] = useState(0);
 

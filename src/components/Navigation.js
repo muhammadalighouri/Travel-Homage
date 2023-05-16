@@ -59,6 +59,16 @@ const Navigation = ({ }) => {
                     <li>
                       <a href="">       الشركة</a>
                     </li>
+                    <li className="translate__option">
+                      <div className="translate">
+                        <div className="first">
+                          ر.س
+                        </div>
+                        <div className="second">
+                          English
+                        </div>
+                      </div>
+                    </li>
                   </ul>
                 </div>
               </nav>

@@ -1,23 +1,41 @@
-
-
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-
-
 body {
   margin: 0;
-  background-color: #fbfbfd !important;
+  background-color: #00afaa !important;
 }
-
-
 
 main {
   display: block;
 }
-
+.swiper,
+swiper-container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  display: block;
+  padding: 35px !important;
+}
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+  left: var(--swiper-navigation-sides-offset, -1px);
+  right: auto;
+  filter: brightness(0.1) !important;
+}
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  right: var(--swiper-navigation-sides-offset, 1px);
+  left: auto;
+  /* opacity: 1 !important; */
+  filter: brightness(0.1) !important;
+}
 /**
    * Correct the font size and margin on `h1` elements within `section` and
    * `article` contexts in Chrome, Firefox, and Safari.

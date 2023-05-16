@@ -1,58 +1,93 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+import "../scss/styles.scss";
+// import required modules
+import { Navigation } from "swiper";
 import "../scss/car.scss";
-import img from "../assests/Icons/1.png";
-import img2 from "../assests/q.2.png";
+import img from "../assests/Group 938.png";
+import img1 from "../assests/Car Card (1).png";
+import img2 from "../assests/Car Card.png";
+import Controls from "../components/Controls";
 const Car = () => {
+  const [slide, setSlide] = useState(2)
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 786) {
+      setSlide(2)
+    }
+    if (window.innerWidth < 786) {
+      setSlide(1)
+    }
+  })
   return (
     <>
       <section id="car">
+        <Controls />
+
         <div className="container">
-          <div className="heading" data-aos="fade-up">
-            <h1>Un incontournable pour la flotte de votre société</h1>
-          </div>
-          <div className="grid-box">
-            <div className="img" 
-            data-aos="fade-up"
+          <div className="img">
+            <Swiper
+              navigation={true}
+              modules={[Navigation]}
+              slidesPerView={slide}
+              spaceBetween={35}
+              pagination={{
+                clickable: true,
+              }}
+
+              className="mySwiper"
             >
+              <SwiperSlide>
+                {" "}
+                <div className="box">
+                  <img src={img1} alt="" />
+                  <div className="title">
+                    *السعر يشمل خصم الدفع الإلكتروني (10%)
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                <div className="box">
+                  <img src={img1} alt="" />
+                  <div className="title">
+                    *السعر يشمل خصم الدفع الإلكتروني (10%)
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="box">
+                  <img src={img2} alt="" />
+                  <div className="title">
+                    *السعر يشمل خصم الدفع الإلكتروني (10%)
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="box">
+                  <img src={img2} alt="" />
+                  <div className="title">
+                    *السعر يشمل خصم الدفع الإلكتروني (10%)
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
+          <div className="content">
+            <div className="icon">
               <img src={img} alt="" />
             </div>
-            <div className="content">
-              <div className="para" data-aos="fade-up">
-                <p>
-                  MK Green Energy vous propose la solution la plus adaptée a vos
-                  besoins.
-                </p>
-                <p>
-                  De l'étude de votre projet a installation, nos équipes restent
-                  & votre écoute pour un résultat sur-mesure a la hauteur de vos
-                  attentes et exigences.
-                </p>
-                <p>
-                  Offrez & vos locaux, salariés et/ou visiteurs un confort et
-                  une mobilité durable pour faire la différence.
-                </p>
-              </div>
-              <div className="btn" data-aos="fade-up">
-                <a href="#">Nous contacter pour en discuter ?</a>
-              </div>
+            <div className="heading">
+              <h1>سيارات جديدة</h1>
+              <h2>انضمت إلى الأسطول</h2>
             </div>
-          </div>
-        </div>
-        <div className="container2">
-          <div className="parteners">
-            <h1 data-aos="fade-up">
-              Les aides financiéres allouées aux installations de bornes de
-              recharge
-            </h1>
-            <ul data-aos="fade-up"> 
-              <li className="main" >
-                PROGRAMME
-                <img src={img2} alt="" />
-              </li>
-              <li>LES CRÉDIT D'IMPOT</li>
-              <li>LA REDUCTION DU TAUX DE TVA</li>
-              <li>LES AIDES DES COLLECTIVITES</li>
-            </ul>
+            <div className="btn">
+              <a href="#">استكشف جميع السيارات</a>
+            </div>
           </div>
         </div>
       </section>

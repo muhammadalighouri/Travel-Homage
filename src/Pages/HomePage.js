@@ -7,6 +7,12 @@ import FooterOne from "../components/FooterOne";
 import bg from "../assests/bg/banner.1.jpeg";
 import img1 from "../assests/bg/footer.1.jpeg";
 import Banner from "../components/Banner";
+import Controls from "../components/Controls";
+import Geo from "../components/Geo";
+import Car from "../components/Car";
+import Car2 from "../components/Car2";
+import Form from "../components/Form";
+import Signup from "../components/Signup.js";
 const HomePage = () => {
   window.scroll(0, 0)
   return (
@@ -18,10 +24,11 @@ const HomePage = () => {
           isCenter={true}
           text={"Votre borne de recharge avec MK Green Energy"}
         />
-        <About />
-        <Quality />
-        <Aides />
-        <FooterOne img={img1} bgColor={'#006281a1'} />
+        {/* <Controls /> */}
+        <Car />
+        <Car2 />
+        <Geo />
+        <Signup />
       </section>
     </>
   );
