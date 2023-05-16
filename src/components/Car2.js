@@ -73,7 +73,7 @@ const Car2 = () => {
 
               </Swiper>
 
-
+              <p>عروضنا الخاصة والجذابة ... قمنا بتخصيصها لك</p>
 
             </div>
             <div className="content">

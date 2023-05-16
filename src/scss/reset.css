@@ -119,7 +119,12 @@ h6 {
 .back {
   position: relative;
 }
-
+button {
+  cursor: pointer;
+}
+li {
+  cursor: pointer;
+}
 h1 {
   font-size: 4rem;
   text-transform: capitalize;

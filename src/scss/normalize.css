@@ -25,16 +25,18 @@ swiper-container {
 }
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next {
-  left: var(--swiper-navigation-sides-offset, -1px);
+  left: var(--swiper-navigation-sides-offset, -1px) !important;
   right: auto;
   filter: brightness(0.1) !important;
+  transform: scale(0.5);
 }
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
-  right: var(--swiper-navigation-sides-offset, 1px);
+  right: var(--swiper-navigation-sides-offset, 1px) !important;
   left: auto;
   /* opacity: 1 !important; */
   filter: brightness(0.1) !important;
+  transform: scale(0.5);
 }
 /**
    * Correct the font size and margin on `h1` elements within `section` and
