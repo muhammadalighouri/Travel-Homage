@@ -26,7 +26,7 @@ function Maps() {
     useEffect(() => {
         // replace this with your own API key
         const apiKey = "AIzaSyAgPZjd32fLLGuiKK0tNpLmqhqEoEBOSG0";
-        const address = "197 avenue gambetta Bagnolet, 93170";
+        const address = "شارع النجد بالرياض";
         axios
             .get(
                 `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`

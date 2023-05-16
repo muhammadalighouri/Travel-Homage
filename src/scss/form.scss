@@ -135,6 +135,10 @@
         }
       }
       .info {
+        @include md {
+          width: 90% !important;
+          margin: auto;
+        }
         .item {
           display: grid;
           max-width: 350px;
