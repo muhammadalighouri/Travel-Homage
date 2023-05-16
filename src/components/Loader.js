@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 import { LinearProgress } from "@mui/material";
 import "../scss/loader.scss";
 import logo from "../assests/Logo.png";
