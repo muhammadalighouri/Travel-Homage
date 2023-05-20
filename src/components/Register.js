@@ -34,6 +34,12 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="input">
+                  <p>Middle name</p>
+                  <div className="under">
+                  <input type="text" placeholder="Middle name" /> <img src={img1} alt="" /> 
+                  </div>
+                </div>
+                <div className="input">
                   <p>Last name</p>
                   <div className="under">
                     <input type="text" placeholder="Last name" />    <img src={img1} alt="" />
