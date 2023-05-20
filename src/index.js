@@ -1,13 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import Store from "../src/Redux/store/store.js";
+import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  <Provider store={Store}>
+    <BrowserRouter>
+      <App />
+      <ToastContainer />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
 );
-
-

@@ -12,6 +12,8 @@ import HomePage from "./Pages/HomePage";
 // import BuyPage from "./Pages/Buy/BuyPage";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Footer from "./components/Footer";
+// import Register from "./Pages/Register";
 // import Footer from "./components/Footer";
 import Register from "./components/Register";
 
@@ -33,7 +35,9 @@ function App() {
         <>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route  path="/register" element={<Register />} />
+            {/* <Route path="/register" element={<Register />} /> */}
+
+            <Route path="/register" element={<Register />} />
 
           </Routes>
           {/* <Footer /> */}
