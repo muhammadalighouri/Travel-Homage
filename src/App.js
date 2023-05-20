@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 // import Footer from "./components/Footer";
 import Register from "./components/Register";
 import EmailConfirmation from "./Pages/ConfirmEmail";
+import LoginIn from "./components/LoginIn";
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ function App() {
             {/* <Route path="/register" element={<Register />} /> */}
             <Route path="/confirm_email/:token" element={<EmailConfirmation />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login-in" element={<LoginIn />} />
 
           </Routes>
           {/* <Footer /> */}
