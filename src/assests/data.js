@@ -87,11 +87,11 @@ export const nav = [
   },
   {
     name: "الفروع",
-    path: "/",
+    path: "/register",
   },
   {
     name: "العروض",
-    path: "/",
+    path: "/login-in",
   },
 
 ];
