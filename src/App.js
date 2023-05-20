@@ -16,6 +16,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./components/Footer";
 import WholeSalePage from "./Pages/WholeSalePage";
+// import Register from "./Pages/Register";
 function App() {
   let [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -34,12 +35,12 @@ function App() {
         <>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
+            {/* <Route path="/register" element={<Register />} /> */}
             <Route path="/ProfessionelPage" element={<ProfessionelPage />} />
             <Route path="/ParticuliersPage" element={<ParticuliersPage />} />
             <Route path="/NousPage" element={<NousPage />} />
             <Route path="/Contact" element={<Form />} />
             <Route path="/WholeSalePage" element={<WholeSalePage />} />
-
           </Routes>
           <Footer />
         </>
