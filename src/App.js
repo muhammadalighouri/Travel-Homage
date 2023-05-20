@@ -38,10 +38,12 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             {/* <Route path="/register" element={<Register />} /> */}
-            <Route path="/confirm_email/:token" element={<EmailConfirmation />} />
+            <Route
+              path="/confirm_email/:token"
+              element={<EmailConfirmation />}
+            />
             <Route path="/register" element={<Register />} />
             <Route path="/login-in" element={<LoginIn />} />
-
           </Routes>
           {/* <Footer /> */}
         </>
