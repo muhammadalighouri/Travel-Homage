@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 // import Register from "./Pages/Register";
 // import Footer from "./components/Footer";
 import Register from "./components/Register";
+import LoginIn from "./components/LoginIn";
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -38,6 +39,7 @@ function App() {
             {/* <Route path="/register" element={<Register />} /> */}
 
             <Route path="/register" element={<Register />} />
+            <Route path="/login-in" element={<LoginIn />} />
 
           </Routes>
           {/* <Footer /> */}
