@@ -13,6 +13,7 @@ import Car from "../components/Car";
 import Car2 from "../components/Car2";
 import Form from "../components/Form";
 import Signup from "../components/Signup.js";
+import Footer from "../components/Footer";
 const HomePage = () => {
   window.scroll(0, 0)
   return (
@@ -24,11 +25,11 @@ const HomePage = () => {
           isCenter={true}
           text={"Votre borne de recharge avec MK Green Energy"}
         />
-        {/* <Controls /> */}
         <Car />
         <Car2 />
         <Geo />
         <Signup />
+        <Footer/>
       </section>
     </>
   );
