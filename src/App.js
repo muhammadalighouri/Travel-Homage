@@ -43,7 +43,7 @@ function App() {
               element={<EmailConfirmation />}
             />
             <Route path="/register" element={<Register />} />
-            <Route path="/login-in" element={<LoginIn />} />
+            <Route path="/login" element={<LoginIn />} />
           </Routes>
           {/* <Footer /> */}
         </>
