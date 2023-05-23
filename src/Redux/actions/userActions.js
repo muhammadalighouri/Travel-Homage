@@ -48,7 +48,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 };
 
-export const register = (firstName, middleName, lastName, email, password) => async (dispatch) => {
+export const register = (firstName, middleName, lastName, email, password, phone) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
 
@@ -58,7 +58,7 @@ export const register = (firstName, middleName, lastName, email, password) => as
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ firstName, middleName, lastName, email, password }),
+            body: JSON.stringify({ firstName, middleName, lastName, email, password, phone }),
         });
         const data = await rawResponse.json();
 

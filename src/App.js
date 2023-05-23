@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 // import Register from "./Pages/Register";
 // import Footer from "./components/Footer";
 import Register from "./components/Register";
+import EmailConfirmation from "./Pages/ConfirmEmail";
 import LoginIn from "./components/LoginIn";
 
 function App() {
@@ -37,10 +38,12 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             {/* <Route path="/register" element={<Register />} /> */}
-
+            <Route
+              path="/confirm_email/:token"
+              element={<EmailConfirmation />}
+            />
             <Route path="/register" element={<Register />} />
             <Route path="/login-in" element={<LoginIn />} />
-
           </Routes>
           {/* <Footer /> */}
         </>
