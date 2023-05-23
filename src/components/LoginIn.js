@@ -27,14 +27,14 @@ const LoginIn = () => {
             </div>
             <form action="">
               <div id="email" className="same">
-                <p>Email Adress</p>
+                <p>Email Adress or Phone number</p>
                 <div className="under">
                   <img src={img2} alt="" />
                   <input
                     type="email"
                     name=""
                     id=""
-                    placeholder="Example@domain.com"
+                    placeholder="Email Adress or Phone number"
                   />{" "}
                   <img src={img1} alt="" />
                 </div>
@@ -42,8 +42,11 @@ const LoginIn = () => {
               <div id="phone" className="same">
                 <p>Phone Number</p>
                 <div className="under">
+                <img src={img2} alt="" />
                   {" "}
-                  <input type="number" name="" id="" />
+                  <input type="number" name="" id=""  placeholder="Number"/>
+                  <img src={img1} alt="" />
+
                 </div>
               </div>
               
@@ -53,8 +56,8 @@ const LoginIn = () => {
                 <a href="#" className="b">Create an account</a>
               </div>
               <p className="para">
-                Already have an account
-                <a href="#">Sign in</a>
+               Forgot your password? 
+                <a href="#">Click here</a>
               </p>
             </form>
           </div>
