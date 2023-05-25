@@ -2,6 +2,17 @@ import img1 from "../assests/Icons/1.png";
 import img2 from "../assests/Icons/2.png";
 import img3 from "../assests/Icons/3.png";
 import img4 from "../assests/Icons/4.png";
+import icon1 from "../assests/Profile/1.1.png";
+import icon2 from "../assests/Profile/2.2.png";
+import icon3 from "../assests/Profile/3.3.png";
+import icon4 from "../assests/Profile/4.4.png";
+import icon5 from "../assests/Profile/5.5.png";
+import icon6 from "../assests/Profile/6.6.png";
+import icon7 from "../assests/Profile/7.7.png";
+import icon8 from "../assests/Profile/8.8.png";
+import icon9 from "../assests/Profile/9.9.png";
+import icon10 from "../assests/Profile/10.10.png";
+// import icon11 from "../assests/Profile/11.11.png";
 export const about = [
   {
     i: img1,
@@ -80,6 +91,61 @@ export const roadmap = [
     img: "/images/roadmap/1.png",
   },
 ];
+export const side = [
+  {
+    name: "الملف الشخصي",
+    icon: icon1,
+    path: "/profile",
+  },
+  {
+    name: "حجوزاتي ",
+    icon: icon2,
+    path: "/booking",
+  },
+  {
+    name: "ملفاتي ",
+    icon: icon3,
+    path: "/doucment",
+  },
+  {
+    name: "العضوية",
+    icon: icon4,
+    path: "/membership",
+  },
+  {
+    name: "العناوين المحفوظة ",
+    icon: icon5,
+    path: "/saved-adress",
+  },
+  {
+    name: "تغيير كلمة المرور",
+    icon: icon7,
+    path: "/change-Password",
+
+  },
+  {
+    name: "تقييم السيارات",
+    icon: icon6,
+    path: "/ride-ratings",
+
+  },
+  {
+    name: "الدعم الفني",
+    icon: icon8,
+    path: "/user-customer",
+
+  },
+  {
+    name: "المساعدة على الطريق",
+    icon: icon9,
+    path: "/roadside-assistance",
+
+  },
+  {
+    name: "خروج",
+    icon: icon10,
+  },
+];
 export const nav = [
   {
     name: "تواصل معنا",
@@ -93,7 +159,10 @@ export const nav = [
     name: "العروض",
     path: "/login-in",
   },
-
+  {
+    name: "العروض",
+    path: "/profile",
+  },
 ];
 export const FAQ = [
   {

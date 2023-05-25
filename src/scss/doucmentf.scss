@@ -1,0 +1,46 @@
+@import "./variable.scss";
+@import "./media.scss";
+
+#doucment {
+    background: #FFFFFF;
+    border-radius: 75px 75px 0 0;
+
+    .container {
+        padding: 90px 30px;
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 80px;
+
+        img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            max-width: 200px;
+            cursor: pointer;
+        }
+
+        .box {
+            position: relative;
+cursor: pointer;
+            .up {
+                position: absolute;
+                bottom: 0px;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+
+                    max-width: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

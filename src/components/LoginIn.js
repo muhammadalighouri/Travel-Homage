@@ -76,9 +76,13 @@ const LoginIn = () => {
         <div className="container">
           <div className="top">
             <div className="logo">
-              <img src={logo} alt="" />
+              <img src={logo} alt="" onClick={()=>{
+                navigate('/')
+              }} />
             </div>
-            <div className="icon">
+            <div className="icon" onClick={()=>{
+                navigate('/')
+              }} >
               <img src={icon} alt="" />
             </div>
           </div>

@@ -10,14 +10,13 @@
     align-items: center;
     justify-content: start;
     z-index: 0;
-    height: 100%;
-    overflow: hidden;
+    /* height: 100vh; */
     position: relative;
     background: #00afaa;
     padding-top: 150px;
-    height: 110vh;
+    padding-bottom: 90px;
     @include md {
-      padding-bottom: 180px;
+      // padding-bottom: 180px;
     }
     &::before {
       content: "";

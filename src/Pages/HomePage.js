@@ -15,21 +15,17 @@ import Form from "../components/Form";
 import Signup from "../components/Signup.js";
 import Footer from "../components/Footer";
 const HomePage = () => {
-  window.scroll(0, 0)
+  window.scroll(0, 0);
   return (
     <>
       <section id="home">
         <Navigation />
-        <Banner
-          bg={bg}
-          isCenter={true}
-          text={"Votre borne de recharge avec MK Green Energy"}
-        />
+        <Banner text={"   نصنع من رحلتكم وترحالكم شيئأ ممتعاً"} />
         <Car />
         <Car2 />
         <Geo />
         <Signup />
-        <Footer/>
+        <Footer />
       </section>
     </>
   );

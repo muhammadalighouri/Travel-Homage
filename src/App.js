@@ -13,11 +13,18 @@ import HomePage from "./Pages/HomePage";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./components/Footer";
-// import Register from "./Pages/Register";
-// import Footer from "./components/Footer";
 import Register from "./components/Register";
 import EmailConfirmation from "./Pages/ConfirmEmail";
 import LoginIn from "./components/LoginIn";
+import UserProfile from "./Pages/AccountPages/UserProfile";
+import Booking from "./Pages/AccountPages/Booking";
+import Doucment from "./Pages/AccountPages/Doucment";
+import ChangePassword from "./Pages/AccountPages/ChangePassword";
+import MemberShip from "./Pages/AccountPages/Membership";
+import SavedAdress from "./Pages/AccountPages/SavedAdress";
+import RideRatings from "./Pages/AccountPages/RideRatings";
+import Customer from "./Pages/AccountPages/Customer";
+import RoadSide from "./Pages/AccountPages/RoadSide";
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -44,6 +51,16 @@ function App() {
             />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LoginIn />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/booking" element={<Booking />} />
+
+            <Route path="/doucment" element={<Doucment />} />
+            <Route path="/membership" element={<MemberShip />} />
+            <Route path="/saved-adress" element={<SavedAdress />} />
+            <Route path="/ride-ratings" element={<RideRatings />} />
+            <Route path="/user-customer" element={<Customer />} />
+            <Route path="/change-Password" element={<ChangePassword />} />
+            <Route path="/roadside-assistance" element={<RoadSide />} />
           </Routes>
           {/* <Footer /> */}
         </>
