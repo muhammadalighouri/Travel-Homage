@@ -1,9 +1,9 @@
 import React from "react";
 import "../scss/bookingf.scss";
-import icon1 from "../assests/Profile/loader.svg";
-import icon2 from "../assests/Profile/ban.svg";
-import icon3 from "../assests/Profile/forward-fast.svg";
-import icon4 from "../assests/Profile/square-check.svg";
+import icon1 from "../assests/Profile/loader.png";
+import icon2 from "../assests/Profile/ban.png";
+import icon3 from "../assests/Profile/forward-fast.png";
+import icon4 from "../assests/Profile/square-check.png";
 import star from "../assests/Profile/Frame 254.png";
 import car1 from "../assests/Profile/car1.png";
 import car2 from "../assests/Profile/carr2.png";
