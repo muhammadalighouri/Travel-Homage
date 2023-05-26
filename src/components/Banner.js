@@ -10,7 +10,7 @@ const Banner = ({ img, text }) => {
           <div className="container__">
             <div className="grid">
               <div className="start">
-                <img src={first} alt="" />
+                <img src={img} alt="" />
               </div>
               <div className="end">
                 <h1>{text}</h1>

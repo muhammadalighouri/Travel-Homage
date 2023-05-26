@@ -152,6 +152,10 @@ export const nav = [
     path: "/",
   },
   {
+    name: "تواصل معنا",
+    path: "/fleet",
+  },
+  {
     name: "الفروع",
     path: "/register",
   },

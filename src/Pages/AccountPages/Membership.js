@@ -5,6 +5,8 @@ import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
 // import Slide  from "../../components/Sidebar";
 import Sidebar from "../../components/Sidebar";
+import first from "../../assests/Photo.png";
+
 
 import icon from "../../assests/Icons/1.png";
 import img1 from "../../assests/Icons/Tail icon q.png";
@@ -18,7 +20,7 @@ const Membership = () => {
   return (
     <>
       <Navigation />
-      <Banner text={"العضوية"} />
+      <Banner text={"العضوية"}  img={first} />
       <section id="user-profile">
         <div className="user-container">
           <Member />

@@ -27,7 +27,10 @@
         gap: 30px;
         width: 100%;
         justify-content: center;
+>input{
+    color: black;
 
+}
         .input {
             display: flex;
             flex-direction: column;
@@ -129,9 +132,13 @@
             flex-direction: row !important;
             align-items: center !important;
             padding: 0px;
+            justify-content: space-between;
             gap: 8px !important;
-
             font-family: "Cairo", sans-serif;
+
+         input{
+            color: black;
+         }
         }
 
         .wrapper {

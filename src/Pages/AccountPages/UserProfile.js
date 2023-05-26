@@ -1,5 +1,8 @@
 import React from "react";
 import "../../scss/profile.scss";
+import first from "../../assests/Photo.png";
+
+
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
@@ -10,7 +13,7 @@ const UserProfile = () => {
   return (
     <>
       <Navigation />
-      <Banner text={"الملف الشخصي"} />
+      <Banner text={"الملف الشخصي"}  img={first} />
       <section id="user-profile">
         <div className="user-container">
           <ProfileF />
