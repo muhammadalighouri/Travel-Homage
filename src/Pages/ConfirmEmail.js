@@ -10,7 +10,7 @@ function EmailConfirmation() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/confirm_email/${token}`)
+            .post(`http://localhost:5000/confirm_email/${token}`)
             .then((res) => {
                 setMessage(res.data.message);
             })
