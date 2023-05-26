@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../scss/profilef.scss";
 
 import icon from "../assests/Icons/1.png";
@@ -8,10 +8,26 @@ import img3 from "../assests/Icons/Lead icon.svg";
 import p from "../assests/Profile/Profile 2.png";
 import update from "../assests/Profile/Vector.png";
 import tick from "../assests/Profile/tick.png";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const ProfileF = () => {
+  const { user } = useSelector((state) => state.UserLogin.userInfo) || {};
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <>
       <div className="form">
+        {!user.isVerified && (
+          <p>
+            Confirm your email we have send a email to your email address{" "}
+            {user.email}
+          </p>
+        )}
         <form>
           <div id="names" className="same">
             <div className="input">
@@ -26,7 +42,7 @@ const ProfileF = () => {
                 <input
                   type="text"
                   placeholder="الاسم الاول"
-                  //  {...formik.getFieldProps("middleName")}
+                //  {...formik.getFieldProps("middleName")}
                 />
                 {/* {formik.touched.middleName && formik.errors.middleName ? (
                       <div className="error">{formik.errors.middleName}</div>
@@ -39,7 +55,7 @@ const ProfileF = () => {
                 <input
                   type="text"
                   placeholder="الاسم العائلة"
-                  // {...formik.getFieldProps("lastName")}
+                // {...formik.getFieldProps("lastName")}
                 />
                 {/* {formik.touched.lastName && formik.errors.lastName ? (
                       <div className="error">{formik.errors.lastName}</div>
@@ -54,7 +70,7 @@ const ProfileF = () => {
                 type="number"
                 name=""
                 placeholder="الرقم القومي أو رقم جواز السفر"
-                //  {...formik.getFieldProps("phone")}
+              //  {...formik.getFieldProps("phone")}
               />
               {/* {formik.touched.phone && formik.errors.phone ? (
                     <div className="error">{formik.errors.phone}</div>
@@ -77,7 +93,7 @@ const ProfileF = () => {
                   name=""
                   id=""
                   placeholder="Example@domain.com"
-                  // {...formik.getFieldProps("email")}
+                // {...formik.getFieldProps("email")}
                 />
                 {/* {formik.touched.email && formik.errors.email ? (
                     <div className="error">{formik.errors.email}</div>
@@ -96,7 +112,7 @@ const ProfileF = () => {
                 <img src={img3} alt="" />{" "}
                 <input
                   type="password"
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>
@@ -115,7 +131,7 @@ const ProfileF = () => {
                 <img src={img3} alt="" />{" "}
                 <input
                   type="password"
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>
@@ -134,7 +150,7 @@ const ProfileF = () => {
                 <img src={img3} alt="" />{" "}
                 <input
                   type="password"
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>

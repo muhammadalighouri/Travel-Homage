@@ -15,43 +15,31 @@ import img3 from "../assests/Icons/Lead icon.svg";
 import img4 from "../assests/Icons/Vector (6).png";
 import img5 from "../assests/Icons/Tail icon.svg";
 import "../scss/logIn.scss";
-const LoginIn = () => {
+const LoginIn = ({ setMode }) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Track the submit state
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.UserLogin);
   const { error, userInfo, loading } = userRegister;
-  const navigate = useNavigate('')
+  const navigate = useNavigate("");
   const formik = useFormik({
     initialValues: {
-
       email: "",
       password: "",
-
     },
     validationSchema: Yup.object({
-
       email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string()
         .min(8, "Must be 8 characters or more")
         .required("Required"),
-
     }),
     onSubmit: async (values) => {
       try {
-        await dispatch(
-          login(
-
-            values.email,
-            values.password,
-
-          )
-        );
+        await dispatch(login(values.email, values.password));
       } catch (error) {
         toast.error(error || error.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-      }
-      finally {
+      } finally {
         setIsSubmitting(false); // Stop submitting
       }
     },
@@ -59,10 +47,11 @@ const LoginIn = () => {
   useEffect(() => {
     if (userInfo) {
       if (userInfo.success) {
-        toast.success("Registration Successful", {
+        toast.success("Login Successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate('/');
+        navigate("/");
+        setMode("");
       } else {
         toast.error(userInfo.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -73,68 +62,58 @@ const LoginIn = () => {
   return (
     <>
       <section id="login">
-        <div className="container">
-          <div className="top">
-            <div className="logo">
-              <img src={logo} alt="" onClick={()=>{
-                navigate('/')
-              }} />
-            </div>
-            <div className="icon" onClick={()=>{
-                navigate('/')
-              }} >
-              <img src={icon} alt="" />
-            </div>
+        <div className="form__">
+          <div className="heading">
+            <h1>Sign In</h1>
+            <p>Welcome to Travel car rental solution.</p>
           </div>
-          <div className="form">
-            <div className="heading">
-              <h1>Sign In</h1>
-              <p>Welcome to Travel car rental solution.</p>
-            </div>
-            <form onSubmit={formik.handleSubmit}>
-              <div id="email" className="same">
-                <p>Email Adress or Phone number</p>
-                <div className="under">
-                  <img src={img2} alt="" />
-                  <input
-                    type="email"
-                    name=""
-                    id=""
-                    placeholder="Example@domain.com"
-                    {...formik.getFieldProps("email")} />
-                  {formik.touched.email && formik.errors.email ? (
-                    <div className="error">{formik.errors.email}</div>
-                  ) : null}<img src={img1} alt="" />
-                  <img src={img1} alt="" />
-                </div>
-              </div>
-              <div id="phone" className="same">
-                <p>Password</p>
-                <div className="under">
+          <form onSubmit={formik.handleSubmit}>
+            <div id="email" className="same">
+              <p>Email Adress or Phone number</p>
+              <div className="under">
                 <img src={img2} alt="" />
-                  {" "}
-                  <input type="password" name="" id=""      {...formik.getFieldProps("password")}
-                  />
-                  {formik.touched.password && formik.errors.password ? (
-                    <div className="error">{formik.errors.password}</div>
-                  ) : null}
-                </div>
+                <input
+                  type="email"
+                  name=""
+                  id=""
+                  placeholder="Example@domain.com"
+                  {...formik.getFieldProps("email")}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div className="error">{formik.errors.email}</div>
+                ) : null}
+                <img src={img1} alt="" />
+                <img src={img1} alt="" />
               </div>
+            </div>
+            <div id="phone" className="same">
+              <p>Password</p>
+              <div className="under">
+                <img src={img2} alt="" />{" "}
+                <input
+                  type="password"
+                  name=""
+                  id=""
+                  {...formik.getFieldProps("password")}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="error">{formik.errors.password}</div>
+                ) : null}
+              </div>
+            </div>
 
-
-              <button
-                type="submit"
-                className="btn "
-                disabled={isSubmitting || loading} // Disable the button if submitting or loading
-              >
-                {isSubmitting || loading ? "Submitting..." : "Login"}
-              </button>
-              <p className="para">
-               Forgot your password? 
-                <a href="#">Click here</a>
-              </p>
-            </form>
-          </div>
+            <button
+              type="submit"
+              className="btn "
+              disabled={isSubmitting || loading} // Disable the button if submitting or loading
+            >
+              {isSubmitting || loading ? "Submitting..." : "Login"}
+            </button>
+            <p className="para">
+              Forgot your password?
+              <a href="#">Click here</a>
+            </p>
+          </form>
         </div>
       </section>
     </>

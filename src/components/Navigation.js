@@ -9,12 +9,15 @@ import avatar from "../assests/Avatar.png";
 import avatarLogout from "../assests/Avatar-logout.png";
 import bell from "../assests/bell.png";
 import { useSelector } from "react-redux";
+import Register from "./Register";
+import LoginIn from "./LoginIn";
 const Navigation = ({ }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
   const [translate, setTranslate] = useState(false);
   const [nave, setNave] = useState(false);
+  const [mode, setMode] = useState();
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
   const success = userInfo?.success; // Check if userInfo is not null before accessing success property
@@ -40,8 +43,8 @@ const Navigation = ({ }) => {
                   <div className="avatar">
                     <img src={avatarLogout} alt="" />
                   </div>
-                  <button className="signup" onClick={() => navigate('/register')}>التسجيل</button>
-                  <button className="login" onClick={() => navigate('/login')}>تسجيل الدخول</button>
+                  <button className="signup" onClick={() => setMode('register')}>التسجيل</button>
+                  <button className="login" onClick={() => setMode('login')}>تسجيل الدخول</button>
                 </div>
               )}
               <div className="translate">
@@ -114,6 +117,12 @@ const Navigation = ({ }) => {
           style={color ? { display: "block" } : { display: "none" }}
         ></div>
       </header>
+      {
+        mode === "register" && <Register setMode={setMode} />
+      }
+      {
+        mode === "login" && <LoginIn setMode={setMode} />
+      }
     </>
   );
 };
