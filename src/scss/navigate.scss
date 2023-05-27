@@ -1,27 +1,255 @@
-#navigate {
-    .container {
-        max-width: 1200px;
-        margin: auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      .content{
-        .heading{
-h1{
-    
-    
-    font-family: "Cairo", sans-serif;
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 54px;
-    letter-spacing: 0em;
-    text-align: right;
-    
-}
-span{
+.navigate-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  right: 0px;
+  z-index: 11111;
+  background: #0000005c;
+display: none;
+  #navigate {
+    z-index: 1111;
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-}
-            
+    .container {
+      max-width: 1300px;
+      padding: 30px;
+      margin: auto;
+      display: grid;
+      padding: 40px;
+      grid-template-columns: 1fr 1.2fr;
+      background: #FAFAFA;
+      grid-gap: 35px;
+      border-radius: 95.6858px;
+
+      .content {
+position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 20px;
+        justify-content: start;
+
+
+
+        .icons {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          justify-content: end;
+          width: 100%;
+          gap: 40px;
+
+          li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+
+            span {
+              font-family: "Cairo", sans-serif;
+              color: #00afaa;
+              font-weight: 700;
+              font-size: 20px;
+            }
+          }
+        }
+
+        .heading {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          gap: 25px;
+
+          h1 {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 54px;
+            font-family: "Cairo", sans-serif;
+            color: #00AFAA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            span {
+              font-size: 40px;
+              font-weight: 500;
+              display: flex;
+              align-items: end;
+              justify-content: center;
+              line-height: 54px;
+              font-family: "Cairo", sans-serif;
+              color: #00AFAA;
+            }
+          }
+
+          span {
+            font-family: "Cairo", sans-serif;
+            color: #000000;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 30px;
+            letter-spacing: 0em;
+            text-align: left;
+
+          }
+          .cross{
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+          }
+        }
+
+        .para {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          gap: 50px;
+
+          p {
+            font-family: "Cairo", sans-serif;
+
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 30px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: black;
+
+          }
+        }
+
+        .list {
+          /* display: flex; */
+          display: flex;
+          list-style: none;
+          text-align: end;
+          align-items: center;
+          justify-content: end;
+          gap: 20px;
+
+          .bold {
+            li {
+              font-size: 16px;
+              font-weight: 700;
+              font-family: "Cairo", sans-serif !important;
+              color: #000000;
+              list-style: none;
+            }
+          }
+
+          .light {
+            li {
+              font-size: 16px;
+              font-weight: 400;
+              font-family: "Cairo", sans-serif !important;
+              color: #000000;
+              list-style: none;
+            }
+          }
+
+          ul {
+            display: flex;
+            align-items: end;
+            gap: 20px;
+            justify-content: center;
+            flex-direction: column;
+
+            li {}
+          }
+        }
+
+        .price-btn {
+          display: flex;
+          justify-content: center;
+          gap: 50px;
+          align-items: center;
+          margin-top: 30px;
+
+          .btn-1 {
+            width: 177px;
+
+            background: #FFCD00;
+            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 12px 16px;
+
+            span {
+              color: #373A36;
+              font-family: "Cairo", sans-serif;
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
+
+          .btn-2 {
+            width: 177px;
+
+            gap: 10px;
+            background: rgba(47, 43, 67, 0.05);
+            border-radius: 25px;
+            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            .one {
+              color: #373A36;
+              position: relative;
+              font-weight: 700;
+              font-size: 16px;
+
+              &::before {
+
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: url(../assests/Fleet/line.1.png);
+
+                background-repeat: no-repeat;
+                background-position: center right;
+                z-index: 0;
+              }
+            }
+
+            .second {
+              color: #373A36;
+              font-family: "Cairo", sans-serif;
+              font-size: 14px;
+              color: #FFFFFF;
+              font-weight: 700;
+              padding: 4px 8px;
+              border-radius: 20px;
+              background: #00AFAA;
+              border: 1px solid rgba(47, 43, 67, 0.2);
+            }
+          }
+        }
+      }
+
+      .img {
+        img {
+          width: 100%;
+          height: 100%;
+
         }
       }
     }
+  }
 }
