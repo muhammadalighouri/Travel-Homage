@@ -93,7 +93,7 @@ export const updateProfile = (user) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.put("/api/users/profile", user, config);
+        const { data } = await axios.put("/api/v1/user/me/update", user, config);
         if (data) {
             toast.success("Profile has updated!");
         }

@@ -77,7 +77,7 @@ const ProfileF = () => {
                   name=""
                   id=""
                   placeholder="رخصة القيادة"
-                  // {...formik.getFieldProps("email")}
+                // {...formik.getFieldProps("email")}
                 />
                 {/* {formik.touched.email && formik.errors.email ? (
                     <div className="error">{formik.errors.email}</div>
@@ -98,7 +98,7 @@ const ProfileF = () => {
                 <input
                   type="number"
                   placeholder="الرقم القومي أو رقم جواز السفر"
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>
@@ -119,7 +119,7 @@ const ProfileF = () => {
                 <input
                   type="number"
                   placeholder="             5555555                  "
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>
@@ -140,7 +140,7 @@ const ProfileF = () => {
                 <input
                   type="email"
                   placeholder="بريدك الإلكتروني"
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>

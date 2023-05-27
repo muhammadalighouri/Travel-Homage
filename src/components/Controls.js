@@ -39,7 +39,7 @@ const Controls = () => {
                     <div className="two">
                         <div className="item">
                             <p>
-                                تاريخ ووقت الإستلام
+                                Pickup date & time
                             </p>
                             <div className="btn">
                                 <div className="start">الوقت</div>
@@ -50,7 +50,7 @@ const Controls = () => {
                         </div>
                         <div className="item">
                             <p>
-                                تاريخ ووقت الإستلام
+                                Return date & time
                             </p>
                             <div className="btn">
                                 <div className="start">الوقت</div>
@@ -65,22 +65,22 @@ const Controls = () => {
                             <ul className="start">
                                 <li>
                                     <div className="item">
-                                        <p>التسليم في موقع مختلف</p>
-                                        <img src={switch1} alt="" />
+                                        <p>Return to a different location</p>
+                                        <input type="checkbox" name="" id="" />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="item">
-                                        <p>يومي</p>
-                                        <img src={switch1} alt="" />
+                                        <p>Per Day</p>
+                                        <input type="checkbox" name="" id="" />
                                     </div>
                                     <div className="item">
-                                        <p>بالساعة</p>
-                                        <img src={switch2} alt="" />
+                                        <p>Per Hour</p>
+                                        <input type="checkbox" name="" id="" />
                                     </div>
                                     <div className="item">
-                                        <p></p>
-                                        <img src={switch2} alt="" />
+                                        <p>Delivery</p>
+                                        <input type="checkbox" name="" id="" />
                                     </div>
                                 </li>
                             </ul>

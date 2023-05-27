@@ -30,7 +30,7 @@ const Navigation = ({ }) => {
             <div className="nav__grid">
               {success ? (
                 <div className="user">
-                  <div className="avatar">
+                  <div className="avatar" onClick={() => navigate('/profile')}>
                     <img src={avatar} alt="" />
                   </div>
                   <div className="icon">

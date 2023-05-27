@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 import p from "../assests/Profile/Profile 2.png";
 
 import "../scss/side.scss";
+import { useSelector } from "react-redux";
 const Sidebar = () => {
+  const user = useSelector((state) => state.UserLogin.userInfo.user) || {};
+  const { firstName, lastName } = user || {}
   return (
     <>
       <section id="sidebar">
@@ -16,7 +19,7 @@ const Sidebar = () => {
             <div className="detail">
               <img src={p} alt="" />
 
-              <span>Ahmed Abdelaal Sadek</span>
+              <span>{firstName}&nbsp;{lastName}</span>
             </div>
             <div className="image">
               <img src={img1} alt="" />
