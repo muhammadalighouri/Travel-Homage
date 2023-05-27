@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
@@ -13,8 +13,14 @@ import CarD from "../../components/CarD";
 import field from "../../assests/Fleet/Field.png";
 import Navigate from "../../components/Navigate";
 import FleetSide from "../../components/FleetSide";
+import { useDispatch } from "react-redux";
+import { fetchCars } from "../../Redux/actions/carActions";
 const Fleet = () => {
   const [display, setDisplay] = useState(false);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchCars())
+  }, [])
 
   return (
     <>
@@ -52,13 +58,13 @@ const Fleet = () => {
               </div>
             </div>
             <div className="flex-wrap">
-         
+
               <div className="flex">
                 <CarD
-                
+
                 />
               </div>
-              <FleetSide/>
+              <FleetSide />
             </div>
           </div>
         </div>

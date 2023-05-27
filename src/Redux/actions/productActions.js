@@ -21,6 +21,7 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import instance from "../../assets/axiosConfig";
+import { FETCH_CARS_FAILURE, FETCH_CARS_REQUEST, FETCH_CARS_SUCCESS } from "../constants/carsConstants";
 
 export const getProducts =
     (keyword = " ", pageNumber = "") =>
