@@ -9,6 +9,7 @@ import p from "../assests/Profile/Profile 2.png";
 import update from "../assests/Profile/Vector.png";
 import tick from "../assests/Profile/tick.png";
 import driver from "../assests/Profile/driver.png";
+import email from "../assests/Profile/email.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const ProfileF = () => {
@@ -89,7 +90,6 @@ const ProfileF = () => {
             <div className="btn">
               <img src={tick} alt="" />
               تم التأكيد
-
             </div>
             <div className="same">
               <p>الرقم القومي أو رقم جواز السفر</p>
@@ -115,7 +115,7 @@ const ProfileF = () => {
             <div className="same">
               <p>رقم الهاتف</p>
               <div className="under">
-                <img src={img3} alt="" />{" "}
+                {/* <img src={img3} alt="" />{" "} */}
                 <input
                   type="number"
                   placeholder="             5555555                  "
@@ -131,11 +131,12 @@ const ProfileF = () => {
           <div className="wrapper">
             <div className="btn">
               <img src={tick} alt="" />
-              البريد الإلكتروني            </div>
+              تم التأكيد
+            </div>
             <div className="same">
               <p>البريد الإلكتروني</p>
               <div className="under">
-                <img src={img3} alt="" />{" "}
+                <img src={email} alt="" />{" "}
                 <input
                   type="email"
                   placeholder="بريدك الإلكتروني"
