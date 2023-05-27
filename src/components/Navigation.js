@@ -18,10 +18,13 @@ const Navigation = ({ }) => {
   const [translate, setTranslate] = useState(false);
   const [nave, setNave] = useState(false);
   const [mode, setMode] = useState();
+  const [dropdownOpen, setDropdownOpen] = useState(false); // new state variable
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
-  const success = userInfo?.success; // Check if userInfo is not null before accessing success property
+  const success = userInfo?.success;
   const user = userInfo?.user;
+
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   return (
     <>
       <header>
@@ -30,9 +33,15 @@ const Navigation = ({ }) => {
             <div className="nav__grid">
               {success ? (
                 <div className="user">
-                  <div className="avatar" onClick={() => navigate('/profile')}>
+                  <div className="avatar" onClick={toggleDropdown}>
                     <img src={avatar} alt="" />
                   </div>
+                  {dropdownOpen && (
+                    <div className="dropdown-menu">
+                      <Link to="/profile" className="dropdown-item">Profile</Link>
+                      <div className="dropdown-item" >Logout</div>
+                    </div>
+                  )}
                   <div className="icon">
                     <img src={bell} alt="" />
                   </div>
