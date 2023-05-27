@@ -9,7 +9,7 @@ import p from "../assests/Profile/Profile 2.png";
 import "../scss/side.scss";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
-  const user = useSelector((state) => state.UserLogin.userInfo.user) || {};
+  const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
   const { firstName, lastName } = user || {}
   return (
     <>
