@@ -14,11 +14,13 @@ import {
   orderDetailsReducer,
   orderPayReducer,
 } from "./orderReducers";
+import carsReducer from "./carReducers";
 const RootReducer = combineReducers({
   Products: allProductsReducer,
   ProductDetails: singleProductReducer,
   ProductCreateReview: productCreateReviewReducer,
   Cart: cartReducer,
+  Cars: carsReducer,
   Checkout: shippingDetailsReducer,
   UserLogin: userLoginReducer,
   UserUpdate: userUpdateReducer,

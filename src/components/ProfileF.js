@@ -18,7 +18,7 @@ const ProfileF = () => {
   // useEffect(() => {
   //   if (!user) {
   //     navigate("/");
-  //   }
+  //   }  
   // }, []);
 
   return (
