@@ -81,8 +81,9 @@
 
             .flex {
                 display: grid;
-                grid-gap: 50px 25px;
+                grid-gap: 60px 25px;
                 grid-template-columns: 1fr 1fr 1fr;
+                height: fit-content;
             }
         }
     }

@@ -6,7 +6,12 @@ import car3 from "../assests/Fleet/car3.png";
 import car5 from "../assests/Fleet/car4.png";
 import car6 from "../assests/Fleet/car5.png";
 import tick from "../assests/Fleet/tick.png";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
+
 const FleetSide = () => {
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
   return (
     <>
       <div id="fleet-side">
@@ -47,7 +52,9 @@ const FleetSide = () => {
                       <img src={car1} alt="" />
                     </div>
                     <div className="check">
-                      <p></p>
+                      <p>
+                        <input type="checkbox" name="" id="" />
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -56,7 +63,9 @@ const FleetSide = () => {
                       <img src={car2} alt="" />
                     </div>
                     <div className="check">
-                      <p></p>
+                      <p>
+                        <input type="checkbox" name="" id="" />
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -65,7 +74,9 @@ const FleetSide = () => {
                       <img src={car3} alt="" />
                     </div>
                     <div className="check">
-                      <p></p>
+                      <p>
+                        <input type="checkbox" name="" id="" />
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -74,7 +85,9 @@ const FleetSide = () => {
                       <img src={car5} alt="" />
                     </div>
                     <div className="check">
-                      <p></p>
+                      <p>
+                        <input type="checkbox" name="" id="" />
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -83,7 +96,9 @@ const FleetSide = () => {
                       <img src={car6} alt="" />
                     </div>
                     <div className="check">
-                      <p></p>
+                      <p>
+                        <input type="checkbox" name="" id="" />
+                      </p>
                     </div>
                   </li>
                 </ul>
@@ -93,8 +108,10 @@ const FleetSide = () => {
           <div className="avalible-1">
             <h3 className="h">التوفر</h3>
             <div className="para">
-            <p>إعادة ضبط</p> <p>مختاره <span>0</span></p>{" "}
-
+              <p>إعادة ضبط</p>{" "}
+              <p>
+                مختاره <span>0</span>
+              </p>{" "}
             </div>
             <div className="select">
               <ul className="number">
@@ -105,7 +122,7 @@ const FleetSide = () => {
                 <li>
                   <div className="h"> رفاهية</div>
                   <div className="check">
-                    <p></p>
+                    <input type="checkbox" name="" id="" />
                   </div>
                 </li>
                 <li>
@@ -123,8 +140,10 @@ const FleetSide = () => {
           <div className="avalible-1">
             <h3 className="h">الخصم</h3>
             <div className="para">
-            <p>إعادة ضبط</p> <p>مختاره <span>0</span></p>{" "}
-
+              <p>إعادة ضبط</p>{" "}
+              <p>
+                مختاره <span>0</span>
+              </p>{" "}
             </div>
             <div className="select">
               <ul className="number">
@@ -134,7 +153,9 @@ const FleetSide = () => {
                 <li>
                   <div className="h"> ترافيل بلص</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="" />
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -143,8 +164,10 @@ const FleetSide = () => {
           <div className="avalible-1">
             <h3 className="h">الماركة</h3>
             <div className="para">
-            <p>إعادة ضبط</p> <p>مختاره <span>0</span></p>{" "}
-
+              <p>إعادة ضبط</p>{" "}
+              <p>
+                مختاره <span>0</span>
+              </p>{" "}
             </div>
             <div className="select">
               <ul className="number">
@@ -154,7 +177,9 @@ const FleetSide = () => {
                 <li>
                   <div className="h"> لكزس</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="" />
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -163,7 +188,10 @@ const FleetSide = () => {
           <div className="avalible-1">
             <h3 className="h">السعر</h3>
             <div className="para">
-              <p>إعادة ضبط</p> <p>مختاره <span>100</span></p>{" "}
+              <p>إعادة ضبط</p>{" "}
+              <p>
+                مختاره <span>100</span>
+              </p>{" "}
             </div>
             <div className="select">
               <ul className="number">
@@ -173,7 +201,9 @@ const FleetSide = () => {
                 <li>
                   <div className="h"> لكزس</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="" />
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -182,8 +212,10 @@ const FleetSide = () => {
           <div className="avalible-1">
             <h3 className="h">السنة</h3>
             <div className="para">
-            <p>إعادة ضبط</p> <p>مختاره <span>0</span></p>{" "}
-
+              <p>إعادة ضبط</p>{" "}
+              <p>
+                مختاره <span>0</span>
+              </p>{" "}
             </div>
             <div className="select">
               <ul className="number">
@@ -196,25 +228,33 @@ const FleetSide = () => {
                 <li>
                   <div className="h"> 2020</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="" />
+                    </p>
                   </div>
                 </li>
                 <li>
                   <div className="h"> 2021</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="" />
+                    </p>
                   </div>
                 </li>
                 <li>
                   <div className="h"> 2022</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="check-box" />
+                    </p>
                   </div>
                 </li>
                 <li>
                   <div className="h"> 2023</div>
                   <div className="check">
-                    <p></p>
+                    <p>
+                      <input type="checkbox" name="" id="" />
+                    </p>
                   </div>
                 </li>
               </ul>

@@ -17,6 +17,7 @@ import bell from "../assests/bell.png";
 import { useSelector } from "react-redux";
 import Register from "./Register";
 import LoginIn from "./LoginIn";
+import down from "../assests/down.png";
 const Navigation = ({}) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
@@ -25,12 +26,14 @@ const Navigation = ({}) => {
   const [nave, setNave] = useState(false);
   const [mode, setMode] = useState();
   const [dropdownOpen, setDropdownOpen] = useState(false); // new state variable
+  const [dropdownOpen2, setDropdownOpen2] = useState(false); // new state variable
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
   const success = userInfo?.success;
   const user = userInfo?.user;
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleDropdown2 = () => setDropdownOpen2(!dropdownOpen2);
   const dropdown = [
     {
       icon: i1,
@@ -67,9 +70,11 @@ const Navigation = ({}) => {
                   {dropdownOpen && (
                     <div className="dropdown">
                       <div className="dropdown-menu">
-                     
-                          <div className="person-profile">
-                          <Link to={"/profile"}>
+                        <div className="person-profile">
+                          <Link
+                            to={"/profile"}
+                          
+                          >
                             <div className="arrow">
                               <img src={arrow1} alt="" />
                             </div>
@@ -80,14 +85,19 @@ const Navigation = ({}) => {
                             <div className="img">
                               <img src={profile} alt="" />
                             </div>
-                        </Link>
-
-                          </div>
-                     {/* <div className="list"> */}
-                     {dropdown.map((a) => {
+                          </Link>
+                        </div>
+                        {dropdown.map((a) => {
                           return (
                             <>
-                              <Link to={a.path}>
+                              <Link
+                                to={a.path}
+                                style={
+                                  window.location.pathname === a.path
+                                    ? { background: " #00000014" }
+                                    : { background: "none" }
+                                }
+                              >
                                 <div className="n">
                                   {a.name}
                                   <img src={a.icon} alt="" />
@@ -96,11 +106,6 @@ const Navigation = ({}) => {
                             </>
                           );
                         })}
-                     {/* </div> */}
-                        {/* <Link to="/profile" className="dropdown-item">
-                        Profile
-                      </Link>
-                      <div className="dropdown-item">Logout</div> */}
                       </div>
                     </div>
                   )}
@@ -151,8 +156,41 @@ const Navigation = ({}) => {
                         </li>
                       );
                     })}
-                    <li>
-                      <a href=""> الشركة</a>
+                    <li className="drop" onClick={toggleDropdown2}>
+                      الشركة
+                      <img src={down} alt="" />
+                      {dropdownOpen2 && (
+                        <div className="dropdown">
+                          <div className="dropdown-menu">
+                            <div className="person-profile">
+                              <Link to={"/profile"}>
+                                <div className="arrow">
+                                  <img src={arrow1} alt="" />
+                                </div>
+                                <div className="detial">
+                                  <div className="name">Ahmed Deco</div>
+                                  <p>عضوية ذهبية</p>
+                                </div>
+                                <div className="img">
+                                  <img src={profile} alt="" />
+                                </div>
+                              </Link>
+                            </div>
+                            {dropdown.map((a) => {
+                              return (
+                                <>
+                                  <Link to={a.path}>
+                                    <div className="n">
+                                      {a.name}
+                                      <img src={a.icon} alt="" />
+                                    </div>
+                                  </Link>
+                                </>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                     </li>
                     <li className="translate__option">
                       <div className="translate">

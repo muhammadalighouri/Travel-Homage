@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -14,15 +15,15 @@ import img1 from "../assests/Car Card (1).png";
 import img2 from "../assests/Car Card.png";
 import Controls from "../components/Controls";
 const Car = () => {
-  const [slide, setSlide] = useState(2)
-  window.addEventListener('scroll', () => {
+  const [slide, setSlide] = useState(2);
+  window.addEventListener("scroll", () => {
     if (window.innerWidth > 786) {
-      setSlide(2)
+      setSlide(2);
     }
     if (window.innerWidth < 786) {
-      setSlide(1)
+      setSlide(1);
     }
-  })
+  });
   return (
     <>
       <section id="car">
@@ -38,7 +39,6 @@ const Car = () => {
               pagination={{
                 clickable: true,
               }}
-
               className="mySwiper"
             >
               <SwiperSlide>
@@ -86,7 +86,7 @@ const Car = () => {
               <h2>انضمت إلى الأسطول</h2>
             </div>
             <div className="btn">
-              <a href="#">استكشف جميع السيارات</a>
+              <Link to={"/fleet"}>استكشف جميع السيارات</Link>
             </div>
           </div>
         </div>

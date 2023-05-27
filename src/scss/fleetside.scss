@@ -86,6 +86,48 @@
                             justify-content: end;
 
                             p {
+
+                                width: 25.77px;
+                                height: 25.77px;
+                                border-radius: 6.87179px;
+
+                                input {
+                                    width: 100%;
+                                    height: 100%;
+
+                                }
+                            }
+
+                            input {
+                                width: 100%;
+                                height: 100%;
+
+                            }
+                        }
+
+                        .h {
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: #222222;
+                            font-family: "Cairo", sans-serif;
+                            text-align: end;
+                            margin-right: 15px;
+                        }
+
+                        .car {
+                            display: flex;
+                            align-items: center;
+                            justify-content: end;
+                        }
+
+                        .check {
+                            width: 25.77px;
+
+                            display: flex;
+                            align-items: center;
+                            justify-content: end;
+
+                            p {
                                 width: 25.77px;
                                 height: 25.77px;
                                 background: #3F3F3F;
@@ -180,17 +222,13 @@
                 align-items: center;
                 width: 100%;
                 justify-content: space-between;
+
                 p {
                     color: #303030;
                     font-size: 13px;
                     font-weight: 400;
                     font-family: "Cairo", sans-serif;
-p{
-    color: #303030;
-    font-size: 13px;
-    font-weight: 400;
-    font-family: "Cairo", sans-serif;
-}
+
                 }
             }
 
@@ -209,6 +247,12 @@ p{
                 align-items: center;
                 justify-content: space-between;
                 width: 100%;
+
+                #check-box {
+                    width: 100%;
+                    height: 100%;
+                }
+
 
                 .number {
                     display: flex;
@@ -247,10 +291,22 @@ p{
                             justify-content: end;
 
                             p {
+
                                 width: 25.77px;
                                 height: 25.77px;
-                                background: #FFCD00;
                                 border-radius: 6.87179px;
+
+                                input {
+                                    width: 100%;
+                                    height: 100%;
+
+                                }
+                            }
+
+                            input {
+                                width: 100%;
+                                height: 100%;
+
                             }
                         }
 

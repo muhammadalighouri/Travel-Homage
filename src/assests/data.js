@@ -145,10 +145,6 @@ export const side = [
 export const nav = [
   {
     name: "تواصل معنا",
-    path: "/",
-  },
-  {
-    name: "تواصل معنا",
     path: "/fleet",
   },
   {
