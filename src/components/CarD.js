@@ -14,29 +14,43 @@ import f4 from "../assests/Fleet/i.11.png";
 import f5 from "../assests/Fleet/i.22.png";
 import "../scss/card.scss";
 import { useSelector } from "react-redux";
+import Navigate from "./Navigate";
 const CarD = ({ display }) => {
-  const { cars, loading } = useSelector(state => state.Cars) || {}
+  const { cars, loading } = useSelector((state) => state.Cars) || {};
 
+  // State to hold the selected car's data
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  // Function to handle when a car card is clicked
+  const cardDetails = (car) => {
+    setSelectedCar(car);
+  }
+  const closeModal = () => {
+    setSelectedCar(null);
+  }
+  // Function to calculate price after discount
+  const priceAfterDiscount = (price, discount) => {
+    return price - (price * discount / 100);
+  }
   return (
     <>
-      {
-        loading ? <h2 style={{ color: "black" }}>Loading...</h2> : <>
-          {cars?.map((a) => {
-
+      {loading ? (
+        <h2 style={{ color: "black" }}>Loading...</h2>
+      ) : (
+        <>
+          {cars?.map((car) => {
             return (
               <>
-                <div className="box">
+                <div className="box" onClick={() => cardDetails(car)}>
                   <div
                     className="wrapper-main"
-                  // onClick={() => {
-                  //   display(true);
-                  // }}
+
                   >
                     <div className="top-h">
                       <div className="start">
-                        <span>خصم 15%</span>
+                        <span>خصم {car.discount}%</span>
                       </div>
-                      <div className="center">VIP بريميوم</div>
+                      <div className="center">{car.type}</div>
                       <div className="end">
                         <img src={Vector} alt="" className="vector" />
                       </div>
@@ -45,42 +59,42 @@ const CarD = ({ display }) => {
                       <div className="content">
                         <div className="heading-1">
                           <h1>
-                            لكزس <span>ES250</span>
+                            {car.name}
                           </h1>
                         </div>
                         <div className="year">
-                          <span>2023</span>
+                          <span>{car.year}</span>
                           <div className="price">
                             <span className="n1">ر.س.</span>
-                            <span className="n2">1450</span>
+                            <span className="n2">{priceAfterDiscount(car?.pricePerDay, car?.discount)}</span>
                           </div>
                         </div>
 
                         <div className="layer">
                           <h2>
-                            1200
+                            {true ? car?.pricePerDay : car?.pricePerHour}
                             <span className="l1">ر.س.*</span>
                           </h2>
                         </div>
                       </div>
                       <div className="wrap-img">
-                        <img src={c1} alt="" className="main" />
+                        <img src={car?.image} alt="" className="main" />
                         <div className="icons">
                           <li>
                             <img src={s1} alt="" />
-                            <span>M</span>
+                            <span>{car?.maxPeople}</span>
                           </li>
                           <li>
                             <img src={s2} alt="" />
-                            <span>4</span>
+                            <span>{car?.bags}</span>
                           </li>
                           <li>
                             <img src={s3} alt="" />
-                            <span>4</span>
+                            <span>{car?.numDoors}</span>
                           </li>
                           <li>
                             <img src={s4} alt="" />
-                            <span>4-5</span>
+                            <span>{car?.engine}</span>
                           </li>
                         </div>
                         <div className="main-btn">
@@ -95,15 +109,17 @@ const CarD = ({ display }) => {
                       <img src={f4} alt="" />
                     </div>
                     <div className="btn">
-                      <img src={f5} alt="" />      اضافة للمفضله
+                      <img src={f5} alt="" /> اضافة للمفضله
                     </div>
                   </div>
                 </div>
+
               </>
             );
           })}
+          {selectedCar && <Navigate closeModal={closeModal} car={selectedCar} />}
         </>
-      }
+      )}
     </>
   );
 };

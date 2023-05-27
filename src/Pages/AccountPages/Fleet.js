@@ -70,7 +70,7 @@ const Fleet = () => {
         </div>
       </section>
       <Footer />
-      <Navigate style={display ? { display: "block" } : { display: "none" }} />
+      {/* <Navigate style={display ? { display: "block" } : { display: "none" }} /> */}
     </>
   );
 };

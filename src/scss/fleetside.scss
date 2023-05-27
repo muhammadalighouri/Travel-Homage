@@ -1,332 +1,313 @@
 #fleet-side {
+  aside {
+    .wrap-categories {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+      border-bottom: 0.858974px solid #bdbdbd;
 
-    aside {
-        .wrap-categories {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            gap: 20px;
-            border-bottom: 0.858974px solid #BDBDBD;
+      .heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
 
-            .heading {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
+        h3 {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 26px;
+          color: #222222;
+          font-family: "Cairo", sans-serif;
 
-                h3 {
-
-                    font-size: 14px;
-                    font-weight: 500;
-                    line-height: 26px;
-                    color: #222222;
-                    font-family: "Cairo", sans-serif;
-
-                    text-align: left;
-
-
-                }
-
-                span {
-
-                    font-size: 12px;
-                    font-weight: 400;
-                    color: #222222;
-                    font-family: "Cairo", sans-serif;
-
-                    text-align: left;
-                }
-            }
-
-            .categories {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 15px;
-
-                .head {
-                    width: 100%;
-
-                    .select-h {
-                        display: grid;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 10px;
-                        grid-template-columns: 1.4fr 1fr 0.4fr;
-
-                        .number {
-
-                            li {
-                                color: #222222;
-                                font-weight: 400;
-                                font-family: "Cairo", sans-serif;
-                                font-size: 13px;
-                                list-style: none;
-                            }
-                        }
-
-                        .text {
-                            color: #222222;
-                            font-weight: 400;
-                            font-family: "Cairo", sans-serif;
-                            font-size: 13px;
-                            list-style: none;
-
-                        }
-
-                        .check {
-                            width: 25.77px;
-
-                            display: flex;
-                            align-items: center;
-                            justify-content: end;
-
-                            p {
-
-                                width: 25.77px;
-                                height: 25.77px;
-                                border-radius: 6.87179px;
-
-                                input {
-                                    width: 100%;
-                                    height: 100%;
-
-                                }
-                            }
-
-                            input {
-                                width: 100%;
-                                height: 100%;
-
-                            }
-                        }
-
-                        .h {
-                            font-size: 14px;
-                            font-weight: 400;
-                            color: #222222;
-                            font-family: "Cairo", sans-serif;
-                            text-align: end;
-                            margin-right: 15px;
-                        }
-
-                        .car {
-                            display: flex;
-                            align-items: center;
-                            justify-content: end;
-                        }
-
-                        .check {
-                            width: 25.77px;
-
-                            display: flex;
-                            align-items: center;
-                            justify-content: end;
-
-                            p {
-                                width: 25.77px;
-                                height: 25.77px;
-                                background: #3F3F3F;
-                                border-radius: 6.87179px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                            }
-                        }
-                    }
-                }
-
-                .select {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 100%;
-
-                    .number {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        gap: 26px;
-                        /* align-items: end; */
-
-                        li {
-                            color: #222222;
-                            font-weight: 400;
-                            font-family: "Cairo", sans-serif;
-                            font-size: 13px;
-                            list-style: none;
-                        }
-                    }
-
-                    .text {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        gap: 15px;
-
-                        li {
-                            display: grid;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 10px;
-                            grid-template-columns: 1.4fr 0.5fr 0.4fr;
-
-                            .check {
-                                width: 25.77px;
-
-                                display: flex;
-                                align-items: center;
-                                justify-content: end;
-
-                                p {
-                                    width: 25.77px;
-                                    height: 25.77px;
-                                    background: #FFCD00;
-                                    border-radius: 6.87179px;
-                                }
-                            }
-
-                            .h {
-                                font-size: 14px;
-                                font-weight: 400;
-                                color: #222222;
-                                font-family: "Cairo", sans-serif;
-                                text-align: end;
-                                margin-right: 15px;
-                            }
-
-                            .car {
-                                display: flex;
-                                align-items: center;
-                                justify-content: end;
-                            }
-                        }
-                    }
-                }
-            }
+          text-align: left;
         }
 
-        .avalible-1 {
-            padding: 20px;
-            border-bottom: 0.858974px solid #BDBDBD;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        span {
+          font-size: 12px;
+          font-weight: 400;
+          color: #222222;
+          font-family: "Cairo", sans-serif;
 
-            .para {
-                display: flex;
-                align-items: center;
-                width: 100%;
-                justify-content: space-between;
+          text-align: left;
+        }
+      }
 
-                p {
-                    color: #303030;
-                    font-size: 13px;
-                    font-weight: 400;
-                    font-family: "Cairo", sans-serif;
+      .categories {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
 
+        .head {
+          width: 100%;
+
+          .select-h {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            grid-template-columns: 1.4fr 1fr 0.4fr;
+
+            .number {
+              li {
+                color: #222222;
+                font-weight: 400;
+                font-family: "Cairo", sans-serif;
+                font-size: 13px;
+                list-style: none;
+              }
+            }
+
+            .text {
+              color: #222222;
+              font-weight: 400;
+              font-family: "Cairo", sans-serif;
+              font-size: 13px;
+              list-style: none;
+            }
+
+            .check {
+              width: 25.77px;
+
+              display: flex;
+              align-items: center;
+              justify-content: end;
+
+              p {
+                width: 25.77px;
+                height: 25.77px;
+                border-radius: 6.87179px;
+
+                input {
+                  width: 100%;
+                  height: 100%;
                 }
+              }
+
+              input {
+                width: 100%;
+                height: 100%;
+              }
             }
 
             .h {
-                font-family: "Cairo", sans-serif;
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 26px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: #003F62;
+              font-size: 14px;
+              font-weight: 400;
+              color: #222222;
+              font-family: "Cairo", sans-serif;
+              text-align: end;
+              margin-right: 15px;
             }
 
-            .select {
+            .car {
+              display: flex;
+              align-items: center;
+              justify-content: end;
+            }
+
+            .check {
+              width: 25.77px;
+
+              display: flex;
+              align-items: center;
+              justify-content: end;
+
+              p {
+                width: 25.77px;
+                height: 25.77px;
+                background: #3f3f3f;
+                border-radius: 6.87179px;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                width: 100%;
-
-                #check-box {
-                    width: 100%;
-                    height: 100%;
-                }
-
-
-                .number {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    gap: 26px;
-                    /* align-items: end; */
-
-                    li {
-                        color: #222222;
-                        font-weight: 400;
-                        font-family: "Cairo", sans-serif;
-                        font-size: 13px;
-                        list-style: none;
-                    }
-                }
-
-                .text {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    gap: 15px;
-
-                    li {
-                        display: grid;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 10px;
-                        grid-template-columns: 1.5fr 0.4fr;
-
-                        .check {
-                            width: 25.77px;
-
-                            display: flex;
-                            align-items: center;
-                            justify-content: end;
-
-                            p {
-
-                                width: 25.77px;
-                                height: 25.77px;
-                                border-radius: 6.87179px;
-
-                                input {
-                                    width: 100%;
-                                    height: 100%;
-
-                                }
-                            }
-
-                            input {
-                                width: 100%;
-                                height: 100%;
-
-                            }
-                        }
-
-                        .h {
-                            font-size: 14px;
-                            font-weight: 400;
-                            color: #222222;
-                            font-family: "Cairo", sans-serif;
-                            text-align: end;
-                            margin-right: 15px;
-                        }
-
-                        .car {
-                            display: flex;
-                            align-items: center;
-                            justify-content: end;
-                        }
-                    }
-                }
+                justify-content: center;
+              }
             }
+          }
         }
+
+        .select {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+
+          .number {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 26px;
+            /* align-items: end; */
+
+            li {
+              color: #222222;
+              font-weight: 400;
+              font-family: "Cairo", sans-serif;
+              font-size: 13px;
+              list-style: none;
+            }
+          }
+
+          .text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+
+            li {
+              display: grid;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+              grid-template-columns: 1.4fr 0.5fr 0.4fr;
+
+              .check {
+                width: 25.77px;
+
+                display: flex;
+                align-items: center;
+                justify-content: end;
+
+                p {
+                }
+              }
+
+              .h {
+                font-size: 14px;
+                font-weight: 400;
+                color: #222222;
+                font-family: "Cairo", sans-serif;
+                text-align: end;
+                margin-right: 15px;
+              }
+
+              .car {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+              }
+            }
+          }
+        }
+      }
     }
+
+    .avalible-1 {
+      padding: 20px;
+      border-bottom: 0.858974px solid #bdbdbd;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .para {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+
+        p {
+          color: #303030;
+          font-size: 13px;
+          font-weight: 400;
+          font-family: "Cairo", sans-serif;
+        }
+      }
+
+      .h {
+        font-family: "Cairo", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: right;
+        color: #003f62;
+      }
+
+      .select {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        #check-box {
+          width: 100%;
+          height: 100%;
+        }
+
+        .number {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 26px;
+          /* align-items: end; */
+
+          li {
+            color: #222222;
+            font-weight: 400;
+            font-family: "Cairo", sans-serif;
+            font-size: 13px;
+            list-style: none;
+          }
+        }
+
+        .text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 15px;
+
+          li {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            grid-template-columns: 1.5fr 0.4fr;
+
+            .check {
+              width: 25.77px;
+
+              display: flex;
+              align-items: center;
+              justify-content: end;
+
+              p {
+                width: 25.77px;
+                height: 25.77px;
+                border-radius: 6.87179px;
+
+                input {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+
+              input {
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+            .h {
+              font-size: 14px;
+              font-weight: 400;
+              color: #222222;
+              font-family: "Cairo", sans-serif;
+              text-align: end;
+              margin-right: 15px;
+            }
+
+            .car {
+              display: flex;
+              align-items: center;
+              justify-content: end;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -6,7 +6,6 @@
   right: 0px;
   z-index: 11111;
   background: #0000005c;
-display: none;
   #navigate {
     z-index: 1111;
     position: relative;
@@ -20,19 +19,17 @@ display: none;
       display: grid;
       padding: 40px;
       grid-template-columns: 1fr 1.2fr;
-      background: #FAFAFA;
+      background: #fafafa;
       grid-gap: 35px;
       border-radius: 95.6858px;
 
       .content {
-position: relative;
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: end;
         gap: 20px;
         justify-content: start;
-
-
 
         .icons {
           display: flex;
@@ -69,7 +66,7 @@ position: relative;
             font-weight: 700;
             line-height: 54px;
             font-family: "Cairo", sans-serif;
-            color: #00AFAA;
+            color: #00afaa;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -83,7 +80,7 @@ position: relative;
               justify-content: center;
               line-height: 54px;
               font-family: "Cairo", sans-serif;
-              color: #00AFAA;
+              color: #00afaa;
             }
           }
 
@@ -95,9 +92,8 @@ position: relative;
             line-height: 30px;
             letter-spacing: 0em;
             text-align: left;
-
           }
-          .cross{
+          .cross {
             position: absolute;
             left: 0;
             top: 0;
@@ -120,7 +116,6 @@ position: relative;
             letter-spacing: 0em;
             text-align: left;
             color: black;
-
           }
         }
 
@@ -160,7 +155,8 @@ position: relative;
             justify-content: center;
             flex-direction: column;
 
-            li {}
+            li {
+            }
           }
         }
 
@@ -174,8 +170,9 @@ position: relative;
           .btn-1 {
             width: 177px;
 
-            background: #FFCD00;
-            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+            background: #ffcd00;
+            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+              inset 0px -1px 0px rgba(47, 43, 67, 0.1);
             border-radius: 25px;
             cursor: pointer;
             display: flex;
@@ -185,7 +182,7 @@ position: relative;
             padding: 12px 16px;
 
             span {
-              color: #373A36;
+              color: #373a36;
               font-family: "Cairo", sans-serif;
               font-size: 16px;
               font-weight: 700;
@@ -198,7 +195,8 @@ position: relative;
             gap: 10px;
             background: rgba(47, 43, 67, 0.05);
             border-radius: 25px;
-            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+              inset 0px -1px 0px rgba(47, 43, 67, 0.1);
             padding: 12px 16px;
             cursor: pointer;
             display: flex;
@@ -207,13 +205,12 @@ position: relative;
             cursor: pointer;
 
             .one {
-              color: #373A36;
+              color: #373a36;
               position: relative;
               font-weight: 700;
               font-size: 16px;
 
               &::before {
-
                 content: "";
                 width: 100%;
                 height: 100%;
@@ -229,14 +226,14 @@ position: relative;
             }
 
             .second {
-              color: #373A36;
+              color: #373a36;
               font-family: "Cairo", sans-serif;
               font-size: 14px;
-              color: #FFFFFF;
+              color: #ffffff;
               font-weight: 700;
               padding: 4px 8px;
               border-radius: 20px;
-              background: #00AFAA;
+              background: #00afaa;
               border: 1px solid rgba(47, 43, 67, 0.2);
             }
           }
@@ -247,7 +244,6 @@ position: relative;
         img {
           width: 100%;
           height: 100%;
-
         }
       }
     }

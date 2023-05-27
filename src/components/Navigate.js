@@ -7,7 +7,10 @@ import v4 from "../assests/Fleet/Group (2).png";
 import img1 from "../assests/Fleet/Rectangle 23.png";
 import "../scss/navigate.scss";
 import cross from "../assests/Fleet/Xmark.png";
-const Navigate = () => {
+const Navigate = ({ car, closeModal }) => {
+  const priceAfterDiscount = (price, discount) => {
+    return price - (price * discount / 100);
+  }
   return (
     <>
       <div className="navigate-wrapper">
@@ -15,54 +18,52 @@ const Navigate = () => {
           <div className="container">
             <div className="content">
               <div className="heading">
-                <div className="cross">
+                <div className="cross" onClick={closeModal}>
                   <img src={cross} alt="" />
                 </div>
-                <span className="year">2023</span>
+                <span className="year">{car?.model}</span>
 
                 <h1>
-                  <span>E250</span> لكزس{" "}
+                  {car?.name}
                 </h1>
-                
+
               </div>
               <div className="para">
                 <img src={star} alt="" />
-                <p>Lorem ipsum dolor sit amet, consectetuer </p>
+                <p>{car?.description}</p>
               </div>
               <div className="icons">
                 <li>
                   <img src={v1} alt="" />
-                  <span>M</span>
+                  <span>{car?.maxPeople}</span>
                 </li>
                 <li>
                   <img src={v2} alt="" />
-                  <span>4</span>
+                  <span>{car?.bags}</span>
                 </li>
                 <li>
                   <img src={v3} alt="" />
-                  <span>4</span>
+                  <span>{car?.numDoors}</span>
                 </li>
                 <li>
                   <img src={v4} alt="" />
-                  <span>4-5</span>
+                  <span>{car?.engine}</span>
                 </li>
               </div>
               <div className="list">
                 <ul className="light">
-                  <li>ومن هنا وجب على المصمم أن يضع.</li>
-                  <li>نصوصا مؤقتة على التصميم.</li>
-                  <li>يظهر للعميل الشكل كاملاًدور مولد النص.</li>
-                  <li>العربى أن يوفر على المصمم عناء البحث .</li>
-                  <li>نص بديل لا علاقة له ب.</li>
-                  <li>عنه التصميم فيظهر بشكل لا يليق.</li>
+                  <li>{car?.maxPeople}</li>
+                  <li>{car?.bags}</li>
+                  <li>{car?.numDoors}</li>
+                  <li>{car?.engine}</li>
+
                 </ul>
                 <ul className="bold">
-                  <li>هذا النص:</li>
-                  <li>هو مثال:</li>
-                  <li>لنص يمكن أن:</li>
-                  <li>يستبدل في:</li>
-                  <li>نفس:</li>
-                  <li>المساحة:</li>
+                  <li>Max Person</li>
+                  <li>No Of Bags</li>
+                  <li>No Of Doors</li>
+                  <li>Engine </li>
+
                 </ul>
               </div>
               <div className="price-btn">
@@ -70,13 +71,13 @@ const Navigate = () => {
                   <span>أحجز الآن</span>
                 </div>
                 <div className="btn-2">
-                  <p className="one">1350</p>
-                  <p className="second">1200 ر.س</p>
+                  <p className="one">{car?.pricePerDay}</p>
+                  <p className="second">{priceAfterDiscount(car?.pricePerDay, car?.discount)} ر.س</p>
                 </div>
               </div>
             </div>
             <div className="img">
-              <img src={img1} alt="" />
+              <img src={car?.mainImages[0]} alt="" />
             </div>
           </div>
         </section>
