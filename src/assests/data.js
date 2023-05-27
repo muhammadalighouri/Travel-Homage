@@ -121,25 +121,21 @@ export const side = [
     name: "تغيير كلمة المرور",
     icon: icon7,
     path: "/change-Password",
-
   },
   {
     name: "تقييم السيارات",
     icon: icon6,
     path: "/ride-ratings",
-
   },
   {
     name: "الدعم الفني",
     icon: icon8,
     path: "/user-customer",
-
   },
   {
     name: "المساعدة على الطريق",
     icon: icon9,
     path: "/roadside-assistance",
-
   },
   {
     name: "خروج",
@@ -162,10 +158,6 @@ export const nav = [
   {
     name: "العروض",
     path: "/login-in",
-  },
-  {
-    name: "العروض",
-    path: "/profile",
   },
 ];
 export const FAQ = [

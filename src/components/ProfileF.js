@@ -13,7 +13,7 @@ import email from "../assests/Profile/email.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const ProfileF = () => {
-  const { user } = useSelector((state) => state.UserLogin.userInfo) || {};
+  const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
   const navigate = useNavigate();
   // useEffect(() => {
   //   if (!user) {

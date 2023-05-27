@@ -9,26 +9,92 @@ header {
   width: 100%;
   z-index: 1001;
   background: transparent;
-  /* overflow: hidden; */
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0.5em 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    z-index: 10;
 
-    .dropdown-item {
-      display: block;
-      margin: 0.5em 0;
-      color: #333;
-      text-decoration: none;
+  .dropdown {
 
-      &:hover {
-        color: #007bff;
+
+    .dropdown-menu {
+      position: absolute;
+      width: 200px;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 4px 0px;
+      width: 320px;
+      height: 256px;
+      background: #FAFAFA;
+      border: 1px solid rgba(47, 43, 67, 0.1);
+      box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+      border-radius: 12px;
+
+      .person-profile {
+       width: 100%;
+
+   a{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.2fr 0.6fr 0.2fr;
+    align-items: center;
+    justify-content: end;
+    padding: 15px 16px;
+    .img {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+    }
+
+    .detial {
+      .name {
+        font-family: "Cairo", sans-serif;
+
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: -0.01em;
+        text-align: right;
+        color: #2F2B43;
+      }
+
+      p {
+        font-family: "Cairo", sans-serif;
+        color: #2F2B43;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: -0.01em;
+        text-align: right;
+
+      }
+    }
+   }
+      }
+
+      a {
+        width: 100%;
+
+        .n {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          gap: 5px;
+          padding: 11.5px 16px;
+          font-size: 16px;
+          font-weight: 600;
+          color: #2F2B43;
+          text-decoration: none;
+          font-family: "Cairo", sans-serif;
+
+        }
+
+        &:hover {
+          background: #00000014;
+
+        }
+
+
       }
     }
   }
@@ -47,15 +113,18 @@ header {
 
   .outer {
     position: relative;
+
     svg {
       font-size: 45px;
       position: absolute;
       right: 6px;
       cursor: pointer;
+
       @include smobile {
         font-size: 40px;
       }
     }
+
     .container {
       max-width: 1300px;
       margin: 0 auto;
@@ -63,17 +132,20 @@ header {
       background: #f2f2f2;
       border-bottom-right-radius: 75px;
       border-bottom-left-radius: 75px;
+
       @include md {
         padding: 20px 35px;
         border-bottom-right-radius: 50px;
         border-bottom-left-radius: 50px;
       }
+
       .nav__grid {
         align-items: center;
         position: relative;
         display: grid;
         grid-template-columns: 1.6fr 1.5fr 3fr 1fr;
         gap: 10px;
+
         @include md {
           display: flex;
           align-items: center;
@@ -82,9 +154,11 @@ header {
 
         .logo {
           justify-self: start;
+
           @include md {
             display: none;
           }
+
           a {
             display: flex;
             align-items: center;
@@ -100,21 +174,25 @@ header {
             }
           }
         }
+
         .user {
           display: flex;
           justify-content: space-between;
           gap: 10px;
           align-items: center;
+
           span {
             color: #2f2b4399;
             font-weight: 600;
           }
         }
+
         .user__signout {
           display: flex;
           justify-content: space-between;
           gap: 10px;
           align-items: center;
+
           button.signup {
             background: #fff;
             box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
@@ -123,6 +201,7 @@ header {
             padding: 8px 12px;
             color: black;
           }
+
           button.login {
             background: transparent;
 
@@ -130,14 +209,17 @@ header {
             color: #2f2b4399;
           }
         }
+
         .translate {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 10px;
+
           @include lg {
             display: none;
           }
+
           .second {
             background: rgba(0, 175, 170, 1);
             box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
@@ -145,6 +227,7 @@ header {
             border-radius: 8px;
             padding: 8px 12px;
           }
+
           .first {
             background: #fff;
             box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
@@ -154,6 +237,7 @@ header {
             color: black;
           }
         }
+
         nav {
           display: flex;
           justify-content: center;
@@ -182,6 +266,7 @@ header {
                 background: #00706d;
                 justify-content: start;
                 transform: translateX(-100%);
+
                 @include smobile {
                   width: 320px;
                 }
@@ -205,6 +290,7 @@ header {
 
                 a {
                   color: #2f2b4399;
+
                   img {
                     max-width: 180px;
                     object-fit: cover;
@@ -218,10 +304,12 @@ header {
                 gap: 5px;
                 justify-content: center;
               }
+
               li.translate__option {
                 @include -md {
                   display: none;
                 }
+
                 @include md {
                   .translate {
                     display: flex;
@@ -236,6 +324,7 @@ header {
                       border-radius: 8px;
                       padding: 8px 12px;
                     }
+
                     .first {
                       background: #fff;
                       box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
@@ -247,7 +336,8 @@ header {
                   }
                 }
               }
-              > li {
+
+              >li {
                 position: relative;
                 transition: all 0.3s;
                 width: fit-content;
@@ -257,7 +347,7 @@ header {
                   width: 100%;
                 }
 
-                > a {
+                >a {
                   align-items: center;
                   background-position: center 0;
                   border-radius: 4px;
@@ -278,6 +368,7 @@ header {
                   user-select: none;
                   z-index: auto;
                   color: #2f2b4399;
+
                   @include md {
                     color: #fff;
                     padding: 18px 30px;
@@ -300,23 +391,30 @@ header {
             }
           }
         }
+
         .translate {
           position: relative;
+
           @include md {
             margin-left: -30px;
           }
+
           select {
             background: #006281;
           }
+
           span {
             display: none;
           }
+
           .skiptranslate.goog-te-gadget {
             color: #006281;
           }
         }
+
         .bars {
           display: none;
+
           @include md {
             display: flex;
             height: 100%;
@@ -331,6 +429,7 @@ header {
       }
     }
   }
+
   .scroll {
     width: 100%;
     height: 100%;
@@ -351,6 +450,7 @@ header {
     transform: translateY(66px);
     opacity: 0;
     transition: all 0.5s ease-in-out;
+
     svg {
       color: white;
       font-size: 45px;
