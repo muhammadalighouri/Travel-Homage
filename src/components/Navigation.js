@@ -4,6 +4,10 @@ import i1 from "../assests/Profile/1.1.png";
 import i2 from "../assests/Lead icon (1).png";
 import i3 from "../assests/Lead icon (2).png";
 import i4 from "../assests/Lead icon (3).png";
+import i5 from "../assests/Lead icon (4).png";
+import i6 from "../assests/Lead icon (5).png";
+import i7 from "../assests/Lead icon (6).png";
+import i8 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
 import { nav } from "../assests/data";
@@ -34,7 +38,7 @@ const Navigation = ({}) => {
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleDropdown2 = () => setDropdownOpen2(!dropdownOpen2);
-  const dropdown = [
+  const dropdown1 = [
     {
       icon: i1,
       name: "حجوزاتي",
@@ -56,6 +60,33 @@ const Navigation = ({}) => {
       path: "/ride-ratings",
     },
   ];
+  const dropdown2 = [
+    {
+      icon: i5,
+      name: "من نحن",
+      path: "/",
+    },
+    {
+      icon: i6,
+      name: "الأسطول",
+      path: "/fleet",
+    },
+    {
+      icon: i7,
+      name: "الخدمات",
+      path: "/",
+    },
+    {
+      icon: i8,
+      name: "المركز الإعلامي",
+      path: "/",
+    },
+    {
+      icon: i8,
+      name: "الأسئلة المتكررة",
+      path: "/",
+    },
+  ];
   return (
     <>
       <header>
@@ -71,10 +102,7 @@ const Navigation = ({}) => {
                     <div className="dropdown">
                       <div className="dropdown-menu">
                         <div className="person-profile">
-                          <Link
-                            to={"/profile"}
-                          
-                          >
+                          <Link to={"/profile"}>
                             <div className="arrow">
                               <img src={arrow1} alt="" />
                             </div>
@@ -87,7 +115,7 @@ const Navigation = ({}) => {
                             </div>
                           </Link>
                         </div>
-                        {dropdown.map((a) => {
+                        {dropdown1.map((a) => {
                           return (
                             <>
                               <Link
@@ -162,7 +190,7 @@ const Navigation = ({}) => {
                       {dropdownOpen2 && (
                         <div className="dropdown">
                           <div className="dropdown-menu">
-                            <div className="person-profile">
+                            {/* <div className="person-profile">
                               <Link to={"/profile"}>
                                 <div className="arrow">
                                   <img src={arrow1} alt="" />
@@ -175,11 +203,18 @@ const Navigation = ({}) => {
                                   <img src={profile} alt="" />
                                 </div>
                               </Link>
-                            </div>
-                            {dropdown.map((a) => {
+                            </div> */}
+                            {dropdown2.map((a) => {
                               return (
                                 <>
-                                  <Link to={a.path}>
+                                  <Link
+                                    to={a.path}
+                                    // style={
+                                    //   window.location.pathname === a.path
+                                    //     ? { background: " #00000014" }
+                                    //     : { background: "none" }
+                                    // }
+                                  >
                                     <div className="n">
                                       {a.name}
                                       <img src={a.icon} alt="" />
