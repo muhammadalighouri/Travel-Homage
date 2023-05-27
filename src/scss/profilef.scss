@@ -20,22 +20,26 @@
   box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
 
 
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+
+    .input {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      gap: 5px;
+      font-family: "Cairo", sans-serif;
+      input {
         width: 100%;
-        justify-content: center;
-
-        .input {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            justify-content: center;
-            gap: 5px;
-            font-family: "Cairo", sans-serif;
-
+        height: 100%;
+        color: black;
+      }
       p {
         font-weight: 600;
         font-size: 16px;
@@ -121,19 +125,19 @@
       box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
         inset 0px -1px 0px rgba(47, 43, 67, 0.1);
       border-radius: 25px;
-      a {
-      }
+
+
     }
 
-        #names {
-            display: flex;
-            flex-direction: row !important;
-            align-items: center !important;
-            padding: 0px;
-            gap: 8px !important;
+    #names {
+      display: flex;
+      flex-direction: row !important;
+      align-items: center !important;
+      padding: 0px;
+      gap: 8px !important;
 
-            font-family: "Cairo", sans-serif;
-        }
+      font-family: "Cairo", sans-serif;
+    }
 
     .wrapper {
       display: grid;
@@ -160,14 +164,6 @@
           }
         }
       }
-    }
-
-    .wrapper {
-      display: grid;
-      width: 100%;
-      grid-gap: 20px;
-      align-items: self-end;
-      grid-template-columns: 0.2fr 1fr;
 
       #password {
         .under {
@@ -175,20 +171,18 @@
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-
           gap: 12px;
 
           input {
-            /* max-width: 377px !important; */
-            /* max-height: 24px !important; */
             width: 100%;
-            color: black;
-            text-align: end;
             height: 100%;
+            color: black;
           }
         }
       }
     }
+
+
 
     .para {
       color: #373a36;
@@ -204,6 +198,7 @@
       }
     }
   }
+
   .profile-img {
     display: flex;
     align-items: center;

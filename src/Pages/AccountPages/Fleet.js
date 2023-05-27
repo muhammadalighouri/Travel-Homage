@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
@@ -11,8 +11,11 @@ import f4 from "../../assests/Fleet/i.11.png";
 import f5 from "../../assests/Fleet/i.22.png";
 import CarD from "../../components/CarD";
 import field from "../../assests/Fleet/Field.png";
+import Navigate from "../../components/Navigate";
+import FleetSide from "../../components/FleetSide";
 const Fleet = () => {
- 
+  const [display, setDisplay] = useState(false);
+
   return (
     <>
       <Navigation />
@@ -47,18 +50,21 @@ const Fleet = () => {
                   <img src={f5} alt="" />
                 </div>
               </div>
-              
             </div>
-           <div className="flex-wrap">
-            
-           <div className="flex">
-                <CarD/>
+            <div className="flex-wrap">
+         
+              <div className="flex">
+                <CarD
+                
+                />
+              </div>
+              <FleetSide/>
             </div>
-           </div>
           </div>
         </div>
       </section>
       <Footer />
+      <Navigate style={display ? { display: "block" } : { display: "none" }} />
     </>
   );
 };
