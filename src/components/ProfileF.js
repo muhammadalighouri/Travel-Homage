@@ -8,6 +8,7 @@ import img3 from "../assests/Icons/Lead icon.svg";
 import p from "../assests/Profile/Profile 2.png";
 import update from "../assests/Profile/Vector.png";
 import tick from "../assests/Profile/tick.png";
+import driver from "../assests/Profile/driver.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const ProfileF = () => {
@@ -31,13 +32,6 @@ const ProfileF = () => {
         <form>
           <div id="names" className="same">
             <div className="input">
-              <p>الاسم الاخير</p>
-              <div className="under">
-                <input type="text" placeholder="الاسم الاخير" />{" "}
-                <img src={img1} alt="" />
-              </div>
-            </div>
-            <div className="input">
               <p>الاسم الاول</p>
               <div className="under">
                 <input type="text" placeholder="الاسم الاخير" />{" "}
@@ -57,6 +51,13 @@ const ProfileF = () => {
                     ) : null}<img src={img1} alt="" /> */}
               </div>
             </div>
+            <div className="input">
+              <p>الاسم الاخير</p>
+              <div className="under">
+                <input type="text" placeholder="الاسم الاخير" />{" "}
+                <img src={img1} alt="" />
+              </div>
+            </div>
           </div>
 
           <div className="wrapper">
@@ -67,14 +68,14 @@ const ProfileF = () => {
               تأكيد
             </div>
             <div id="email" className="same">
-              <p>الرقم القومي أو رقم جواز السفر</p>
+              <p>رخصة القيادة</p>
               <div className="under">
-                <img src={img2} alt="" />
+                <img src={driver} alt="" />
                 <input
-                  type="email"
+                  type="number"
                   name=""
                   id=""
-                  placeholder="الرقم القومي أو رقم جواز السفر"
+                  placeholder="رخصة القيادة"
                   // {...formik.getFieldProps("email")}
                 />
                 {/* {formik.touched.email && formik.errors.email ? (
@@ -83,18 +84,20 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
+
           <div className="wrapper">
             <div className="btn">
               <img src={tick} alt="" />
               تم التأكيد
+
             </div>
             <div className="same">
-              <p>Password</p>
-              <div رقم الهاتف="under">
-                <img src={img3} alt="" />{" "}
+              <p>الرقم القومي أو رقم جواز السفر</p>
+              <div className="under">
+                {/* <img src={driver} alt="" />{" "} */}
                 <input
                   type="number"
-                  placeholder="5555555"
+                  placeholder="الرقم القومي أو رقم جواز السفر"
                   // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
@@ -103,18 +106,19 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
+
           <div className="wrapper">
             <div className="btn">
               <img src={tick} alt="" />
               تم التأكيد
             </div>
             <div className="same">
-              <p>Password</p>
-              <div رقم الهاتف="under">
+              <p>رقم الهاتف</p>
+              <div className="under">
                 <img src={img3} alt="" />{" "}
                 <input
                   type="number"
-                  placeholder="5555555"
+                  placeholder="             5555555                  "
                   // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
@@ -123,17 +127,17 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
+
           <div className="wrapper">
             <div className="btn">
               <img src={tick} alt="" />
-              تم التأكيد
-            </div>
+              البريد الإلكتروني            </div>
             <div className="same">
               <p>البريد الإلكتروني</p>
               <div className="under">
                 <img src={img3} alt="" />{" "}
                 <input
-                  type="number"
+                  type="email"
                   placeholder="بريدك الإلكتروني"
                   // {...formik.getFieldProps("password")}
                 />
