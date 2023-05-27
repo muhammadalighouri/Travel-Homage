@@ -63,20 +63,7 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
-          <div id="phone" className="same">
-            <p>الرقم القومي أو رقم جواز السفر</p>
-            <div className="under">
-              <input
-                type="number"
-                name=""
-                placeholder="الرقم القومي أو رقم جواز السفر"
-              //  {...formik.getFieldProps("phone")}
-              />
-              {/* {formik.touched.phone && formik.errors.phone ? (
-                    <div className="error">{formik.errors.phone}</div>
-                  ) : null} */}
-            </div>
-          </div>
+
           <div className="wrapper">
             <div
               className="btn"
