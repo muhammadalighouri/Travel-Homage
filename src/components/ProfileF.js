@@ -14,11 +14,11 @@ import { useNavigate } from "react-router-dom";
 const ProfileF = () => {
   const { user } = useSelector((state) => state.UserLogin.userInfo) || {};
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   return (
     <>
