@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navigation from "../components/Navigation";
 import About from "../components/About";
 import Quality from "../components/Quality";
@@ -16,8 +16,16 @@ import first from "../assests/Photo.png";
 import Form from "../components/Form";
 import Signup from "../components/Signup.js";
 import Footer from "../components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchFilters } from "../Redux/actions/filterActions";
 const HomePage = () => {
   window.scroll(0, 0);
+  const filter = useSelector(state => state.Filters)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchFilters())
+  }, [])
+
   return (
     <>
       <section id="home">

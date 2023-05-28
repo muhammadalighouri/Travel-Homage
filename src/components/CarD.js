@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 import Navigate from "./Navigate";
 const CarD = ({ display }) => {
   const { cars, loading } = useSelector((state) => state.Cars) || {};
-
+  const info = useSelector(state => state.RentalInfo?.perDay)
   // State to hold the selected car's data
   const [selectedCar, setSelectedCar] = useState(null);
 
@@ -66,13 +66,13 @@ const CarD = ({ display }) => {
                           <span>{car.year}</span>
                           <div className="price">
                             <span className="n1">ر.س.</span>
-                            <span className="n2">{priceAfterDiscount(car?.pricePerDay, car?.discount)}</span>
+                            <span className="n2"> {info ? car?.pricePerDay : car?.pricePerHour}</span>
                           </div>
                         </div>
 
                         <div className="layer">
                           <h2>
-                            {true ? car?.pricePerDay : car?.pricePerHour}
+                            {priceAfterDiscount(info ? car?.pricePerDay : car?.pricePerHour, car?.discount)}
                             <span className="l1">ر.س.*</span>
                           </h2>
                         </div>

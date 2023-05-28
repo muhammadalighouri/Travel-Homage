@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
-const Navigation = ({}) => {
+const Navigation = ({ }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -93,7 +93,7 @@ const Navigation = ({}) => {
         <div className="outer">
           <div className="container">
             <div className="nav__grid">
-              {!success ? (
+              {success ? (
                 <div className="user">
                   <div className="avatar" onClick={toggleDropdown}>
                     <img src={avatar} alt="" />
@@ -209,11 +209,11 @@ const Navigation = ({}) => {
                                 <>
                                   <Link
                                     to={a.path}
-                                    // style={
-                                    //   window.location.pathname === a.path
-                                    //     ? { background: " #00000014" }
-                                    //     : { background: "none" }
-                                    // }
+                                  // style={
+                                  //   window.location.pathname === a.path
+                                  //     ? { background: " #00000014" }
+                                  //     : { background: "none" }
+                                  // }
                                   >
                                     <div className="n">
                                       {a.name}

@@ -8,34 +8,24 @@ import car6 from "../assests/Fleet/car5.png";
 import tick from "../assests/Fleet/tick.png";
 import { pink } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
-
+import { useSelector } from "react-redux"
 const FleetSide = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
+  const { filters } = useSelector(state => state.Filters);
+  const { categories, brands, availabilityCount } = filters
+  console.log(categories);
   return (
     <>
       <div id="fleet-side">
         <aside>
-          <div className="wrap-categories">
+          {/* <div className="wrap-categories">
             <div className="heading">
               <span>إعادة ضبط</span>
 
               <h3>الفئات</h3>
             </div>
             <div className="categories">
-              <div className="head">
-                <div className="select-h">
-                  <ul className="number">
-                    <li>10</li>
-                  </ul>
-                  <div className="text"> جميع الفئات</div>
-                  <div className="check">
-                    <p>
-                      <img src={tick} alt="" />
-                    </p>
-                  </div>
-                </div>
-              </div>
+
               <div className="select">
                 <ul className="number">
                   <li>5</li>
@@ -104,162 +94,89 @@ const FleetSide = () => {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="avalible-1">
-            <h3 className="h">التوفر</h3>
-            <div className="para">
-              <p>إعادة ضبط</p>{" "}
-              <p>
-                مختاره <span>0</span>
-              </p>{" "}
-            </div>
-            <div className="select">
-              <ul className="number">
-                <li>5</li>
-                <li style={{ color: "#AFAFAF" }}>0</li>
+          </div> */}
+          {
+            categories && <div className="item__">
+              <div className="name">
+                {categories?.name}
+              </div>
+              <div className="tools">
+                <div className="first">Reset</div>
+                <div className="second">0 Selected</div>
+              </div>
+              <ul>
+                {
+                  categories.data.map((ite, ind) => {
+                    return (
+                      <li>
+                        <div className="start">{ite.count}</div>
+                        <div className="end">
+                          <div className="h">{ite._id}</div>
+                          <input type="checkbox" name="" id="" />
+                        </div>
+                      </li>
+                    )
+                  })
+                }
               </ul>
-              <ul className="text">
+            </div>
+          }
+          {
+            brands && <div className="item__">
+              <div className="name">
+                {brands?.name}
+              </div>
+              <div className="tools">
+                <div className="first">Reset</div>
+                <div className="second">0 Selected</div>
+              </div>
+              <ul>
+                {
+                  brands.data.map((ite, ind) => {
+                    return (
+                      <li>
+                        <div className="start">{ite.count}</div>
+                        <div className="end">
+                          <div className="h">{ite._id}</div>
+                          <input type="checkbox" name="" id="" />
+                        </div>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          }
+          {
+            availabilityCount && <div className="item__">
+              <div className="name">
+                {availabilityCount?.name}
+              </div>
+              <div className="tools">
+                <div className="first">Reset</div>
+                <div className="second">0 Selected</div>
+              </div>
+              <ul>
                 <li>
-                  <div className="h"> رفاهية</div>
-                  <div className="check">
+                  <div className="start">InStock</div>
+                  <div className="end">
+                    <div className="h">{availabilityCount.data.available}</div>
                     <input type="checkbox" name="" id="" />
                   </div>
                 </li>
+
                 <li>
-                  <div className="h" style={{ color: "#AFAFAF" }}>
-                    {" "}
-                    غير متاح
-                  </div>
-                  <div className="check">
-                    <p style={{ background: "#AFAFAF" }}></p>
+                  <div className="start">Out Of Stock</div>
+                  <div className="end">
+                    <div className="h">{availabilityCount.data.unavailable}</div>
+                    <input type="checkbox" name="" id="" />
                   </div>
                 </li>
+
               </ul>
             </div>
-          </div>
-          <div className="avalible-1">
-            <h3 className="h">الخصم</h3>
-            <div className="para">
-              <p>إعادة ضبط</p>{" "}
-              <p>
-                مختاره <span>0</span>
-              </p>{" "}
-            </div>
-            <div className="select">
-              <ul className="number">
-                <li>5</li>
-              </ul>
-              <ul className="text">
-                <li>
-                  <div className="h"> ترافيل بلص</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="" />
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="avalible-1">
-            <h3 className="h">الماركة</h3>
-            <div className="para">
-              <p>إعادة ضبط</p>{" "}
-              <p>
-                مختاره <span>0</span>
-              </p>{" "}
-            </div>
-            <div className="select">
-              <ul className="number">
-                <li>5</li>
-              </ul>
-              <ul className="text">
-                <li>
-                  <div className="h"> لكزس</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="" />
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="avalible-1">
-            <h3 className="h">السعر</h3>
-            <div className="para">
-              <p>إعادة ضبط</p>{" "}
-              <p>
-                مختاره <span>100</span>
-              </p>{" "}
-            </div>
-            <div className="select">
-              <ul className="number">
-                <li>5</li>
-              </ul>
-              <ul className="text">
-                <li>
-                  <div className="h"> لكزس</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="" />
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="avalible-1">
-            <h3 className="h">السنة</h3>
-            <div className="para">
-              <p>إعادة ضبط</p>{" "}
-              <p>
-                مختاره <span>0</span>
-              </p>{" "}
-            </div>
-            <div className="select">
-              <ul className="number">
-                <li>5</li>
-                <li>5</li>
-                <li>5</li>
-                <li>5</li>
-              </ul>
-              <ul className="text">
-                <li>
-                  <div className="h"> 2020</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="" />
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div className="h"> 2021</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="" />
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div className="h"> 2022</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="check-box" />
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div className="h"> 2023</div>
-                  <div className="check">
-                    <p>
-                      <input type="checkbox" name="" id="" />
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+          }
+
         </aside>
       </div>
     </>
