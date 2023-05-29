@@ -8,6 +8,7 @@ const initialState = {
     returnTime: '',
     perDay: true,
     perHour: false,
+    selectedOption: "perDay"
 };
 
 export const rentalReducer = (state = initialState, action) => {

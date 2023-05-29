@@ -10,7 +10,6 @@ header {
   z-index: 1001;
   background: transparent;
 
-
   .color {
     background-color: #0000005c;
     position: fixed;
@@ -89,33 +88,31 @@ header {
 
         .user {
           display: flex;
-          justify-content: space-between;
-          gap: 10px;
+          justify-content: start;
+          gap: 18px;
           align-items: center;
-
           span {
             color: #2f2b4399;
             font-weight: 600;
           }
 
           .dropdown {
-
-
             .dropdown-menu {
               position: absolute;
               width: 200px;
               top: 100%;
               left: 0;
               z-index: 10;
-              
+
               display: flex;
               flex-direction: column;
               align-items: flex-end;
               width: 230px;
               gap: 10px;
-              background: #FAFAFA;
+              background: #fafafa;
               border: 1px solid rgba(47, 43, 67, 0.1);
-              box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+              box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1),
+                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
               border-radius: 12px;
 
               .person-profile {
@@ -145,18 +142,17 @@ header {
                       line-height: 24px;
                       letter-spacing: -0.01em;
                       text-align: right;
-                      color: #2F2B43;
+                      color: #2f2b43;
                     }
 
                     p {
                       font-family: "Cairo", sans-serif;
-                      color: #2F2B43;
+                      color: #2f2b43;
                       font-size: 14px;
                       font-weight: 400;
                       line-height: 20px;
                       letter-spacing: -0.01em;
                       text-align: right;
-
                     }
                   }
                 }
@@ -173,18 +169,14 @@ header {
                   padding: 11.5px 16px;
                   font-size: 16px;
                   font-weight: 600;
-                  color: #2F2B43;
+                  color: #2f2b43;
                   text-decoration: none;
                   font-family: "Cairo", sans-serif;
-
                 }
 
                 &:hover {
                   background: #00000014;
-
                 }
-
-
               }
             }
           }
@@ -251,7 +243,7 @@ header {
               display: grid;
               justify-content: center;
               list-style: none;
-              gap: 40px;
+              gap: 12px;
               transform: translateX(0%);
               grid-template-columns: 1fr 0fr 0fr 0fr;
 
@@ -342,7 +334,7 @@ header {
                 }
               }
 
-              >li {
+              > li {
                 position: relative;
                 transition: all 0.3s;
                 width: fit-content;
@@ -377,9 +369,7 @@ header {
                   width: 100%;
                 }
 
-
-
-                >a {
+                > a {
                   align-items: center;
                   background-position: center 0;
                   border-radius: 4px;
@@ -423,8 +413,6 @@ header {
 
               .drop {
                 .dropdown {
-
-
                   .dropdown-menu {
                     position: absolute;
                     width: 200px;
@@ -436,9 +424,10 @@ header {
                     align-items: flex-end;
                     /* padding: 4px 0px; */
                     width: 230px;
-                    background: #FAFAFA;
+                    background: #fafafa;
                     border: 1px solid rgba(47, 43, 67, 0.1);
-                    box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                    box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1),
+                      inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                     border-radius: 12px;
 
                     .person-profile {
@@ -468,18 +457,17 @@ header {
                             line-height: 24px;
                             letter-spacing: -0.01em;
                             text-align: right;
-                            color: #2F2B43;
+                            color: #2f2b43;
                           }
 
                           p {
                             font-family: "Cairo", sans-serif;
-                            color: #2F2B43;
+                            color: #2f2b43;
                             font-size: 14px;
                             font-weight: 400;
                             line-height: 20px;
                             letter-spacing: -0.01em;
                             text-align: right;
-
                           }
                         }
                       }
@@ -496,18 +484,14 @@ header {
                         padding: 11.5px 16px;
                         font-size: 16px;
                         font-weight: 600;
-                        color: #2F2B43;
+                        color: #2f2b43;
                         text-decoration: none;
                         font-family: "Cairo", sans-serif;
-
                       }
 
                       &:hover {
                         background: #00000014;
-
                       }
-
-
                     }
                   }
                 }

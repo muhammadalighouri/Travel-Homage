@@ -19,7 +19,6 @@
 
   box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
 
-
   form {
     display: flex;
     flex-direction: column;
@@ -126,8 +125,6 @@
       box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
         inset 0px -1px 0px rgba(47, 43, 67, 0.1);
       border-radius: 25px;
-
-
     }
 
     #names {
@@ -136,7 +133,7 @@
       align-items: center !important;
       padding: 0px;
       gap: 8px !important;
-
+      justify-content: space-evenly;
       font-family: "Cairo", sans-serif;
     }
 
@@ -182,8 +179,6 @@
         }
       }
     }
-
-
 
     .para {
       color: #373a36;

@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../scss/register.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assests/Logo.png";
 import icon from "../assests/Group 17.png";
 import img1 from '../assests/Icons/Tail icon q.png'
@@ -23,7 +23,6 @@ const Register = ({ setMode }) => {
   const formik = useFormik({
     initialValues: {
       firstName: "",
-      middleName: "",
       lastName: "",
       email: "",
       password: "",
@@ -31,7 +30,6 @@ const Register = ({ setMode }) => {
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("Required"),
-      middleName: Yup.string().required("Required"),
       lastName: Yup.string().required("Required"),
       phone: Yup.number().required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
@@ -47,7 +45,6 @@ const Register = ({ setMode }) => {
         await dispatch(
           register(
             values.firstName,
-            values.middleName,
             values.lastName,
             values.email,
             values.password,
@@ -100,7 +97,7 @@ const Register = ({ setMode }) => {
                   ) : null}
                 </div>
               </div>
-              <div className="input">
+              {/* <div className="input">
                 <p>Middle name</p>
                 <div className="under">
                   <input type="text" placeholder="Middle name" {...formik.getFieldProps("middleName")} />
@@ -108,7 +105,7 @@ const Register = ({ setMode }) => {
                     <div className="error">{formik.errors.middleName}</div>
                   ) : null}
                 </div>
-              </div>
+              </div> */}
               <div className="input">
                 <p>Last name</p>
                 <div className="under">
@@ -169,7 +166,7 @@ const Register = ({ setMode }) => {
             </button>
             <p className="para">
               Already have an account
-              <a href="#">Sign in</a>
+              <Link to="/login">Sign in</Link>
             </p>
           </form>
         </div>

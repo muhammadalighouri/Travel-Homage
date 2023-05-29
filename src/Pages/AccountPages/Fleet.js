@@ -15,12 +15,14 @@ import Navigate from "../../components/Navigate";
 import FleetSide from "../../components/FleetSide";
 import { useDispatch } from "react-redux";
 import { fetchCars } from "../../Redux/actions/carActions";
+import { fetchFilters } from "../../Redux/actions/filterActions";
 const Fleet = () => {
   const [display, setDisplay] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCars())
-  }, [])
+    dispatch(fetchCars());
+    dispatch(fetchFilters());
+  }, []);
 
   return (
     <>
@@ -41,10 +43,10 @@ const Fleet = () => {
               بخيارات متعددة تلبي كافة متطلبات كافة شرائح المجتمع.
             </div>
           </div>
-          <div className="grid-box">
+          <div className="grid-box" id="cars">
             <div className="btns">
               <div className="select">
-                <img src={field} alt="" />
+                {/* <img src={field} alt="" /> */}
               </div>
               <div className="impression">
                 <div className="btn">
@@ -58,11 +60,8 @@ const Fleet = () => {
               </div>
             </div>
             <div className="flex-wrap">
-
               <div className="flex">
-                <CarD
-
-                />
+                <CarD />
               </div>
               <FleetSide />
             </div>

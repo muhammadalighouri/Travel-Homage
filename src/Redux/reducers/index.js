@@ -3,6 +3,7 @@ import { getFilterProductReducer } from "./filterProductReducer";
 import { cartReducer } from "./cartReducer";
 import { allProductsReducer, productCreateReviewReducer, singleProductReducer } from "./productReducers";
 import {
+  userDetailsReducer,
   userLoginReducer,
   userRegisterReducer,
   userUpdateReducer,
@@ -27,6 +28,7 @@ const RootReducer = combineReducers({
   RentalInfo: rentalReducer,
   Checkout: shippingDetailsReducer,
   UserLogin: userLoginReducer,
+  UserDetails: userDetailsReducer,
   UserUpdate: userUpdateReducer,
   UserRegister: userRegisterReducer,
   OrderCreate: orderCreateReducer,

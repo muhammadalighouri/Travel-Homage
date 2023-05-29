@@ -2,7 +2,7 @@
 @import "./media.scss";
 
 #register {
-  position: relative;
+  position: fixed;
   height: 100vh;
   background: #00000069;
   z-index: 10000;
@@ -10,6 +10,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
   input {
     color: black;
   }

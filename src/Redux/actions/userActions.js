@@ -16,6 +16,9 @@ import {
     USER_UPDATE_FAIL,
     USER_UPDATE_REQUEST,
     USER_UPDATE_SUCCESS,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    USER_DETAILS_FAIL,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -48,7 +51,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 };
 
-export const register = (firstName, middleName, lastName, email, password, phone) => async (dispatch) => {
+export const register = (firstName, lastName, email, password, phone) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
 
@@ -58,7 +61,7 @@ export const register = (firstName, middleName, lastName, email, password, phone
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ firstName, middleName, lastName, email, password, phone }),
+            body: JSON.stringify({ firstName, lastName, email, password, phone }),
         });
         const data = await rawResponse.json();
 
@@ -113,7 +116,35 @@ export const updateProfile = (user) => async (dispatch, getState) => {
         });
     }
 };
+export const getUserDetails = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: USER_DETAILS_REQUEST });
 
+        const {
+            UserLogin: { userInfo },
+        } = getState();
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.post(`http://localhost:5000/api/v1/user/me`, { user: userInfo.user._id }, config);
+
+        dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+
+    } catch (error) {
+        dispatch({
+            type: USER_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
 export const logout = () => async (dispatch) => {
     // const navigate = useNavigate();
     localStorage.removeItem("userInfo");
