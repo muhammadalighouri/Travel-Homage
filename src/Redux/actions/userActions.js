@@ -32,7 +32,7 @@ export const login = (email, password) => async (dispatch) => {
         };
 
         const { data } = await axios.post(
-            "http://localhost:5000/api/v1/user/login",
+            "/api/v1/user/login",
             { email, password },
             config
         );
@@ -57,7 +57,7 @@ export const register =
             dispatch({ type: USER_REGISTER_REQUEST });
 
             const rawResponse = await fetch(
-                "http://localhost:5000/api/v1/user/register",
+                "/api/v1/user/register",
                 {
                     method: "POST",
                     headers: {
@@ -140,7 +140,7 @@ export const getUserDetails = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.post(
-            `http://localhost:5000/api/v1/user/me`,
+            `/api/v1/user/me`,
             { user: userInfo.user._id },
             config
         );
