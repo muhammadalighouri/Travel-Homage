@@ -18,7 +18,7 @@ import {
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS,
 } from "../constants/productConstants";
-import axios from "axios";
+import axios from "../../api/axios";
 import { toast } from "react-toastify";
 import instance from "../../assets/axiosConfig";
 import { FETCH_CARS_FAILURE, FETCH_CARS_REQUEST, FETCH_CARS_SUCCESS } from "../constants/carsConstants";

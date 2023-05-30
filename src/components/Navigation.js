@@ -96,7 +96,7 @@ const Navigation = ({ }) => {
               {success ? (
                 <div className="user">
                   <div className="avatar" onClick={toggleDropdown}>
-                    <img src={avatar} alt="" />
+                    <img src={user.avatar?.url ? user.avatar?.url : avatar} alt="" />
                   </div>
                   {dropdownOpen && (
                     <div className="dropdown">
@@ -111,7 +111,7 @@ const Navigation = ({ }) => {
                               <p>عضوية ذهبية</p>
                             </div>
                             <div className="img">
-                              <img src={profile} alt="" />
+                              <img src={user.avatar?.url} alt="" />
                             </div>
                           </Link>
                         </div>

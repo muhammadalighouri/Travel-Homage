@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
 import { useParams } from 'react-router-dom';
 import '../scss/EmailConfirmation.css'; // Assuming you'll create this
 
@@ -10,7 +10,7 @@ function EmailConfirmation() {
 
     useEffect(() => {
         axios
-            .post(`http://localhost:5000/confirm_email/${token}`)
+            .post(`/confirm_email/${token}`)
             .then((res) => {
                 setMessage(res.data.message);
             })

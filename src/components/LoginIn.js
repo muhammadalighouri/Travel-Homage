@@ -15,6 +15,9 @@ import img3 from "../assests/Icons/Lead icon.svg";
 import img4 from "../assests/Icons/Vector (6).png";
 import img5 from "../assests/Icons/Tail icon.svg";
 import "../scss/logIn.scss";
+import { FaCross } from "react-icons/fa";
+import { Close, TimerSharp } from "@mui/icons-material";
+import { RxCross2 } from "react-icons/rx";
 const LoginIn = ({ setMode }) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Track the submit state
   const dispatch = useDispatch();
@@ -63,6 +66,9 @@ const LoginIn = ({ setMode }) => {
     <>
       <section id="login">
         <div className="form__">
+          <div className="cross" onClick={() => setMode("")}>
+            <Close />
+          </div>
           <div className="heading">
             <h1>Sign In</h1>
             <p>Welcome to Travel car rental solution.</p>
@@ -82,7 +88,6 @@ const LoginIn = ({ setMode }) => {
                 {formik.touched.email && formik.errors.email ? (
                   <div className="error">{formik.errors.email}</div>
                 ) : null}
-                <img src={img1} alt="" />
                 <img src={img1} alt="" />
               </div>
             </div>

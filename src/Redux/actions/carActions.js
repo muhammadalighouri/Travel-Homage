@@ -6,10 +6,10 @@ export const fetchCars = (
     maxPeople = '',
     category = '',
     numDoors = '',
-    minPricePerDay = '',
-    maxPricePerDay = '',
-    minPricePerHour = '',
-    maxPricePerHour = '',
+    minPricePerDay = 0,
+    maxPricePerDay = 1500,
+    // minPricePerHour = 0,
+    // maxPricePerHour = 150,
     hasDiscount = '',
     carYear = '',
     page = 1,
@@ -19,7 +19,7 @@ export const fetchCars = (
 
         try {
             const { data } = await axios.get(
-                `/api/v1/cars?carType=${carType}&carBrand=${carBrand}&maxPeople=${maxPeople}&numDoors=${numDoors}&minPricePerDay=${minPricePerDay}&maxPricePerDay=${maxPricePerDay}&minPricePerHour=${minPricePerHour}&maxPricePerHour=${maxPricePerHour}&hasDiscount=${hasDiscount}&carYear=${carYear}&page=${page}`
+                `/api/v1/cars?&category=${carType}&carBrand=${carBrand}&maxPeople=${maxPeople}&numDoors=${numDoors}&minPricePerDay=${parseInt(minPricePerDay)}&maxPricePerDay=${parseInt(maxPricePerDay)}&hasDiscount=${hasDiscount}&carYear=${carYear}&page=${page}`
             );
             dispatch({ type: FETCH_CARS_SUCCESS, payload: data });
         } catch (error) {

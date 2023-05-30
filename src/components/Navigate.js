@@ -9,7 +9,7 @@ import "../scss/navigate.scss";
 import cross from "../assests/Fleet/Xmark.png";
 import { useSelector } from "react-redux";
 const Navigate = ({ car, closeModal }) => {
-  const info = useSelector(state => state.RentalInfo?.perDay)
+  const info = useSelector(state => state.RentalInfo?.selectedOption)
   const priceAfterDiscount = (price, discount) => {
     return price - (price * discount / 100);
   }
@@ -73,8 +73,8 @@ const Navigate = ({ car, closeModal }) => {
                   <span>أحجز الآن</span>
                 </div>
                 <div className="btn-2">
-                  <p className="one">{info ? car?.pricePerDay : car?.pricePerHour}</p>
-                  <p className="second"> {priceAfterDiscount(info ? car?.pricePerDay : car?.pricePerHour, car?.discount)} ر.س</p>
+                  <p className="one">{info === "perDay" ? car?.pricePerDay : car?.pricePerHour}</p>
+                  <p className="second"> {priceAfterDiscount(info === "perDay" ? car?.pricePerDay : car?.pricePerHour, car?.discount)} ر.س</p>
                 </div>
               </div>
             </div>

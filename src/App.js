@@ -33,32 +33,28 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {loading ? (
-        <Loader setLoading={setLoading} />
-      ) : (
-        <>
-          <Routes>
-            <Route exact path="/" element={<HomePage />} />
-            <Route
-              path="/confirm_email/:token"
-              element={<EmailConfirmation />}
-            />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<LoginIn />} />
-            <Route path="/profile" element={<UserProfile />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/doucment" element={<Doucment />} />
-            <Route path="/membership" element={<MemberShip />} />
-            <Route path="/saved-adress" element={<SavedAdress />} />
-            <Route path="/ride-ratings" element={<RideRatings />} />
-            <Route path="/user-customer" element={<Customer />} />
-            <Route path="/fleet" element={<Fleet />} />
-            <Route path="/change-Password" element={<ChangePassword />} />
-            <Route path="/roadside-assistance" element={<RoadSide />} />
-          </Routes>
-          {/* <Footer /> */}
-        </>
-      )}
+      <>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route
+            path="/confirm_email/:token"
+            element={<EmailConfirmation />}
+          />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<LoginIn />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/doucment" element={<Doucment />} />
+          <Route path="/membership" element={<MemberShip />} />
+          <Route path="/saved-adress" element={<SavedAdress />} />
+          <Route path="/ride-ratings" element={<RideRatings />} />
+          <Route path="/user-customer" element={<Customer />} />
+          <Route path="/fleet" element={<Fleet />} />
+          <Route path="/change-Password" element={<ChangePassword />} />
+          <Route path="/roadside-assistance" element={<RoadSide />} />
+        </Routes>
+        {/* <Footer /> */}
+      </>
     </div>
   );
 }

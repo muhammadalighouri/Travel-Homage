@@ -27,6 +27,16 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          .range-slider {
+            width: 100%;
+            margin: 2rem auto;
+          }
+
+          .range-slider input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+          }
+
           .start {
           }
           .end {

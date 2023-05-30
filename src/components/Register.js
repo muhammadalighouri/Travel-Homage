@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../scss/register.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assests/Logo.png";
 import icon from "../assests/Group 17.png";
 import img1 from '../assests/Icons/Tail icon q.png'
@@ -14,6 +14,7 @@ import img2 from '../assests/Icons/Lead icon.png'
 import img3 from '../assests/Icons/Lead icon.svg'
 import img4 from '../assests/Icons/Vector (6).png'
 import img5 from '../assests/Icons/Tail icon.svg'
+import { Close } from "@mui/icons-material";
 const Register = ({ setMode }) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Track the submit state
   const dispatch = useDispatch();
@@ -23,7 +24,6 @@ const Register = ({ setMode }) => {
   const formik = useFormik({
     initialValues: {
       firstName: "",
-      middleName: "",
       lastName: "",
       email: "",
       password: "",
@@ -31,7 +31,6 @@ const Register = ({ setMode }) => {
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("Required"),
-      middleName: Yup.string().required("Required"),
       lastName: Yup.string().required("Required"),
       phone: Yup.number().required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
@@ -47,7 +46,6 @@ const Register = ({ setMode }) => {
         await dispatch(
           register(
             values.firstName,
-            values.middleName,
             values.lastName,
             values.email,
             values.password,
@@ -85,6 +83,9 @@ const Register = ({ setMode }) => {
     <>
       <section id="register">
         <div className="form__">
+          <div className="cross" onClick={() => setMode("")}>
+            <Close />
+          </div>
           <div className="heading">
             <h1>Create An Account.</h1>
             <p>Welcome to Travel car rental solution.</p>
@@ -100,7 +101,7 @@ const Register = ({ setMode }) => {
                   ) : null}
                 </div>
               </div>
-              <div className="input">
+              {/* <div className="input">
                 <p>Middle name</p>
                 <div className="under">
                   <input type="text" placeholder="Middle name" {...formik.getFieldProps("middleName")} />
@@ -108,7 +109,7 @@ const Register = ({ setMode }) => {
                     <div className="error">{formik.errors.middleName}</div>
                   ) : null}
                 </div>
-              </div>
+              </div> */}
               <div className="input">
                 <p>Last name</p>
                 <div className="under">
@@ -169,7 +170,7 @@ const Register = ({ setMode }) => {
             </button>
             <p className="para">
               Already have an account
-              <a href="#">Sign in</a>
+              <Link to="" onClick={() => setMode("login")}>Sign in</Link>
             </p>
           </form>
         </div>

@@ -2,7 +2,7 @@
 @import "./media.scss";
 
 #register {
-  position: relative;
+  position: fixed;
   height: 100vh;
   background: #00000069;
   z-index: 10000;
@@ -10,6 +10,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
   input {
     color: black;
   }
@@ -55,6 +56,16 @@
     box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
     border-radius: 50px;
     margin: auto;
+    position: relative;
+    .cross {
+      position: absolute;
+      top: 4%;
+      right: 5%;
+      cursor: pointer;
+      svg {
+        fill: black;
+      }
+    }
     .heading {
       display: flex;
       flex-direction: column;
