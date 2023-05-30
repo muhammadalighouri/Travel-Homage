@@ -56,6 +56,16 @@
     box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
     border-radius: 50px;
     margin: auto;
+    position: relative;
+    .cross {
+      position: absolute;
+      top: 4%;
+      right: 5%;
+      cursor: pointer;
+      svg {
+        fill: black;
+      }
+    }
     .heading {
       display: flex;
       flex-direction: column;

@@ -2,13 +2,14 @@
 @import "./media.scss";
 
 #login {
-  position: relative;
+  position: fixed;
   height: 100vh;
   background: #00000069;
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   input {
     color: black;
   }
@@ -46,11 +47,22 @@
     align-items: center;
     padding: 40px 52px;
     gap: 16px;
-    max-width: 570px;
+    max-width: 500px;
     background: #ffffff;
     box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
     border-radius: 50px;
     margin: auto;
+    position: relative;
+    width: -webkit-fill-available;
+    .cross {
+      position: absolute;
+      top: 4%;
+      right: 5%;
+      cursor: pointer;
+      svg {
+        fill: black;
+      }
+    }
     .heading {
       display: flex;
       flex-direction: column;

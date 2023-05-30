@@ -14,6 +14,7 @@ import img2 from '../assests/Icons/Lead icon.png'
 import img3 from '../assests/Icons/Lead icon.svg'
 import img4 from '../assests/Icons/Vector (6).png'
 import img5 from '../assests/Icons/Tail icon.svg'
+import { Close } from "@mui/icons-material";
 const Register = ({ setMode }) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Track the submit state
   const dispatch = useDispatch();
@@ -82,6 +83,9 @@ const Register = ({ setMode }) => {
     <>
       <section id="register">
         <div className="form__">
+          <div className="cross" onClick={() => setMode("")}>
+            <Close />
+          </div>
           <div className="heading">
             <h1>Create An Account.</h1>
             <p>Welcome to Travel car rental solution.</p>
@@ -166,7 +170,7 @@ const Register = ({ setMode }) => {
             </button>
             <p className="para">
               Already have an account
-              <Link to="/login">Sign in</Link>
+              <Link to="" onClick={() => setMode("login")}>Sign in</Link>
             </p>
           </form>
         </div>

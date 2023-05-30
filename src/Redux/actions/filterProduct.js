@@ -1,5 +1,5 @@
 import { filterProductsConstant } from "../constants/actionTypes";
-import axios from "axios";
+import axios from "../../api/axios";
 export const filterProducts = (cat) => {
   return async (disptach) => {
     disptach({ type: filterProductsConstant.getFilterProductrequest });

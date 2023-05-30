@@ -11,7 +11,7 @@ import tick from "../assests/Profile/tick.png";
 import driver from "../assests/Profile/driver.png";
 import email from "../assests/Profile/email.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserDetails, updateProfile } from "../Redux/actions/userActions";
 import { toast } from "react-toastify";
 const ProfileF = () => {
@@ -25,7 +25,8 @@ const ProfileF = () => {
   const [email, setEmail] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [avatar, setAvatar] = useState();
+  const [avatarPreview, setAvatarPreview] = useState(p);
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -43,13 +44,30 @@ const ProfileF = () => {
       lastName,
       drivingLicense,
       nationalId,
-      passport,
       phone,
-      email
+      email,
+      avatar
     };
 
+    console.log(updatedUserData);
+
     dispatch(updateProfile(updatedUserData));
-    toast.success("Profile updated successfully!");
+
+
+  };
+  const handleDataChange = (e) => {
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatarPreview(reader.result);
+        setAvatar(reader.result);
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+
   };
   useEffect(() => {
     if (user) {
@@ -57,9 +75,9 @@ const ProfileF = () => {
       setLastName(user.lastName || "");
       setDrivingLicense(user.drivingLicense || "");
       setNationalId(user.nationalId || "");
-      setPassport(user.passport || "");
       setPhone(user.phone || "");
       setEmail(user.email || "");
+      setAvatarPreview(user.avatar?.url || p);
     }
   }, [user]);
   return (
@@ -72,6 +90,7 @@ const ProfileF = () => {
           </p>
         )}
         <form>
+          {/* names */}
           <div id="names" className="same">
             <div className="input">
               <p>الاسم الاول</p>
@@ -99,6 +118,7 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
+          {/* phone number  */}
           <div className="wrapper">
             {!user.phoneVerified ? (
               <div
@@ -130,52 +150,7 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
-          <div className="wrapper">
-            <div
-              className="btn"
-              style={{ background: "#FFCD00", color: "#373A36" }}
-            >
-              تأكيد
-            </div>
-            <div id="email" className="same">
-              <p>رخصة القيادة</p>
-              <div className="under">
-                <img src={driver} alt="" />
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  placeholder="رخصة القيادة"
-                // {...formik.getFieldProps("email")}
-                />
-                {/* {formik.touched.email && formik.errors.email ? (
-                    <div className="error">{formik.errors.email}</div>
-                  ) : null}<img src={img1} alt="" /> */}
-              </div>
-            </div>
-          </div>
-
-          <div className="wrapper">
-            <div className="btn">
-              <img src={tick} alt="" />
-              تم التأكيد
-            </div>
-            <div className="same">
-              <p>الرقم القومي أو رقم جواز السفر</p>
-              <div className="under">
-                {/* <img src={driver} alt="" />{" "} */}
-                <input
-                  type="number"
-                  placeholder="الرقم القومي أو رقم جواز السفر"
-                // {...formik.getFieldProps("password")}
-                />
-                {/* {formik.touched.password && formik.errors.password ? (
-                    <div className="error">{formik.errors.password}</div>
-                  ) : null} */}
-              </div>
-            </div>
-          </div>
-
+          {/* email */}
           <div className="wrapper">
 
             {!user.emailVerified ? (
@@ -207,22 +182,79 @@ const ProfileF = () => {
               </div>
             </div>
           </div>
+          {/* license  */}
+          <div className="wrapper">
+            <div
+              className="btn"
+              style={{ background: "#FFCD00", color: "#373A36" }}
+            >
+              تأكيد
+            </div>
+            <div id="email" className="same">
+              <p>رخصة القيادة</p>
+              <div className="under">
+                <img src={driver} alt="" />
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  value={drivingLicense}
+                  onChange={(e) => setDrivingLicense(e.target.value)}
+                  placeholder="رخصة القيادة"
+                // {...formik.getFieldProps("email")}
+                />
+                {/* {formik.touched.email && formik.errors.email ? (
+                    <div className="error">{formik.errors.email}</div>
+                  ) : null}<img src={img1} alt="" /> */}
+              </div>
+            </div>
+          </div>
+          {/* national ID  */}
+          <div className="wrapper">
+            <div className="btn">
+              <img src={tick} alt="" />
+              تم التأكيد
+            </div>
+            <div className="same">
+              <p>الرقم القومي أو رقم جواز السفر</p>
+              <div className="under">
+                {/* <img src={driver} alt="" />{" "} */}
+                <input
+                  type="number"
+                  placeholder="الرقم القومي أو رقم جواز السفر"
+                  value={nationalId}
+                  onChange={(e) => setNationalId(e.target.value)}
+                // {...formik.getFieldProps("password")}
+                />
+                {/* {formik.touched.password && formik.errors.password ? (
+                    <div className="error">{formik.errors.password}</div>
+                  ) : null} */}
+              </div>
+            </div>
+          </div>
 
           <div className="profile-img">
             <div className="img">
-              <img src={p} alt="" />
+              <img src={avatarPreview} alt="" />
             </div>
             <div className="btns">
-              <a href="#" className="update">
-                تحميل صورة جديدة
-                <img src={update} alt="" />
-              </a>
-              <a href="#" className="confirm">
+
+              <input
+                type="file"
+                name="avatar"
+                accept="image/*"
+                onChange={handleDataChange}
+
+                className="update"
+              />
+              <Link onClick={handleSubmit} className="confirm">
                 تأكيد التغيير
                 <img src={tick} alt="" />
-              </a>
+              </Link>
             </div>
           </div>
+
+
         </form>
       </div>
     </>

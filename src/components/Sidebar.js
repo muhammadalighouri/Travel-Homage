@@ -10,14 +10,14 @@ import "../scss/side.scss";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
   const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
-  const { firstName, lastName } = user || {}
+  const { firstName, lastName, avatar } = user || {}
   return (
     <>
       <section id="sidebar">
         <div className="container">
           <aside>
             <div className="detail">
-              <img src={p} alt="" />
+              <img src={avatar?.url ? avatar?.url : p} alt="" />
 
               <span>{firstName}&nbsp;{lastName}</span>
             </div>

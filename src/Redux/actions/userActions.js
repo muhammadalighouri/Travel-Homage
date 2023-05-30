@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -51,34 +51,38 @@ export const login = (email, password) => async (dispatch) => {
     }
 };
 
-export const register = (firstName, lastName, email, password, phone) => async (dispatch) => {
-    try {
-        dispatch({ type: USER_REGISTER_REQUEST });
+export const register =
+    (firstName, lastName, email, password, phone) => async (dispatch) => {
+        try {
+            dispatch({ type: USER_REGISTER_REQUEST });
 
-        const rawResponse = await fetch("http://localhost:5000/api/v1/user/register", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ firstName, lastName, email, password, phone }),
-        });
-        const data = await rawResponse.json();
+            const rawResponse = await fetch(
+                "http://localhost:5000/api/v1/user/register",
+                {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ firstName, lastName, email, password, phone }),
+                }
+            );
+            const data = await rawResponse.json();
 
-        dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-        dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+            dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+            dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
-        localStorage.setItem("userInfo", JSON.stringify(data));
-    } catch (error) {
-        dispatch({
-            type: USER_REGISTER_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        });
-    }
-};
+            localStorage.setItem("userInfo", JSON.stringify(data));
+        } catch (error) {
+            dispatch({
+                type: USER_REGISTER_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            });
+        }
+    };
 
 export const updateProfile = (user) => async (dispatch, getState) => {
     try {
@@ -96,7 +100,11 @@ export const updateProfile = (user) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.put("/api/v1/user/me/update", user, config);
+        const { data } = await axios.put(
+            "/api/v1/user/me/update",
+            { ...user, user: userInfo.user._id },
+            config
+        );
         if (data) {
             toast.success("Profile has updated!");
         }
@@ -131,10 +139,13 @@ export const getUserDetails = () => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.post(`http://localhost:5000/api/v1/user/me`, { user: userInfo.user._id }, config);
+        const { data } = await axios.post(
+            `http://localhost:5000/api/v1/user/me`,
+            { user: userInfo.user._id },
+            config
+        );
 
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
-
     } catch (error) {
         dispatch({
             type: USER_DETAILS_FAIL,
