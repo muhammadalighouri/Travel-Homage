@@ -36,11 +36,12 @@ export const login = (email, password) => async (dispatch) => {
             { email, password },
             config
         );
-
+        console.log(data);
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
         localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
+        console.log(error);
         dispatch({
             type: USER_LOGIN_FAIL,
             payload:
@@ -56,18 +57,16 @@ export const register =
         try {
             dispatch({ type: USER_REGISTER_REQUEST });
 
-            const rawResponse = await fetch(
+            const { data } = await axios.post(
                 "/api/v1/user/register",
+                { firstName, lastName, email, password, phone },
                 {
-                    method: "POST",
                     headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ firstName, lastName, email, password, phone }),
                 }
             );
-            const data = await rawResponse.json();
 
             dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
             dispatch({ type: USER_LOGIN_SUCCESS, payload: data });

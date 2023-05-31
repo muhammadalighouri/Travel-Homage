@@ -22,13 +22,14 @@ export const userLoginReducer = (state = {}, action) => {
         case USER_LOGIN_SUCCESS:
             return { loading: false, userInfo: action.payload };
         case USER_LOGIN_FAIL:
-            return { loading: false, userInfo: action.payload };
+            return { loading: false, error: action.payload }; // Changed from 'userInfo' to 'error'
         case USER_LOGOUT:
             return {};
         default:
             return state;
     }
 };
+
 export const userRegisterReducer = (state = {}, action) => {
     switch (action.type) {
         case USER_REGISTER_REQUEST:
@@ -48,7 +49,6 @@ export const userUpdateReducer = (state = {}, action) => {
         case USER_UPDATE_REQUEST:
             return { loading: true };
         case USER_UPDATE_SUCCESS:
-
             return { loading: false, userInfo: action.payload, success: true };
         case USER_UPDATE_FAIL:
             return { loading: false, error: action.payload, success: false };

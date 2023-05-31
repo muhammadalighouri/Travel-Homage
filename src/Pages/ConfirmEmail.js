@@ -10,7 +10,7 @@ function EmailConfirmation() {
 
     useEffect(() => {
         axios
-            .post(`/confirm_email/${token}`)
+            .get(`/api/v1/user/confirm_email/${token}`)  // Changed from 'post' to 'get'
             .then((res) => {
                 setMessage(res.data.message);
             })
@@ -18,6 +18,7 @@ function EmailConfirmation() {
                 setError(err.response.data.message);
             });
     }, [token]);
+
 
     return (
         <div className="confirmation-container">

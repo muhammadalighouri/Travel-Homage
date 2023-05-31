@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 import Navigate from "./Navigate";
 const CarD = ({ display }) => {
   const { cars, loading } = useSelector((state) => state.Cars) || {};
-  const info = useSelector(state => state.RentalInfo?.selectedOption)
+  const info = useSelector((state) => state.RentalInfo?.selectedOption);
   // State to hold the selected car's data
   const [selectedCar, setSelectedCar] = useState(null);
 
@@ -32,13 +32,17 @@ const CarD = ({ display }) => {
   const priceAfterDiscount = (price, discount) => {
     return price - (price * discount) / 100;
   };
+  const getCategoryIcon = (cat) => {
+    if (cat === "SUV") {
+      return s1;
+    } else {
+      return s2;
+    }
+  };
   return (
     <>
       {loading ? (
         <>
-
-
-
           <div className="box"></div>
           <div className="box"></div>
           <div className="box"></div>
@@ -56,7 +60,11 @@ const CarD = ({ display }) => {
                       </div>
                       <div className="center">{car.type}</div>
                       <div className="end">
-                        <img src={Vector} alt="" className="vector" />
+                        <img
+                          src={getCategoryIcon(car.category)}
+                          alt=""
+                          className="vector"
+                        />
                       </div>
                     </div>
                     <div className="bottom-h">
@@ -68,13 +76,23 @@ const CarD = ({ display }) => {
                           <span>{car.year}</span>
                           <div className="price">
                             <span className="n1">ر.س.</span>
-                            <span className="n2"> {info === "perDay" ? car?.pricePerDay : car?.pricePerHour}</span>
+                            <span className="n2">
+                              {" "}
+                              {info === "perDay"
+                                ? car?.pricePerDay
+                                : car?.pricePerHour}
+                            </span>
                           </div>
                         </div>
 
                         <div className="layer">
                           <h2>
-                            {priceAfterDiscount(info === "perDay" ? car?.pricePerDay : car?.pricePerHour, car?.discount)}
+                            {priceAfterDiscount(
+                              info === "perDay"
+                                ? car?.pricePerDay
+                                : car?.pricePerHour,
+                              car?.discount
+                            )}
                             <span className="l1">ر.س.*</span>
                           </h2>
                         </div>
