@@ -20,7 +20,10 @@ import tick from "../assests/booking/tick.png";
 import key from "../assests/Profile/key.png";
 import eye from "../assests/Profile/eye.png";
 import a from "../assests/booking/Lead icon.png";
-
+import f1 from "../assests/booking/Frame 163.png";
+import f2 from "../assests/booking/Frame 164.png";
+import f3 from "../assests/booking/Frame 165.png";
+import f4 from "../assests/booking/Frame 166.png";
 const Booking = () => {
   const [activeButton, setActiveButton] = useState("btn3");
 
@@ -305,7 +308,10 @@ const Booking = () => {
                     <div className="choose">
                       <h1>اختر نقاط الولاء</h1>
                       <div className="choose-points">
-                        
+                        <img src={f1} alt="" />
+                        <img src={f2} alt="" />
+                        <img src={f3} alt="" />
+                        <img src={f4} alt="" />
                       </div>
                     </div>
                   </div>
