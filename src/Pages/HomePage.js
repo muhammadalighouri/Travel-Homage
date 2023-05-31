@@ -11,7 +11,8 @@ import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFilters } from "../Redux/actions/filterActions";
 import Maps from "../components/Maps";
-import BookingSidebar from "../components/BookingSidebar";
+// import BookingSidebar from "../components/BookingSidebar";
+import Booking from "./Booking";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -31,7 +32,7 @@ const HomePage = () => {
         <Maps/>
         <Signup />
         <Footer />
-        <BookingSidebar/>
+<Booking/>
       </section>
     </>
   );
