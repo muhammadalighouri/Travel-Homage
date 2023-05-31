@@ -55,13 +55,15 @@ const LoginIn = ({ setMode }) => {
         });
         navigate("/");
         setMode("");
-      } else {
-        toast.error(userInfo.message, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
       }
     }
-  }, [userInfo, navigate]);
+
+    if (error) {  // If there is an error, show the toast
+      toast.error(error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }, [userInfo, error, navigate]);
   return (
     <>
       <section id="login">
