@@ -1,24 +1,21 @@
 import React from "react";
 import "../../scss/profile.scss";
-import '../../scss/booking.scss'
+import "../../scss/bookinghistory.scss";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
-// import Slide  from "../../components/Sidebar";
-import Sidebar from "../../components/Sidebar";
 import first from "../../assests/Photo.png";
-
 import BookingF from "../../components/BookingF";
-const Booking = () => {
-
+import ProfileSidebar from "../../components/ProfileSidebar";
+const BookingHistory = () => {
   return (
     <>
       <Navigation />
       <Banner text={"حجوزاتي "} img={first} />
       <section id="user-profile">
         <div className="user-container">
-      <BookingF/>
-          <Sidebar />
+          <BookingF />
+          <ProfileSidebar />
         </div>
       </section>
       <Footer />
@@ -26,4 +23,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default BookingHistory;

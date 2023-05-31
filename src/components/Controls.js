@@ -434,6 +434,7 @@ const Controls = () => {
             </div>
         </section>
     );
+    
 };
 
 export default Controls;

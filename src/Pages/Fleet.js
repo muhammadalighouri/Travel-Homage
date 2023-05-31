@@ -14,8 +14,8 @@ import field from "../assests/Fleet/Field.png";
 import Navigate from "../components/Navigate";
 import FleetSide from "../components/FleetSide";
 import { useDispatch } from "react-redux";
-import { fetchCars } from "../../Redux/actions/carActions";
-import { fetchFilters } from "../../Redux/actions/filterActions";
+import { fetchCars } from "../Redux/actions/carActions";
+import { fetchFilters } from "../Redux/actions/filterActions";
 const Fleet = () => {
   const [display, setDisplay] = useState(false);
   const dispatch = useDispatch();
@@ -45,9 +45,7 @@ const Fleet = () => {
           </div>
           <div className="grid-box" id="cars">
             <div className="btns">
-              <div className="select">
-                {/* <img src={field} alt="" /> */}
-              </div>
+              <div className="select">{/* <img src={field} alt="" /> */}</div>
               <div className="impression">
                 <div className="btn">
                   عرض المحفوظ
@@ -69,7 +67,6 @@ const Fleet = () => {
         </div>
       </section>
       <Footer />
-      {/* <Navigate style={display ? { display: "block" } : { display: "none" }} /> */}
     </>
   );
 };

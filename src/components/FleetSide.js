@@ -1,110 +1,117 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "../scss/fleetside.scss";
-import 'react-input-range/lib/css/index.css';
-import { useSelector } from "react-redux"
-import InputRange from 'react-input-range';
-import 'react-input-range/lib/css/index.css';
+import { useSelector } from "react-redux";
+// import InputRange from "react-input-range";
+// import "react-input-range/lib/css/index.css";
 import { fetchCars } from "../Redux/actions/carActions";
 const FleetSide = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const { filters } = useSelector(state => state.Filters);
-  const { categories, brands, availabilityCount, priceRange } = filters
+  const { filters } = useSelector((state) => state.Filters);
+  const { categories, brands, availabilityCount, priceRange } = filters;
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedAvailability, setSelectedAvailability] = useState([]);
   const [value, setValue] = useState({ min: 0, max: 1500 });
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCars(
-      selectedCategories.join(','),
-      selectedBrands.join(','),
-      '', '', '', value.min, value.max, '', '', '', '',
-      selectedAvailability.includes('InStock') ? 'true' : '',
-      selectedAvailability.includes('OutOfStock') ? 'true' : '',
-      1
-    ));
+    dispatch(
+      fetchCars(
+        selectedCategories.join(","),
+        selectedBrands.join(","),
+        "",
+        "",
+        "",
+        value.min,
+        value.max,
+        "",
+        "",
+        "",
+        "",
+        selectedAvailability.includes("InStock") ? "true" : "",
+        selectedAvailability.includes("OutOfStock") ? "true" : "",
+        1
+      )
+    );
   }, [selectedCategories, selectedBrands, selectedAvailability, value]);
   return (
     <>
       <div id="fleet-side">
         <aside>
-
-          {
-            categories && <div className="item__">
-              <div className="name">
-                {categories?.name}
-              </div>
+          {categories && (
+            <div className="item__">
+              <div className="name">{categories?.name}</div>
               <div className="tools">
                 <div className="first">Reset</div>
                 <div className="second">0 Selected</div>
               </div>
               <ul>
-                {
-                  categories.data.map((ite, ind) => {
-                    return (
-                      <li>
-                        <div className="start">{ite.count}</div>
-                        <div className="end">
-                          <div className="h">{ite._id}</div>
-                          <input
-                            type="checkbox"
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setSelectedCategories([...selectedCategories, ite._id]);
-                              } else {
-                                setSelectedCategories(selectedCategories.filter((id) => id !== ite._id));
-                              }
-                            }}
-                          />
-                        </div>
-                      </li>
-                    )
-                  })
-                }
+                {categories.data.map((ite, ind) => {
+                  return (
+                    <li>
+                      <div className="start">{ite.count}</div>
+                      <div className="end">
+                        <div className="h">{ite._id}</div>
+                        <input
+                          type="checkbox"
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedCategories([
+                                ...selectedCategories,
+                                ite._id,
+                              ]);
+                            } else {
+                              setSelectedCategories(
+                                selectedCategories.filter(
+                                  (id) => id !== ite._id
+                                )
+                              );
+                            }
+                          }}
+                        />
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
-          }
-          {
-            brands && <div className="item__">
-              <div className="name">
-                {brands?.name}
-              </div>
+          )}
+          {brands && (
+            <div className="item__">
+              <div className="name">{brands?.name}</div>
               <div className="tools">
                 <div className="first">Reset</div>
                 <div className="second">0 Selected</div>
               </div>
               <ul>
-                {
-                  brands.data.map((ite, ind) => {
-                    return (
-                      <li>
-                        <div className="start">{ite.count}</div>
-                        <div className="end">
-                          <div className="h">{ite._id}</div>
-                          <input
-                            type="checkbox"
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setSelectedBrands([...selectedBrands, ite._id]);
-                              } else {
-                                setSelectedBrands(selectedBrands.filter((id) => id !== ite._id));
-                              }
-                            }}
-                          />
-                        </div>
-                      </li>
-                    )
-                  })
-                }
+                {brands.data.map((ite, ind) => {
+                  return (
+                    <li>
+                      <div className="start">{ite.count}</div>
+                      <div className="end">
+                        <div className="h">{ite._id}</div>
+                        <input
+                          type="checkbox"
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedBrands([...selectedBrands, ite._id]);
+                            } else {
+                              setSelectedBrands(
+                                selectedBrands.filter((id) => id !== ite._id)
+                              );
+                            }
+                          }}
+                        />
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
-          }
-          {
-            availabilityCount && <div className="item__">
-              <div className="name">
-                {availabilityCount?.name}
-              </div>
+          )}
+          {availabilityCount && (
+            <div className="item__">
+              <div className="name">{availabilityCount?.name}</div>
               <div className="tools">
                 <div className="first">Reset</div>
                 <div className="second">0 Selected</div>
@@ -116,12 +123,20 @@ const FleetSide = () => {
                     <div className="h">{availabilityCount.data.available}</div>
                     <input
                       type="checkbox"
-                      name="" id=""
+                      name=""
+                      id=""
                       onChange={(e) => {
                         if (e.target.checked) {
-                          setSelectedAvailability([...selectedAvailability, 'InStock']);
+                          setSelectedAvailability([
+                            ...selectedAvailability,
+                            "InStock",
+                          ]);
                         } else {
-                          setSelectedAvailability(selectedAvailability.filter((id) => id !== 'InStock'));
+                          setSelectedAvailability(
+                            selectedAvailability.filter(
+                              (id) => id !== "InStock"
+                            )
+                          );
                         }
                       }}
                     />
@@ -130,15 +145,25 @@ const FleetSide = () => {
                 <li>
                   <div className="start">Out Of Stock</div>
                   <div className="end">
-                    <div className="h">{availabilityCount.data.unavailable}</div>
+                    <div className="h">
+                      {availabilityCount.data.unavailable}
+                    </div>
                     <input
                       type="checkbox"
-                      name="" id=""
+                      name=""
+                      id=""
                       onChange={(e) => {
                         if (e.target.checked) {
-                          setSelectedAvailability([...selectedAvailability, 'OutOfStock']);
+                          setSelectedAvailability([
+                            ...selectedAvailability,
+                            "OutOfStock",
+                          ]);
                         } else {
-                          setSelectedAvailability(selectedAvailability.filter((id) => id !== 'OutOfStock'));
+                          setSelectedAvailability(
+                            selectedAvailability.filter(
+                              (id) => id !== "OutOfStock"
+                            )
+                          );
                         }
                       }}
                     />
@@ -146,27 +171,23 @@ const FleetSide = () => {
                 </li>
               </ul>
             </div>
-          }
-          {
-            priceRange && <div className="item__" style={{ padding: '10px 15px 40px' }}>
-              <div className="name">
-                {priceRange?.name}
-              </div>
+          )}
+          {priceRange && (
+            <div className="item__" style={{ padding: "10px 15px 40px" }}>
+              <div className="name">{priceRange?.name}</div>
 
               <ul>
-                <li style={{ marginTop: '20px' }}>
-                  <InputRange
+                <li style={{ marginTop: "20px" }}>
+                  {/* <InputRange
                     maxValue={priceRange.data.max}
                     minValue={priceRange.data.min}
                     value={value}
-                    onChange={value => setValue(value)}
-                  />
+                    onChange={(value) => setValue(value)}
+                  /> */}
                 </li>
-
               </ul>
             </div>
-          }
-
+          )}
         </aside>
       </div>
     </>

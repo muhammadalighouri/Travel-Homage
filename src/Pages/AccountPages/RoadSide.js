@@ -3,8 +3,6 @@ import "../../scss/profile.scss";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
-// import Slide  from "../../components/Sidebar";
-import Sidebar from "../../components/Sidebar";
 import first from "../../assests/Photo.png";
 import '../../scss/road.scss'
 
@@ -14,6 +12,7 @@ import img2 from "../../assests/Icons/Lead icon.png";
 import img3 from "../../assests/Icons/Lead icon.svg";
 import img4 from "../../assests/Icons/Vector (6).png";
 import img5 from "../../assests/Icons/Tail icon.svg";
+import ProfileSidebar from "../../components/ProfileSidebar";
 const RoadSide = () => {
   return (
     <>
@@ -22,9 +21,9 @@ const RoadSide = () => {
       <section id="user-profile">
         <div className="user-container">
           <div className="road-input">
-{/* <input type="color" name="" id="" /> */}
           </div>
-          <Sidebar />
+          <ProfileSidebar />
+
         </div>
       </section>
       <Footer />

@@ -8,7 +8,7 @@ import p from "../assests/Profile/Profile 2.png";
 
 import "../scss/side.scss";
 import { useSelector } from "react-redux";
-const Sidebar = () => {
+const ProfileSidebar = () => {
   const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
   const { firstName, lastName, avatar } = user || {}
   return (
@@ -65,4 +65,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default ProfileSidebar;
