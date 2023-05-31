@@ -24,6 +24,12 @@ import f1 from "../assests/booking/Frame 163.png";
 import f2 from "../assests/booking/Frame 164.png";
 import f3 from "../assests/booking/Frame 165.png";
 import f4 from "../assests/booking/Frame 166.png";
+import f5 from "../assests/booking/Visa.1.png";
+import f6 from "../assests/booking/Mastercard.2.png";
+import f7 from "../assests/booking/Braintree.3.png";
+import f8 from "../assests/booking/PayPal.4.png";
+import f9 from "../assests/booking/GooglePay.5.png";
+import f10 from "../assests/booking/ApplePay.6.png";
 const Booking = () => {
   const [activeButton, setActiveButton] = useState("btn3");
 
@@ -305,14 +311,29 @@ const Booking = () => {
               {activeButton === "btn3" && (
                 <div className="grid__four">
                   <div className="booking-address">
-                    <div className="choose">
+                    <div className="choose-1">
                       <h1>اختر نقاط الولاء</h1>
-                      <div className="choose-points">
+                      {/* <div className="choose-points">
                         <img src={f1} alt="" />
                         <img src={f2} alt="" />
                         <img src={f3} alt="" />
                         <img src={f4} alt="" />
+                      </div> */}
+                    </div>
+                    <div className="choose-2">
+                      <h1>اختر طريقة الدفع</h1>
+                      <div className="choose-points">
+                        <img src={f5} alt="" />
+                        <img src={f6} alt="" />
+                        <img src={f7} alt="" />
+                        <img src={f8} alt="" />
+                        <img src={f9} alt="" />
+                        <img src={f10} alt="" />
                       </div>
+                    </div>
+                    <div className="select-btns">
+                      <div className="btn1">التالى</div>
+                      <div className="btn2">إلغاء</div>
                     </div>
                   </div>
                 </div>

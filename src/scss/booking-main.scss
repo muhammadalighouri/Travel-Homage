@@ -8,6 +8,7 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+
   .container-main {
     display: grid;
     grid-template-columns: 2fr 4fr;
@@ -278,7 +279,7 @@
                 max-width: 442px;
                 font-weight: 700;
                 font-size: 16px;
-               color: #373A36 !important;
+                color: #373A36 !important;
                 height: auto;
                 background: #FFCD00;
                 box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
@@ -336,29 +337,30 @@
                 display: flex;
                 align-items: end;
                 justify-content: center;
-             span{
-              width: 100%;
-              cursor: pointer;
-              display: flex;
-              flex-direction: row;
-              justify-content: center;
-              align-items: center;
-              padding: 12px 16px;
-              gap: 8px;
 
-              width: 129px;
-              height: 44px;
+                span {
+                  width: 100%;
+                  cursor: pointer;
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 12px 16px;
+                  gap: 8px;
 
-              background: rgba(47, 43, 67, 0.05);
-              ;
-              font-family: "Cairo", sans-serif;
-              font-size: 16px;
-              font-weight: 700;
-              color: #a2a9ad;
-              box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
-                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
-border-radius: 25px;
-             }
+                  width: 129px;
+                  height: 44px;
+
+                  background: rgba(47, 43, 67, 0.05);
+                  ;
+                  font-family: "Cairo", sans-serif;
+                  font-size: 16px;
+                  font-weight: 700;
+                  color: #a2a9ad;
+                  box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                    inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                  border-radius: 25px;
+                }
 
               }
 
@@ -438,7 +440,7 @@ border-radius: 25px;
                 max-width: 442px;
                 font-weight: 700;
                 font-size: 16px;
-                color:  #373A36 !important;
+                color: #373A36 !important;
                 height: auto;
                 background: #FFCD00;
                 box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
@@ -467,6 +469,84 @@ border-radius: 25px;
             }
           }
 
+        }
+
+        .grid__four {
+          .booking-address {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 560px;
+
+            h1 {
+              font-weight: 400;
+              font-size: 22px;
+              font-family: "Cairo", sans-serif;
+              color: #373A36;
+            }
+
+            .choose-1 {
+              .choose-points {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+              }
+            }
+
+            .choose-2 {
+              .choose-points {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+              }
+            }
+
+            .select-btns {
+              display: grid;
+              grid-template-columns: 1fr 1.5fr;
+              width: 100%;
+              grid-gap: 0px 15px;
+              margin-top: 40px;
+
+              .btn1 {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 12px 16px;
+                gap: 8px;
+                max-width: 442px;
+                font-weight: 700;
+                font-size: 16px;
+                color: #373A36 !important;
+                height: auto;
+                background: #FFCD00;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                border-radius: 25px;
+                cursor: pointer;
+              }
+
+              .btn2 {
+                font-weight: 700;
+                font-size: 16px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 12px 16px;
+                gap: 8px;
+                max-width: 442px;
+                color: white;
+                height: auto;
+                font-family: "Cairo", sans-serif;
+                cursor: pointer;
+                background: #F34141;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                border-radius: 25px;
+              }
+            }
+
+          }
         }
       }
 
