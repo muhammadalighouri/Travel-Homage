@@ -14,8 +14,8 @@ import field from "../assests/Fleet/Field.png";
 import Navigate from "../components/Navigate";
 import FleetSide from "../components/FleetSide";
 import { useDispatch } from "react-redux";
-import { fetchCars } from "../../Redux/actions/carActions";
-import { fetchFilters } from "../../Redux/actions/filterActions";
+import { fetchCars } from "../Redux/actions/carActions";
+import { fetchFilters } from "../Redux/actions/filterActions";
 const Fleet = () => {
   const [display, setDisplay] = useState(false);
   const dispatch = useDispatch();
