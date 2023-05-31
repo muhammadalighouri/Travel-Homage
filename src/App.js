@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import "./scss/normalize.css";
-
-import "./scss/reset.css";
-// import Form from "./components/Form";
-import Loader from "./components/Loader";
-
-import { loadFull } from "tsparticles";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-
-// import BuyPage from "./Pages/Buy/BuyPage";
+import "./scss/normalize.css";
+import "./scss/reset.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Footer from "./components/Footer";
+import HomePage from "./Pages/HomePage";
+import Loader from "./components/Loader";
+
 import Register from "./components/Register";
 import EmailConfirmation from "./Pages/ConfirmEmail";
 import LoginIn from "./components/LoginIn";
@@ -25,7 +19,7 @@ import SavedAdress from "./Pages/AccountPages/SavedAdress";
 import RideRatings from "./Pages/AccountPages/RideRatings";
 import Customer from "./Pages/AccountPages/Customer";
 import RoadSide from "./Pages/AccountPages/RoadSide";
-import Fleet from "./Pages/AccountPages/Fleet";
+import Fleet from "./Pages/Fleet";
 
 function App() {
   let [loading, setLoading] = useState(true);
