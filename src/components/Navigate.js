@@ -8,8 +8,10 @@ import img1 from "../assests/Fleet/Rectangle 23.png";
 import "../scss/navigate.scss";
 import cross from "../assests/Fleet/Xmark.png";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Navigate = ({ car, closeModal }) => {
-  const info = useSelector(state => state.RentalInfo?.selectedOption)
+  const info = useSelector(state => state.RentalInfo?.selectedOption);
+  const navigate = useNavigate()
   const priceAfterDiscount = (price, discount) => {
     return price - (price * discount / 100);
   }
@@ -68,7 +70,7 @@ const Navigate = ({ car, closeModal }) => {
 
                 </ul>
               </div>
-              <div className="price-btn">
+              <div className="price-btn" onClick={() => navigate(`/${car._id}/booking`)}>
                 <div className="btn-1">
                   <span>أحجز الآن</span>
                 </div>

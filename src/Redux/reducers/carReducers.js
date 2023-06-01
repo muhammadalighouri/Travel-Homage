@@ -12,8 +12,10 @@ const initialState = {
     error: '',
     pagination: {}
 };
-
-const carsReducer = (state = initialState, action) => {
+const toggleInitialState = {
+    toggle: false,
+};
+export const carsReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_CARS_REQUEST:
             return {
@@ -42,5 +44,15 @@ const carsReducer = (state = initialState, action) => {
             return state;
     }
 };
-
+export const toggleReducer = (state = toggleInitialState, action) => {
+    switch (action.type) {
+        case 'TOGGLE':
+            return {
+                ...state,
+                toggle: !state.toggle,
+            };
+        default:
+            return state;
+    }
+};
 export default carsReducer;

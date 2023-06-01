@@ -19,6 +19,7 @@ import Customer from "./Pages/AccountPages/Customer";
 import RoadSide from "./Pages/AccountPages/RoadSide";
 import Fleet from "./Pages/Fleet";
 import BookingHistory from "./Pages/AccountPages/BookingHistory";
+import Booking from "./Pages/Booking";
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -52,6 +53,7 @@ function App() {
           <Route path="/change-Password" element={<ChangePassword />} />
           <Route path="/roadside-assistance" element={<RoadSide />} />
           <Route path="/booking" element={<RoadSide />} />
+          <Route path="/:car/booking" element={<Booking />} />
         </Routes>
         {/* <Footer /> */}
       </>

@@ -1,6 +1,5 @@
 // actions/favoriteActions.js
 
-import axios from "../../api/axios";
 import {
     ADD_FAVORITE_FAILURE,
     ADD_FAVORITE_REQUEST,
@@ -12,7 +11,7 @@ import {
     REMOVE_FAVORITE_REQUEST,
     REMOVE_FAVORITE_SUCCESS,
 } from "../constants/favouriteConstants";
-
+import axios from "../../api/axios"
 // Action creators
 export const addFavorite = (userId, carId) => async (dispatch) => {
     dispatch({ type: ADD_FAVORITE_REQUEST });
@@ -22,11 +21,12 @@ export const addFavorite = (userId, carId) => async (dispatch) => {
             userId,
             carId,
         });
-
+        dispatch({ type: GET_FAVORITES_REQUEST });
         dispatch({
             type: ADD_FAVORITE_SUCCESS,
             payload: response.data.message,
         });
+
     } catch (error) {
         dispatch({
             type: ADD_FAVORITE_FAILURE,
@@ -39,10 +39,10 @@ export const removeFavorite = (userId, carId) => async (dispatch) => {
     dispatch({ type: REMOVE_FAVORITE_REQUEST });
 
     try {
-        const response = await axios.post("/api/v1/favorites/remove", {
-            data: { userId, carId },
-        });
-
+        const response = await axios.post("/api/v1/favorites/remove",
+            { userId, carId },
+        );
+        dispatch({ type: GET_FAVORITES_REQUEST });
         dispatch({
             type: REMOVE_FAVORITE_SUCCESS,
             payload: response.data.message,
@@ -55,11 +55,14 @@ export const removeFavorite = (userId, carId) => async (dispatch) => {
     }
 };
 
-export const getFavorites = (userId) => async (dispatch) => {
+export const getFavorites = (userId) => async (dispatch, getState) => {
     dispatch({ type: GET_FAVORITES_REQUEST });
 
     try {
-        const response = await axios.get(`/api/v1/favorites/${userId}`);
+        const {
+            UserLogin: { userInfo },
+        } = getState();
+        const response = await axios.get(`/api/v1/favorites/${userInfo?.user._id}`);
 
         dispatch({
             type: GET_FAVORITES_SUCCESS,

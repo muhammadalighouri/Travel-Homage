@@ -44,23 +44,11 @@ const Fleet = () => {
             </div>
           </div>
           <div className="grid-box" id="cars">
-            <div className="btns">
-              <div className="select">{/* <img src={field} alt="" /> */}</div>
-              <div className="impression">
-                <div className="btn">
-                  عرض المحفوظ
-                  <img src={f4} alt="" />
-                </div>
-                <div className="btn">
-                  عرض المفضل
-                  <img src={f5} alt="" />
-                </div>
-              </div>
-            </div>
+
             <div className="flex-wrap">
-              <div className="flex">
-                <CarD />
-              </div>
+
+              <CarD />
+
               <FleetSide />
             </div>
           </div>
