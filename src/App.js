@@ -19,6 +19,9 @@ import Customer from "./Pages/AccountPages/Customer";
 import RoadSide from "./Pages/AccountPages/RoadSide";
 import Fleet from "./Pages/Fleet";
 import BookingHistory from "./Pages/AccountPages/BookingHistory";
+import AboutPage from "./Pages/AboutPage";
+import ServicesPage from "./Pages/ServicesPage";
+import FaqPage from "./Pages/FaqPage";
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -35,10 +38,7 @@ function App() {
       <>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route
-            path="/confirm_email/:token"
-            element={<EmailConfirmation />}
-          />
+          <Route path="/confirm_email/:token" element={<EmailConfirmation />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<LoginIn />} />
           <Route path="/profile" element={<UserProfile />} />
@@ -52,6 +52,9 @@ function App() {
           <Route path="/change-Password" element={<ChangePassword />} />
           <Route path="/roadside-assistance" element={<RoadSide />} />
           <Route path="/booking" element={<RoadSide />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/faq" element={<FaqPage />} />
         </Routes>
         {/* <Footer /> */}
       </>
