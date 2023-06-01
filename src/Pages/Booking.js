@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BookingSidebar from "../components/BookingSidebar";
 import "../scss/booking-main.scss";
 import w1 from "../assests/booking/w.1.png";
 import w2 from "../assests/booking/w.2.png";
 import w3 from "../assests/booking/w.3.png";
-
 import b1 from "../assests/booking/b.1.png";
 import b2 from "../assests/booking/b.2.png";
 import b3 from "../assests/booking/b.3.png";
@@ -30,9 +29,49 @@ import f7 from "../assests/booking/Braintree.3.png";
 import f8 from "../assests/booking/PayPal.4.png";
 import f9 from "../assests/booking/GooglePay.5.png";
 import f10 from "../assests/booking/ApplePay.6.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Booking = () => {
-  const [activeButton, setActiveButton] = useState("btn3");
-
+  const [activeButton, setActiveButton] = useState("btn1");
+  const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
+  const rentalInfo = useSelector((state) => state.RentalInfo) || {};
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [drivingLicense, setDrivingLicense] = useState("");
+  const [nationalId, setNationalId] = useState("");
+  const [phone, setPhone] = useState("");
+  const [passport, setPassport] = useState("");
+  const [email, setEmail] = useState("");
+  const [pickupLocation, setPickupLocation] = useState("");
+  const [returnLocation, setReturnLocation] = useState("");
+  const [pickupTime, setPickupTime] = useState(new Date());
+  const [returnTime, setReturnTime] = useState(new Date());
+  const [perDay, setPerDay] = useState(false);
+  const [perHour, setPerHour] = useState(false);
+  const [delivery, setDelivery] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.firstName || "");
+      setLastName(user.lastName || "");
+      setDrivingLicense(user.drivingLicense || "");
+      setNationalId(user.nationalId || "");
+      setPhone(user.phone || "");
+      setEmail(user.email || "");
+    }
+  }, [user]);
+  useEffect(() => {
+    if (rentalInfo) {
+      setPickupLocation(rentalInfo.pickupLocation || "");
+      setReturnLocation(rentalInfo.returnLocation || "");
+      setPickupTime(rentalInfo.pickupTime || new Date());
+      setReturnTime(rentalInfo.returnTime || new Date());
+      setPerDay(rentalInfo.perDay || false);
+      setPerHour(rentalInfo.perHour || false);
+      setDelivery(rentalInfo.delivery || false);
+    }
+  }, [rentalInfo]);
   return (
     <>
       <section id="booking">
@@ -102,6 +141,8 @@ const Booking = () => {
                           <img src={i1} alt="" />
                           <input
                             type="text"
+                            value={pickupLocation}
+                            onChange={(e) => setPickupLocation(e.target.value)}
                             placeholder="اختر من سجل العناوين"
                           />
                           <img src={sort} alt="" />
@@ -160,6 +201,8 @@ const Booking = () => {
                           <img src={i1} alt="" />
                           <input
                             type="text"
+                            value={returnLocation}
+                            onChange={(e) => setReturnLocation(e.target.value)}
                             placeholder="اختر من سجل العناوين"
                           />
                           <img src={sort} alt="" />
@@ -247,7 +290,12 @@ const Booking = () => {
                         <p>رخصة القيادة</p>
                         <div className="input">
                           <img src={i4} alt="" />
-                          <input type="text" placeholder="رخصة القيادة" />
+                          <input
+                            type="text"
+                            value={drivingLicense}
+                            onChange={(e) => setDrivingLicense(e.target.value)}
+                            placeholder="رخصة القيادة"
+                          />
                         </div>
                       </div>
                     </div>
@@ -264,6 +312,8 @@ const Booking = () => {
                         <div className="input">
                           <input
                             type="text"
+                            value={nationalId}
+                            onChange={(e) => setNationalId(e.target.value)}
                             placeholder="الرقم القومي أو رقم جواز السفر"
                           />
                         </div>
@@ -280,7 +330,12 @@ const Booking = () => {
                       <div className="input-box">
                         <p>رقم الهاتف</p>
                         <div className="input">
-                          <input type="text" placeholder="بريدك الإلكتروني" />
+                          <input
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            type="text"
+                            placeholder="بريدك الإلكتروني"
+                          />
                           <img src={a} alt="" />
                         </div>
                       </div>
@@ -296,7 +351,12 @@ const Booking = () => {
                       <div className="input-box">
                         <p>البريد الإلكتروني</p>
                         <div className="input">
-                          <input type="text" placeholder="بريدك الإلكتروني" />
+                          <input
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="text"
+                            placeholder="بريدك الإلكتروني"
+                          />
                         </div>
                       </div>
                     </div>

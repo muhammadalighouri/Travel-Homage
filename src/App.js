@@ -22,6 +22,7 @@ import BookingHistory from "./Pages/AccountPages/BookingHistory";
 import AboutPage from "./Pages/AboutPage";
 import ServicesPage from "./Pages/ServicesPage";
 import FaqPage from "./Pages/FaqPage";
+import Booking from "./Pages/Booking";
 
 function App() {
   let [loading, setLoading] = useState(true);

@@ -15,15 +15,18 @@ import {
   orderDetailsReducer,
   orderPayReducer,
 } from "./orderReducers";
-import carsReducer from "./carReducers";
+import { carsReducer, toggleReducer } from "./carReducers";
 import { rentalReducer } from "./rentalReducer";
 import filterReducer from "./filterReducer";
+import favoriteReducer from "./favoriteReducers";
 const RootReducer = combineReducers({
   Products: allProductsReducer,
   ProductDetails: singleProductReducer,
   ProductCreateReview: productCreateReviewReducer,
   Cart: cartReducer,
   Cars: carsReducer,
+  Favorite: favoriteReducer,
+  toggle: toggleReducer,
   Filters: filterReducer,
   RentalInfo: rentalReducer,
   Checkout: shippingDetailsReducer,
