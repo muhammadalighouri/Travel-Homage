@@ -84,7 +84,7 @@ const Navigation = ({}) => {
     {
       icon: i8,
       name: "الأسئلة المتكررة",
-      path: "/",
+      path: "/booking-side",
     },
   ];
   return (
