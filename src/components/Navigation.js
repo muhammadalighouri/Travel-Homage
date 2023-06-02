@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
-const Navigation = ({ }) => {
+const Navigation = ({}) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -64,7 +64,7 @@ const Navigation = ({ }) => {
     {
       icon: i5,
       name: "من نحن",
-      path: "/",
+      path: "/about-us",
     },
     {
       icon: i6,
@@ -74,17 +74,17 @@ const Navigation = ({ }) => {
     {
       icon: i7,
       name: "الخدمات",
-      path: "/",
+      path: "/services",
     },
     {
       icon: i8,
       name: "المركز الإعلامي",
-      path: "/",
+      path: "/faq",
     },
     {
       icon: i8,
       name: "الأسئلة المتكررة",
-      path: "/",
+      path: "/booking-side",
     },
   ];
   return (
@@ -96,7 +96,10 @@ const Navigation = ({ }) => {
               {success ? (
                 <div className="user">
                   <div className="avatar" onClick={toggleDropdown}>
-                    <img src={user.avatar?.url ? user.avatar?.url : avatar} alt="" />
+                    <img
+                      src={user.avatar?.url ? user.avatar?.url : avatar}
+                      alt=""
+                    />
                   </div>
                   {dropdownOpen && (
                     <div className="dropdown">
@@ -158,6 +161,35 @@ const Navigation = ({ }) => {
                   <button className="login" onClick={() => setMode("login")}>
                     تسجيل الدخول
                   </button>
+                  <button className="drop" onClick={toggleDropdown2}>
+                      الشركة
+                      <img src={down} alt="" />
+                      {dropdownOpen2 && (
+                        <div className="dropdown">
+                          <div className="dropdown-menu">
+                            {dropdown2.map((a) => {
+                              return (
+                                <>
+                                  <Link
+                                    to={a.path}
+                                    style={
+                                      window.location.pathname === a.path
+                                        ? { background: " #00000014" }
+                                        : { background: "none" }
+                                    }
+                                  >
+                                    <div className="n">
+                                      {a.name}
+                                      <img src={a.icon} alt="" />
+                                    </div>
+                                  </Link>
+                                </>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </button>
                 </div>
               )}
               <div className="translate">
@@ -190,30 +222,16 @@ const Navigation = ({ }) => {
                       {dropdownOpen2 && (
                         <div className="dropdown">
                           <div className="dropdown-menu">
-                            {/* <div className="person-profile">
-                              <Link to={"/profile"}>
-                                <div className="arrow">
-                                  <img src={arrow1} alt="" />
-                                </div>
-                                <div className="detial">
-                                  <div className="name">Ahmed Deco</div>
-                                  <p>عضوية ذهبية</p>
-                                </div>
-                                <div className="img">
-                                  <img src={profile} alt="" />
-                                </div>
-                              </Link>
-                            </div> */}
                             {dropdown2.map((a) => {
                               return (
                                 <>
                                   <Link
                                     to={a.path}
-                                  // style={
-                                  //   window.location.pathname === a.path
-                                  //     ? { background: " #00000014" }
-                                  //     : { background: "none" }
-                                  // }
+                                    style={
+                                      window.location.pathname === a.path
+                                        ? { background: " #00000014" }
+                                        : { background: "none" }
+                                    }
                                   >
                                     <div className="n">
                                       {a.name}
@@ -250,9 +268,7 @@ const Navigation = ({ }) => {
               >
                 {nave ? (
                   <RxCross2
-                  // onClick={() => {
-                  //   setNavColor(false);
-                  // }}
+                 className="cross"
                   />
                 ) : (
                   <HiOutlineBars3 />

@@ -36,6 +36,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import { useNavigate, useParams } from "react-router-dom";
+
+import Navigation from "../components/Navigation";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 const Booking = () => {
   const [activeButton, setActiveButton] = useState("btn1");
   const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
@@ -129,6 +133,8 @@ const Booking = () => {
   }, [rentalInfo]);
   return (
     <>
+      <Navigation />
+      <Banner />
       <section id="booking">
         <div className="container-main">
           <BookingSidebar selectedCar={selectedCar} />
@@ -511,6 +517,7 @@ const Booking = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

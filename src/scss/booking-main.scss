@@ -8,16 +8,16 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+  flex-direction: column;
 
   .container-main {
     display: grid;
     grid-template-columns: 2fr 4fr;
     grid-gap: 25px;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: auto;
     padding: 90px 20px;
     padding-bottom: 0px;
-
     .container {
       .grid__one {
         padding: 0px 20px;

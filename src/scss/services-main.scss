@@ -1,0 +1,153 @@
+@import "./variable.scss";
+@import "./media.scss";
+
+#services-page {
+    .container-services {
+        margin: auto;
+        background-color: white;
+        border-radius: 75px 75px 0px 0px;
+// position: relative;
+        .top-heading {
+            display: flex;
+            align-items: end;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 120px 20px 90px;
+
+            .heading-s {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: 8px;
+
+
+                h2 {
+                    font-family: "Cairo", sans-serif;
+                    font-size: 26px;
+                    font-weight: 700;
+                    line-height: 50px;
+                    color: #373A36;
+
+                }
+            }
+
+            .content {
+                color: #373A36;
+                font-weight: 400;
+                font-size: 25px;
+                text-align: end;
+                line-height: 48px;
+                font-family: "Cairo", sans-serif;
+
+            }
+        }
+
+        .center-wrapper {
+            background-color: #595959;
+            border-radius: 0px 50px 50px 0px;
+            margin: 90px 0px;
+
+            .center {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                padding: 0 20px 210px 20px;
+                max-width: 1200px;
+                margin: auto;
+
+
+                @include md {
+                    grid-template-columns: 1fr !important;
+                }
+
+                .img {
+                    position: relative;
+
+                    @include md {
+                        overflow: hidden;
+                        border-radius: 0px 50px 0px 0px;
+                    }
+
+                    img {
+                        position: absolute;
+                        top: -75px;
+                        left: 0px;
+
+                        @include md {
+                            margin-top: -75px;
+                            position: initial;
+                            width: 100%;
+
+                        }
+                    }
+                }
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: center;
+                    gap: 30px;
+                    height: 100%;
+                    padding-top: 80px;
+
+                    .para {
+                        color: white;
+                        font-weight: 400;
+                        font-size: 25px;
+                        text-align: end;
+                        line-height: 48px;
+                        font-family: "Cairo", sans-serif;
+
+                    }
+
+                    .heading {
+                        display: flex;
+                        align-items: center;
+                        justify-content: end;
+                        gap: 8px;
+
+
+                        h1 {
+                            font-family: "Cairo", sans-serif;
+                            font-size: 27px;
+                            font-weight: 700;
+                            color: white;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        // .bottom {
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        //     max-width: 1200px;
+        //     margin: auto;
+        //     row-gap: 75px;
+        //     column-gap: 60px;
+        //     flex-wrap: wrap;
+        //     padding: 30px 20px 150px;
+
+        //     .icon {
+        //         display: flex;
+        //         flex-direction: column;
+        //         align-items: center;
+        //         justify-content: center;
+        //         gap: 20px;
+        //         font-family: "Cairo", sans-serif;
+        //         font-size: 27px;
+        //         font-weight: 400;
+        //         color: #373A36;
+        //         text-align: center;
+
+        //     }
+
+        // }
+    }
+}

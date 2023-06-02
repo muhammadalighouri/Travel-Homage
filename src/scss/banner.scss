@@ -15,14 +15,15 @@
     background: #00afaa;
     padding-top: 150px;
     padding-bottom: 90px;
+
     @include md {
       // padding-bottom: 180px;
     }
+
     &::before {
       content: "";
-
       width: 100%;
-      height: 100%;
+      height: 80vh;
       position: absolute;
       top: 0;
       right: 0;
@@ -41,44 +42,71 @@
 
     .container__ {
       width: 100%;
-
       max-width: 1080px;
+      // margin-bottom: -160px;
+
       .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
+
         @include md {
           grid-template-columns: 1fr;
           grid-gap: 3rem;
           width: 90%;
           margin: auto;
         }
+
         .start {
           position: relative;
+
           @include md {
             order: 2;
           }
+
           img {
             width: 100%;
+
             @include md {
               width: 90%;
               margin: auto;
             }
           }
         }
+
         .end {
           display: flex;
           justify-content: center;
+          gap: 50px;
+
           @include md {
             order: 1;
+            gap: 25px;
+            flex-direction: column-reverse;
           }
-          > h1 {
+
+          .img {
+            height: 100%;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+
+            img {
+              object-fit: cover;
+            }
+          }
+
+          >h1 {
             text-align: end;
             line-height: 1.4;
             font-weight: 700;
             font-size: 48px;
             max-width: 390px;
-            > h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            >h1 {
               font-weight: 700;
               display: inline;
               font-size: 3rem;
