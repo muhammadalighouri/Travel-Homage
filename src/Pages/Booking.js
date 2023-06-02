@@ -31,7 +31,7 @@ import f9 from "../assests/booking/GooglePay.5.png";
 import f10 from "../assests/booking/ApplePay.6.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import  Navigation  from "../components/Navigation";
+import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 const Booking = () => {
@@ -77,8 +77,8 @@ const Booking = () => {
   }, [rentalInfo]);
   return (
     <>
-        <Navigation/>
-        <Banner/>
+      <Navigation />
+      <Banner />
       <section id="booking">
         <div className="container-main">
           <BookingSidebar />
@@ -407,7 +407,7 @@ const Booking = () => {
           </div>
         </div>
       </section>
-        <Footer/>
+      <Footer />
     </>
   );
 };

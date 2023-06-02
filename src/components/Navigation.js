@@ -161,6 +161,35 @@ const Navigation = ({}) => {
                   <button className="login" onClick={() => setMode("login")}>
                     تسجيل الدخول
                   </button>
+                  <button className="drop" onClick={toggleDropdown2}>
+                      الشركة
+                      <img src={down} alt="" />
+                      {dropdownOpen2 && (
+                        <div className="dropdown">
+                          <div className="dropdown-menu">
+                            {dropdown2.map((a) => {
+                              return (
+                                <>
+                                  <Link
+                                    to={a.path}
+                                    style={
+                                      window.location.pathname === a.path
+                                        ? { background: " #00000014" }
+                                        : { background: "none" }
+                                    }
+                                  >
+                                    <div className="n">
+                                      {a.name}
+                                      <img src={a.icon} alt="" />
+                                    </div>
+                                  </Link>
+                                </>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </button>
                 </div>
               )}
               <div className="translate">
@@ -198,11 +227,11 @@ const Navigation = ({}) => {
                                 <>
                                   <Link
                                     to={a.path}
-                                    // style={
-                                    //   window.location.pathname === a.path
-                                    //     ? { background: " #00000014" }
-                                    //     : { background: "none" }
-                                    // }
+                                    style={
+                                      window.location.pathname === a.path
+                                        ? { background: " #00000014" }
+                                        : { background: "none" }
+                                    }
                                   >
                                     <div className="n">
                                       {a.name}

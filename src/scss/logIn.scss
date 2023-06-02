@@ -10,9 +10,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+
   input {
     color: black;
   }
+
   &::before {
     // content: "";
     background: url(http://localhost:3000/static/media/sign.71fb4ccb389d0642b42f.png);
@@ -45,7 +47,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 52px;
+    padding: 60px 52px;
     gap: 16px;
     max-width: 500px;
     background: #ffffff;
@@ -54,15 +56,18 @@
     margin: auto;
     position: relative;
     width: -webkit-fill-available;
+
     .cross {
       position: absolute;
       top: 4%;
       right: 5%;
       cursor: pointer;
+
       svg {
         fill: black;
       }
     }
+
     .heading {
       display: flex;
       flex-direction: column;
@@ -188,8 +193,8 @@
         box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
           inset 0px -1px 0px rgba(47, 43, 67, 0.1);
         border-radius: 25px;
-        a {
-        }
+
+        a {}
       }
 
       // #email {

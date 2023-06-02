@@ -28,11 +28,10 @@ const HomePage = () => {
         <Banner text={"   نصنع من رحلتكم وترحالكم شيئأ ممتعاً"} img={first} />
         <Car />
         <Car2 />
-        <Geo/>
-        <Maps/>
+        <Geo />
+        <Maps />
         <Signup />
         <Footer />
-<Booking/>
       </section>
     </>
   );

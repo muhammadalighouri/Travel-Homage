@@ -13,7 +13,6 @@ header {
   .color {
     background-color: #0000005c;
     position: fixed;
-    z-index: -1;
     width: 100%;
     transition: all 0.5s ease;
 
@@ -91,15 +90,18 @@ header {
           justify-content: start;
           gap: 18px;
           align-items: center;
+
           .avatar {
             border-radius: 100px;
             height: 40px;
             overflow: hidden;
+
             img {
               width: 100%;
               height: 100%;
             }
           }
+
           span {
             color: #2f2b4399;
             font-weight: 600;
@@ -144,6 +146,7 @@ header {
                     border-radius: 100px;
                     overflow: hidden;
                     margin-left: 5px;
+
                     img {
                       width: 100%;
                       height: 100%;
@@ -204,6 +207,105 @@ header {
           justify-content: space-between;
           gap: 10px;
           align-items: center;
+          .drop {
+            opacity: 0;
+            display: none;
+            background: transparent;
+            padding: 8px 8px;
+            color: #2f2b4399;
+            @include md {
+              opacity: 1;
+              display: flex;
+              gap: 4px;
+              align-items: center;
+            }
+            .dropdown {
+              .dropdown-menu {
+                position: absolute;
+                width: 200px;
+                top: 169%;
+                left: 0;
+                z-index: 10;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                /* padding: 4px 0px; */
+                width: 230px;
+                background: #fafafa;
+                border: 1px solid rgba(47, 43, 67, 0.1);
+                box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                border-radius: 12px;
+@include md{
+  top: 110%;
+  left: 70px
+}
+                .person-profile {
+                  width: 100%;
+
+                  a {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 0.4fr 0.9fr 0.2fr;
+                    align-items: center;
+                    justify-content: end;
+                    padding: 20px 16px;
+                    gap: 10px;
+
+                    .img {
+                      display: flex;
+                      align-items: center;
+                      justify-content: end;
+                    }
+
+                    .detial {
+                      .name {
+                        font-family: "Cairo", sans-serif;
+
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 24px;
+                        letter-spacing: -0.01em;
+                        text-align: right;
+                        color: #2f2b43;
+                      }
+
+                      p {
+                        font-family: "Cairo", sans-serif;
+                        color: #2f2b43;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        letter-spacing: -0.01em;
+                        text-align: right;
+                      }
+                    }
+                  }
+                }
+
+                a {
+                  width: 100%;
+
+                  .n {
+                    display: flex;
+                    align-items: center;
+                    justify-content: end;
+                    gap: 5px;
+                    padding: 11.5px 16px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #2f2b43;
+                    text-decoration: none;
+                    font-family: "Cairo", sans-serif;
+                  }
+
+                  &:hover {
+                    background: #00000014;
+                  }
+                }
+              }
+            }
+          }
 
           button.signup {
             background: #fff;
@@ -268,21 +370,23 @@ header {
                 position: fixed;
                 top: 0px;
                 left: 0;
-                gap: 0;
+                gap: 15px;
                 display: flex;
                 flex-direction: column;
                 height: 100vh;
-                width: 280px;
+                width: 300px;
                 align-items: start;
                 margin-left: -18px;
-                padding: 12px 0px;
+                padding: 20px 0px;
                 transition: all 0.5s ease;
                 background: #00706d;
                 justify-content: start;
                 transform: translateX(-100%);
-
+                z-index: 1;
                 @include smobile {
                   width: 320px;
+                  width: 100%;
+
                 }
               }
 
@@ -351,7 +455,7 @@ header {
                 }
               }
 
-              > li {
+              >li {
                 position: relative;
                 transition: all 0.3s;
                 width: fit-content;
@@ -386,7 +490,7 @@ header {
                   width: 100%;
                 }
 
-                > a {
+                >a {
                   align-items: center;
                   background-position: center 0;
                   border-radius: 4px;
@@ -410,7 +514,7 @@ header {
 
                   @include md {
                     color: #fff;
-                    padding: 18px 30px;
+                    // padding: 18px 30px;
                   }
 
                   svg {
@@ -429,6 +533,20 @@ header {
               }
 
               .drop {
+                display: flex;
+                gap: 4px;
+
+                @include md {
+                  display: none;
+
+                }
+
+                img {
+                  @include md {
+                    filter: invert(1);
+                  }
+                }
+
                 .dropdown {
                   .dropdown-menu {
                     position: absolute;
@@ -521,7 +639,7 @@ header {
           position: relative;
 
           @include md {
-            margin-left: -30px;
+            // margin-left: -30px;
           }
 
           select {
