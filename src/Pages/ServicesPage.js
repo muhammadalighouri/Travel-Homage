@@ -13,6 +13,7 @@ import s1 from "../assests/Services-img/s.11.png";
 import s2 from "../assests/Services-img/s.22.png";
 import s3 from "../assests/Services-img/s.33.png";
 import s4 from "../assests/Services-img/s.44.png";
+import s5 from "../assests/Services-img/s.55.png";
 import s6 from "../assests/Services-img/s.66.png";
 import s7 from "../assests/Services-img/s.77.png";
 import i1 from "../assests/Services-img/si.1.png";
@@ -24,7 +25,7 @@ const ServicesPage = () => {
     <>
       <section id="services-page">
         <Navigation />
-        <Banner text={" خدمات "} img={first} icon={true} mi={icon1}  p={true}/>
+        <Banner text={" خدمات "} img={first} icon={true} mi={icon1} p={true} />
         <div className="container-services">
           <div className="top-heading">
             <div className="heading-s">
@@ -103,7 +104,7 @@ const ServicesPage = () => {
             des={
               " عضوية السفر تتجاوز مفهوم كسب الأميال واستبدالها. لدينا 3 مستويات من الأعضاء وعلى أساس مستواهم ؛ يستفيد أعضاؤنا من الخصومات مع شركائنا. نحن نعمل على الحصول على شركاء مختلفين بدءًا من شركات الطيران والفنادق والمطاعم وصالات الألعاب الرياضية وأيضًا خصومات على أسعار وخدمات الإيجار وساعات إضافية عند التوصيل وعدد أميال إضافي مجاني."
             }
-            mainImg={s6}
+            mainImg={s5}
           />
           <Services
             span={"  مبيعات السيارات المستعملة"}

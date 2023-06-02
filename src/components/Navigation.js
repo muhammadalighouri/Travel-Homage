@@ -268,9 +268,7 @@ const Navigation = ({}) => {
               >
                 {nave ? (
                   <RxCross2
-                  // onClick={() => {
-                  //   setNavColor(false);
-                  // }}
+                 className="cross"
                   />
                 ) : (
                   <HiOutlineBars3 />

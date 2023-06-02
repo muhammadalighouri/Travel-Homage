@@ -5,6 +5,7 @@ import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import sh from "../assests/Faq-img/s.h.png";
 import "../scss/faq-main.scss";
+import FaqAccordion from "../components/FaqAccordion";
 const FaqPage = () => {
   return (
     <>
@@ -31,6 +32,7 @@ const FaqPage = () => {
               ما نقدمه لهم بخيارات واسعة ومتنوعة وجودة وابتكار.
             </div>
           </div>
+<FaqAccordion/>
         </div>
         <Footer />
       </section>

@@ -15,9 +15,9 @@ header {
     position: fixed;
     width: 100%;
     transition: all 0.5s ease;
-
     height: 100vh;
     top: 0px;
+    backdrop-filter: blur(2px);
     display: none;
   }
 
@@ -56,10 +56,15 @@ header {
         grid-template-columns: 1.6fr 1.5fr 3fr 1fr;
         gap: 10px;
 
+        @include lg {
+          grid-template-columns: 1.6fr 2fr 1fr;
+        }
+
         @include md {
           display: flex;
           align-items: center;
           justify-content: space-between;
+
         }
 
         .logo {
@@ -207,18 +212,21 @@ header {
           justify-content: space-between;
           gap: 10px;
           align-items: center;
+
           .drop {
             opacity: 0;
             display: none;
             background: transparent;
             padding: 8px 8px;
             color: #2f2b4399;
+
             @include md {
               opacity: 1;
               display: flex;
               gap: 4px;
               align-items: center;
             }
+
             .dropdown {
               .dropdown-menu {
                 position: absolute;
@@ -236,10 +244,12 @@ header {
                 box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1),
                   inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 12px;
-@include md{
-  top: 110%;
-  left: 70px
-}
+
+                @include md {
+                  top: 115%;
+                  left: 104px;
+                }
+
                 .person-profile {
                   width: 100%;
 
@@ -362,7 +372,7 @@ header {
               display: grid;
               justify-content: center;
               list-style: none;
-              gap: 12px;
+              gap: 30px;
               transform: translateX(0%);
               grid-template-columns: 1fr 0fr 0fr 0fr;
 
@@ -383,6 +393,7 @@ header {
                 justify-content: start;
                 transform: translateX(-100%);
                 z-index: 1;
+
                 @include smobile {
                   width: 320px;
                   width: 100%;
@@ -551,8 +562,8 @@ header {
                   .dropdown-menu {
                     position: absolute;
                     width: 200px;
-                    top: 169%;
-                    left: 0;
+                    top: 200%;
+                    left: -162px;
                     z-index: 10;
                     display: flex;
                     flex-direction: column;
@@ -561,10 +572,8 @@ header {
                     width: 230px;
                     background: #fafafa;
                     border: 1px solid rgba(47, 43, 67, 0.1);
-                    box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1),
-                      inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                    box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                     border-radius: 12px;
-
                     .person-profile {
                       width: 100%;
 
@@ -666,6 +675,10 @@ header {
             justify-content: center;
             z-index: 173;
             margin-top: 0px;
+            filter: invert(1);
+          }
+
+          .cross {
             filter: invert(1);
           }
         }
