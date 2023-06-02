@@ -30,10 +30,10 @@ const Controls = () => {
     const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
     const [activeButton, setActiveButton] = useState('btn3');
     const navigate = useNavigate();
-    const minTime = setHours(setMinutes(new Date(), 0), 9);
+    const minTime = setHours(setMinutes(new Date(), 10), 0);
 
     // End time at 9PM
-    const maxTime = setHours(setMinutes(new Date(), 0), 21);
+    const maxTime = setHours(setMinutes(new Date(), 1), 10);
     const pickupLocationRef = useRef(null);
     const returnLocationRef = useRef(null);
 
@@ -434,7 +434,7 @@ const Controls = () => {
             </div>
         </section>
     );
-    
+
 };
 
 export default Controls;

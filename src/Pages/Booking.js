@@ -30,7 +30,12 @@ import f8 from "../assests/booking/PayPal.4.png";
 import f9 from "../assests/booking/GooglePay.5.png";
 import f10 from "../assests/booking/ApplePay.6.png";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import differenceInDays from "date-fns/differenceInDays";
+import "react-datepicker/dist/react-datepicker.css";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+import { useNavigate, useParams } from "react-router-dom";
 const Booking = () => {
   const [activeButton, setActiveButton] = useState("btn1");
   const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
@@ -40,6 +45,8 @@ const Booking = () => {
   const [drivingLicense, setDrivingLicense] = useState("");
   const [nationalId, setNationalId] = useState("");
   const [phone, setPhone] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
   const [passport, setPassport] = useState("");
   const [email, setEmail] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
@@ -49,6 +56,54 @@ const Booking = () => {
   const [perDay, setPerDay] = useState(false);
   const [perHour, setPerHour] = useState(false);
   const [delivery, setDelivery] = useState(false);
+  const [city, setCity] = useState("");
+  const [selectedCar, setSelectedCar] = useState()
+  const [state, setState] = useState("");
+  const [addons, setAddons] = useState([]);
+  const minTime = setHours(setMinutes(new Date(), 0), 9);
+  const [diffInDays, setDiffInDays] = useState(0);
+  const { car } = useParams();
+  const cars = useSelector(state => state.Cars?.cars);
+  useEffect(() => {
+    const newCar = cars.find(item => item._id === car);
+    setSelectedCar(newCar);
+    console.log(newCar);
+
+  }, [car, cars]);
+  const handleAddonChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setAddons((prevAddons) => [...prevAddons, value]);
+    } else {
+      setAddons((prevAddons) => prevAddons.filter((addon) => addon !== value));
+    }
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Use the addons state for further processing or submission
+    console.log({
+      pickupLocation,
+      addressLine1,
+      state,
+      city,
+      returnLocation,
+      pickupTime,
+      returnTime,
+      addons,
+      drivingLicense,
+      nationalId,
+      phone,
+      email
+
+    });
+  };
+
+  useEffect(() => {
+    const days = differenceInDays(returnTime, pickupTime);
+    setDiffInDays(days);
+  }, [pickupTime, returnTime]);
+  // End time at 9PM
+  const maxTime = setHours(setMinutes(new Date(), 0), 21);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -76,7 +131,7 @@ const Booking = () => {
     <>
       <section id="booking">
         <div className="container-main">
-          <BookingSidebar />
+          <BookingSidebar selectedCar={selectedCar} />
           <div className="container">
             <div className="grid__one">
               <div className="btns">
@@ -141,6 +196,7 @@ const Booking = () => {
                           <img src={i1} alt="" />
                           <input
                             type="text"
+                            name="pickupLocation"
                             value={pickupLocation}
                             onChange={(e) => setPickupLocation(e.target.value)}
                             placeholder="اختر من سجل العناوين"
@@ -154,7 +210,13 @@ const Booking = () => {
                       <div className="input-box">
                         <p>سطر العنوان 1</p>
                         <div className="input">
-                          <input type="text" placeholder="سطر العنوان 1" />
+                          <input
+                            type="text"
+                            name="addressLine1"
+                            value={addressLine1}
+                            onChange={(e) => setAddressLine1(e.target.value)}
+                            placeholder="سطر العنوان 1"
+                          />
                           <img src={i2} alt="" />
                         </div>
                       </div>
@@ -165,7 +227,13 @@ const Booking = () => {
                       <div className="input-box">
                         <p>سطر العنوان 2</p>
                         <div className="input">
-                          <input type="text" placeholder="سطر العنوان 2" />
+                          <input
+                            type="text"
+                            value={addressLine2}
+                            onChange={(e) => setAddressLine2(e.target.value)}
+                            name="addressLine2"
+                            placeholder="سطر العنوان 2"
+                          />
                           <img src={i2} alt="" />
                         </div>
                       </div>
@@ -177,14 +245,26 @@ const Booking = () => {
                         <div className="input-box">
                           <p>المدينة</p>
                           <div className="input">
-                            <input type="text" placeholder="مدينتك" />
+                            <input
+                              type="text"
+                              name="city"
+                              value={city}
+                              onChange={(e) => setCity(e.target.value)}
+                              placeholder="مدينتك"
+                            />
                             <img src={i3} alt="" />
                           </div>
                         </div>
                         <div className="input-box">
                           <p>المحافظة</p>
                           <div className="input">
-                            <input type="text" placeholder="محافظتك" />
+                            <input
+                              type="text"
+                              name="state"
+                              value={state}
+                              onChange={(e) => setState(e.target.value)}
+                              placeholder="محافظتك"
+                            />
                             <img src={i3} alt="" />
                           </div>
                         </div>
@@ -211,35 +291,48 @@ const Booking = () => {
                     </div>
 
                     <div className="input-box-wrap">
-                      <div className="day">2 يوم</div>
+                      <div className="day">{diffInDays} days</div>
 
-                      <div className="two-input-boxes">
-                        <div className="input-box">
-                          <p>تاريخ ووقت الإستلام</p>
-                          <div className="input">
-                            <input type="text" placeholder="14 مايو 2023" />
-                            <img src={i4} alt="" />
+                      <div className="two">
+                        <div className="item">
+                          <p>المدينة</p>
+                          <div className="btn">
+                            <DatePicker
+                              selected={pickupTime}
+                              onChange={(date) => setPickupTime(date)}
+                              dateFormat="MMMM d, yyyy"
+                            />
                           </div>
                         </div>
-                        <div className="input-box">
-                          <p>تاريخ ووقت العودة</p>
-                          <div className="input">
-                            <input type="text" placeholder="14 مايو 2023" />
-                            <img src={i4} alt="" />
+                        <div className="item">
+                          <p>المحافظة</p>
+                          <div className="btn">
+                            <DatePicker
+                              selected={returnTime}
+                              onChange={(date) => setReturnTime(date)}
+                              dateFormat="MMMM d, yyyy"
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div className="offers">
-                      <h1>الإضافات والعروض</h1>
+                      <h1> (Addons) الإضافات والعروض</h1>
                       <div className="input-check-wrap">
                         <div></div>
                         <div className="input-check">
                           <span>+10 ر.س. </span>
                           <div className="input">
                             <label htmlFor="">مقعد لطفل</label>
-                            <input type="checkbox" />
+                            <input
+                              type="checkbox"
+                              id="childSeat"
+                              name="addons"
+                              value="child_seat"
+                              checked={addons.includes("child_seat")}
+                              onChange={handleAddonChange}
+                            />
                           </div>
                         </div>
                       </div>
@@ -250,7 +343,14 @@ const Booking = () => {
 
                           <div className="input">
                             <label htmlFor="">تأمين شامل</label>
-                            <input type="checkbox" />
+                            <input
+                              type="checkbox"
+                              id="fullInsurance"
+                              name="addons"
+                              value="full_insurance"
+                              checked={addons.includes("full_insurance")}
+                              onChange={handleAddonChange}
+                            />
                           </div>
                         </div>
                       </div>
@@ -261,7 +361,14 @@ const Booking = () => {
                           <span>+40 ر.س. </span>
                           <div className="input">
                             <label htmlFor="">كيلومتر مفتوح</label>
-                            <input type="checkbox" name="" id="" />
+                            <input
+                              type="checkbox"
+                              id="openDiscount"
+                              name="addons"
+                              value="open_discount"
+                              checked={addons.includes("open_discount")}
+                              onChange={handleAddonChange}
+                            />
                           </div>
                         </div>
                       </div>
@@ -393,7 +500,9 @@ const Booking = () => {
                     </div>
                     <div className="select-btns">
                       <div className="btn1">التالى</div>
-                      <div className="btn2">إلغاء</div>
+                      <div className="btn2" onClick={handleSubmit}>
+                        إلغاء
+                      </div>
                     </div>
                   </div>
                 </div>

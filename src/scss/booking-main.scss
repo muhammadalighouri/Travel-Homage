@@ -19,8 +19,6 @@
     padding-bottom: 0px;
 
     .container {
-
-
       .grid__one {
         padding: 0px 20px;
         display: flex;
@@ -52,7 +50,7 @@
             align-items: center;
             max-width: 234px;
             font-weight: 500;
-            background: #A2A9AD;
+            background: #a2a9ad;
             font-family: "Cairo", sans-serif;
             font-size: 18px;
             justify-content: center;
@@ -60,14 +58,13 @@
             grid-gap: 0px 10px;
 
             img {
-
               object-fit: contain;
             }
           }
 
           button.active {
             background: white;
-            color: #373A36 !important;
+            color: #373a36 !important;
             // img {
             //   filter: invert(1);
             // }
@@ -94,7 +91,6 @@
           padding: 50px 20px;
         }
 
-
         .grid__two {
           width: 100%;
           display: flex;
@@ -115,18 +111,78 @@
               grid-template-columns: 1fr 4fr;
               align-items: center;
               justify-content: center;
+              .two {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                .item {
+                  display: grid;
+                  justify-content: end;
+                  gap: 10px;
+                  margin-top: 10px;
+                  p {
+                    text-align: end;
+                    color: #373a36;
 
+                    font-size: 16px;
+                  }
+                  .btn {
+                    .react-datepicker__time-container
+                      .react-datepicker__time
+                      .react-datepicker__time-box
+                      ul.react-datepicker__time-list
+                      li.react-datepicker__time-list-item {
+                      height: 30px;
+                      padding: 5px 10px;
+                      white-space: nowrap;
+                      color: black;
+                    }
+                    input {
+                      gap: 16px;
+                      width: 203px;
+                      height: 48px;
+                      display: grid;
+                      grid-template-columns: 1fr;
+                      align-items: center;
+                      background: #fafafa;
+                      border: 1px solid rgba(47, 43, 67, 0.1);
+                      box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                        inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                      border-radius: 12px;
+                      color: black;
+                      padding: 12px;
+                    }
+                    > div {
+                      color: rgba(47, 43, 67, 0.6);
+                    }
+                    .start {
+                      padding: 0 15px;
+                      border-right: 1px solid rgba(47, 43, 67, 0.1);
+                      height: 100%;
+                      align-items: center;
+                      display: flex;
+                    }
+                    .end {
+                      display: flex;
+                      justify-content: end;
+                      padding: 0 15px;
+                      height: 100%;
+                      align-items: center;
+                      display: flex;
+                    }
+                  }
+                }
+              }
               .plus {
-                color: #00AFAA;
+                color: #00afaa;
                 font-size: 16px;
                 margin-top: 25px;
                 font-weight: 700;
                 font-family: "Cairo", sans-serif;
-
               }
 
               .day {
-                color: #373A36;
+                color: #373a36;
                 font-size: 33px;
                 margin-top: 25px;
                 font-weight: 700;
@@ -199,7 +255,6 @@
               }
             }
 
-
             .offers {
               display: flex;
               flex-direction: column;
@@ -212,7 +267,7 @@
                 font-weight: 400;
                 font-size: 22px;
                 font-family: "Cairo", sans-serif;
-                color: #373A36;
+                color: #373a36;
               }
 
               .input-check-wrap {
@@ -232,7 +287,8 @@
                   height: 48px;
                   background: #fafafa;
                   border: 1px solid rgba(47, 43, 67, 0.1);
-                  box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                  box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                    inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                   border-radius: 12px;
                   width: 100%;
                   padding: 0px 16px;
@@ -247,9 +303,8 @@
                       font-weight: 600;
                       font-size: 16px;
                       font-family: "Cairo", sans-serif;
-                      color: #2F2B43;
+                      color: #2f2b43;
                     }
-
                   }
 
                   span {
@@ -279,10 +334,11 @@
                 max-width: 442px;
                 font-weight: 700;
                 font-size: 16px;
-                color: #373A36 !important;
+                color: #373a36 !important;
                 height: auto;
-                background: #FFCD00;
-                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                background: #ffcd00;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 25px;
                 cursor: pointer;
               }
@@ -301,8 +357,9 @@
                 height: auto;
                 font-family: "Cairo", sans-serif;
                 cursor: pointer;
-                background: #F34141;
-                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                background: #f34141;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 25px;
               }
             }
@@ -354,14 +411,14 @@
                   font-size: 16px;
                   font-weight: 700;
                   color: #a2a9ad;
-                  box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                  box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                    inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                   border-radius: 25px;
                 }
-
               }
 
               .day {
-                color: #373A36;
+                color: #373a36;
                 font-size: 33px;
                 margin-top: 25px;
                 font-weight: 700;
@@ -418,7 +475,6 @@
               }
             }
 
-
             .select-btns {
               display: grid;
               grid-template-columns: 1fr 1.5fr;
@@ -436,10 +492,11 @@
                 max-width: 442px;
                 font-weight: 700;
                 font-size: 16px;
-                color: #373A36 !important;
+                color: #373a36 !important;
                 height: auto;
-                background: #FFCD00;
-                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                background: #ffcd00;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 25px;
                 cursor: pointer;
               }
@@ -458,13 +515,13 @@
                 height: auto;
                 font-family: "Cairo", sans-serif;
                 cursor: pointer;
-                background: #F34141;
-                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                background: #f34141;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 25px;
               }
             }
           }
-
         }
 
         .grid__four {
@@ -480,7 +537,7 @@
               font-weight: 400;
               font-size: 22px;
               font-family: "Cairo", sans-serif;
-              color: #373A36;
+              color: #373a36;
             }
 
             .choose-1 {
@@ -514,10 +571,11 @@
                 max-width: 442px;
                 font-weight: 700;
                 font-size: 16px;
-                color: #373A36 !important;
+                color: #373a36 !important;
                 height: auto;
-                background: #FFCD00;
-                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                background: #ffcd00;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 25px;
                 cursor: pointer;
               }
@@ -536,19 +594,15 @@
                 height: auto;
                 font-family: "Cairo", sans-serif;
                 cursor: pointer;
-                background: #F34141;
-                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                background: #f34141;
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                  inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                 border-radius: 25px;
               }
             }
-
           }
         }
       }
-
     }
-
-
   }
-
 }
