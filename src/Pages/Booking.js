@@ -268,7 +268,7 @@ const Booking = () => {
                               onChange={(e) => setCity(e.target.value)}
                               placeholder="مدينتك"
                             />
-                            <img src={i3} alt="" />
+                            <img src={i2} alt="" />
                           </div>
                         </div>
                         <div className="input-box">
@@ -523,12 +523,12 @@ const Booking = () => {
                   <div className="booking-address">
                     <div className="choose-1">
                       <h1>اختر نقاط الولاء</h1>
-                      {/* <div className="choose-points">
+                      <div className="choose-points">
                         <img src={f1} alt="" />
                         <img src={f2} alt="" />
                         <img src={f3} alt="" />
                         <img src={f4} alt="" />
-                      </div> */}
+                      </div>
                     </div>
                     <div className="choose-2">
                       <h1>اختر طريقة الدفع</h1>

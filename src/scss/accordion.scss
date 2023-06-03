@@ -1,0 +1,53 @@
+.accordion {
+    border: 1px solid #ededed;
+    margin-bottom: 10px;
+    border-radius: 3.5px;
+    width: 100%;
+
+    .accordion-header {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        background: #F4F3F1;;
+
+        .accordion-title {
+            font-family: Cairo;
+            font-size: 15px;
+            font-weight: 400;
+            color: #52575C;
+            font-family: "Cairo", sans-serif;
+        }
+
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // border: 1px solid #ccc;
+            border-radius: 50%;
+            font-weight: bold;
+            transition: all 0.5s ease-in-out;
+
+            svg {
+                fill: #161616;
+                transition: all 0.5s ease-in-out;
+
+            }
+        }
+    }
+
+    .accordion-content {
+        padding: 10px;
+        height: 100px;
+      p{
+        font-size: 14px;
+        font-weight: 400;
+        color: #52575C;
+        font-family: "Cairo", sans-serif;
+      }
+    }
+}

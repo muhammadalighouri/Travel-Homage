@@ -100,7 +100,7 @@ export const side = [
   {
     name: "حجوزاتي ",
     icon: icon2,
-    path: "/booking",
+    path: "/booking-history",
   },
   {
     name: "ملفاتي ",

@@ -18,6 +18,7 @@
     margin: auto;
     padding: 90px 20px;
     padding-bottom: 0px;
+
     .container {
       .grid__one {
         padding: 0px 20px;
@@ -110,33 +111,35 @@
               display: grid;
               grid-template-columns: 1fr 4fr;
               align-items: center;
+              grid-column-gap: 22px;
               justify-content: center;
+
               .two {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 align-items: center;
+
                 .item {
                   display: grid;
                   justify-content: end;
                   gap: 10px;
                   margin-top: 10px;
+
                   p {
                     text-align: end;
                     color: #373a36;
 
                     font-size: 16px;
                   }
+
                   .btn {
-                    .react-datepicker__time-container
-                      .react-datepicker__time
-                      .react-datepicker__time-box
-                      ul.react-datepicker__time-list
-                      li.react-datepicker__time-list-item {
+                    .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
                       height: 30px;
                       padding: 5px 10px;
                       white-space: nowrap;
                       color: black;
                     }
+
                     input {
                       gap: 16px;
                       width: 203px;
@@ -152,9 +155,11 @@
                       color: black;
                       padding: 12px;
                     }
-                    > div {
+
+                    >div {
                       color: rgba(47, 43, 67, 0.6);
                     }
+
                     .start {
                       padding: 0 15px;
                       border-right: 1px solid rgba(47, 43, 67, 0.1);
@@ -162,6 +167,7 @@
                       align-items: center;
                       display: flex;
                     }
+
                     .end {
                       display: flex;
                       justify-content: end;
@@ -173,6 +179,7 @@
                   }
                 }
               }
+
               .plus {
                 color: #00afaa;
                 font-size: 16px;
@@ -530,7 +537,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             max-width: 560px;
 
             h1 {
@@ -541,16 +548,37 @@
             }
 
             .choose-1 {
+              display: flex;
+              flex-direction: column;
+              align-items: end;
+              justify-content: center;
+              gap: 20px;
+
+              img {
+                max-width: 250px;
+                width: 100%;
+              }
+
               .choose-points {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 20px 14px;
               }
             }
 
             .choose-2 {
+              display: flex;
+              flex-direction: column;
+              align-items: end;
+              justify-content: center;
+              gap: 20px;
+
               .choose-points {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: end;
+                gap: 20px;
               }
             }
 

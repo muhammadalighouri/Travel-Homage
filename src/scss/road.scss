@@ -1,4 +1,69 @@
-.road-input{
+@import "./variable.scss";
+@import "./media.scss";
+
+.road-input {
     background-color: white;
     border-radius: 75px 75px 0px 0px;
+
+    .input-box-wrap {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-top: 180px;
+        justify-content: center;
+
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: 0px;
+            gap: 15px;
+            font-family: "Cairo", sans-serif;
+            position: relative;
+
+            p {
+                font-weight: 600;
+                font-size: 16px;
+                font-family: "Cairo", sans-serif;
+                color: #2F2B43;
+            }
+
+            .input {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 16px;
+                height: 48px;
+                background: #fafafa;
+                border: 1px solid rgba(47, 43, 67, 0.1);
+                box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                    inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                border-radius: 12px;
+                padding: 0 16px;
+
+                input {
+                    background: #fafafa;
+                    height: 100%;
+                    max-width: 100%;
+                    border: 0px;
+                    outline: none;
+                    display: flex;
+                    align-items: center;
+                    text-align: left;
+                    font-family: "Cairo", sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: rgba(47, 43, 67, 0.6);
+                    width: 480px;
+
+                    @include sm {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
 }
