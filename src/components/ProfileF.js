@@ -201,9 +201,11 @@ const ProfileF = () => {
           </div>
           {/* national ID  */}
           <div className="wrapper">
-            <div className="btn">
-              <img src={tick} alt="" />
-              تم التأكيد
+            <div
+              className="btn"
+              style={{ background: "#FFCD00", color: "#373A36" }}
+            >
+              تأكيد
             </div>
             <div className="same">
               <p>الرقم القومي أو رقم جواز السفر</p>
