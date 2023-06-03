@@ -32,7 +32,7 @@ const HomePage = () => {
         <Maps />
         <Signup />
         <Footer />
-        <Booking/>
+        {/* <Booking/> */}
       </section>
     </>
   );
