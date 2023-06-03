@@ -47,7 +47,8 @@ const PasswordF = () => {
     const response = await axios.put('/api/v1/user/password/update', {
       oldPassword: currentPassword,
       newPassword: newPassword,
-      user: userInfo?.user?._id
+      user: userInfo?.user?._id,
+      token: userInfo?.token
     }, config);
     return response.data;
   }

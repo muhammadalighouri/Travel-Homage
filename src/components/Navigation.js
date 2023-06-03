@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
-const Navigation = ({}) => {
+const Navigation = ({ }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -87,6 +87,7 @@ const Navigation = ({}) => {
       path: "/booking-side",
     },
   ];
+  console.log(mode);
   return (
     <>
       <header>
@@ -162,34 +163,34 @@ const Navigation = ({}) => {
                     تسجيل الدخول
                   </button>
                   <button className="drop" onClick={toggleDropdown2}>
-                      الشركة
-                      <img src={down} alt="" />
-                      {dropdownOpen2 && (
-                        <div className="dropdown">
-                          <div className="dropdown-menu">
-                            {dropdown2.map((a) => {
-                              return (
-                                <>
-                                  <Link
-                                    to={a.path}
-                                    style={
-                                      window.location.pathname === a.path
-                                        ? { background: " #00000014" }
-                                        : { background: "none" }
-                                    }
-                                  >
-                                    <div className="n">
-                                      {a.name}
-                                      <img src={a.icon} alt="" />
-                                    </div>
-                                  </Link>
-                                </>
-                              );
-                            })}
-                          </div>
+                    الشركة
+                    <img src={down} alt="" />
+                    {dropdownOpen2 && (
+                      <div className="dropdown">
+                        <div className="dropdown-menu">
+                          {dropdown2.map((a) => {
+                            return (
+                              <>
+                                <Link
+                                  to={a.path}
+                                  style={
+                                    window.location.pathname === a.path
+                                      ? { background: " #00000014" }
+                                      : { background: "none" }
+                                  }
+                                >
+                                  <div className="n">
+                                    {a.name}
+                                    <img src={a.icon} alt="" />
+                                  </div>
+                                </Link>
+                              </>
+                            );
+                          })}
                         </div>
-                      )}
-                    </button>
+                      </div>
+                    )}
+                  </button>
                 </div>
               )}
               <div className="translate">
@@ -268,7 +269,7 @@ const Navigation = ({}) => {
               >
                 {nave ? (
                   <RxCross2
-                 className="cross"
+                    className="cross"
                   />
                 ) : (
                   <HiOutlineBars3 />
