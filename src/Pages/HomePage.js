@@ -32,6 +32,7 @@ const HomePage = () => {
         <Maps />
         <Signup />
         <Footer />
+        <Booking/>
       </section>
     </>
   );

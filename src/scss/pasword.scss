@@ -4,19 +4,20 @@
 #passwordF {
     .form {
         display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 90px 30px;
-    margin-left: 60px;
-    height: 100%;
-    gap: 16px;
-    /* position: absolute; */
-    max-width: 893px;
-    background-color: white;
-    border-radius: 75px 75px 0px 0px;
-    left: 304px;
-    top: 106px;
-    box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 30px;
+        margin-left: 60px;
+        height: 100%;
+        gap: 16px;
+        /* position: absolute; */
+        max-width: 893px;
+        background-color: white;
+        border-radius: 75px 75px 0px 0px;
+        left: 304px;
+        top: 106px;
+        box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
+
         form {
             display: flex;
             flex-direction: column;
@@ -167,44 +168,46 @@
                     }
                 }
             }
-.wrap-btn{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    .submit {
-        width: 100%;
-        cursor: pointer;
-        /* margin-top: 10px; */
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 16px;
-        gap: 8px;
-        height: 100%;
 
-        font-family: "Cairo", sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        background: #ffcd00;
-        color: #a2a9ad;
-        box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
-            inset 0px -1px 0px rgba(47, 43, 67, 0.1);
-       max-width: 508px;
-        max-height: 44px;
+            .wrap-btn {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: end;
 
+                .submit {
+                    width: 100%;
+                    cursor: pointer;
+                    /* margin-top: 10px; */
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 16px;
+                    gap: 8px;
+                    height: 100%;
 
-
-        background: #FFCD00;
+                    font-family: "Cairo", sans-serif;
+                    font-size: 16px;
+                    font-weight: 700;
+                    background: #ffcd00;
+                    color: #a2a9ad;
+                    box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                        inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                    max-width: 508px;
+                    max-height: 44px;
 
 
-        box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
-        border-radius: 25px;
+
+                    background: #FFCD00;
 
 
-    }
-}
+                    box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                    border-radius: 25px;
+
+
+                }
+            }
 
             .para {
                 color: #373a36;

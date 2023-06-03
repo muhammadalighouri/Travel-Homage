@@ -1,5 +1,8 @@
 import React from "react";
 import "../../scss/profile.scss";
+import "../../scss/road.scss";
+import r1 from "../../assests/road.1.png";
+import r2 from "../../assests/road.2.png";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
@@ -14,133 +17,32 @@ import ProfileSidebar from "../../components/ProfileSidebar";
 const Customer = () => {
   return (
     <>
-    <Navigation />
-    <Banner text={"الدعم الفني"}  img={first}/>
-    <section id="user-profile">
-      <div className="user-container">
-        <div className="form">
-
-          <form 
-          // onSubmit={formik.handleSubmit}
-          >
-            <div id="names" className="same">
-              <div className="input">
-                <p>الاسم الاخير</p>
-                <div className="under">
+      <Navigation />
+      <Banner text={"الدعم الفني"} img={first} />
+      <section id="user-profile">
+        <div className="user-container">
+          <div className="road-input">
+            <div className="input-box-wrap">
+              <div className="input-box">
+                <p>ما هو نوع المساعدة التى تحتاجها؟</p>
+                <div className="input">
+                  <img src={r1} alt="" />
                   <input
                     type="text"
-                    placeholder="الاسم الاخير"
-                    // {...formik.getFieldProps("firstName")}
+                    name="addressLine1"
+                    placeholder="اختر نوع المساعدة المطلوبة"
                   />
-                  {/* <img src={img1} alt="" /> */}
-                  {/* {formik.touched.firstName && formik.errors.firstName ? (
-                    <div className="error">{formik.errors.firstName}</div>
-                  ) : null} */}
-                </div>
-              </div>
-              <div className="input">
-                <p>الاسم الاول</p>
-                <div className="under">
-                  <input
-                    type="text"
-                    placeholder="الاسم الاول"
-                    //  {...formik.getFieldProps("middleName")}
-                  />
-                  {/* {formik.touched.middleName && formik.errors.middleName ? (
-                    <div className="error">{formik.errors.middleName}</div>
-                  ) : null} */}
-                </div>
-              </div>
-              <div className="input">
-                <p>الاسم العائلة</p>
-                <div className="under">
-                  <input
-                    type="text"
-                    placeholder="الاسم العائلة"
-                    // {...formik.getFieldProps("lastName")}
-                  />
-                  {/* {formik.touched.lastName && formik.errors.lastName ? (
-                    <div className="error">{formik.errors.lastName}</div>
-                  ) : null}<img src={img1} alt="" /> */}
+                  <img src={r2} alt="" />
                 </div>
               </div>
             </div>
-            <div id="phone" className="same">
-              <p>الرقم القومي أو رقم جواز السفر</p>
-              <div className="under">
-                <input
-                  type="number"
-                  name=""
-                  placeholder="الرقم القومي أو رقم جواز السفر"
-                  //  {...formik.getFieldProps("phone")}
-                />
-                {/* {formik.touched.phone && formik.errors.phone ? (
-                  <div className="error">{formik.errors.phone}</div>
-                ) : null} */}
-              </div>
-            </div>
-            <div id="email" className="same">
-              <p>Email Adress</p>
-              <div className="under">
-                <img src={img2} alt="" />
-                <input
-                  type="email"
-                  name=""
-                  id=""
-                  placeholder="Example@domain.com"
-                  // {...formik.getFieldProps("email")}
-                />
-                {/* {formik.touched.email && formik.errors.email ? (
-                  <div className="error">{formik.errors.email}</div>
-                ) : null}<img src={img1} alt="" /> */}
-              </div>
-            </div>
-            <div id="password" className="same">
-              <p>Password</p>
-              <div className="under">
-                <img src={img3} alt="" />{" "}
-                <input
-                  type="password"
-                  // {...formik.getFieldProps("password")}
-                />
-                {/* {formik.touched.password && formik.errors.password ? (
-                  <div className="error">{formik.errors.password}</div>
-                ) : null} */}
-              </div>
-            </div>
-            <div id="password" className="same">
-              <p>Confirm Password</p>
-              <div className="under">
-                <img src={img3} alt="" />{" "}
-                <input
-                  type="password"
-                  name=""
-                  //  {...formik.getFieldProps("confirmPassword")}
-                />
-                {/* {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                  <div className="error">{formik.errors.confirmPassword}</div>
-                ) : null} */}
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="btn "
-              // disabled={isSubmitting || loading} // Disable the button if submitting or loading
-            >
-              {/* {isSubmitting || loading ? "Submitting..." : "Register"} */}
-            </button>
-            <p className="para">
-              Already have an account
-              <a href="#">Sign in</a>
-            </p>
-          </form>
+          </div>
+          <ProfileSidebar />
         </div>
-        <ProfileSidebar />
-      </div>
-    </section>
-    <Footer />
-  </>
-  )
-}
+      </section>
+      <Footer />
+    </>
+  );
+};
 
-export default Customer
+export default Customer;

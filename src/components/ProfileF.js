@@ -22,7 +22,7 @@ const ProfileF = () => {
   const [nationalId, setNationalId] = useState("");
   const [phone, setPhone] = useState("");
   const [passport, setPassport] = useState("");
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState();
@@ -46,17 +46,12 @@ const ProfileF = () => {
       nationalId,
       phone,
       email,
-      avatar
+      avatar,
     };
 
-    console.log(updatedUserData);
-
     dispatch(updateProfile(updatedUserData));
-
-
   };
   const handleDataChange = (e) => {
-
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -67,7 +62,6 @@ const ProfileF = () => {
     };
 
     reader.readAsDataURL(e.target.files[0]);
-
   };
   useEffect(() => {
     if (user) {
@@ -152,7 +146,6 @@ const ProfileF = () => {
           </div>
           {/* email */}
           <div className="wrapper">
-
             {!user.emailVerified ? (
               <div
                 className="btn"
@@ -165,20 +158,17 @@ const ProfileF = () => {
                 <img src={tick} alt="" />
                 تم التأكيد
               </div>
-            )}   <div className="same">
+            )}{" "}
+            <div className="same">
               <p>البريد الإلكتروني</p>
               <div className="under">
-                <img src={email} alt="" />{" "}
+                <img src={email} alt="" />
                 <input
                   type="email"
                   placeholder="بريدك الإلكتروني"
                   value={email}
                   onChange={(e) => setPhone(e.target.email)}
-                // {...formik.getFieldProps("password")}
                 />
-                {/* {formik.touched.password && formik.errors.password ? (
-                    <div className="error">{formik.errors.password}</div>
-                  ) : null} */}
               </div>
             </div>
           </div>
@@ -201,7 +191,7 @@ const ProfileF = () => {
                   value={drivingLicense}
                   onChange={(e) => setDrivingLicense(e.target.value)}
                   placeholder="رخصة القيادة"
-                // {...formik.getFieldProps("email")}
+                  // {...formik.getFieldProps("email")}
                 />
                 {/* {formik.touched.email && formik.errors.email ? (
                     <div className="error">{formik.errors.email}</div>
@@ -226,7 +216,7 @@ const ProfileF = () => {
                   placeholder="الرقم القومي أو رقم جواز السفر"
                   value={nationalId}
                   onChange={(e) => setNationalId(e.target.value)}
-                // {...formik.getFieldProps("password")}
+                  // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>
@@ -240,13 +230,11 @@ const ProfileF = () => {
               <img src={avatarPreview} alt="" />
             </div>
             <div className="btns">
-
               <input
                 type="file"
                 name="avatar"
                 accept="image/*"
                 onChange={handleDataChange}
-
                 className="update"
               />
               <Link onClick={handleSubmit} className="confirm">
@@ -255,8 +243,6 @@ const ProfileF = () => {
               </Link>
             </div>
           </div>
-
-
         </form>
       </div>
     </>

@@ -57,9 +57,8 @@ const PasswordF = () => {
         <div className="form">
           <form>
             <div className="wrapper">
-              {/* <div className="btn">
-                <img src={tick} alt="" />
-              </div> */}
+              <div >
+              </div>
               <div id="password" className="same">
                 <p>كلمة المرور الحالية</p>
                 <div className="under">
