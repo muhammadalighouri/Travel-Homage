@@ -24,13 +24,71 @@
                 gap: 8px;
 
 
-                h2 {
-                    font-family: "Cairo", sans-serif;
-                    font-size: 26px;
-                    font-weight: 700;
-                    line-height: 50px;
-                    color: #373A36;
+                .input-box-wrap {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    justify-content: end;
 
+
+
+
+
+                    .input-box {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        padding: 0px;
+                        gap: 8px;
+                        width: 100%;
+                        font-family: "Cairo", sans-serif;
+                        position: relative;
+
+                        p {
+                            font-weight: 600;
+                            font-size: 16px;
+                            font-family: "Cairo", sans-serif;
+                            color: #373a36;
+                        }
+
+                        .input {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 12px;
+                            height: 48px;
+                            background: #fafafa;
+                            border: 1px solid rgba(47, 43, 67, 0.1);
+                            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+                            border-radius: 12px;
+                            width: 100%;
+
+                            img {
+                                position: absolute;
+                                right: 0px;
+                                padding: 10px 15px;
+                            }
+
+                            input {
+                                background: #fafafa;
+                                height: 100%;
+                                width: 100%;
+                                border: 0px;
+                                outline: none;
+                                display: flex;
+                                align-items: center;
+                                text-align: right;
+                                font-family: "Cairo", sans-serif;
+                                font-size: 16px;
+                                font-weight: 400;
+                                color: rgba(47, 43, 67, 0.6);
+                                padding: 0px 40px 0px 10px;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -45,80 +103,35 @@
             }
         }
 
-        .center-wrapper {
-            background-color: #595959;
-            border-radius: 0px 50px 50px 0px;
-            margin: 90px 0px;
+        .faq {
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px 20px;
 
-            .center {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-                padding: 0 20px 210px 20px;
-                max-width: 1200px;
-                margin: auto;
+            .center-content {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                justify-content: center;
+                gap: 10px;
+                padding: 30px 0px;
 
-
-                @include md {
-                    grid-template-columns: 1fr !important;
+                h2 {
+                    font-family: Cairo;
+                    font-size: 15px;
+                    font-weight: 400;
+                    font-family: "Cairo", sans-serif;
+                    color: #161616;
                 }
 
-                .img {
-                    position: relative;
+                p {
+                    font-family: Cairo;
+                    font-size: 15px;
+                    font-weight: 400;
+                    text-align: right;
+                    max-width: 500px;
+                    color: #161616;
 
-                    @include md {
-                        overflow: hidden;
-                        border-radius: 0px 50px 0px 0px;
-                    }
-
-                    img {
-                        position: absolute;
-                        top: -75px;
-                        left: 0px;
-
-                        @include md {
-                            margin-top: -75px;
-                            position: initial;
-                            width: 100%;
-
-                        }
-                    }
-                }
-
-                .content {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-end;
-                    justify-content: center;
-                    gap: 30px;
-                    height: 100%;
-                    padding-top: 80px;
-
-                    .para {
-                        color: white;
-                        font-weight: 400;
-                        font-size: 25px;
-                        text-align: end;
-                        line-height: 48px;
-                        font-family: "Cairo", sans-serif;
-
-                    }
-
-                    .heading {
-                        display: flex;
-                        align-items: center;
-                        justify-content: end;
-                        gap: 8px;
-
-
-                        h1 {
-                            font-family: "Cairo", sans-serif;
-                            font-size: 27px;
-                            font-weight: 700;
-                            color: white;
-
-                        }
-                    }
                 }
             }
         }
