@@ -56,7 +56,7 @@ function App() {
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/faq" element={<FaqPage />} />
-          <Route path="/booking-side" element={<Booking />} />
+          <Route path="/:car/booking" element={<Booking />} />
         </Routes>
         {/* <Footer /> */}
       </>

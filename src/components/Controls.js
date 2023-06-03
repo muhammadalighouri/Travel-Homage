@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Select from 'react-select';
 import "../scss/controls.scss";
 import search from "../assests/search.png";
 import switch1 from "../assests/Switches.png";
@@ -14,11 +15,150 @@ import { setRentalDetails } from "../Redux/actions/rentalActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import setHours from 'date-fns/setHours';
-import setMinutes from 'date-fns/setMinutes';
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+const branches = [
+    {
+        name: "الرياض - الشفا لبن",
+        address: "ظهرة لبن شارع نجد بجوار العثيم",
+        phone: "592891678",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض حي الموسى",
+        address: "طويق شارع أحمد بن الخطاب",
+        phone: "594850304   ",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض - مخرج 28",
+        address: "حي السويدي مخرج 28",
+        phone: "592891608",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض - حي قرطبة",
+        address: "طريق الدمام حي قرطبة مخرج 8",
+        phone: "596050250",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض - طريق خريص",
+        address: "خريص - طريق مكة المكرمة الفرعي",
+        phone: "580954620",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض - المروج",
+        address: "الدائري الشمالي – شارع الخدمة قبل مخرج 5",
+        phone: "581086365",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض – نجد لبن ",
+        address: "تقاطع طريق نجد مع طريق طيبة",
+        phone: "596178313",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الرياض - معرض خريص",
+        address: "طريق خريص الجهة المقابله للوعلان",
+        phone: "596178445",
+        workingTime: "9:00AM - 11:00PM",
+        friday: "4:00PM - 11:00PM",
+        saturday: "4:00PM -11:00PM",
+    },
+    {
+        name: "الدمام - حي الاتصالات ",
+        address: "طريق الأمير نايف حي الاتصالات شارع 42",
+        phone: "581337594",
+        workingTime: "8:00AM - 11:00PM",
+        friday: "3:00PM - 11:00PM",
+        saturday: "3:00PM -11:00PM",
+    },
+    {
+        name: "الخبر - حي العزيزية ",
+        address: "العزيزية – حي الخزامة",
+        phone: "595012042",
+        workingTime: "8:00AM - 11:00PM",
+        friday: "3:00PM - 11:00PM",
+        saturday: "3:00PM -11:00PM",
+    },
+    {
+        name: "الجبيل - شارع المدينة",
+        address: "الجبيل البلد شارع المدينة ",
+        phone: "582046560",
+        workingTime: "9:00PM - 12:00PM 4:00PM - 10:00PM",
+        friday: "أجازه",
+        saturday: "9:00AM -12:00PM 4:00PM - 10: 00PM",
+    },
+    {
+        name: "الاحساء",
+        address: "ط الملك عبد الله حي غرناطه",
+        phone: "595134170",
+        workingTime: "9:00PM - 12:00PM 4:00PM - 10:00PM",
+        friday: "أجازه",
+        saturday: "9:00AM -12:00PM 4:00PM - 10: 00PM",
+    },
+    {
+        name: "جازان -مطار جازان",
+        address: "داخل مطار جازان ",
+        phone: "594839625",
+        workingTime: "24/7",
+        friday: "24/7",
+        saturday: "24/7",
+    },
+    {
+        name: "جدة - طريق المدينة",
+        address: "طريق المدينة شارع حي الروضة ",
+        phone: "581341239",
+        workingTime: "9:00PM - 12:30PM 5:00PM - 10:00PM",
+        friday: "5:00PM - 11:30PM",
+        saturday: "9:00AM -12:30PM 5:00PM - 11: 00PM",
+    },
+    {
+        name: "70 جدة - طريق المدينة",
+        address: "طريق المدينة شارع حي الروضة ",
+        phone: "581341239",
+        workingTime: "9:00PM - 12:30PM 5:00PM - 10:00PM",
+        friday: "5:00PM - 11:00PM",
+        saturday: "9:00AM - 11:00PM",
+    },
+    {
+        name: "مكة المكرمة ",
+        address: "ي النزهة - شارع حسين عرب ",
+        phone: "594870275",
+        workingTime: "9:00PM - 12:30PM 5:00PM - 10:00PM",
+        friday: "5:00PM - 11:30PM",
+        saturday: "9:00AM -12:30PM 5:00PM - 11: 00PM",
+    },
+    {
+        name: "الطائف -مطار الطائف",
+        address: "ي النزهة - شارع حسين عرب ",
+        phone: "594870275",
+        workingTime: "24/7",
+        friday: "24/7",
+        saturday: "24/7",
+    },
+
+]
 const Controls = () => {
     const rentalInfo = useSelector((state) => state.RentalInfo); // assuming your reducer is named RentalInfo
-
+    const option = useSelector((state) => state.RentalInfo?.selectedOption);
     const [pickupLocation, setPickupLocation] = useState("");
     const [returnLocation, setReturnLocation] = useState("");
     const [pickupTime, setPickupTime] = useState(new Date());
@@ -28,7 +168,7 @@ const Controls = () => {
     const [delivery, setDelivery] = useState(false);
     const dispatch = useDispatch();
     const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
-    const [activeButton, setActiveButton] = useState('btn3');
+    const [activeButton, setActiveButton] = useState("btn3");
     const navigate = useNavigate();
     const minTime = setHours(setMinutes(new Date(), 10), 0);
 
@@ -39,6 +179,12 @@ const Controls = () => {
 
     const [activeInput, setActiveInput] = useState(null);
     const [selectedOption, setSelectedOption] = useState("perDay"); // Default selection is 'perDay'
+    const options = branches.map(branch => ({ value: branch.name, label: branch.name }));
+
+    // Handle selection change
+    const handleChange = selectedOption => {
+        console.log(`Option selected:`, selectedOption);
+    };
     useEffect(() => {
         if (activeInput === "pickup") {
             pickupLocationRef.current.focus();
@@ -76,25 +222,35 @@ const Controls = () => {
             setDelivery(rentalInfo.delivery || false);
         }
     }, [rentalInfo]);
+    console.log(pickupLocation);
     return (
         <section className="controls">
             <div className="container">
                 <div className="grid__one">
                     <div className="start"></div>
                     <div className="btns">
-                        <button className={activeButton === 'btn1' ? 'active' : ''} onClick={() => setActiveButton('btn1')}>
+                        <button
+                            className={activeButton === "btn1" ? "active" : ""}
+                            onClick={() => setActiveButton("btn1")}
+                        >
                             <img src={text1} alt="" />
                         </button>
-                        <button className={activeButton === 'btn2' ? 'active' : ''} onClick={() => setActiveButton('btn2')}>
+                        <button
+                            className={activeButton === "btn2" ? "active" : ""}
+                            onClick={() => setActiveButton("btn2")}
+                        >
                             <img src={text2} alt="" />
                         </button>
-                        <button className={activeButton === 'btn3' ? 'active' : ''} onClick={() => setActiveButton('btn3')}>
+                        <button
+                            className={activeButton === "btn3" ? "active" : ""}
+                            onClick={() => setActiveButton("btn3")}
+                        >
                             <img src={text3} alt="" />
                         </button>
                     </div>
                 </div>
 
-                {activeButton === 'btn3' && (
+                {activeButton === "btn3" && (
                     <div className="grid__two">
                         <div className="one">
                             <div className="flex">
@@ -104,32 +260,61 @@ const Controls = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="two">
-                            <div className="item">
-                                <p>Pickup date & time</p>
-                                <div className="btn">
-                                    <DatePicker
-                                        selected={pickupTime}
-                                        onChange={(date) => setPickupTime(date)}
-                                        showTimeSelect
-                                        minTime={minTime}
-                                        maxTime={maxTime}
-                                        dateFormat="Pp"
-                                    />
+                        {selectedOption === "perDay" ? (
+                            <div className="two">
+                                <div className="item">
+                                    <p>Pickup date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={pickupTime}
+                                            onChange={(date) => setPickupTime(date)}
+                                            showTimeSelect
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="Pp"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <p>Return date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={returnTime}
+                                            onChange={(date) => setReturnTime(date)}
+                                            showTimeSelect
+                                            dateFormat="Pp"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                            <div className="item">
-                                <p>Return date & time</p>
-                                <div className="btn">
-                                    <DatePicker
-                                        selected={returnTime}
-                                        onChange={(date) => setReturnTime(date)}
-                                        showTimeSelect
-                                        dateFormat="Pp"
-                                    />
+                        ) : (
+                            <div className="two">
+                                <div className="item">
+                                    <p>Pickup date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={pickupTime}
+                                            onChange={(date) => setPickupTime(date)}
+                                            showTimeSelect
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="MMMM d, yyyy"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <p>Return date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={returnTime}
+                                            onChange={(date) => setReturnTime(date)}
+                                            showTimeSelect
+                                            dateFormat="MMMM d, yyyy"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                         <div className="three">
                             <div className="top">
                                 <ul className="start">
@@ -188,24 +373,24 @@ const Controls = () => {
                                     {differentReturnLocation && (
                                         <>
                                             <div className="btn">
-                                                <input
-                                                    type="text"
-                                                    ref={pickupLocationRef}
+                                                <Select
+                                                    options={options}
+                                                    isSearchable={true}
+                                                    onChange={(selectedOption) => setPickupLocation(selectedOption.value)}
+
                                                     placeholder="تحديد موقع"
-                                                    onClick={() => setActiveInput("pickup")}
-                                                    onChange={(e) => setPickupLocation(e.target.value)}
                                                 />
                                             </div>
                                             <div className="switch">
                                                 <img src={switchIcon} alt="" />
                                             </div>
                                             <div className="btn">
-                                                <input
-                                                    type="text"
-                                                    ref={returnLocationRef}
+                                                <Select
+                                                    options={options}
+                                                    isSearchable={true}
+                                                    onChange={(selectedOption) => setReturnLocation(selectedOption.value)}
+
                                                     placeholder="تحديد موقع"
-                                                    onClick={() => setActiveInput("return")}
-                                                    onChange={(e) => setReturnLocation(e.target.value)}
                                                 />
                                             </div>
                                         </>
@@ -213,13 +398,14 @@ const Controls = () => {
                                     {!differentReturnLocation && (
                                         <>
                                             <div className="btn">
-                                                <input
-                                                    type="text"
-                                                    ref={pickupLocationRef}
+                                                <Select
+                                                    options={options}
+                                                    isSearchable={true}
+                                                    onChange={(selectedOption) => setPickupLocation(selectedOption.value)}
+
                                                     placeholder="تحديد موقع"
-                                                    onClick={() => setActiveInput("pickup")}
-                                                    onChange={(e) => setPickupLocation(e.target.value)}
                                                 />
+
                                             </div>
                                         </>
                                     )}
@@ -229,7 +415,7 @@ const Controls = () => {
                     </div>
                 )}
 
-                {activeButton === 'btn2' && (
+                {activeButton === "btn2" && (
                     <div className="grid__two ">
                         <div className="one">
                             <div className="flex">
@@ -239,30 +425,61 @@ const Controls = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="two">
-                            <div className="item">
-                                <p>Pickup date & time</p>
-                                <div className="btn">
-                                    <DatePicker
-                                        selected={pickupTime}
-                                        onChange={(date) => setPickupTime(date)}
-                                        showTimeSelect
-                                        dateFormat="Pp"
-                                    />
+                        {selectedOption === "perDay" ? (
+                            <div className="two">
+                                <div className="item">
+                                    <p>Pickup date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={pickupTime}
+                                            onChange={(date) => setPickupTime(date)}
+                                            showTimeSelect
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="Pp"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <p>Return date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={returnTime}
+                                            onChange={(date) => setReturnTime(date)}
+                                            showTimeSelect
+                                            dateFormat="Pp"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                            <div className="item">
-                                <p>Return date & time</p>
-                                <div className="btn">
-                                    <DatePicker
-                                        selected={returnTime}
-                                        onChange={(date) => setReturnTime(date)}
-                                        showTimeSelect
-                                        dateFormat="Pp"
-                                    />
+                        ) : (
+                            <div className="two">
+                                <div className="item">
+                                    <p>Pickup date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={pickupTime}
+                                            onChange={(date) => setPickupTime(date)}
+                                            showTimeSelect
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="MMMM d, yyyy"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <p>Return date & time</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={returnTime}
+                                            onChange={(date) => setReturnTime(date)}
+                                            showTimeSelect
+                                            dateFormat="MMMM d, yyyy"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                         <div className="three">
                             <div className="top">
                                 <ul className="start">
@@ -278,7 +495,6 @@ const Controls = () => {
                                         </div>
                                     </li>
                                     <li>
-
                                         <div className="item">
                                             <p>Delivery</p>
                                             <input
@@ -296,18 +512,24 @@ const Controls = () => {
                                 <div
                                     className="grid"
                                     style={{
-                                        gridTemplateColumns:
-                                            "1fr",
+                                        gridTemplateColumns: "1fr",
                                     }}
                                 >
-                                    <div className="btn">
-                                        <input
+                                    <div className="btn ">
+                                        <Select
+                                            options={options}
+                                            isSearchable={true}
+                                            onChange={(selectedOption) => setPickupLocation(selectedOption.value)}
+
+                                            placeholder="تحديد موقع"
+                                        />
+                                        {/* <input
                                             type="text"
                                             ref={pickupLocationRef}
                                             placeholder="تحديد موقع"
                                             onClick={() => setActiveInput("pickup")}
                                             onChange={(e) => setPickupLocation(e.target.value)}
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +537,7 @@ const Controls = () => {
                     </div>
                 )}
 
-                {activeButton === 'btn1' && (
+                {activeButton === "btn1" && (
                     <div className="grid__two ">
                         <div className="one">
                             <div className="flex">
@@ -364,7 +586,6 @@ const Controls = () => {
                                         </div>
                                     </li>
                                     <li>
-
                                         <div className="item">
                                             <p>Delivery</p>
                                             <input
@@ -430,11 +651,9 @@ const Controls = () => {
                         </div>
                     </div>
                 )}
-
             </div>
         </section>
     );
-
 };
 
 export default Controls;

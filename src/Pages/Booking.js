@@ -40,6 +40,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
+import { createBooking } from "../Redux/actions/bookingActions";
 const Booking = () => {
   const [activeButton, setActiveButton] = useState("btn1");
   const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
@@ -67,6 +68,7 @@ const Booking = () => {
   const minTime = setHours(setMinutes(new Date(), 0), 9);
   const [diffInDays, setDiffInDays] = useState(0);
   const { car } = useParams();
+  const option = useSelector(state => state.RentalInfo?.selectedOption);
   const cars = useSelector(state => state.Cars?.cars);
   useEffect(() => {
     const newCar = cars.find(item => item._id === car);
@@ -82,24 +84,33 @@ const Booking = () => {
       setAddons((prevAddons) => prevAddons.filter((addon) => addon !== value));
     }
   };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Use the addons state for further processing or submission
     console.log({
+      car,
+      user: user._id,
       pickupLocation,
-      addressLine1,
-      state,
-      city,
       returnLocation,
-      pickupTime,
-      returnTime,
+      startDate: pickupTime,
+      endDate: returnTime,
       addons,
-      drivingLicense,
-      nationalId,
-      phone,
-      email
-
+      totalPrice: selectedCar?.pricePerDay,
     });
+    dispatch(createBooking({
+      car,
+      user: user._id,
+      pickupLocation,
+      returnLocation,
+      startDate: pickupTime,
+      endDate: returnTime,
+      addons,
+      totalPrice: selectedCar?.pricePerDay,
+
+
+    }))
+
   };
 
   useEffect(() => {
@@ -108,8 +119,7 @@ const Booking = () => {
   }, [pickupTime, returnTime]);
   // End time at 9PM
   const maxTime = setHours(setMinutes(new Date(), 0), 21);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName || "");
@@ -299,28 +309,55 @@ const Booking = () => {
                     <div className="input-box-wrap">
                       <div className="day">{diffInDays} days</div>
 
-                      <div className="two">
-                        <div className="item">
-                          <p>المدينة</p>
-                          <div className="btn">
-                            <DatePicker
-                              selected={pickupTime}
-                              onChange={(date) => setPickupTime(date)}
-                              dateFormat="MMMM d, yyyy"
-                            />
+                      {
+                        option === "perDay" ? <div className="two">
+                          <div className="item">
+                            <p>المدينة</p>
+                            <div className="btn">
+                              <DatePicker
+                                selected={pickupTime}
+                                onChange={(date) => setPickupTime(date)}
+                                dateFormat="MMMM d, yyyy"
+                              />
+                            </div>
+                          </div>
+                          <div className="item">
+                            <p>المحافظة</p>
+                            <div className="btn">
+                              <DatePicker
+                                selected={returnTime}
+                                onChange={(date) => setReturnTime(date)}
+                                dateFormat="MMMM d, yyyy"
+                              />
+                            </div>
+                          </div>
+                        </div> : <div className="two">
+                          <div className="item">
+                            <p>المدينة</p>
+                            <div className="btn">
+                              <DatePicker
+                                selected={pickupTime}
+                                onChange={(date) => setPickupTime(date)}
+                                showTimeSelect
+                                minTime={minTime}
+                                maxTime={maxTime}
+                                dateFormat="Pp"
+                              />
+                            </div>
+                          </div>
+                          <div className="item">
+                            <p>المحافظة</p>
+                            <div className="btn">
+                              <DatePicker
+                                selected={returnTime}
+                                onChange={(date) => setReturnTime(date)}
+                                showTimeSelect
+                                dateFormat="Pp"
+                              />
+                            </div>
                           </div>
                         </div>
-                        <div className="item">
-                          <p>المحافظة</p>
-                          <div className="btn">
-                            <DatePicker
-                              selected={returnTime}
-                              onChange={(date) => setReturnTime(date)}
-                              dateFormat="MMMM d, yyyy"
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      }
                     </div>
 
                     <div className="offers">
