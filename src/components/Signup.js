@@ -8,7 +8,7 @@ import phone from "../assests/phone.png"
 import icon from "../assests/172.png"
 const Signup = () => {
     return (
-        <section className="contact__form">
+        <section id ="contact__form">
             <div className="inner">
                 <div className="container">
                     <div className="grid">
