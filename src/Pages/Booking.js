@@ -32,15 +32,164 @@ import f10 from "../assests/booking/ApplePay.6.png";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import differenceInDays from "date-fns/differenceInDays";
+import differenceInHours from "date-fns/differenceInHours";
 import "react-datepicker/dist/react-datepicker.css";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Select from "react-select";
 import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import { createBooking } from "../Redux/actions/bookingActions";
+const branches = [
+  {
+    name: "الرياض - الشفا لبن",
+    address: "ظهرة لبن شارع نجد بجوار العثيم",
+    phone: "592891678",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض حي الموسى",
+    address: "طويق شارع أحمد بن الخطاب",
+    phone: "594850304   ",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض - مخرج 28",
+    address: "حي السويدي مخرج 28",
+    phone: "592891608",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض - حي قرطبة",
+    address: "طريق الدمام حي قرطبة مخرج 8",
+    phone: "596050250",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض - طريق خريص",
+    address: "خريص - طريق مكة المكرمة الفرعي",
+    phone: "580954620",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض - المروج",
+    address: "الدائري الشمالي – شارع الخدمة قبل مخرج 5",
+    phone: "581086365",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض – نجد لبن ",
+    address: "تقاطع طريق نجد مع طريق طيبة",
+    phone: "596178313",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الرياض - معرض خريص",
+    address: "طريق خريص الجهة المقابله للوعلان",
+    phone: "596178445",
+    workingTime: "9:00AM - 11:00PM",
+    friday: "4:00PM - 11:00PM",
+    saturday: "4:00PM -11:00PM",
+  },
+  {
+    name: "الدمام - حي الاتصالات ",
+    address: "طريق الأمير نايف حي الاتصالات شارع 42",
+    phone: "581337594",
+    workingTime: "8:00AM - 11:00PM",
+    friday: "3:00PM - 11:00PM",
+    saturday: "3:00PM -11:00PM",
+  },
+  {
+    name: "الخبر - حي العزيزية ",
+    address: "العزيزية – حي الخزامة",
+    phone: "595012042",
+    workingTime: "8:00AM - 11:00PM",
+    friday: "3:00PM - 11:00PM",
+    saturday: "3:00PM -11:00PM",
+  },
+  {
+    name: "الجبيل - شارع المدينة",
+    address: "الجبيل البلد شارع المدينة ",
+    phone: "582046560",
+    workingTime: "9:00PM - 12:00PM 4:00PM - 10:00PM",
+    friday: "أجازه",
+    saturday: "9:00AM -12:00PM 4:00PM - 10: 00PM",
+  },
+  {
+    name: "الاحساء",
+    address: "ط الملك عبد الله حي غرناطه",
+    phone: "595134170",
+    workingTime: "9:00PM - 12:00PM 4:00PM - 10:00PM",
+    friday: "أجازه",
+    saturday: "9:00AM -12:00PM 4:00PM - 10: 00PM",
+  },
+  {
+    name: "جازان -مطار جازان",
+    address: "داخل مطار جازان ",
+    phone: "594839625",
+    workingTime: "24/7",
+    friday: "24/7",
+    saturday: "24/7",
+  },
+  {
+    name: "جدة - طريق المدينة",
+    address: "طريق المدينة شارع حي الروضة ",
+    phone: "581341239",
+    workingTime: "9:00PM - 12:30PM 5:00PM - 10:00PM",
+    friday: "5:00PM - 11:30PM",
+    saturday: "9:00AM -12:30PM 5:00PM - 11: 00PM",
+  },
+  {
+    name: "70 جدة - طريق المدينة",
+    address: "طريق المدينة شارع حي الروضة ",
+    phone: "581341239",
+    workingTime: "9:00PM - 12:30PM 5:00PM - 10:00PM",
+    friday: "5:00PM - 11:00PM",
+    saturday: "9:00AM - 11:00PM",
+  },
+  {
+    name: "مكة المكرمة ",
+    address: "ي النزهة - شارع حسين عرب ",
+    phone: "594870275",
+    workingTime: "9:00PM - 12:30PM 5:00PM - 10:00PM",
+    friday: "5:00PM - 11:30PM",
+    saturday: "9:00AM -12:30PM 5:00PM - 11: 00PM",
+  },
+  {
+    name: "الطائف -مطار الطائف",
+    address: "ي النزهة - شارع حسين عرب ",
+    phone: "594870275",
+    workingTime: "24/7",
+    friday: "24/7",
+    saturday: "24/7",
+  },
+];
+const addonsData = [
+  { label: "مقعد لطفل", value: "child_seat", price: "+10 ر.س.", num: 10 },
+  { label: "تأمين شامل", value: "full_insurance", price: "+15 ر.س.", num: 15 },
+  {
+    label: "كيلومتر مفتوح",
+    value: "open_discount",
+    price: "+40 ر.س.",
+    num: 40,
+  },
+];
 const Booking = () => {
   const [activeButton, setActiveButton] = useState("btn1");
   const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
@@ -62,19 +211,19 @@ const Booking = () => {
   const [perHour, setPerHour] = useState(false);
   const [delivery, setDelivery] = useState(false);
   const [city, setCity] = useState("");
-  const [selectedCar, setSelectedCar] = useState()
+  const [selectedCar, setSelectedCar] = useState();
   const [state, setState] = useState("");
   const [addons, setAddons] = useState([]);
   const minTime = setHours(setMinutes(new Date(), 0), 9);
   const [diffInDays, setDiffInDays] = useState(0);
+  const [price, setPrice] = useState(0);
   const { car } = useParams();
-  const option = useSelector(state => state.RentalInfo?.selectedOption);
-  const cars = useSelector(state => state.Cars?.cars);
+  const [diffInHours, setDiffInHours] = useState(0);
+  const option = useSelector((state) => state.RentalInfo?.selectedOption);
+  const cars = useSelector((state) => state.Cars?.cars);
   useEffect(() => {
-    const newCar = cars.find(item => item._id === car);
+    const newCar = cars.find((item) => item._id === car);
     setSelectedCar(newCar);
-    console.log(newCar);
-
   }, [car, cars]);
   const handleAddonChange = (event) => {
     const { value, checked } = event.target;
@@ -84,10 +233,31 @@ const Booking = () => {
       setAddons((prevAddons) => prevAddons.filter((addon) => addon !== value));
     }
   };
+
+  const addonsPrice = addons.reduce((total, addon) => {
+    const addonData = addonsData.find((data) => data.value === addon);
+    if (addonData) {
+      return total + addonData.num;
+    }
+    return total;
+  }, 0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    let totalPrice = 0;
+
+    if (option === "perDay") {
+      const days = diffInDays;
+      totalPrice =
+        (selectedCar?.pricePerDay || 0) * days;
+    } else if (option === "perHour") {
+      const hours = diffInHours;
+      totalPrice =
+        (selectedCar?.pricePerHour || 0) * hours;
+    }
+
     console.log({
       car,
       user: user._id,
@@ -96,7 +266,8 @@ const Booking = () => {
       startDate: pickupTime,
       endDate: returnTime,
       addons,
-      totalPrice: selectedCar?.pricePerDay,
+      totalPrice: totalPrice + addonsPrice,
+      rate: option
     });
     dispatch(createBooking({
       car,
@@ -106,20 +277,55 @@ const Booking = () => {
       startDate: pickupTime,
       endDate: returnTime,
       addons,
-      totalPrice: selectedCar?.pricePerDay,
-
-
+      totalPrice: totalPrice + addonsPrice,
+      rate: option
     }))
-
+    // Dispatch action or perform further operations
   };
 
   useEffect(() => {
-    const days = differenceInDays(returnTime, pickupTime);
-    setDiffInDays(days);
-  }, [pickupTime, returnTime]);
+    if (option === "perHour") {
+      const hours = differenceInHours(returnTime, pickupTime);
+      setDiffInHours(hours);
+    } else {
+      const days = differenceInDays(returnTime, pickupTime);
+      setDiffInDays(days);
+
+
+    }
+  }, [pickupTime, returnTime, option]);
+  useEffect(() => {
+    let totalPrice = 0;
+    let days = 0;
+    let hours = 0;
+
+    if (option === "perHour") {
+      hours = differenceInHours(returnTime, pickupTime);
+      setDiffInHours(hours);
+    } else {
+      days = differenceInDays(returnTime, pickupTime);
+      setDiffInDays(days);
+    }
+
+    if (option === "perDay") {
+      totalPrice = (selectedCar?.pricePerDay || 0) * days;
+    } else if (option === "perHour") {
+      totalPrice = (selectedCar?.pricePerHour || 0) * hours;
+    }
+
+    setPrice(totalPrice);
+  }, [pickupTime, returnTime, option, selectedCar]);
+
+  useEffect(() => {
+    console.log(price);
+  }, [price]);
+
   // End time at 9PM
   const maxTime = setHours(setMinutes(new Date(), 0), 21);
-
+  const options = branches.map((branch) => ({
+    value: branch.name,
+    label: branch.name,
+  }));
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName || "");
@@ -147,7 +353,7 @@ const Booking = () => {
       <Banner />
       <section id="booking">
         <div className="container-main">
-          <BookingSidebar selectedCar={selectedCar} />
+          <BookingSidebar price={price} addonsPrice={addonsPrice} selectedCar={selectedCar} />
           <div className="container">
             <div className="grid__one">
               <div className="btns">
@@ -208,17 +414,14 @@ const Booking = () => {
                       </div>
                       <div className="input-box">
                         <p>عنوان الاتسلام</p>
-                        <div className="input">
-                          <img src={i1} alt="" />
-                          <input
-                            type="text"
-                            name="pickupLocation"
-                            value={pickupLocation}
-                            onChange={(e) => setPickupLocation(e.target.value)}
-                            placeholder="اختر من سجل العناوين"
-                          />
-                          <img src={sort} alt="" />
-                        </div>
+                        <Select
+                          options={options}
+                          isSearchable={true}
+                          onChange={(selectedOption) =>
+                            setPickupLocation(selectedOption.value)
+                          }
+                          placeholder="تحديد موقع"
+                        />
                       </div>
                     </div>
                     <div className="input-box-wrap">
@@ -293,128 +496,101 @@ const Booking = () => {
                       </div>
                       <div className="input-box">
                         <p>عنوان الاتسلام</p>
-                        <div className="input">
-                          <img src={i1} alt="" />
-                          <input
-                            type="text"
-                            value={returnLocation}
-                            onChange={(e) => setReturnLocation(e.target.value)}
-                            placeholder="اختر من سجل العناوين"
-                          />
-                          <img src={sort} alt="" />
-                        </div>
+                        <Select
+                          options={options}
+                          isSearchable={true}
+                          onChange={(selectedOption) =>
+                            setReturnLocation(selectedOption.value)
+                          }
+                          placeholder="تحديد موقع"
+                        />
                       </div>
                     </div>
 
                     <div className="input-box-wrap">
-                      <div className="day">{diffInDays} days</div>
+                      {option === "perDay" ? (
+                        <>
+                          <div className="day">{diffInDays} days</div>
+                          <div className="two">
+                            <div className="item">
+                              <p>المدينة</p>
+                              <div className="btn">
+                                <DatePicker
+                                  selected={pickupTime}
+                                  onChange={(date) => setPickupTime(date)}
+                                  dateFormat="MMMM d, yyyy"
+                                />
+                              </div>
+                            </div>
+                            <div className="item">
+                              <p>المحافظة</p>
+                              <div className="btn">
+                                <DatePicker
+                                  selected={returnTime}
+                                  onChange={(date) => setReturnTime(date)}
+                                  dateFormat="MMMM d, yyyy"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="day">{diffInHours} hours</div>
+                          <div className="two">
+                            <div className="item">
+                              <p>المدينة</p>
+                              <div className="btn">
+                                <DatePicker
+                                  selected={pickupTime}
+                                  onChange={(date) => setPickupTime(date)}
+                                  showTimeSelect
+                                  minTime={minTime}
+                                  maxTime={maxTime}
+                                  dateFormat="Pp"
+                                />
+                              </div>
+                            </div>
+                            <div className="item">
+                              <p>المحافظة</p>
+                              <div className="btn">
+                                <DatePicker
+                                  selected={returnTime}
+                                  onChange={(date) => setReturnTime(date)}
+                                  showTimeSelect
+                                  minTime={minTime}
+                                  maxTime={maxTime}
+                                  dateFormat="Pp"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      )}
 
-                      {
-                        option === "perDay" ? <div className="two">
-                          <div className="item">
-                            <p>المدينة</p>
-                            <div className="btn">
-                              <DatePicker
-                                selected={pickupTime}
-                                onChange={(date) => setPickupTime(date)}
-                                dateFormat="MMMM d, yyyy"
-                              />
-                            </div>
-                          </div>
-                          <div className="item">
-                            <p>المحافظة</p>
-                            <div className="btn">
-                              <DatePicker
-                                selected={returnTime}
-                                onChange={(date) => setReturnTime(date)}
-                                dateFormat="MMMM d, yyyy"
-                              />
-                            </div>
-                          </div>
-                        </div> : <div className="two">
-                          <div className="item">
-                            <p>المدينة</p>
-                            <div className="btn">
-                              <DatePicker
-                                selected={pickupTime}
-                                onChange={(date) => setPickupTime(date)}
-                                showTimeSelect
-                                minTime={minTime}
-                                maxTime={maxTime}
-                                dateFormat="Pp"
-                              />
-                            </div>
-                          </div>
-                          <div className="item">
-                            <p>المحافظة</p>
-                            <div className="btn">
-                              <DatePicker
-                                selected={returnTime}
-                                onChange={(date) => setReturnTime(date)}
-                                showTimeSelect
-                                dateFormat="Pp"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      }
                     </div>
 
                     <div className="offers">
-                      <h1> (Addons) الإضافات والعروض</h1>
-                      <div className="input-check-wrap">
-                        <div></div>
-                        <div className="input-check">
-                          <span>+10 ر.س. </span>
-                          <div className="input">
-                            <label htmlFor="">مقعد لطفل</label>
-                            <input
-                              type="checkbox"
-                              id="childSeat"
-                              name="addons"
-                              value="child_seat"
-                              checked={addons.includes("child_seat")}
-                              onChange={handleAddonChange}
-                            />
+                      <h1>(Addons) الإضافات والعروض</h1>
+                      {addonsData.map((addon) => (
+                        <div className="input-check-wrap" key={addon.value}>
+                          <div></div>
+                          <div className="input-check">
+                            <span>{addon.price}</span>
+                            <div className="input">
+                              <label htmlFor="">{addon.label}</label>
+                              <input
+                                type="checkbox"
+                                id={addon.value}
+                                name="addons"
+                                value={addon.value}
+                                checked={addons.includes(addon.value)}
+                                onChange={handleAddonChange}
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="input-check-wrap">
-                        <div></div>
-                        <div className="input-check">
-                          <span>+15 ر.س. </span>
-
-                          <div className="input">
-                            <label htmlFor="">تأمين شامل</label>
-                            <input
-                              type="checkbox"
-                              id="fullInsurance"
-                              name="addons"
-                              value="full_insurance"
-                              checked={addons.includes("full_insurance")}
-                              onChange={handleAddonChange}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="input-check-wrap">
-                        <div></div>
-
-                        <div className="input-check">
-                          <span>+40 ر.س. </span>
-                          <div className="input">
-                            <label htmlFor="">كيلومتر مفتوح</label>
-                            <input
-                              type="checkbox"
-                              id="openDiscount"
-                              name="addons"
-                              value="open_discount"
-                              checked={addons.includes("open_discount")}
-                              onChange={handleAddonChange}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                     <div className="select-btns">
                       <div className="btn1">التالى</div>
@@ -551,6 +727,7 @@ const Booking = () => {
                 </div>
               )}
             </div>
+
           </div>
         </div>
       </section>

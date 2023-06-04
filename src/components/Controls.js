@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Select from 'react-select';
+import Select from "react-select";
 import "../scss/controls.scss";
 import search from "../assests/search.png";
 import switch1 from "../assests/Switches.png";
@@ -154,8 +154,7 @@ const branches = [
         friday: "24/7",
         saturday: "24/7",
     },
-
-]
+];
 const Controls = () => {
     const rentalInfo = useSelector((state) => state.RentalInfo); // assuming your reducer is named RentalInfo
     const option = useSelector((state) => state.RentalInfo?.selectedOption);
@@ -170,19 +169,20 @@ const Controls = () => {
     const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
     const [activeButton, setActiveButton] = useState("btn3");
     const navigate = useNavigate();
-    const minTime = setHours(setMinutes(new Date(), 10), 0);
-
-    // End time at 9PM
-    const maxTime = setHours(setMinutes(new Date(), 1), 10);
+    const minTime = setHours(setMinutes(new Date(), 0), 21);
+    const maxTime = setHours(setMinutes(new Date(), 0), 9);
     const pickupLocationRef = useRef(null);
     const returnLocationRef = useRef(null);
 
     const [activeInput, setActiveInput] = useState(null);
     const [selectedOption, setSelectedOption] = useState("perDay"); // Default selection is 'perDay'
-    const options = branches.map(branch => ({ value: branch.name, label: branch.name }));
+    const options = branches.map((branch) => ({
+        value: branch.name,
+        label: branch.name,
+    }));
 
     // Handle selection change
-    const handleChange = selectedOption => {
+    const handleChange = (selectedOption) => {
         console.log(`Option selected:`, selectedOption);
     };
     useEffect(() => {
@@ -263,26 +263,22 @@ const Controls = () => {
                         {selectedOption === "perDay" ? (
                             <div className="two">
                                 <div className="item">
-                                    <p>Pickup date & time</p>
+                                    <p>Pickup date</p>
                                     <div className="btn">
                                         <DatePicker
                                             selected={pickupTime}
                                             onChange={(date) => setPickupTime(date)}
-                                            showTimeSelect
-                                            minTime={minTime}
-                                            maxTime={maxTime}
-                                            dateFormat="Pp"
+                                            dateFormat="MMMM d, yyyy"
                                         />
                                     </div>
                                 </div>
                                 <div className="item">
-                                    <p>Return date & time</p>
+                                    <p>Return date</p>
                                     <div className="btn">
                                         <DatePicker
                                             selected={returnTime}
                                             onChange={(date) => setReturnTime(date)}
-                                            showTimeSelect
-                                            dateFormat="Pp"
+                                            dateFormat="MMMM d, yyyy"
                                         />
                                     </div>
                                 </div>
@@ -298,7 +294,7 @@ const Controls = () => {
                                             showTimeSelect
                                             minTime={minTime}
                                             maxTime={maxTime}
-                                            dateFormat="MMMM d, yyyy"
+                                            dateFormat="Pp"
                                         />
                                     </div>
                                 </div>
@@ -309,12 +305,15 @@ const Controls = () => {
                                             selected={returnTime}
                                             onChange={(date) => setReturnTime(date)}
                                             showTimeSelect
-                                            dateFormat="MMMM d, yyyy"
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="Pp"
                                         />
                                     </div>
                                 </div>
                             </div>
                         )}
+
                         <div className="three">
                             <div className="top">
                                 <ul className="start">
@@ -376,8 +375,9 @@ const Controls = () => {
                                                 <Select
                                                     options={options}
                                                     isSearchable={true}
-                                                    onChange={(selectedOption) => setPickupLocation(selectedOption.value)}
-
+                                                    onChange={(selectedOption) =>
+                                                        setPickupLocation(selectedOption.value)
+                                                    }
                                                     placeholder="تحديد موقع"
                                                 />
                                             </div>
@@ -388,8 +388,9 @@ const Controls = () => {
                                                 <Select
                                                     options={options}
                                                     isSearchable={true}
-                                                    onChange={(selectedOption) => setReturnLocation(selectedOption.value)}
-
+                                                    onChange={(selectedOption) =>
+                                                        setReturnLocation(selectedOption.value)
+                                                    }
                                                     placeholder="تحديد موقع"
                                                 />
                                             </div>
@@ -401,11 +402,11 @@ const Controls = () => {
                                                 <Select
                                                     options={options}
                                                     isSearchable={true}
-                                                    onChange={(selectedOption) => setPickupLocation(selectedOption.value)}
-
+                                                    onChange={(selectedOption) =>
+                                                        setPickupLocation(selectedOption.value)
+                                                    }
                                                     placeholder="تحديد موقع"
                                                 />
-
                                             </div>
                                         </>
                                     )}
@@ -519,17 +520,12 @@ const Controls = () => {
                                         <Select
                                             options={options}
                                             isSearchable={true}
-                                            onChange={(selectedOption) => setPickupLocation(selectedOption.value)}
-
+                                            onChange={(selectedOption) =>
+                                                setPickupLocation(selectedOption.value)
+                                            }
                                             placeholder="تحديد موقع"
                                         />
-                                        {/* <input
-                                            type="text"
-                                            ref={pickupLocationRef}
-                                            placeholder="تحديد موقع"
-                                            onClick={() => setActiveInput("pickup")}
-                                            onChange={(e) => setPickupLocation(e.target.value)}
-                                        /> */}
+
                                     </div>
                                 </div>
                             </div>

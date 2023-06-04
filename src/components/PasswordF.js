@@ -76,49 +76,45 @@ const PasswordF = () => {
               </div>
             </div>
             <div className="wrapper">
-              <div className="btn" style={{ background: "#FFCD00" }}>
+              <div className="btn" style={newPassword === confirmPassword ? { background: "#FFCD00" } : null}>
                 <img src={tick} alt="" />
               </div>
               <div id="password" name="newPassword" className="same">
-                <p>كلمة المرور الجديدة</p>
+                <p>New Password</p>
                 <div className="under">
                   <img src={eye} alt="" />{" "}
                   <input
                     type="password"
                     name="newPassword"
-                    placeholder="كلمة المرور الجديدة"
+                    placeholder="New Password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                   />
 
                   <img src={key} alt="" />
                 </div>
-                <span>
-                  يجب أن يتراوح طول كلمة المرور الخاصة بك بين 6-20 حرفًا
-                </span>
+                <span>Your password must be between 6-20 characters long.</span>
               </div>
             </div>
             <div className="wrapper">
-              <div className="btn">
+              <div className="btn" style={newPassword === confirmPassword ? { background: "#FFCD00" } : null}>
                 <img src={tick} alt="" />
               </div>
               <div id="password" className="same">
-                <p>تأكيد كلمة المرور الجديدة</p>
+                <p>Confirm New Password</p>
                 <div className="under">
                   <img src={eye} alt="" />{" "}
                   <input
                     type="password"
                     name="confirmPassword"
-                    placeholder="تأكيد كلمة المرور الجديدة"
+                    placeholder="Confirm New Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
 
                   <img src={key} alt="" />
                 </div>
-                <span>
-                  يجب أن يتراوح طول كلمة المرور الخاصة بك بين 6-20 حرفًا
-                </span>
+                <span>Your password must be between 6-20 characters long.</span>
               </div>
             </div>
             <div className="wrap-btn">

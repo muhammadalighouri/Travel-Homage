@@ -19,7 +19,7 @@ import { carsReducer, toggleReducer } from "./carReducers";
 import { rentalReducer } from "./rentalReducer";
 import filterReducer from "./filterReducer";
 import favoriteReducer from "./favoriteReducers";
-import { bookingCreateReducer } from "./bookingReducer";
+import { bookingCreateReducer, getUserBookingsReducer } from "./bookingReducer";
 const RootReducer = combineReducers({
   Products: allProductsReducer,
   ProductDetails: singleProductReducer,
@@ -27,6 +27,7 @@ const RootReducer = combineReducers({
   Cart: cartReducer,
   Cars: carsReducer,
   CreateBooking: bookingCreateReducer,
+  Bookings: getUserBookingsReducer,
   Favorite: favoriteReducer,
   toggle: toggleReducer,
   Filters: filterReducer,

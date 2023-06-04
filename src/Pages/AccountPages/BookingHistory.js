@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../scss/profile.scss";
 import "../../scss/bookinghistory.scss";
 import Navigation from "../../components/Navigation";
@@ -7,7 +7,14 @@ import Banner from "../../components/Banner";
 import first from "../../assests/Photo.png";
 import BookingF from "../../components/BookingF";
 import ProfileSidebar from "../../components/ProfileSidebar";
+import { useDispatch } from "react-redux";
+import { getUserBookings } from "../../Redux/actions/bookingActions";
 const BookingHistory = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getUserBookings())
+  }, [])
+
   return (
     <>
       <Navigation />
