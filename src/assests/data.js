@@ -145,15 +145,15 @@ export const side = [
 export const nav = [
   {
     name: "تواصل معنا",
-    path: "/fleet",
+    path: "#contact__form",
   },
   {
     name: "الفروع",
-    path: "/register",
+    path: "#geo",
   },
   {
     name: "العروض",
-    path: "/login-in",
+    path: "#car",
   },
 ];
 export const FAQ = [

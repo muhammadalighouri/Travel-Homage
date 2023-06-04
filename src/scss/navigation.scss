@@ -2,9 +2,7 @@
 @import "./media.scss";
 
 header {
-  left: 0;
-  position: fixed;
-  top: 0;
+
   transition: all 0.3s;
   width: 100%;
   z-index: 1001;
@@ -711,5 +709,31 @@ header {
       color: white;
       font-size: 45px;
     }
+  }
+}
+.auto_scroll {
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  cursor: pointer;
+  transition: 0.3s all;
+  z-index: 1001;
+  transform: scale(0);
+
+  > svg {
+    width: 50px;
+    background: #ffcd00;
+    height: 50px;
+    place-content: center;
+    border-radius: 100px;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    /* border: 3px solid #006281; */
+    padding: 10px;
+    fill: #636365;
+    box-shadow: 0 0px 5px -2px #000000d1;
   }
 }

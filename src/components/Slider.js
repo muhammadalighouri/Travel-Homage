@@ -1,42 +1,36 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
 import "../scss/slide.scss";
 
-const Slider = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+// import required modules
+import { Pagination } from "swiper";
 
-  const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const goToPrevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
-
+export default function Slider() {
   return (
-    
-    <div className="slider">
-      <div className="slider-images">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`slider-image ${index === currentIndex ? "active" : ""}`}
-            style={{ backgroundImage: `url(${image})` }}
-          />
-        ))}
-      </div>
-
-      <div className="slider-controls">
-        <button className="prev-button" onClick={goToPrevSlide}>
-          Prev
-        </button>
-        <button className="next-button" onClick={goToNextSlide}>
-          Next
-        </button>
-      </div>
-    </div>
+    <>
+      <Swiper
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
+      </Swiper>
+    </>
   );
-};
-
-export default Slider;
+}
