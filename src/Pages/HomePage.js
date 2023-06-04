@@ -24,10 +24,7 @@ const HomePage = () => {
     dispatch(fetchFilters());
   }, []);
   const array = [
-    {
-      img: first,
-      text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
-    },
+   
     {
       img: first,
       text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
