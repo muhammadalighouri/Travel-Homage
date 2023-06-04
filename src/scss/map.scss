@@ -1,0 +1,16 @@
+@import "./variable.scss";
+@import "./media.scss";
+ .map {
+    background-color: white;
+    .container__{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        .grid{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+        }
+    }
+ }

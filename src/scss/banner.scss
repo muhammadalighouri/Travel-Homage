@@ -1,8 +1,98 @@
 @import "./variable.scss";
 @import "./media.scss";
 
+
+
 #banner-wrapper {
   width: 100%;
+  position: relative;
+  // background: #00afaa;
+  padding-top: 20px;
+  padding-bottom: 190px;
+  &::before {
+    content: "";
+    width: 100%;
+    height: 80vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../assests/Pattern.png);
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center right;
+    z-index: -2;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @include md {
+      grid-template-columns: 1fr;
+      grid-gap: 3rem;
+      width: 90%;
+      margin: auto;
+    }
+
+    .start {
+      position: relative;
+
+      @include md {
+        order: 2;
+      }
+
+      img {
+        width: 100%;
+
+        @include md {
+          width: 90%;
+          margin: auto;
+        }
+      }
+    }
+
+    .end {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+
+      @include md {
+        order: 1;
+        gap: 25px;
+        flex-direction: column-reverse;
+      }
+
+      .img {
+        height: 100%;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+
+        img {
+          object-fit: cover;
+        }
+      }
+
+      >h1 {
+        text-align: end;
+        line-height: 1.4;
+        font-weight: 700;
+        font-size: 48px;
+        max-width: 390px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        >h1 {
+          font-weight: 700;
+          display: inline;
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
   #banner {
     width: 100%;
     margin-top: 0px !important;
@@ -11,29 +101,14 @@
     align-items: center;
     justify-content: start;
     z-index: 0;
-    /* height: 100vh; */
     position: relative;
-    background: #00afaa;
-    padding-top: 20px;
-    padding-bottom: 190px;
+
 
     @include md {
       // padding-bottom: 180px;
     }
 
-    &::before {
-      content: "";
-      width: 100%;
-      height: 80vh;
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: url(../assests/Pattern.png);
-      background-size: 200px;
-      background-repeat: no-repeat;
-      background-position: center right;
-      z-index: -2;
-    }
+ 
 
     @include md {
       margin-top: 20px;
@@ -44,73 +119,126 @@
     .container__ {
       width: 100%;
       max-width: 1080px;
-      // margin-bottom: -160px;
 
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+
+    }
+  }
+
+  .swiper {
+    // .swiper-wrapper {
+
+    .mySwiper {
+      #banner {
+        width: 100%;
+        margin-top: 0px !important;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: start;
+        z-index: 0;
+        position: relative;
+        background: #00afaa;
+        padding-top: 20px;
+        padding-bottom: 190px;
 
         @include md {
-          grid-template-columns: 1fr;
-          grid-gap: 3rem;
-          width: 90%;
-          margin: auto;
+          // padding-bottom: 180px;
         }
 
-        .start {
+        &::before {
+          content: "";
+          width: 100%;
+          height: 80vh;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: url(../assests/Pattern.png);
+          background-size: 200px;
+          background-repeat: no-repeat;
+          background-position: center right;
+          z-index: -2;
+        }
+
+        @include md {
+          margin-top: 20px;
           position: relative;
-
-          @include md {
-            order: 2;
-          }
-
-          img {
-            width: 100%;
-
-            @include md {
-              width: 90%;
-              margin: auto;
-            }
-          }
+          height: 100%;
         }
 
-        .end {
-          display: flex;
-          justify-content: center;
-          gap: 50px;
+        .container__ {
+          width: 100%;
+          max-width: 1080px;
 
-          @include md {
-            order: 1;
-            gap: 25px;
-            flex-direction: column-reverse;
-          }
+          .swiper-slide {
 
-          .img {
-            height: 100%;
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
+            .grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              align-items: center;
 
-            img {
-              object-fit: cover;
-            }
-          }
+              @include md {
+                grid-template-columns: 1fr;
+                grid-gap: 3rem;
+                width: 90%;
+                margin: auto;
+              }
 
-          >h1 {
-            text-align: end;
-            line-height: 1.4;
-            font-weight: 700;
-            font-size: 48px;
-            max-width: 390px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+              .start {
+                position: relative;
 
-            >h1 {
-              font-weight: 700;
-              display: inline;
-              font-size: 3rem;
+                @include md {
+                  order: 2;
+                }
+
+                img {
+                  width: 100%;
+
+                  @include md {
+                    width: 90%;
+                    margin: auto;
+                  }
+                }
+              }
+
+              .end {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+
+                @include md {
+                  order: 1;
+                  gap: 25px;
+                  flex-direction: column-reverse;
+                }
+
+                .img {
+                  height: 100%;
+                  display: flex;
+                  align-items: baseline;
+                  justify-content: center;
+
+                  img {
+                    object-fit: cover;
+                  }
+                }
+
+                >h1 {
+                  text-align: end;
+                  line-height: 1.4;
+                  font-weight: 700;
+                  font-size: 48px;
+                  max-width: 390px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  >h1 {
+                    font-weight: 700;
+                    display: inline;
+                    font-size: 3rem;
+                  }
+                }
+              }
             }
           }
         }
@@ -118,6 +246,8 @@
     }
   }
 }
+
+// }
 
 .grey {
   color: #006281 !important;
