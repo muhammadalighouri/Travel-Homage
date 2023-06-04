@@ -1,29 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import './Slider.scss';
+import React, { useState } from "react";
+import "../scss/slide.scss";
 
-const Slider = ({ slides, interval }) => {
+const Slider = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, interval);
+  const goToNextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [slides.length, interval]);
+  const goToPrevSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
 
   return (
+    
     <div className="slider">
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`slide ${index === currentIndex ? 'active' : ''}`}
-        >
-          {slide}
-        </div>
-      ))}
+      <div className="slider-images">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`slider-image ${index === currentIndex ? "active" : ""}`}
+            style={{ backgroundImage: `url(${image})` }}
+          />
+        ))}
+      </div>
+
+      <div className="slider-controls">
+        <button className="prev-button" onClick={goToPrevSlide}>
+          Prev
+        </button>
+        <button className="next-button" onClick={goToNextSlide}>
+          Next
+        </button>
+      </div>
     </div>
   );
 };

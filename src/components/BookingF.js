@@ -12,7 +12,7 @@ import v1 from "../assests/Profile/Vector (1).png";
 import v2 from "../assests/Profile/Vector.png";
 import CarCard from "./CarCard";
 const BookingF = () => {
-  const [activeButton, setActiveButton] = useState('جارية')
+  const [activeButton, setActiveButton] = useState("جارية");
   const data1 = [
     {
       para: "Lorem ipsum dolor sit amet, consectetuer ",
@@ -94,7 +94,10 @@ const BookingF = () => {
           {btns.map((a) => {
             return (
               <>
-                <li onClick={() => setActiveButton(a.h)} className={activeButton === a.h ? "active" : ""}>
+                <li
+                  onClick={() => setActiveButton(a.h)}
+                  className={activeButton === a.h ? "active" : ""}
+                >
                   {a.h}
                   <img src={a.icon} alt="" />
                 </li>

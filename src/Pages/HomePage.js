@@ -13,6 +13,7 @@ import { fetchFilters } from "../Redux/actions/filterActions";
 import Maps from "../components/Maps";
 // import BookingSidebar from "../components/BookingSidebar";
 import Booking from "./Booking";
+import  Navigate  from "../components/Navigate";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -32,7 +33,7 @@ const HomePage = () => {
         <Maps />
         <Signup />
         <Footer />
-        {/* <Booking/> */}
+<Booking/>
       </section>
     </>
   );
