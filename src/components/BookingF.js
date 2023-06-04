@@ -13,7 +13,8 @@ import v2 from "../assests/Profile/Vector.png";
 import CarCard from "./CarCard";
 import { useSelector } from "react-redux";
 const BookingF = () => {
-  const [activeButton, setActiveButton] = useState('جارية')
+  const [activeButton, setActiveButton] = useState("جارية");
+  // const [activeButton, setActiveButton] = useState('جارية')
   const bookings = useSelector(state => state.Bookings.bookingsByStatus);
   const { upcoming, ongoing, completed, cancelled } = bookings || {};
   const data1 = [
@@ -98,7 +99,10 @@ const BookingF = () => {
           {btns.map((a) => {
             return (
               <>
-                <li onClick={() => setActiveButton(a.h)} className={activeButton === a.h ? "active" : ""}>
+                <li
+                  onClick={() => setActiveButton(a.h)}
+                  className={activeButton === a.h ? "active" : ""}
+                >
                   {a.h}
                   <img src={a.icon} alt="" />
                 </li>
