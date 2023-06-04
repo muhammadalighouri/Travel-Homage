@@ -1,6 +1,13 @@
 import React from "react";
-
+import s1 from "../assests/Fleet/span1.png";
+import green from "../assests/green.png";
+import s2 from "../assests/Fleet/span2.png";
+import s3 from "../assests/Fleet/span3.png";
+import s4 from "../assests/Fleet/span4.png";
+import f4 from "../assests/Fleet/i.11.png";
+import f5 from "../assests/Fleet/i.22.png";
 const CarCard = ({ i, text }) => {
+  const { car } = i
   return (
     <>
       <div className="box">
@@ -9,30 +16,28 @@ const CarCard = ({ i, text }) => {
             <div className="main">
               <h1>
                 <img src={i.star} alt="" />
-                {i.h}
+                {car?.name}
               </h1>
-              <p>{i?.car?.name}</p>
+              <p>{car?.description}</p>
             </div>
             <div className="h-btn">
-              <a href="#">{i.btn}</a>
+              <a href="#"> ر.س.{i.totalPrice} </a>
             </div>
           </div>
-          <div className="para">
-            <ul className="bold">
-              <li>{i.li1}</li>
-              <li>{i.li2}</li>
-              <li>{i.li3}</li>
-              <li>{i.li4}</li>
-              <li>{i.li5}</li>
-              <li>{i.li6}</li>
-            </ul>
+          <div className="list">
             <ul className="light">
-              <li>{i.p1}</li>
-              <li>{i.p2}</li>
-              <li>{i.p3}</li>
-              <li>{i.p4}</li>
-              <li>{i.p5}</li>
-              <li>{i.p6}</li>
+              <li>{car?.maxPeople}</li>
+              <li>{car?.bags}</li>
+              <li>{car?.numDoors}</li>
+              <li>{car?.engine}</li>
+
+            </ul>
+            <ul className="bold">
+              <li>Max Person</li>
+              <li>No Of Bags</li>
+              <li>No Of Doors</li>
+              <li>Engine </li>
+
             </ul>
           </div>
         </div>

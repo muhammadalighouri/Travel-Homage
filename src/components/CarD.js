@@ -21,7 +21,7 @@ import {
   getFavorites,
   removeFavorite,
 } from "../Redux/actions/favouriteActions";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 import { fetchCars, toggleAction } from "../Redux/actions/carActions";
 const CarD = ({ display }) => {
   const { cars, loading } = useSelector((state) => state.Cars) || {};
@@ -31,15 +31,11 @@ const CarD = ({ display }) => {
   const [selectedCar, setSelectedCar] = useState(null);
   const [favoriteCars, setFavoriteCars] = useState(null);
   const dispatch = useDispatch();
-  const toggle = useSelector(state => state.toggle.toggle);
-  const handleShowFavorites = () => {
-
-  };
+  const toggle = useSelector((state) => state.toggle.toggle);
+  const handleShowFavorites = () => { };
   useEffect(() => {
-
-    dispatch(fetchCars())
-
-  }, [toggle])
+    dispatch(fetchCars());
+  }, [toggle]);
 
   const carsToRender = favoriteCars || cars;
   // Function to handle when a car card is clicked
@@ -60,22 +56,18 @@ const CarD = ({ display }) => {
       dispatch(addFavorite(user._id, carId)).then(() => {
         dispatch(fetchCars());
       });
-      toast.success('Added to your favourites')
+      toast.success("Added to your favourites");
+    } else {
+      toast.error("You need to Login your account");
     }
-    else {
-      toast.error('You need to Login your account')
-    }
-
   };
   const handleFavorite = (carId) => {
     // Assuming you have access to the userId, you can pass it here
     if (user?._id) {
       dispatch(toggleAction());
+    } else {
+      toast.error("You need to Login your account");
     }
-    else {
-      toast.error('You need to Login your account')
-    }
-
   };
 
   // Function to handle removing a car from favorites
@@ -83,10 +75,9 @@ const CarD = ({ display }) => {
     // Assuming you have access to the userId, you can pass it here
     dispatch(removeFavorite(user._id, carId)).then(() => {
       dispatch(fetchCars());
-      toast.success('Removed from your favourites')
+      toast.success("Removed from your favourites");
     });
   };
-
 
   const getCategoryIcon = (cat) => {
     if (cat === "SUV") {
@@ -100,10 +91,12 @@ const CarD = ({ display }) => {
       <div>
         <div className="btns">
           <div className="select">{/* <img src={field} alt="" /> */}</div>
-          <div className="impression" style={{ marginBottom: '15px' }}>
-
-            <div className={toggle ? "btn__active btn" : "btn"} onClick={handleFavorite}>
-              {toggle ? 'عرض المفضل' : 'عرض المفضل'}
+          <div className="impression" style={{ marginBottom: "15px" }}>
+            <div
+              className={toggle ? "btn__active btn" : "btn"}
+              onClick={handleFavorite}
+            >
+              {toggle ? "عرض المفضل" : "عرض المفضل"}
 
               <img src={!toggle ? f5 : green} alt="" />
             </div>
@@ -202,15 +195,14 @@ const CarD = ({ display }) => {
                             className=" btn__active"
                             onClick={() => handleRemoveFavorite(car._id)}
                           >
-                            <img src={green} alt="" />  اضافة للمفضله
+                            <img src={green} alt="" /> اضافة للمفضله
                           </div>
-
                         ) : (
                           <div
                             className="btn"
                             onClick={() => handleAddFavorite(car._id)}
                           >
-                            <img src={f5} alt="" />  مفضل
+                            <img src={f5} alt="" /> مفضل
                           </div>
                         )}
                       </div>
