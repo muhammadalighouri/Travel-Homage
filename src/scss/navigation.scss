@@ -2,12 +2,12 @@
 @import "./media.scss";
 
 header {
-
   transition: all 0.3s;
   width: 100%;
   z-index: 1001;
   background: transparent;
-
+  position: relative;
+ 
   .color {
     background-color: #0000005c;
     position: fixed;

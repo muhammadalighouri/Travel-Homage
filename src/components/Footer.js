@@ -71,9 +71,6 @@ const Footer = () => {
           })}
         </div>
         <div className="bottom__footer">
-          {/* <div className="arrow" onClick={() => window.scrollTo(0, 0)}>
-            <img src={arrow} alt="" />
-          </div> */}
           <div className="center">
             <p>ترفل حلول تأجير السيارات</p>
             <span>مزود خدمة التنقل السعودي لحلول تأجير السيارات</span>

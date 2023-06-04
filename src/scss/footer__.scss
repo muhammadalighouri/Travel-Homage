@@ -102,11 +102,12 @@ footer {
 
     .bottom__footer {
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
 
       @include md {
-        grid-template-columns: 1fr;
+      flex-direction: column;
         gap: 20px;
       }
 

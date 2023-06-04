@@ -23,12 +23,30 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchFilters());
   }, []);
-
+  const array = [
+    {
+      img: first,
+      text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
+    },
+    {
+      img: first,
+      text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
+    },
+    {
+      img: first,
+      text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
+    },
+    {
+      img: first,
+      text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
+    },
+  ];
   return (
     <>
       <section id="home">
         <Navigation />
-        <Banner text={"   نصنع من رحلتكم وترحالكم شيئأ ممتعاً"} img={first} />
+        {/* <Banner /> */}
+        <Slider content={array} />
         <Car />
         <Car2 />
         <Geo />
@@ -36,7 +54,6 @@ const HomePage = () => {
         <Signup />
         <Footer />
         {/* <Booking/> */}
-        {/* <Slider /> */}
         {/* <BookingF /> */}
       </section>
     </>
