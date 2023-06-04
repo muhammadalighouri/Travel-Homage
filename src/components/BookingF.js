@@ -13,7 +13,7 @@ import v2 from "../assests/Profile/Vector.png";
 import CarCard from "./CarCard";
 import { useSelector } from "react-redux";
 const BookingF = () => {
-  const [activeButton, setActiveButton] = useState("جارية");
+  const [activeButton, setActiveButton] = useState("الغيت");
   // const [activeButton, setActiveButton] = useState('جارية')
   const bookings = useSelector(state => state.Bookings.bookingsByStatus);
   const { upcoming, ongoing, completed, cancelled } = bookings || {};
@@ -113,50 +113,78 @@ const BookingF = () => {
         <div className="product">
           {activeButton === "الغيت" && <>
             {
-              ongoing && ongoing.map((i) => {
-                return (
-                  <>
-                    <CarCard i={i} text={""} />
-                  </>
-                );
-              })
+              ongoing &&
+
+                ongoing.length > 0 ? ongoing.map((i) => {
+                  return (
+                    <>
+                      <CarCard i={i} text={""} />
+                    </>
+                  );
+                })
+                : <>
+                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
+                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+                  </div>
+                </>
             }
           </>}
           {activeButton === "قادمة" && <>
             {
-              completed?.map((i) => {
-                return (
-                  <>
-                    <CarCard i={i} text={""} />
-                  </>
-                );
-              })
+              completed &&
+
+                completed.length > 0 ? completed.map((i) => {
+                  return (
+                    <>
+                      <CarCard i={i} text={""} />
+                    </>
+                  );
+                })
+                : <>
+                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
+                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+                  </div>
+                </>
             }
           </>}
           {activeButton === "أكتملت" && <>
             {
-              upcoming?.map((i) => {
-                return (
-                  <>
-                    <CarCard i={i} text={""} />
-                  </>
-                );
-              })
+              upcoming &&
+
+                upcoming.length > 0 ? upcoming.map((i) => {
+                  return (
+                    <>
+                      <CarCard i={i} text={""} />
+                    </>
+                  );
+                })
+                : <>
+                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
+                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+                  </div>
+                </>
             }
           </>}
           {activeButton === "جارية" && <>
             {
-              cancelled?.map((i) => {
-                return (
-                  <>
-                    <CarCard i={i} text={""} />
-                  </>
-                );
-              })
+              cancelled &&
+
+                cancelled.length > 0 ? cancelled.map((i) => {
+                  return (
+                    <>
+                      <CarCard i={i} text={""} />
+                    </>
+                  );
+                })
+                : <>
+                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
+                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+                  </div>
+                </>
             }
           </>}
         </div>
-      </div>
+      </div >
     </>
   );
 };

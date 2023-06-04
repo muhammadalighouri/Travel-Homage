@@ -13,6 +13,11 @@ import s3 from "../assests/Fleet/span3.png";
 import s4 from "../assests/Fleet/span4.png";
 import f4 from "../assests/Fleet/i.11.png";
 import f5 from "../assests/Fleet/i.22.png";
+import suv from "../assests/cars/SUV (2).png"
+import sedan from "../assests/cars/sedan (2).png"
+import luxury from "../assests/cars/luxury (2).png"
+import family from "../assests/cars/faamily.png"
+import economy from "../assests/cars/economy.png"
 import "../scss/card.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Navigate from "./Navigate";
@@ -81,9 +86,19 @@ const CarD = ({ display }) => {
 
   const getCategoryIcon = (cat) => {
     if (cat === "SUV") {
-      return s1;
-    } else {
-      return s2;
+      return suv;
+    }
+    if (cat === "Luxury") {
+      return luxury;
+    }
+    if (cat === "Sedan") {
+      return sedan;
+    }
+    if (cat === "Economy") {
+      return economy;
+    }
+    if (cat === "Family") {
+      return family;
     }
   };
   return (

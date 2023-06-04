@@ -593,7 +593,7 @@ const Booking = () => {
                       ))}
                     </div>
                     <div className="select-btns">
-                      <div className="btn1">التالى</div>
+                      <div className="btn1" onClick={() => setActiveButton('btn2')}>التالى</div>
                       <div className="btn2">إلغاء</div>
                     </div>
                   </div>
@@ -687,8 +687,8 @@ const Booking = () => {
                       </div>
                     </div>
                     <div className="select-btns">
-                      <div className="btn1">التالى</div>
-                      <div className="btn2">إلغاء</div>
+                      <div className="btn1" onClick={() => setActiveButton('btn3')}>التالى</div>
+                      <div className="btn2" onClick={() => setActiveButton('btn1')}>إلغاء</div>
                     </div>
                   </div>
                 </div>
@@ -718,8 +718,8 @@ const Booking = () => {
                       </div>
                     </div>
                     <div className="select-btns">
-                      <div className="btn1">التالى</div>
-                      <div className="btn2" onClick={handleSubmit}>
+                      <div className="btn1" onClick={handleSubmit}>التالى</div>
+                      <div className="btn2" onClick={() => setActiveButton('btn2')}>
                         إلغاء
                       </div>
                     </div>

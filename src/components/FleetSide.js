@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "../scss/fleetside.scss";
 import { useSelector } from "react-redux";
-// import InputRange from "react-input-range";
-// import "react-input-range/lib/css/index.css";
+import suv from "../assests/cars/SUV (2).png"
+import sedan from "../assests/cars/sedan (2).png"
+import luxury from "../assests/cars/luxury (2).png"
+import family from "../assests/cars/faamily.png"
+import economy from "../assests/cars/economy.png"
 import { fetchCars } from "../Redux/actions/carActions";
 const FleetSide = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -34,6 +37,24 @@ const FleetSide = () => {
       )
     );
   }, [selectedCategories, selectedBrands, selectedAvailability, value]);
+
+  const getCategoryIcon = (cat) => {
+    if (cat === "SUV") {
+      return suv;
+    }
+    if (cat === "Luxury") {
+      return luxury;
+    }
+    if (cat === "Sedan") {
+      return sedan;
+    }
+    if (cat === "Economy") {
+      return economy;
+    }
+    if (cat === "Family") {
+      return family;
+    }
+  };
   return (
     <>
       <div id="fleet-side">
@@ -52,6 +73,9 @@ const FleetSide = () => {
                       <div className="start">{ite.count}</div>
                       <div className="end">
                         <div className="h">{ite._id}</div>
+                        <div className="img">
+                          <img src={getCategoryIcon(ite._id)} alt="" />
+                        </div>
                         <input
                           type="checkbox"
                           onChange={(e) => {
