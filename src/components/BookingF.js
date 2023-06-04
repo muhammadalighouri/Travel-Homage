@@ -11,8 +11,11 @@ import car3 from "../assests/Profile/car3.png";
 import v1 from "../assests/Profile/Vector (1).png";
 import v2 from "../assests/Profile/Vector.png";
 import CarCard from "./CarCard";
+import { useSelector } from "react-redux";
 const BookingF = () => {
   const [activeButton, setActiveButton] = useState('جارية')
+  const bookings = useSelector(state => state.Bookings.bookingsByStatus);
+  const { upcoming, ongoing, completed, cancelled } = bookings || {};
   const data1 = [
     {
       para: "Lorem ipsum dolor sit amet, consectetuer ",
@@ -87,6 +90,7 @@ const BookingF = () => {
     { h: "قادمة", icon: icon4 },
     { h: "الغيت", icon: icon1 },
   ];
+
   return (
     <>
       <div className="container-main">
@@ -103,13 +107,50 @@ const BookingF = () => {
           })}
         </ul>
         <div className="product">
-          {data1.map((i) => {
-            return (
-              <>
-                <CarCard i={i} text={""} />
-              </>
-            );
-          })}
+          {activeButton === "الغيت" && <>
+            {
+              ongoing.map((i) => {
+                return (
+                  <>
+                    <CarCard i={i} text={""} />
+                  </>
+                );
+              })
+            }
+          </>}
+          {activeButton === "قادمة" && <>
+            {
+              completed.map((i) => {
+                return (
+                  <>
+                    <CarCard i={i} text={""} />
+                  </>
+                );
+              })
+            }
+          </>}
+          {activeButton === "أكتملت" && <>
+            {
+              upcoming.map((i) => {
+                return (
+                  <>
+                    <CarCard i={i} text={""} />
+                  </>
+                );
+              })
+            }
+          </>}
+          {activeButton === "جارية" && <>
+            {
+              cancelled.map((i) => {
+                return (
+                  <>
+                    <CarCard i={i} text={""} />
+                  </>
+                );
+              })
+            }
+          </>}
         </div>
       </div>
     </>

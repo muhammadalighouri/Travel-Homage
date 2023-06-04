@@ -11,7 +11,7 @@ const CarCard = ({ i, text }) => {
                 <img src={i.star} alt="" />
                 {i.h}
               </h1>
-              <p>{i.para}</p>
+              <p>{i?.car?.name}</p>
             </div>
             <div className="h-btn">
               <a href="#">{i.btn}</a>
@@ -38,7 +38,7 @@ const CarCard = ({ i, text }) => {
         </div>
         <div className="img-box">
           <div className="img-wrapper">
-            <img src={i.img} alt="" />
+            <img src={i?.car?.mainImages[0]} alt="" />
             <div className="btn">
               <a href="#">{text}</a>
             </div>
