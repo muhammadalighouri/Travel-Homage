@@ -149,11 +149,11 @@ export const nav = [
   },
   {
     name: "الفروع",
-    path: "/register",
+    path: "#geo",
   },
   {
     name: "العروض",
-    path: "/login-in",
+    path: "#car",
   },
 ];
 export const FAQ = [

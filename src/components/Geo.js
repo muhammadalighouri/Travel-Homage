@@ -6,7 +6,7 @@ import Maps from './Maps'
 const Geo = () => {
     return (
         <>
-            <section className='geo'>
+            <section id='geo'>
                 <div className="inner">
                     <div className="container">
                         <div className="grid">

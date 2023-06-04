@@ -11,6 +11,8 @@ import i8 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
 import { nav } from "../assests/data";
+import { ArrowUpward } from "@material-ui/icons";
+
 import "../scss/navigation.scss";
 import { RxCross2 } from "react-icons/rx";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -22,7 +24,7 @@ import { useSelector } from "react-redux";
 import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
-const Navigation = ({ }) => {
+const Navigation = ({}) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -38,6 +40,13 @@ const Navigation = ({ }) => {
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleDropdown2 = () => setDropdownOpen2(!dropdownOpen2);
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  });
   const dropdown1 = [
     {
       icon: i1,
@@ -208,12 +217,12 @@ const Navigation = ({ }) => {
                     {nav.map((ite, ind) => {
                       return (
                         <li key={ind}>
-                          <Link
-                            onClick={() => window.scroll(0, 0)}
-                            to={ite.path}
+                          <a
+                            // onClick={() => window.scroll(0, 0)}
+                            href={ite.path}
                           >
                             {ite.name}
-                          </Link>
+                          </a>
                         </li>
                       );
                     })}
@@ -267,13 +276,7 @@ const Navigation = ({ }) => {
                   setColor(!color);
                 }}
               >
-                {nave ? (
-                  <RxCross2
-                    className="cross"
-                  />
-                ) : (
-                  <HiOutlineBars3 />
-                )}
+                {nave ? <RxCross2 className="cross" /> : <HiOutlineBars3 />}
               </div>
             </div>
           </div>
@@ -289,6 +292,13 @@ const Navigation = ({ }) => {
       </header>
       {mode === "register" && <Register setMode={setMode} />}
       {mode === "login" && <LoginIn setMode={setMode} />}
+      <div
+        onClick={() => window.scroll(0, 0)}
+        className="auto_scroll"
+        style={scroll ? { transform: "scale(1)" } : {}}
+      >
+        <ArrowUpward />
+      </div>
     </>
   );
 };

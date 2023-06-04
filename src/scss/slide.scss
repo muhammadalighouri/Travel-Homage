@@ -1,40 +1,30 @@
 @import "./variable.scss";
 @import "./media.scss";
-.slider {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-  
-    .slider-images {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-  
-      .slider-image {
-        flex: 0 0 100%;
-        height: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-  
-        &.active {
-          opacity: 1;
-        }
-      }
-    }
-  
-    .slider-controls {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      
-      button {
-        margin: 0 5px;
-        padding: 5px 10px;
-      }
-    }
-  }
-  
+
+#app {
+  height: 100%;
+}
+
+
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
