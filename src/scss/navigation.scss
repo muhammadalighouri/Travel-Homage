@@ -7,7 +7,7 @@ header {
   z-index: 1001;
   background: transparent;
   position: relative;
- 
+
   .color {
     background-color: #0000005c;
     position: fixed;
@@ -116,10 +116,10 @@ header {
             .dropdown-menu {
               position: absolute;
               width: 200px;
-              top: 100%;
-              left: 0;
+              padding: 0px;
+              top: 32px;
+              left: -55px;
               z-index: 10;
-
               display: flex;
               flex-direction: column;
               align-items: flex-end;
@@ -127,8 +127,7 @@ header {
               gap: 10px;
               background: #fafafa;
               border: 1px solid rgba(47, 43, 67, 0.1);
-              box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1),
-                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+              box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
               border-radius: 12px;
 
               .person-profile {
@@ -140,7 +139,7 @@ header {
                   grid-template-columns: 0.4fr 0.9fr 0.2fr;
                   align-items: center;
                   justify-content: end;
-                  padding: 18px 16px;
+                  padding: 11.5px 16px;
                   gap: 10px;
 
                   .img {
@@ -202,6 +201,12 @@ header {
                 &:hover {
                   background: #00000014;
                 }
+              }
+            }
+
+            a {
+              &:hover {
+                background: #00000014;
               }
             }
           }
@@ -309,9 +314,7 @@ header {
                     font-family: "Cairo", sans-serif;
                   }
 
-                  &:hover {
-                    background: #00000014;
-                  }
+
                 }
               }
             }
@@ -372,7 +375,8 @@ header {
               display: grid;
               justify-content: center;
               list-style: none;
-              gap: 30px;
+              align-items: center;
+              gap: 18px;
               transform: translateX(0%);
               grid-template-columns: 1fr 0fr 0fr 0fr;
 
@@ -546,6 +550,9 @@ header {
               .drop {
                 display: flex;
                 gap: 4px;
+                height: 25px;
+                padding: 5px 6px;
+                border-left: 1px solid #DCDAE2;
 
                 @include md {
                   display: none;
@@ -562,8 +569,8 @@ header {
                   .dropdown-menu {
                     position: absolute;
                     width: 200px;
-                    top: 200%;
-                    left: -162px;
+                    top: 32px;
+                    left: -228px;
                     z-index: 10;
                     display: flex;
                     flex-direction: column;
@@ -574,6 +581,7 @@ header {
                     border: 1px solid rgba(47, 43, 67, 0.1);
                     box-shadow: 0px 4px 8px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                     border-radius: 12px;
+
                     .person-profile {
                       width: 100%;
 
@@ -713,6 +721,7 @@ header {
     }
   }
 }
+
 .auto_scroll {
   position: fixed;
   bottom: 5%;
@@ -722,7 +731,7 @@ header {
   z-index: 1001;
   transform: scale(0);
 
-  > svg {
+  >svg {
     width: 50px;
     background: #ffcd00;
     height: 50px;
