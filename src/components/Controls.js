@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import "../scss/controls.scss";
 import search from "../assests/search.png";
+import CreatableSelect from "react-select/creatable";
 import switch1 from "../assests/Switches.png";
 import switch2 from "../assests/Switches (1).png";
 import switchIcon from "../assests/Seach mid ICON.png";
@@ -13,10 +14,11 @@ import { ToastContainer, toast } from "react-toastify";
 import text3 from "../assests/control1.png";
 import { setRentalDetails } from "../Redux/actions/rentalActions";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import { getAllAddresses } from "../Redux/actions/addressActions";
 const branches = [
     {
         name: "الرياض - الشفا لبن",
@@ -175,7 +177,9 @@ const Controls = () => {
     const returnLocationRef = useRef(null);
     const { addresses } = useSelector((state) => state.Address);
     const [activeInput, setActiveInput] = useState(null);
-    const [selectedOption, setSelectedOption] = useState("perDay"); // Default selection is 'perDay'
+    const [selectedOption, setSelectedOption] = useState("perDay");
+    const [deliveryAddress, setDeliveryAddress] = useState("");
+    // Default selection is 'perDay'
     const options = branches.map((branch) => ({
         value: branch.name,
         label: branch.name,
@@ -207,13 +211,14 @@ const Controls = () => {
             setRentalDetails({
                 pickupLocation,
                 returnLocation,
+                deliveryAddress,
                 pickupTime,
                 returnTime,
                 selectedOption,
             })
         );
 
-        navigate("/fleet#cars");
+        navigate("/fleet");
     };
     useEffect(() => {
         if (rentalInfo) {
@@ -226,7 +231,27 @@ const Controls = () => {
             setDelivery(rentalInfo.delivery || false);
         }
     }, [rentalInfo]);
-    console.log(pickupLocation);
+    useEffect(() => {
+        dispatch(getAllAddresses());
+    }, []);
+    const handleOptionChange = (value) => {
+        setSelectedOption(value);
+
+        // Uncheck the "Return to a different location" checkbox when "Delivery" is selected
+        dispatch(getAllAddresses());
+        if (value === "delivery") {
+            setDifferentReturnLocation(false);
+        }
+    };
+
+    const handleReturnLocationChange = (checked) => {
+        setDifferentReturnLocation(checked);
+
+        // Select the "perDay" option when "Return to a different location" checkbox is checked
+        if (checked) {
+            setSelectedOption("perDay");
+        }
+    };
     return (
         <section className="controls">
             <div className="container">
@@ -326,8 +351,9 @@ const Controls = () => {
                                             <p>Return to a different location</p>
                                             <input
                                                 type="checkbox"
+                                                checked={differentReturnLocation}
                                                 onChange={(e) =>
-                                                    setDifferentReturnLocation(e.target.checked)
+                                                    handleReturnLocationChange(e.target.checked)
                                                 }
                                             />
                                         </div>
@@ -357,7 +383,7 @@ const Controls = () => {
                                                 type="radio"
                                                 value="delivery"
                                                 checked={selectedOption === "delivery"}
-                                                onChange={(e) => setSelectedOption(e.target.value)}
+                                                onChange={(e) => handleOptionChange(e.target.value)}
                                             />
                                         </div>
                                     </li>
@@ -376,26 +402,25 @@ const Controls = () => {
                                     {differentReturnLocation && (
                                         <>
                                             <div className="btn">
-                                                {
-                                                    option === "delivery" ?
-                                                        <Select
-                                                            options={options}
-                                                            isSearchable={true}
-                                                            onChange={(selectedOption) =>
-                                                                setPickupLocation(selectedOption.value)
-                                                            }
-                                                            placeholder="delivery"
-                                                        /> :
-
-                                                        <Select
-                                                            options={options}
-                                                            isSearchable={true}
-                                                            onChange={(selectedOption) =>
-                                                                setPickupLocation(selectedOption.value)
-                                                            }
-                                                            placeholder="تحديد موقع"
-                                                        />
-                                                }
+                                                {option === "delivery" ? (
+                                                    <Select
+                                                        options={options}
+                                                        isSearchable={true}
+                                                        onChange={(selectedOption) =>
+                                                            setPickupLocation(selectedOption.value)
+                                                        }
+                                                        placeholder="delivery"
+                                                    />
+                                                ) : (
+                                                    <Select
+                                                        options={options}
+                                                        isSearchable={true}
+                                                        onChange={(selectedOption) =>
+                                                            setPickupLocation(selectedOption.value)
+                                                        }
+                                                        placeholder="تحديد موقع"
+                                                    />
+                                                )}
                                             </div>
                                             <div className="switch">
                                                 <img src={switchIcon} alt="" />
@@ -414,15 +439,31 @@ const Controls = () => {
                                     )}
                                     {!differentReturnLocation && (
                                         <>
-                                            <div className="btn">
-                                                <Select
-                                                    options={options}
-                                                    isSearchable={true}
-                                                    onChange={(selectedOption) =>
-                                                        setPickupLocation(selectedOption.value)
-                                                    }
-                                                    placeholder="تحديد موقع"
-                                                />
+                                            <div className="btn" style={{ textAlign: "end" }}>
+                                                {selectedOption === "delivery" ? (
+                                                    <>
+                                                        {addressesData.length === 0 && (
+                                                            <Link to={"/saved-adress"}>Create Address</Link>
+                                                        )}
+                                                        <CreatableSelect
+                                                            options={addressesData}
+                                                            isSearchable={true}
+                                                            onChange={(selectedOption) =>
+                                                                setDeliveryAddress(selectedOption.value)
+                                                            }
+                                                            placeholder="تحديد موقع"
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <Select
+                                                        options={options}
+                                                        isSearchable={true}
+                                                        onChange={(selectedOption) =>
+                                                            setPickupLocation(selectedOption.value)
+                                                        }
+                                                        placeholder="تحديد موقع"
+                                                    />
+                                                )}
                                             </div>
                                         </>
                                     )}
@@ -541,7 +582,6 @@ const Controls = () => {
                                             }
                                             placeholder="تحديد موقع"
                                         />
-
                                     </div>
                                 </div>
                             </div>

@@ -59,7 +59,9 @@ body {
   height: 80px;
   background: #fff;
 }
-
+.parent__map .map:nth-child(1) {
+  display: none;
+}
 .marquee {
   flex: 0 0 auto;
   min-width: 100%;

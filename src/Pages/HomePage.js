@@ -24,7 +24,7 @@ const HomePage = () => {
     dispatch(fetchFilters());
   }, []);
   const array = [
-   
+
     {
       img: first,
       text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
@@ -47,7 +47,9 @@ const HomePage = () => {
         <Car />
         <Car2 />
         <Geo />
-        <Maps />
+        <div className="parent__map">
+          <Maps />
+        </div>
         <Signup />
         <Footer />
         {/* <Booking/> */}

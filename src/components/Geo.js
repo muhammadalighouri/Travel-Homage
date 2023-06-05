@@ -38,7 +38,6 @@ const Geo = () => {
                     </div>
                 </div>
             </section>
-            <Maps />
         </>
     )
 }
