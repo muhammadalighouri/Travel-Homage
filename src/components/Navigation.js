@@ -120,11 +120,19 @@ const Navigation = ({}) => {
                               <img src={arrow1} alt="" />
                             </div>
                             <div className="detial">
-                              <div className="name">Ahmed Deco</div>
+                              <div className="name">
+                                {" "}
+                                {user?.firstName} {user?.lastName}
+                              </div>
                               <p>عضوية ذهبية</p>
                             </div>
                             <div className="img">
-                              <img src={user.avatar?.url} alt="" />
+                              <img
+                                src={
+                                  user.avatar?.url ? user.avatar?.url : avatar
+                                }
+                                alt=""
+                              />{" "}
                             </div>
                           </Link>
                         </div>
