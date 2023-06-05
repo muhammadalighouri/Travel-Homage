@@ -173,12 +173,16 @@ const Controls = () => {
     const maxTime = setHours(setMinutes(new Date(), 0), 9);
     const pickupLocationRef = useRef(null);
     const returnLocationRef = useRef(null);
-
+    const { addresses } = useSelector((state) => state.Address);
     const [activeInput, setActiveInput] = useState(null);
     const [selectedOption, setSelectedOption] = useState("perDay"); // Default selection is 'perDay'
     const options = branches.map((branch) => ({
         value: branch.name,
         label: branch.name,
+    }));
+    const addressesData = addresses.map((add) => ({
+        value: add.street,
+        label: add.street,
     }));
 
     // Handle selection change
@@ -372,14 +376,26 @@ const Controls = () => {
                                     {differentReturnLocation && (
                                         <>
                                             <div className="btn">
-                                                <Select
-                                                    options={options}
-                                                    isSearchable={true}
-                                                    onChange={(selectedOption) =>
-                                                        setPickupLocation(selectedOption.value)
-                                                    }
-                                                    placeholder="تحديد موقع"
-                                                />
+                                                {
+                                                    option === "delivery" ?
+                                                        <Select
+                                                            options={options}
+                                                            isSearchable={true}
+                                                            onChange={(selectedOption) =>
+                                                                setPickupLocation(selectedOption.value)
+                                                            }
+                                                            placeholder="delivery"
+                                                        /> :
+
+                                                        <Select
+                                                            options={options}
+                                                            isSearchable={true}
+                                                            onChange={(selectedOption) =>
+                                                                setPickupLocation(selectedOption.value)
+                                                            }
+                                                            placeholder="تحديد موقع"
+                                                        />
+                                                }
                                             </div>
                                             <div className="switch">
                                                 <img src={switchIcon} alt="" />

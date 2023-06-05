@@ -42,6 +42,11 @@ import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import { createBooking } from "../Redux/actions/bookingActions";
+import {
+  createAddress,
+  getAllAddresses,
+} from "../Redux/actions/addressActions";
+import { toast } from "react-toastify";
 const branches = [
   {
     name: "الرياض - الشفا لبن",
@@ -201,6 +206,8 @@ const Booking = () => {
   const [phone, setPhone] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
+  const [pickupAddress, setPickupAddress] = useState("");
+  const [returnAddress, setReturnAddress] = useState("");
   const [passport, setPassport] = useState("");
   const [email, setEmail] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
@@ -221,6 +228,52 @@ const Booking = () => {
   const [diffInHours, setDiffInHours] = useState(0);
   const option = useSelector((state) => state.RentalInfo?.selectedOption);
   const cars = useSelector((state) => state.Cars?.cars);
+  const [street, setStreet] = useState("");
+  const [addressCity, setAddressCity] = useState("");
+  const [addressState, setAddressState] = useState("");
+  const [zip, setZip] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const creatingAddress = useSelector((state) => state.Address.creatingAddress);
+  const { addresses } = useSelector((state) => state.Address);
+
+  const error = useSelector((state) => state.Address.error);
+
+  const handleCreateAddress = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const handleSubmitAdress = async (e) => {
+    e.preventDefault();
+    const addressData = {
+      street,
+      city: addressCity,
+      state: addressState,
+      zip,
+      user: user._id,
+    };
+
+    try {
+      const response = await dispatch(createAddress(addressData));
+      if (response?.error) {
+        throw new Error(response?.error);
+      }
+
+      dispatch(getAllAddresses());
+      setShowModal(false);
+
+      // Show success toast message only if address is created successfully
+      toast.success("Address created successfully!");
+    } catch (error) {
+      // Handle error if needed
+      toast.error(
+        error.message || "Failed to create address. Please try again."
+      );
+    }
+  };
   useEffect(() => {
     const newCar = cars.find((item) => item._id === car);
     setSelectedCar(newCar);
@@ -250,37 +303,52 @@ const Booking = () => {
 
     if (option === "perDay") {
       const days = diffInDays;
-      totalPrice =
-        (selectedCar?.pricePerDay || 0) * days;
+      totalPrice = (selectedCar?.pricePerDay || 0) * days;
     } else if (option === "perHour") {
       const hours = diffInHours;
-      totalPrice =
-        (selectedCar?.pricePerHour || 0) * hours;
+      totalPrice = (selectedCar?.pricePerHour || 0) * hours;
     }
 
-    console.log({
-      car,
-      user: user._id,
-      pickupLocation,
-      returnLocation,
-      startDate: pickupTime,
-      endDate: returnTime,
-      addons,
-      totalPrice: totalPrice + addonsPrice,
-      rate: option
-    });
-    dispatch(createBooking({
-      car,
-      user: user._id,
-      pickupLocation,
-      returnLocation,
-      startDate: pickupTime,
-      endDate: returnTime,
-      addons,
-      totalPrice: totalPrice + addonsPrice,
-      rate: option
-    }))
-    // Dispatch action or perform further operations
+    if (option === "delivery") {
+      dispatch(
+        createBooking({
+          car,
+          user: user._id,
+          addressLine1: pickupAddress,
+          addressLine2: returnAddress,
+          startDate: pickupTime,
+          endDate: returnTime,
+          addons,
+          totalPrice: totalPrice + addonsPrice,
+          rate: option,
+        })
+      );
+    } else {
+      console.log({
+        car,
+        user: user._id,
+        pickupLocation,
+        returnLocation,
+        startDate: pickupTime,
+        endDate: returnTime,
+        addons,
+        totalPrice: totalPrice + addonsPrice,
+        rate: option,
+      });
+      dispatch(
+        createBooking({
+          car,
+          user: user._id,
+          pickupLocation,
+          returnLocation,
+          startDate: pickupTime,
+          endDate: returnTime,
+          addons,
+          totalPrice: totalPrice + addonsPrice,
+          rate: option,
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -290,8 +358,6 @@ const Booking = () => {
     } else {
       const days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
-
-
     }
   }, [pickupTime, returnTime, option]);
   useEffect(() => {
@@ -326,6 +392,14 @@ const Booking = () => {
     value: branch.name,
     label: branch.name,
   }));
+  const addressesData = addresses.map((add) => ({
+    value: add.street,
+    label: add.street,
+  }));
+  useEffect(() => {
+    dispatch(getAllAddresses());
+  }, []);
+
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName || "");
@@ -353,7 +427,11 @@ const Booking = () => {
       <Banner />
       <section id="booking">
         <div className="container-main">
-          <BookingSidebar price={price} addonsPrice={addonsPrice} selectedCar={selectedCar} />
+          <BookingSidebar
+            price={price}
+            addonsPrice={addonsPrice}
+            selectedCar={selectedCar}
+          />
           <div className="container">
             <div className="grid__one">
               <div className="btns">
@@ -405,199 +483,417 @@ const Booking = () => {
 
             <div className="tabs-content">
               {activeButton === "btn1" && (
-                <div className="grid__two">
-                  <div className="booking-address">
-                    <div className="input-box-wrap">
-                      <div className="plus">
-                        <img src={plus} alt="" />
-                        إضافة عنوان
-                      </div>
-                      <div className="input-box">
-                        <p>عنوان الاتسلام</p>
-                        <Select
-                          options={options}
-                          isSearchable={true}
-                          onChange={(selectedOption) =>
-                            setPickupLocation(selectedOption.value)
-                          }
-                          placeholder="تحديد موقع"
-                        />
-                      </div>
-                    </div>
-                    <div className="input-box-wrap">
-                      <div></div>
-                      <div className="input-box">
-                        <p>سطر العنوان 1</p>
-                        <div className="input">
-                          <input
-                            type="text"
-                            name="addressLine1"
-                            value={addressLine1}
-                            onChange={(e) => setAddressLine1(e.target.value)}
-                            placeholder="سطر العنوان 1"
-                          />
-                          <img src={i2} alt="" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="input-box-wrap">
-                      <div></div>
-
-                      <div className="input-box">
-                        <p>سطر العنوان 2</p>
-                        <div className="input">
-                          <input
-                            type="text"
-                            value={addressLine2}
-                            onChange={(e) => setAddressLine2(e.target.value)}
-                            name="addressLine2"
-                            placeholder="سطر العنوان 2"
-                          />
-                          <img src={i2} alt="" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="input-box-wrap">
-                      <div></div>
-
-                      <div className="two-input-boxes">
-                        <div className="input-box">
-                          <p>المدينة</p>
-                          <div className="input">
-                            <input
-                              type="text"
-                              name="city"
-                              value={city}
-                              onChange={(e) => setCity(e.target.value)}
-                              placeholder="مدينتك"
+                <>
+                  {option === "delivery" ? (
+                    <div className="grid__two">
+                      <div className="booking-address">
+                        <div className="input-box-wrap">
+                          <div className="plus" onClick={handleCreateAddress}>
+                            <img src={plus} alt="" />
+                            إضافة عنوان
+                          </div>
+                          <div className="input-box">
+                            <p>عنوان الاتسلام</p>
+                            <Select
+                              options={addressesData}
+                              isSearchable={true}
+                              onChange={(selectedOption) => {
+                                setPickupAddress(selectedOption.value);
+                                dispatch(getAllAddresses());
+                              }}
+                              onClick={() => {
+                                dispatch(getAllAddresses());
+                              }}
+                              placeholder="تحديد موقع"
                             />
-                            <img src={i2} alt="" />
                           </div>
                         </div>
-                        <div className="input-box">
-                          <p>المحافظة</p>
-                          <div className="input">
-                            <input
-                              type="text"
-                              name="state"
-                              value={state}
-                              onChange={(e) => setState(e.target.value)}
-                              placeholder="محافظتك"
-                            />
-                            <img src={i3} alt="" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="input-box-wrap">
-                      <div className="plus">
-                        <img src={plus} alt="" />
-                        إضافة عنوان
-                      </div>
-                      <div className="input-box">
-                        <p>عنوان الاتسلام</p>
-                        <Select
-                          options={options}
-                          isSearchable={true}
-                          onChange={(selectedOption) =>
-                            setReturnLocation(selectedOption.value)
-                          }
-                          placeholder="تحديد موقع"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="input-box-wrap">
-                      {option === "perDay" ? (
-                        <>
-                          <div className="day">{diffInDays} days</div>
-                          <div className="two">
-                            <div className="item">
-                              <p>المدينة</p>
-                              <div className="btn">
-                                <DatePicker
-                                  selected={pickupTime}
-                                  onChange={(date) => setPickupTime(date)}
-                                  dateFormat="MMMM d, yyyy"
-                                />
-                              </div>
-                            </div>
-                            <div className="item">
-                              <p>المحافظة</p>
-                              <div className="btn">
-                                <DatePicker
-                                  selected={returnTime}
-                                  onChange={(date) => setReturnTime(date)}
-                                  dateFormat="MMMM d, yyyy"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="day">{diffInHours} hours</div>
-                          <div className="two">
-                            <div className="item">
-                              <p>المدينة</p>
-                              <div className="btn">
-                                <DatePicker
-                                  selected={pickupTime}
-                                  onChange={(date) => setPickupTime(date)}
-                                  showTimeSelect
-                                  minTime={minTime}
-                                  maxTime={maxTime}
-                                  dateFormat="Pp"
-                                />
-                              </div>
-                            </div>
-                            <div className="item">
-                              <p>المحافظة</p>
-                              <div className="btn">
-                                <DatePicker
-                                  selected={returnTime}
-                                  onChange={(date) => setReturnTime(date)}
-                                  showTimeSelect
-                                  minTime={minTime}
-                                  maxTime={maxTime}
-                                  dateFormat="Pp"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </>
-                      )}
-
-                    </div>
-
-                    <div className="offers">
-                      <h1>(Addons) الإضافات والعروض</h1>
-                      {addonsData.map((addon) => (
-                        <div className="input-check-wrap" key={addon.value}>
+                        {/* <div className="input-box-wrap">
                           <div></div>
-                          <div className="input-check">
-                            <span>{addon.price}</span>
+                          <div className="input-box">
+                            <p>سطر العنوان 1</p>
                             <div className="input">
-                              <label htmlFor="">{addon.label}</label>
                               <input
-                                type="checkbox"
-                                id={addon.value}
-                                name="addons"
-                                value={addon.value}
-                                checked={addons.includes(addon.value)}
-                                onChange={handleAddonChange}
+                                type="text"
+                                name="addressLine1"
+                                value={addressLine1}
+                                onChange={(e) => setAddressLine1(e.target.value)}
+                                placeholder="سطر العنوان 1"
                               />
+                              <img src={i2} alt="" />
                             </div>
                           </div>
                         </div>
-                      ))}
+                        <div className="input-box-wrap">
+                          <div></div>
+
+                          <div className="input-box">
+                            <p>سطر العنوان 2</p>
+                            <div className="input">
+                              <input
+                                type="text"
+                                value={addressLine2}
+                                onChange={(e) => setAddressLine2(e.target.value)}
+                                name="addressLine2"
+                                placeholder="سطر العنوان 2"
+                              />
+                              <img src={i2} alt="" />
+                            </div>
+                          </div>
+                        </div> */}
+                        {/* <div className="input-box-wrap">
+                          <div></div>
+
+                          <div className="two-input-boxes">
+                            <div className="input-box">
+                              <p>المدينة</p>
+                              <div className="input">
+                                <input
+                                  type="text"
+                                  name="city"
+                                  value={city}
+                                  onChange={(e) => setCity(e.target.value)}
+                                  placeholder="مدينتك"
+                                />
+                                <img src={i2} alt="" />
+                              </div>
+                            </div>
+                            <div className="input-box">
+                              <p>المحافظة</p>
+                              <div className="input">
+                                <input
+                                  type="text"
+                                  name="state"
+                                  value={state}
+                                  onChange={(e) => setState(e.target.value)}
+                                  placeholder="محافظتك"
+                                />
+                                <img src={i3} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                        </div> */}
+                        <div className="input-box-wrap">
+                          <div className="plus" onClick={handleCreateAddress}>
+                            <img src={plus} alt="" />
+                            إضافة عنوان
+                          </div>
+                          <div className="input-box">
+                            <p>عنوان الاتسلام</p>
+                            <Select
+                              options={addressesData}
+                              isSearchable={true}
+                              onChange={(selectedOption) => {
+                                setReturnAddress(selectedOption.value);
+                                dispatch(getAllAddresses());
+                              }}
+                              onClick={() => {
+                                dispatch(getAllAddresses());
+                              }}
+                              placeholder="تحديد موقع"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="input-box-wrap">
+                          {option === "perDay" || "delivery" ? (
+                            <>
+                              <div className="day">{diffInDays} days</div>
+                              <div className="two">
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      dateFormat="MMMM d, yyyy"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="item">
+                                  <p>المحافظة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={returnTime}
+                                      onChange={(date) => setReturnTime(date)}
+                                      dateFormat="MMMM d, yyyy"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="day">{diffInHours} hours</div>
+                              <div className="two">
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      showTimeSelect
+                                      minTime={minTime}
+                                      maxTime={maxTime}
+                                      dateFormat="Pp"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="item">
+                                  <p>المحافظة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={returnTime}
+                                      onChange={(date) => setReturnTime(date)}
+                                      showTimeSelect
+                                      minTime={minTime}
+                                      maxTime={maxTime}
+                                      dateFormat="Pp"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+
+                        <div className="offers">
+                          <h1>(Addons) الإضافات والعروض</h1>
+                          {addonsData.map((addon) => (
+                            <div className="input-check-wrap" key={addon.value}>
+                              <div></div>
+                              <div className="input-check">
+                                <span>{addon.price}</span>
+                                <div className="input">
+                                  <label htmlFor="">{addon.label}</label>
+                                  <input
+                                    type="checkbox"
+                                    id={addon.value}
+                                    name="addons"
+                                    value={addon.value}
+                                    checked={addons.includes(addon.value)}
+                                    onChange={handleAddonChange}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="select-btns">
+                          <div
+                            className="btn1"
+                            onClick={() => setActiveButton("btn2")}
+                          >
+                            التالى
+                          </div>
+                          <div className="btn2">إلغاء</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="select-btns">
-                      <div className="btn1" onClick={() => setActiveButton('btn2')}>التالى</div>
-                      <div className="btn2">إلغاء</div>
+                  ) : (
+                    <div className="grid__two">
+                      <div className="booking-address">
+                        <div className="input-box-wrap">
+                          <div className="plus" onClick={handleCreateAddress}>
+                            <img src={plus} alt="" />
+                            إضافة عنوان
+                          </div>
+                          <div className="input-box">
+                            <p>عنوان الاتسلام</p>
+                            <Select
+                              options={options}
+                              isSearchable={true}
+                              onChange={(selectedOption) =>
+                                setPickupLocation(selectedOption.value)
+                              }
+                              placeholder="تحديد موقع"
+                            />
+                          </div>
+                        </div>
+                        <div className="input-box-wrap">
+                          <div></div>
+                          <div className="input-box">
+                            <p>سطر العنوان 1</p>
+                            <div className="input">
+                              <input
+                                type="text"
+                                name="addressLine1"
+                                value={addressLine1}
+                                onChange={(e) =>
+                                  setAddressLine1(e.target.value)
+                                }
+                                placeholder="سطر العنوان 1"
+                              />
+                              <img src={i2} alt="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="input-box-wrap">
+                          <div></div>
+
+                          <div className="input-box">
+                            <p>سطر العنوان 2</p>
+                            <div className="input">
+                              <input
+                                type="text"
+                                value={addressLine2}
+                                onChange={(e) =>
+                                  setAddressLine2(e.target.value)
+                                }
+                                name="addressLine2"
+                                placeholder="سطر العنوان 2"
+                              />
+                              <img src={i2} alt="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="input-box-wrap">
+                          <div></div>
+
+                          <div className="two-input-boxes">
+                            <div className="input-box">
+                              <p>المدينة</p>
+                              <div className="input">
+                                <input
+                                  type="text"
+                                  name="city"
+                                  value={city}
+                                  onChange={(e) => setCity(e.target.value)}
+                                  placeholder="مدينتك"
+                                />
+                                <img src={i2} alt="" />
+                              </div>
+                            </div>
+                            <div className="input-box">
+                              <p>المحافظة</p>
+                              <div className="input">
+                                <input
+                                  type="text"
+                                  name="state"
+                                  value={state}
+                                  onChange={(e) => setState(e.target.value)}
+                                  placeholder="محافظتك"
+                                />
+                                <img src={i3} alt="" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="input-box-wrap">
+                          <div className="plus" onClick={handleCreateAddress}>
+                            <img src={plus} alt="" />
+                            إضافة عنوان
+                          </div>
+                          <div className="input-box">
+                            <p>عنوان الاتسلام</p>
+                            <Select
+                              options={options}
+                              isSearchable={true}
+                              onChange={(selectedOption) =>
+                                setReturnLocation(selectedOption.value)
+                              }
+                              placeholder="تحديد موقع"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="input-box-wrap">
+                          {option === "perDay" ? (
+                            <>
+                              <div className="day">{diffInDays} days</div>
+                              <div className="two">
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      dateFormat="MMMM d, yyyy"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="item">
+                                  <p>المحافظة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={returnTime}
+                                      onChange={(date) => setReturnTime(date)}
+                                      dateFormat="MMMM d, yyyy"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="day">{diffInHours} hours</div>
+                              <div className="two">
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      showTimeSelect
+                                      minTime={minTime}
+                                      maxTime={maxTime}
+                                      dateFormat="Pp"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="item">
+                                  <p>المحافظة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={returnTime}
+                                      onChange={(date) => setReturnTime(date)}
+                                      showTimeSelect
+                                      minTime={minTime}
+                                      maxTime={maxTime}
+                                      dateFormat="Pp"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+
+                        <div className="offers">
+                          <h1>(Addons) الإضافات والعروض</h1>
+                          {addonsData.map((addon) => (
+                            <div className="input-check-wrap" key={addon.value}>
+                              <div></div>
+                              <div className="input-check">
+                                <span>{addon.price}</span>
+                                <div className="input">
+                                  <label htmlFor="">{addon.label}</label>
+                                  <input
+                                    type="checkbox"
+                                    id={addon.value}
+                                    name="addons"
+                                    value={addon.value}
+                                    checked={addons.includes(addon.value)}
+                                    onChange={handleAddonChange}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="select-btns">
+                          <div
+                            className="btn1"
+                            onClick={() => setActiveButton("btn2")}
+                          >
+                            التالى
+                          </div>
+                          <div className="btn2">إلغاء</div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  )}
+                </>
               )}
 
               {activeButton === "btn2" && (
@@ -687,8 +983,18 @@ const Booking = () => {
                       </div>
                     </div>
                     <div className="select-btns">
-                      <div className="btn1" onClick={() => setActiveButton('btn3')}>التالى</div>
-                      <div className="btn2" onClick={() => setActiveButton('btn1')}>إلغاء</div>
+                      <div
+                        className="btn1"
+                        onClick={() => setActiveButton("btn3")}
+                      >
+                        التالى
+                      </div>
+                      <div
+                        className="btn2"
+                        onClick={() => setActiveButton("btn1")}
+                      >
+                        إلغاء
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -718,8 +1024,13 @@ const Booking = () => {
                       </div>
                     </div>
                     <div className="select-btns">
-                      <div className="btn1" onClick={handleSubmit}>التالى</div>
-                      <div className="btn2" onClick={() => setActiveButton('btn2')}>
+                      <div className="btn1" onClick={handleSubmit}>
+                        التالى
+                      </div>
+                      <div
+                        className="btn2"
+                        onClick={() => setActiveButton("btn2")}
+                      >
                         إلغاء
                       </div>
                     </div>
@@ -727,7 +1038,85 @@ const Booking = () => {
                 </div>
               )}
             </div>
-
+            {showModal && (
+              <div
+                className="modal"
+                style={{
+                  display: "block",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title">Create Address</h5>
+                      <button
+                        type="button"
+                        className="close"
+                        onClick={handleCloseModal}
+                      >
+                        <span>&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <form onSubmit={handleSubmitAdress}>
+                        <div className="form-group">
+                          <label htmlFor="street">Street:</label>
+                          <input
+                            type="text"
+                            id="street"
+                            className="form-control"
+                            value={street}
+                            onChange={(e) => setStreet(e.target.value)}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="city">City:</label>
+                          <input
+                            type="text"
+                            id="city"
+                            className="form-control"
+                            value={addressCity}
+                            onChange={(e) => setAddressCity(e.target.value)}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="state">State:</label>
+                          <input
+                            type="text"
+                            id="state"
+                            className="form-control"
+                            value={addressState}
+                            onChange={(e) => setAddressState(e.target.value)}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="zip">Zip:</label>
+                          <input
+                            type="text"
+                            id="zip"
+                            className="form-control"
+                            value={zip}
+                            onChange={(e) => setZip(e.target.value)}
+                            required
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="btn btn-primary"
+                          disabled={creatingAddress}
+                        >
+                          Create Address
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
