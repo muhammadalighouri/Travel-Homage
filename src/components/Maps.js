@@ -8,6 +8,7 @@ import ico1 from "../assests/ico1.png";
 import ico2 from "../assests/ico2.png";
 import ico3 from "../assests/ico3.png";
 import Select from "react-select";
+import "../scss/map.scss";
 const containerStyle = {
   height: "466px",
   width: "620px",
@@ -25,7 +26,6 @@ function Maps() {
     lng: 0,
   });
   useEffect(() => {
-    // replace this with your own API key
     const apiKey = "AIzaSyAgPZjd32fLLGuiKK0tNpLmqhqEoEBOSG0";
     const address = "شارع النجد بالرياض";
     axios
@@ -33,7 +33,6 @@ function Maps() {
         `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`
       )
       .then((response) => {
-        // update state with location from response
         setLocation(response.data.results[0].geometry.location);
       })
       .catch((error) => {

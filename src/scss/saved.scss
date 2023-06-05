@@ -76,24 +76,17 @@
             .btn1 {
                 a {
                     display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 12px 16px;
-                    gap: 8px;
-
-
-                    width: 190px;
-                    height: 44px;
-
-
-                    /* Primary */
-
-                    background: #FFCD00;
-                    /* Shadows/1 */
-
-                    box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
-                    border-radius: 25px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+    width: 190px;
+    height: 44px;
+    background: #FFCD00;
+    box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+    border-radius: 25px;
+    color: #504d2f;
                 }
             }
 
@@ -105,19 +98,13 @@
                     align-items: center;
                     padding: 12px 16px;
                     gap: 8px;
-
-
                     width: 190px;
                     height: 44px;
-
-
-                    /* Primary */
-
                     background: #00AFAA;
-                    /* Shadows/1 */
-
                     box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
                     border-radius: 25px;
+                    color: white;
+                    text-decoration: none;
                 }
             }
         }

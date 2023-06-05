@@ -2,15 +2,10 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../scss/bannertwo.scss";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
 import "../scss/slide.scss";
-
-// import required modules
 import { Pagination } from "swiper";
-
 export default function Slider({ content }) {
   return (
     <>
