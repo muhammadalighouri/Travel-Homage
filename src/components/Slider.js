@@ -13,15 +13,17 @@ export default function Slider({ content }) {
         <section id="banner-2">
           <Swiper
             autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
+              delay: 250,
+              disableOnInteraction: true,
             }}
             // pagination={{
-            //   dynamicBullets: true,
+            //   clickable: true,
             // }}
+            pagination={{
+              dynamicBullets: true,
+           clickable: true,
+
+            }}
             modules={[Pagination]}
             className="mySwiper"
           >

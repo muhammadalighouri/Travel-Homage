@@ -31,6 +31,16 @@
                     align-items: center;
                     justify-content: center;
                 }
+                @include md{
+                    > div
+                    {
+                        height: 466px;
+                        width: 100% !important;
+                        border-radius: 30px;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                }
             }
 
             .info {
