@@ -4,7 +4,10 @@ import t2 from "../assests/Profile/trash (1).png";
 import i1 from "../assests/Profile/t1.png";
 import i2 from "../assests/Profile/t2.png";
 import '../scss/saved.scss'
+import CreateAddressForm from "./CreateAddressForm";
+import { useSelector } from "react-redux";
 const Saved = () => {
+  const { addresses } = useSelector(state => state.Address) || {}
   const list = [
     {
       h: "Home",
@@ -38,19 +41,20 @@ const Saved = () => {
     <>
       <section id="saved">
         <div className="container">
-          {list.map((a) => {
+          <CreateAddressForm />
+          {addresses?.map((a) => {
             return (
               <>
                 <div className="saved-box">
-                <div className="btns">
+                  <div className="btns">
                     <div className="btn1">
                       <a href="#">
-                        {a.btn1} <img src={a.btni1} alt="" />{" "}
+                        Confirm <img src={a.btni1} alt="" />{" "}
                       </a>
                     </div>
                     <div className="btn2">
                       <a href="#">
-                        {a.btn2} <img src={a.btni2} alt="" />{" "}
+                        Edit  <img src={a.btni2} alt="" />{" "}
                       </a>
                     </div>
                   </div>
@@ -58,11 +62,14 @@ const Saved = () => {
                   <div className="box">
                     <div className="content">
                       <img src={a.icon} alt="" />
-                      <h1>{a.h}</h1>
+                      <h1>{a.title}</h1>
                     </div>
-                    <p>{a.p}</p>
+                    <p>City: {a.city}</p>
+                    <p>State: {a.state}</p>
+                    <p>Street: {a.street}</p>
+                    <p>Zip: {a.zip}</p>
                   </div>
-          
+
                 </div>
               </>
             );

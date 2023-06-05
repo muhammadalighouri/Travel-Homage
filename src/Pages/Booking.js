@@ -208,6 +208,7 @@ const Booking = () => {
   const [addressLine2, setAddressLine2] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [returnAddress, setReturnAddress] = useState("");
+  const [title, setTitle] = useState("")
   const [passport, setPassport] = useState("");
   const [email, setEmail] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
@@ -257,10 +258,8 @@ const Booking = () => {
     };
 
     try {
-      const response = await dispatch(createAddress(addressData));
-      if (response?.error) {
-        throw new Error(response?.error);
-      }
+      await dispatch(createAddress(addressData));
+
 
       dispatch(getAllAddresses());
       setShowModal(false);
@@ -1060,6 +1059,17 @@ const Booking = () => {
                     </div>
                     <div className="modal-body">
                       <form onSubmit={handleSubmitAdress}>
+                        <div className="form-group">
+                          <label htmlFor="street">Title:</label>
+                          <input
+                            type="text"
+                            id="titlel"
+                            className="form-control"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                          />
+                        </div>
                         <div className="form-group">
                           <label htmlFor="street">Street:</label>
                           <input
