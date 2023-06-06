@@ -30,19 +30,20 @@ header {
       right: 6px;
       cursor: pointer;
 
-      @include smobile {
+      @include sm {
         font-size: 40px;
+      right: -3px;
+
       }
     }
 
     .container {
       max-width: 1300px;
       margin: 0 auto;
-      padding: 31px 25px;
+      padding: 28px 20px;
       background: #ffffff;
       border-bottom-right-radius: 75px;
       border-bottom-left-radius: 75px;
-
       @include md {
         padding: 20px 10px;
         border-bottom-right-radius: 50px;
@@ -53,7 +54,7 @@ header {
         align-items: center;
         position: relative;
         display: grid;
-        grid-template-columns: 1.6fr 1.5fr 3fr 1fr;
+        grid-template-columns: 1.8fr 1.5fr 3fr 1fr;
         gap: 10px;
 
         @include lg {
@@ -215,9 +216,17 @@ header {
         .user__signout {
           display: flex;
           justify-content: space-between;
-          gap: 6px;
+          gap: 15px;
           align-items: center;
 
+          @include sm {
+            gap: 0px;
+          }
+button{
+  @include sm {
+    font-size: 14px;
+  }
+}
           .drop {
             opacity: 0;
             display: none;
@@ -323,11 +332,11 @@ header {
 
           button.signup {
             background: #fff;
-            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
-              inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1);
             border-radius: 8px;
             padding: 8px 12px;
             color: black;
+            margin: 0px 8px;
           }
 
           button.login {

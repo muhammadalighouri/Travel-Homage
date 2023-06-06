@@ -3,9 +3,13 @@
 
 #fleet {
   background: #ffffff;
-
   width: 100%;
-  border-radius: 150px 150px 0px 0px;
+  border-radius: 75px 75px 0px 0px;
+
+  @include sm {
+    border-radius: 60px 60px 0px 0px;
+
+  }
 
   .container {
     max-width: 1250px;
@@ -16,15 +20,26 @@
     align-items: center;
     justify-content: center;
     gap: 60px;
+
     .top-main {
       display: grid;
       grid-template-columns: 1fr 1.4fr;
+      padding: 30px 0px;
+
+      @include md {
+        grid-template-columns: 1fr;
+        row-gap: 30px;
+      }
 
       .first {
         display: flex;
         align-items: end;
         justify-content: start;
         gap: 20px;
+
+        @include sm {
+          gap: 0px;
+        }
       }
 
       .second {
@@ -68,6 +83,7 @@
             border: 1px solid rgba(47, 43, 67, 0.1);
             border-radius: 20px;
           }
+
           .btn__active {
             cursor: pointer;
             display: flex;
@@ -99,9 +115,14 @@
         display: grid;
         grid-gap: 60px 25px;
         grid-template-columns: 1fr 1fr 1fr;
-        height: -moz-fit-content;
         height: fit-content;
         width: max-content;
+        @include md{
+          grid-template-columns: 1fr 1fr;
+        }
+        @include sm {
+          grid-template-columns: 1fr;
+        }
       }
     }
   }
