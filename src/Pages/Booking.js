@@ -235,7 +235,7 @@ const Booking = () => {
   const [addressState, setAddressState] = useState("");
   const [zip, setZip] = useState("");
   const [showModal, setShowModal] = useState(false);
-
+  const navigate = useNavigate()
   const creatingAddress = useSelector((state) => state.Address.creatingAddress);
   const { addresses } = useSelector((state) => state.Address);
 
@@ -301,7 +301,6 @@ const Booking = () => {
     return discountAmount;
   };
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -334,30 +333,10 @@ const Booking = () => {
         })
 
       );
-      console.log({
-        car,
-        user: user._id,
-        address: deliveryAddress,
-        returnLocation,
-        startDate: pickupTime,
-        endDate: returnTime,
-        addons,
-        totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
-        rate: option,
-      });
+      navigate('/booking-history');
+
     } else {
-      console.log({
-        car,
-        user: user._id,
-        pickupLocation,
-        returnLocation,
-        startDate: pickupTime,
-        endDate: returnTime,
-        addons,
-        totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
-        rate: option,
-        delivery: option === "delivery" ? true : false,
-      });
+
       dispatch(
         createBooking({
           car,
@@ -372,6 +351,7 @@ const Booking = () => {
           delivery: option === "delivery" ? true : false,
         })
       );
+      navigate('/booking-history');
     }
   };
 
