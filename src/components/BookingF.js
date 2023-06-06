@@ -118,7 +118,7 @@ const BookingF = () => {
                 ongoing.length > 0 ? ongoing.map((i) => {
                   return (
                     <>
-                      <CarCard i={i} text={""} />
+                      <CarCard type={"ongoing"} i={i} text={""} />
                     </>
                   );
                 })
