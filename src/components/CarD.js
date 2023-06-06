@@ -13,11 +13,11 @@ import s3 from "../assests/Fleet/span3.png";
 import s4 from "../assests/Fleet/span4.png";
 import f4 from "../assests/Fleet/i.11.png";
 import f5 from "../assests/Fleet/i.22.png";
-import suv from "../assests/cars/SUV (2).png"
-import sedan from "../assests/cars/sedan (2).png"
-import luxury from "../assests/cars/luxury (2).png"
-import family from "../assests/cars/faamily.png"
-import economy from "../assests/cars/economy.png"
+import suv from "../assests/cars/SUV (2).png";
+import sedan from "../assests/cars/sedan (2).png";
+import luxury from "../assests/cars/luxury (2).png";
+import family from "../assests/cars/faamily.png";
+import economy from "../assests/cars/economy.png";
 import "../scss/card.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Navigate from "./Navigate";
@@ -28,6 +28,7 @@ import {
 } from "../Redux/actions/favouriteActions";
 import { toast } from "react-toastify";
 import { fetchCars, toggleAction } from "../Redux/actions/carActions";
+import filter from "../assests/filter.png";
 const CarD = ({ display }) => {
   const { cars, loading } = useSelector((state) => state.Cars) || {};
   const info = useSelector((state) => state.RentalInfo?.selectedOption);
@@ -37,7 +38,7 @@ const CarD = ({ display }) => {
   const [favoriteCars, setFavoriteCars] = useState(null);
   const dispatch = useDispatch();
   const toggle = useSelector((state) => state.toggle.toggle);
-  const handleShowFavorites = () => { };
+  const handleShowFavorites = () => {};
   useEffect(() => {
     dispatch(fetchCars());
   }, [toggle]);
@@ -105,8 +106,7 @@ const CarD = ({ display }) => {
     <>
       <div>
         <div className="btns">
-          <div className="select">{/* <img src={field} alt="" /> */}</div>
-          <div className="impression" style={{ marginBottom: "15px" }}>
+          <div className="impression" >
             <div
               className={toggle ? "btn__active btn" : "btn"}
               onClick={handleFavorite}
@@ -116,6 +116,7 @@ const CarD = ({ display }) => {
               <img src={!toggle ? f5 : green} alt="" />
             </div>
           </div>
+    
         </div>
         <div className="flex">
           {loading ? (

@@ -63,11 +63,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 25px;
 
         .impression {
           display: flex;
           align-items: center;
-          width: 100%;
           justify-content: end;
           gap: 20px;
 
@@ -102,16 +102,19 @@
             background: #d9f9e6;
           }
         }
+
+
       }
     }
 
     .flex-wrap {
       display: grid;
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 2fr 1fr;
       grid-gap: 25px;
       padding-bottom: 0px;
+      position: relative;
 
-      @include sm {
+      @include md {
         grid-template-columns: 1fr;
       }
 
@@ -125,14 +128,19 @@
         @include lg {
           grid-template-columns: 1fr 1fr;
         }
+
         @include md {
           height: 100%;
           width: 100%;
         }
 
-        @include md {
+        @media (max-width:686px) {
+
           grid-template-columns: 1fr;
+
         }
+
+
       }
     }
   }
