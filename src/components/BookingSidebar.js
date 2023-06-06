@@ -7,6 +7,10 @@ import inpu from "../assests/booking/Tail icon.png";
 import "../scss/bookingside.scss";
 import img1 from "../assests/booking/Rectangle 23.png";
 const BookingSidebar = ({ selectedCar, addonsPrice, price }) => {
+  const calculateDiscountAmount = (price, discount) => {
+    const discountAmount = (price * discount) / 100;
+    return discountAmount;
+  };
 
   return (
     <>
@@ -50,6 +54,10 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price }) => {
               <span className="n">{addonsPrice}ر.س.</span>
             </li>
             <li className="box">
+              <span className="h">discount</span>
+              <span className="n">{calculateDiscountAmount(price, selectedCar?.discount)}ر.س.</span>
+            </li>
+            <li className="box">
               <span className="h">الضريبة</span>
               <span className="n" style={{ color: "#00AFAA" }}>
                 مجاناً
@@ -59,7 +67,7 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price }) => {
               <span className="h" style={{ fontWeight: "700" }}>
                 الإجمالي
               </span>
-              <span className="n">{price + addonsPrice} ر.س.</span>
+              <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount)} ر.س.</span>
             </li>
           </ul>
         </div>

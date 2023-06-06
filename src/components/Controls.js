@@ -171,8 +171,8 @@ const Controls = () => {
     const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
     const [activeButton, setActiveButton] = useState("btn3");
     const navigate = useNavigate();
-    const minTime = setHours(setMinutes(new Date(), 0), 21);
-    const maxTime = setHours(setMinutes(new Date(), 0), 9);
+    const minTime = setHours(setMinutes(new Date(), 0), 9);
+    const maxTime = setHours(setMinutes(new Date(), 0), 21);
     const pickupLocationRef = useRef(null);
     const returnLocationRef = useRef(null);
     const { addresses } = useSelector((state) => state.Address);
@@ -185,10 +185,10 @@ const Controls = () => {
         label: branch.name,
     }));
     const addressesData = addresses.map((add) => ({
-        value: add.street,
-        label: add.street,
+        value: add._id,
+        label: add.title,
     }));
-
+    const presentDay = new Date();
     // Handle selection change
     const handleChange = (selectedOption) => {
         console.log(`Option selected:`, selectedOption);
@@ -202,21 +202,35 @@ const Controls = () => {
     }, [activeInput]);
 
     const handleSubmit = () => {
-        if (!pickupLocation || !pickupTime || !returnTime || !selectedOption) {
-            toast.error("Please fill out all fields");
-            return;
+        if (selectedOption === "delivery") {
+            if (!deliveryAddress || !pickupTime || !returnTime || !selectedOption) {
+                toast.error("Please fill out all fields");
+                return;
+            }
+            dispatch(
+                setRentalDetails({
+                    deliveryAddress,
+                    pickupTime,
+                    returnTime,
+                    selectedOption,
+                })
+            );
+        } else {
+            if (!pickupLocation || !pickupTime || !returnTime || !selectedOption) {
+                toast.error("Please fill out all fields");
+                return;
+            }
+            dispatch(
+                setRentalDetails({
+                    pickupLocation,
+                    returnLocation,
+                    deliveryAddress,
+                    pickupTime,
+                    returnTime,
+                    selectedOption,
+                })
+            );
         }
-
-        dispatch(
-            setRentalDetails({
-                pickupLocation,
-                returnLocation,
-                deliveryAddress,
-                pickupTime,
-                returnTime,
-                selectedOption,
-            })
-        );
 
         navigate("/fleet");
     };
@@ -289,7 +303,7 @@ const Controls = () => {
                                 </button>
                             </div>
                         </div>
-                        {selectedOption === "perDay" ? (
+                        {selectedOption === "perDay" && (
                             <div className="two">
                                 <div className="item">
                                     <p>Pickup date</p>
@@ -298,6 +312,35 @@ const Controls = () => {
                                             selected={pickupTime}
                                             onChange={(date) => setPickupTime(date)}
                                             dateFormat="MMMM d, yyyy"
+                                            minDate={presentDay}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <p>Return date</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={returnTime}
+                                            onChange={(date) => setReturnTime(date)}
+                                            minDate={pickupTime || presentDay}
+                                            dateFormat="MMMM d, yyyy"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        )
+
+                        }
+                        {selectedOption === "delivery" && (
+                            <div className="two">
+                                <div className="item">
+                                    <p>Pickup date</p>
+                                    <div className="btn">
+                                        <DatePicker
+                                            selected={pickupTime}
+                                            onChange={(date) => setPickupTime(date)}
+                                            dateFormat="MMMM d, yyyy"
+                                            minDate={presentDay}
                                         />
                                     </div>
                                 </div>
@@ -308,11 +351,15 @@ const Controls = () => {
                                             selected={returnTime}
                                             onChange={(date) => setReturnTime(date)}
                                             dateFormat="MMMM d, yyyy"
+                                            minDate={pickupTime || presentDay}
                                         />
                                     </div>
                                 </div>
                             </div>
-                        ) : (
+                        )
+
+                        }
+                        {selectedOption === "perHour" && (
                             <div className="two">
                                 <div className="item">
                                     <p>Pickup date & time</p>
@@ -322,6 +369,7 @@ const Controls = () => {
                                             onChange={(date) => setPickupTime(date)}
                                             showTimeSelect
                                             minTime={minTime}
+
                                             maxTime={maxTime}
                                             dateFormat="Pp"
                                         />
@@ -341,7 +389,9 @@ const Controls = () => {
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        )
+
+                        }
 
                         <div className="three">
                             <div className="top">
