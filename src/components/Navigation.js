@@ -179,7 +179,13 @@ const Navigation = ({}) => {
                   <button className="login" onClick={() => setMode("login")}>
                     تسجيل الدخول
                   </button>
-                  <button className="drop" onClick={toggleDropdown2}>
+                </div>
+              )}
+              <div className="translate">
+                <div className="first">ر.س</div>
+                <div className="second">English</div>
+              </div>
+              <button className="res-drop" onClick={toggleDropdown2}>
                     الشركة
                     <img src={down} alt="" />
                     {dropdownOpen2 && (
@@ -208,12 +214,6 @@ const Navigation = ({}) => {
                       </div>
                     )}
                   </button>
-                </div>
-              )}
-              <div className="translate">
-                <div className="first">ر.س</div>
-                <div className="second">English</div>
-              </div>
               <nav>
                 <div className="nav-wrap">
                   <ul style={nave ? { transform: "translateX(0%) " } : {}}>

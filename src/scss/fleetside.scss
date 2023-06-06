@@ -1,7 +1,13 @@
+@import "./variable.scss";
+@import "./media.scss";
 #fleet-side {
+  
   aside {
     * {
       color: black;
+    }
+    @include sm{
+      max-width: 400px;
     }
     .item__ {
       padding: 15px 10px;

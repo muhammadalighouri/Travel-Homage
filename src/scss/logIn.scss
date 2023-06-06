@@ -58,6 +58,9 @@ top: 0px;
     position: relative;
     width: -webkit-fill-available;
     margin: 0px 20px;
+    @include sm {
+      padding: 60px 52px;
+    }
     .cross {
       position: absolute;
       top: 4%;

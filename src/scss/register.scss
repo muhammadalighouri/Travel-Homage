@@ -63,7 +63,9 @@
     border-radius: 50px;
     margin: auto;
     position: relative;
-
+@include sm {
+  padding: 20px 30px 15px 30px;
+}
     .cross {
       position: absolute;
       top: 4%;
@@ -114,6 +116,7 @@
         flex-direction: column;
         align-items: start;
         justify-content: center;
+        width: 100%;
         gap: 5px;
         font-family: "Cairo", sans-serif;
 
@@ -175,9 +178,9 @@
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          // @include md{
-          //     flex-direction: column;
-          // }
+          @include md{
+              flex-direction: column;
+          }
         }
 
         p {
