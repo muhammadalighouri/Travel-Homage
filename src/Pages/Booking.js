@@ -208,6 +208,7 @@ const Booking = () => {
   const [addressLine2, setAddressLine2] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [returnAddress, setReturnAddress] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState("")
   const [title, setTitle] = useState("")
   const [passport, setPassport] = useState("");
   const [email, setEmail] = useState("");
@@ -250,6 +251,7 @@ const Booking = () => {
   const handleSubmitAdress = async (e) => {
     e.preventDefault();
     const addressData = {
+      title,
       street,
       city: addressCity,
       state: addressState,
@@ -261,11 +263,12 @@ const Booking = () => {
       await dispatch(createAddress(addressData));
 
 
-      dispatch(getAllAddresses());
+
       setShowModal(false);
 
       // Show success toast message only if address is created successfully
       toast.success("Address created successfully!");
+      dispatch(getAllAddresses());
     } catch (error) {
       // Handle error if needed
       toast.error(
@@ -293,6 +296,10 @@ const Booking = () => {
     }
     return total;
   }, 0);
+  const calculateDiscountAmount = (price, discount) => {
+    const discountAmount = (price * discount) / 100;
+    return discountAmount;
+  };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (event) => {
@@ -307,21 +314,37 @@ const Booking = () => {
       const hours = diffInHours;
       totalPrice = (selectedCar?.pricePerHour || 0) * hours;
     }
+    else {
+      const days = diffInDays;
+      totalPrice = (selectedCar?.pricePerDay || 0) * days;
+    }
 
     if (option === "delivery") {
       dispatch(
         createBooking({
           car,
           user: user._id,
-          addressLine1: pickupAddress,
-          addressLine2: returnAddress,
+          address: deliveryAddress,
+          returnLocation,
           startDate: pickupTime,
           endDate: returnTime,
           addons,
-          totalPrice: totalPrice + addonsPrice,
+          totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
           rate: option,
         })
+
       );
+      console.log({
+        car,
+        user: user._id,
+        address: deliveryAddress,
+        returnLocation,
+        startDate: pickupTime,
+        endDate: returnTime,
+        addons,
+        totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
+        rate: option,
+      });
     } else {
       console.log({
         car,
@@ -331,8 +354,9 @@ const Booking = () => {
         startDate: pickupTime,
         endDate: returnTime,
         addons,
-        totalPrice: totalPrice + addonsPrice,
+        totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
         rate: option,
+        delivery: option === "delivery" ? true : false,
       });
       dispatch(
         createBooking({
@@ -343,8 +367,9 @@ const Booking = () => {
           startDate: pickupTime,
           endDate: returnTime,
           addons,
-          totalPrice: totalPrice + addonsPrice,
+          totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
           rate: option,
+          delivery: option === "delivery" ? true : false,
         })
       );
     }
@@ -358,7 +383,7 @@ const Booking = () => {
       const days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
     }
-  }, [pickupTime, returnTime, option]);
+  }, [pickupTime, returnTime, option, car]);
   useEffect(() => {
     let totalPrice = 0;
     let days = 0;
@@ -374,26 +399,31 @@ const Booking = () => {
 
     if (option === "perDay") {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
-    } else if (option === "perHour") {
+    }
+
+    else if (option === "perHour") {
       totalPrice = (selectedCar?.pricePerHour || 0) * hours;
+    }
+    else if (option === "delivery") {
+      totalPrice = (selectedCar?.pricePerDay || 0) * days;
+      console.log(totalPrice);
     }
 
     setPrice(totalPrice);
-  }, [pickupTime, returnTime, option, selectedCar]);
-
-  useEffect(() => {
     console.log(price);
-  }, [price]);
+  }, [pickupTime, returnTime, option, selectedCar, car]);
+
+  const presentDay = new Date();
 
   // End time at 9PM
   const maxTime = setHours(setMinutes(new Date(), 0), 21);
-  const options = branches.map((branch) => ({
+  const branchesData = branches.map((branch) => ({
     value: branch.name,
     label: branch.name,
   }));
   const addressesData = addresses.map((add) => ({
-    value: add.street,
-    label: add.street,
+    value: add._id,
+    label: add.title,
   }));
   useEffect(() => {
     dispatch(getAllAddresses());
@@ -415,9 +445,8 @@ const Booking = () => {
       setReturnLocation(rentalInfo.returnLocation || "");
       setPickupTime(rentalInfo.pickupTime || new Date());
       setReturnTime(rentalInfo.returnTime || new Date());
-      setPerDay(rentalInfo.perDay || false);
-      setPerHour(rentalInfo.perHour || false);
-      setDelivery(rentalInfo.delivery || false);
+
+      setDelivery(rentalInfo.deliveryAddress || false);
     }
   }, [rentalInfo]);
   return (
@@ -497,7 +526,7 @@ const Booking = () => {
                               options={addressesData}
                               isSearchable={true}
                               onChange={(selectedOption) => {
-                                setPickupAddress(selectedOption.value);
+                                setDeliveryAddress(selectedOption.value);
                                 dispatch(getAllAddresses());
                               }}
                               onClick={() => {
@@ -573,17 +602,17 @@ const Booking = () => {
                           </div>
                         </div> */}
                         <div className="input-box-wrap">
-                          <div className="plus" onClick={handleCreateAddress}>
+                          <div className="plus" style={{ opacity: '0' }} >
                             <img src={plus} alt="" />
                             إضافة عنوان
                           </div>
                           <div className="input-box">
                             <p>عنوان الاتسلام</p>
                             <Select
-                              options={addressesData}
+                              options={branchesData}
                               isSearchable={true}
                               onChange={(selectedOption) => {
-                                setReturnAddress(selectedOption.value);
+                                setReturnLocation(selectedOption.value);
                                 dispatch(getAllAddresses());
                               }}
                               onClick={() => {
@@ -595,7 +624,7 @@ const Booking = () => {
                         </div>
 
                         <div className="input-box-wrap">
-                          {option === "perDay" || "delivery" ? (
+                          {option === "perDay" && (
                             <>
                               <div className="day">{diffInDays} days</div>
                               <div className="two">
@@ -606,6 +635,7 @@ const Booking = () => {
                                       selected={pickupTime}
                                       onChange={(date) => setPickupTime(date)}
                                       dateFormat="MMMM d, yyyy"
+                                      minDate={presentDay}
                                     />
                                   </div>
                                 </div>
@@ -616,12 +646,43 @@ const Booking = () => {
                                       selected={returnTime}
                                       onChange={(date) => setReturnTime(date)}
                                       dateFormat="MMMM d, yyyy"
+                                      minDate={presentDay}
                                     />
                                   </div>
                                 </div>
                               </div>
                             </>
-                          ) : (
+                          )}
+                          {option === "delivery" && (
+                            <>
+                              <div className="day">{diffInDays} days</div>
+                              <div className="two">
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      dateFormat="MMMM d, yyyy"
+                                      minDate={presentDay}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="item">
+                                  <p>المحافظة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={returnTime}
+                                      onChange={(date) => setReturnTime(date)}
+                                      dateFormat="MMMM d, yyyy"
+                                      minDate={presentDay}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                          {option === "perHour" && (
                             <>
                               <div className="day">{diffInHours} hours</div>
                               <div className="two">
@@ -634,6 +695,7 @@ const Booking = () => {
                                       showTimeSelect
                                       minTime={minTime}
                                       maxTime={maxTime}
+                                      minDate={presentDay}
                                       dateFormat="Pp"
                                     />
                                   </div>
@@ -647,6 +709,7 @@ const Booking = () => {
                                       showTimeSelect
                                       minTime={minTime}
                                       maxTime={maxTime}
+                                      minDate={presentDay}
                                       dateFormat="Pp"
                                     />
                                   </div>
@@ -693,14 +756,14 @@ const Booking = () => {
                     <div className="grid__two">
                       <div className="booking-address">
                         <div className="input-box-wrap">
-                          <div className="plus" onClick={handleCreateAddress}>
+                          <div className="plus" style={{ opacity: '0' }}>
                             <img src={plus} alt="" />
                             إضافة عنوان
                           </div>
                           <div className="input-box">
                             <p>عنوان الاتسلام</p>
                             <Select
-                              options={options}
+                              options={branchesData}
                               isSearchable={true}
                               onChange={(selectedOption) =>
                                 setPickupLocation(selectedOption.value)
@@ -709,84 +772,16 @@ const Booking = () => {
                             />
                           </div>
                         </div>
-                        <div className="input-box-wrap">
-                          <div></div>
-                          <div className="input-box">
-                            <p>سطر العنوان 1</p>
-                            <div className="input">
-                              <input
-                                type="text"
-                                name="addressLine1"
-                                value={addressLine1}
-                                onChange={(e) =>
-                                  setAddressLine1(e.target.value)
-                                }
-                                placeholder="سطر العنوان 1"
-                              />
-                              <img src={i2} alt="" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="input-box-wrap">
-                          <div></div>
 
-                          <div className="input-box">
-                            <p>سطر العنوان 2</p>
-                            <div className="input">
-                              <input
-                                type="text"
-                                value={addressLine2}
-                                onChange={(e) =>
-                                  setAddressLine2(e.target.value)
-                                }
-                                name="addressLine2"
-                                placeholder="سطر العنوان 2"
-                              />
-                              <img src={i2} alt="" />
-                            </div>
-                          </div>
-                        </div>
                         <div className="input-box-wrap">
-                          <div></div>
-
-                          <div className="two-input-boxes">
-                            <div className="input-box">
-                              <p>المدينة</p>
-                              <div className="input">
-                                <input
-                                  type="text"
-                                  name="city"
-                                  value={city}
-                                  onChange={(e) => setCity(e.target.value)}
-                                  placeholder="مدينتك"
-                                />
-                                <img src={i2} alt="" />
-                              </div>
-                            </div>
-                            <div className="input-box">
-                              <p>المحافظة</p>
-                              <div className="input">
-                                <input
-                                  type="text"
-                                  name="state"
-                                  value={state}
-                                  onChange={(e) => setState(e.target.value)}
-                                  placeholder="محافظتك"
-                                />
-                                <img src={i3} alt="" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="input-box-wrap">
-                          <div className="plus" onClick={handleCreateAddress}>
+                          <div className="plus" style={{ opacity: '0' }} >
                             <img src={plus} alt="" />
                             إضافة عنوان
                           </div>
                           <div className="input-box">
                             <p>عنوان الاتسلام</p>
                             <Select
-                              options={options}
+                              options={branchesData}
                               isSearchable={true}
                               onChange={(selectedOption) =>
                                 setReturnLocation(selectedOption.value)
@@ -806,6 +801,7 @@ const Booking = () => {
                                   <div className="btn">
                                     <DatePicker
                                       selected={pickupTime}
+                                      value={pickupTime}
                                       onChange={(date) => setPickupTime(date)}
                                       dateFormat="MMMM d, yyyy"
                                     />

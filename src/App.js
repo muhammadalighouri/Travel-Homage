@@ -47,6 +47,7 @@ function App() {
           <Route path="/doucment" element={<Doucment />} />
           <Route path="/membership" element={<MemberShip />} />
           <Route path="/saved-adress" element={<SavedAdress />} />
+          <Route path="/saved-adress/:editId" element={<SavedAdress />} />
           <Route path="/ride-ratings" element={<RideRatings />} />
           <Route path="/user-customer" element={<Customer />} />
           <Route path="/fleet" element={<Fleet />} />

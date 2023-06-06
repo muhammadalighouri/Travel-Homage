@@ -1,28 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createAddress } from "../Redux/actions/addressActions";
+import { createAddress, getAddressById, updateAddress } from "../Redux/actions/addressActions";
 import { getAllAddresses } from "../Redux/actions/addressActions";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const CreateAddressForm = () => {
+const CreateAddressForm = ({ edit, setEdit }) => {
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [zip, setZip] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState("");
     const dispatch = useDispatch();
     const creatingAddress = useSelector((state) => state.Address.creatingAddress);
     const { user } = useSelector((state) => state.UserLogin.userInfo);
     const { addresses } = useSelector((state) => state.Address);
-    const navigate = useNavigate()
+    const { address } = useSelector((state) => state.AddressDetails) || {};
+    const navigate = useNavigate();
     const handleCreateAddress = () => {
         setShowModal(true);
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
+        setEdit(null)
+        setTitle("");
+        setCity("");
+        setState("");
+        setStreet("");
+        setZip("");
     };
 
     const handleSubmit = async (e) => {
@@ -32,42 +40,94 @@ const CreateAddressForm = () => {
             city,
             state,
             zip,
-            title, user: user._id
+            title,
+            user: user._id,
         };
-        try {
-            await dispatch(createAddress(addressData));
+        if (edit) {
+            try {
+                await dispatch(updateAddress(edit, addressData));
 
+                setShowModal(false);
+                dispatch(getAllAddresses());
+                // Show success toast message only if address is created successfully
+                toast.success("Address Updated successfully!");
+                setEdit(null);
+                setTitle("");
+                setCity("");
+                setState("");
+                setStreet("");
+                setZip("");
+            } catch (error) {
+                // Handle error if needed
+                toast.error(
+                    error.message || "Failed to create address. Please try again."
+                );
+                setEdit(null)
+            }
+        } else {
+            try {
+                await dispatch(createAddress(addressData));
 
-            dispatch(getAllAddresses());
-            setShowModal(false);
-            navigate('/')
-            // Show success toast message only if address is created successfully
-            toast.success("Address created successfully!");
-        } catch (error) {
-            // Handle error if needed
-            toast.error(
-                error.message || "Failed to create address. Please try again."
-            );
+                dispatch(getAllAddresses());
+                setShowModal(false);
+                navigate("/");
+                // Show success toast message only if address is created successfully
+                setTitle("");
+                setCity("");
+                setState("");
+                setStreet("");
+                setZip("");
+                toast.success("Address created successfully!");
+
+            } catch (error) {
+                // Handle error if needed
+                toast.error(
+                    error.message || "Failed to create address. Please try again."
+                );
+            }
         }
     };
+    useEffect(() => {
+        if (edit) {
+            dispatch(getAddressById(edit));
+            setShowModal(true);
+        }
+    }, [edit]);
+
+
+
+    useEffect(() => {
+        if (address) {
+            setTitle(address.title);
+            setCity(address.city);
+            setState(address.state);
+            setStreet(address.street);
+            setZip(address.zip);
+        }
+    }, [address]);
 
     return (
         <div>
             {/* <h1>Create Address</h1> */}
-            <button style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'end',
-                gap: '12px',
-                cursor: 'pointer',
-                padding: '15px',
-                borderRadius: '20px',
-                width: 'max-content',
-                height: '50px',
-                background: 'rgb(255, 205, 0)',
-                color: 'black',
-                marginLeft: 'auto'
-            }} onClick={handleCreateAddress}>Create Address</button>
+            <button
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "end",
+                    gap: "12px",
+                    cursor: "pointer",
+                    padding: "15px",
+                    borderRadius: "20px",
+                    width: "max-content",
+                    height: "50px",
+                    background: "rgb(255, 205, 0)",
+                    color: "black",
+                    marginLeft: "auto",
+                }}
+                onClick={handleCreateAddress}
+            >
+                Create Address
+            </button>
 
             {showModal && (
                 <div
@@ -151,7 +211,7 @@ const CreateAddressForm = () => {
                                         className="btn btn-primary"
                                         disabled={creatingAddress}
                                     >
-                                        Create Address
+                                        {edit ? "Update" : "Create"}
                                     </button>
                                 </form>
                             </div>

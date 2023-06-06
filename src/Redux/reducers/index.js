@@ -20,7 +20,7 @@ import { rentalReducer } from "./rentalReducer";
 import filterReducer from "./filterReducer";
 import favoriteReducer from "./favoriteReducers";
 import { bookingCreateReducer, getUserBookingsReducer } from "./bookingReducer";
-import addressReducer from "./addressReducer";
+import { addressReducer, addressDetailReducer, addressUpdateReducer } from "./addressReducer";
 const RootReducer = combineReducers({
   Products: allProductsReducer,
   ProductDetails: singleProductReducer,
@@ -30,6 +30,8 @@ const RootReducer = combineReducers({
   CreateBooking: bookingCreateReducer,
   Bookings: getUserBookingsReducer,
   Address: addressReducer,
+  AddressDetails: addressDetailReducer,
+  AddressUpdates: addressUpdateReducer,
   Favorite: favoriteReducer,
   toggle: toggleReducer,
   Filters: filterReducer,

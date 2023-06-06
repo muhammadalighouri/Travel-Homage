@@ -6,6 +6,13 @@ import {
     GET_ALL_ADDRESSES_REQUEST,
     GET_ALL_ADDRESSES_SUCCESS,
     GET_ALL_ADDRESSES_FAILURE,
+    GET_ADDRESS_REQUEST,
+    GET_ADDRESS_SUCCESS,
+    GET_ADDRESS_FAILURE,
+    UPDATE_ADDRESS_REQUEST,
+    UPDATE_ADDRESS_SUCCESS,
+    UPDATE_ADDRESS_FAILURE,
+
 } from "../actions/addressActions";
 
 const initialState = {
@@ -16,7 +23,7 @@ const initialState = {
     error: null,
 };
 
-const addressReducer = (state = initialState, action) => {
+export const addressReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_ADDRESS_REQUEST:
             return {
@@ -62,4 +69,57 @@ const addressReducer = (state = initialState, action) => {
     }
 };
 
-export default addressReducer;
+export const addressDetailReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_ADDRESS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        case GET_ADDRESS_SUCCESS:
+            return {
+                ...state,
+                address: action.payload,
+                loading: false,
+                error: null,
+            };
+        case GET_ADDRESS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+export const addressUpdateReducer = (state = {
+    address: null,
+    loading: false,
+    error: null,
+}, action) => {
+    switch (action.type) {
+        case UPDATE_ADDRESS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        case UPDATE_ADDRESS_SUCCESS:
+            return {
+                ...state,
+                address: action.payload,
+                loading: false,
+                error: null,
+            };
+        case UPDATE_ADDRESS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
