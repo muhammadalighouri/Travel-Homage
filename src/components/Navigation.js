@@ -20,11 +20,12 @@ import logo from "../assests/Logo.png";
 import avatar from "../assests/Avatar.png";
 import avatarLogout from "../assests/Avatar-logout.png";
 import bell from "../assests/bell.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
-const Navigation = ({}) => {
+import { logout } from "../Redux/actions/userActions";
+const Navigation = ({ }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -37,7 +38,7 @@ const Navigation = ({}) => {
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
   const success = userInfo?.success;
   const user = userInfo?.user;
-
+  const dispatch = useDispatch()
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleDropdown2 = () => setDropdownOpen2(!dropdownOpen2);
   window.addEventListener("scroll", () => {
@@ -63,11 +64,7 @@ const Navigation = ({}) => {
       name: "المساعدة على الطريق",
       path: "/roadside-assistance",
     },
-    {
-      icon: i4,
-      name: "تسجيل الخروج",
-      path: "/ride-ratings",
-    },
+
   ];
   const dropdown2 = [
     {
@@ -155,6 +152,16 @@ const Navigation = ({}) => {
                             </>
                           );
                         })}
+                        <>
+                          <Link
+                            onClick={() => dispatch(logout())}
+                          >
+                            <div className="n" >
+                              تسجيل الخروج
+                              <img src={i4} alt="" />
+                            </div>
+                          </Link>
+                        </>
                       </div>
                     </div>
                   )}
@@ -172,9 +179,11 @@ const Navigation = ({}) => {
                   </div>
                   <button
                     className="signup"
-                    onClick={() => {setMode("register")
-                    document.body.style.overflow = "hidden";  }
-                  }
+                    onClick={() => {
+                      setMode("register")
+                      document.body.style.overflow = "hidden";
+                    }
+                    }
                   >
                     التسجيل
                   </button>
@@ -188,34 +197,34 @@ const Navigation = ({}) => {
                 <div className="second">English</div>
               </div>
               <button className="res-drop" onClick={toggleDropdown2}>
-                    الشركة
-                    <img src={down} alt="" />
-                    {dropdownOpen2 && (
-                      <div className="dropdown">
-                        <div className="dropdown-menu">
-                          {dropdown2.map((a) => {
-                            return (
-                              <>
-                                <Link
-                                  to={a.path}
-                                  style={
-                                    window.location.pathname === a.path
-                                      ? { background: " #00000014" }
-                                      : { background: "none" }
-                                  }
-                                >
-                                  <div className="n">
-                                    {a.name}
-                                    <img src={a.icon} alt="" />
-                                  </div>
-                                </Link>
-                              </>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </button>
+                الشركة
+                <img src={down} alt="" />
+                {dropdownOpen2 && (
+                  <div className="dropdown">
+                    <div className="dropdown-menu">
+                      {dropdown2.map((a) => {
+                        return (
+                          <>
+                            <Link
+                              to={a.path}
+                              style={
+                                window.location.pathname === a.path
+                                  ? { background: " #00000014" }
+                                  : { background: "none" }
+                              }
+                            >
+                              <div className="n">
+                                {a.name}
+                                <img src={a.icon} alt="" />
+                              </div>
+                            </Link>
+                          </>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </button>
               <nav>
                 <div className="nav-wrap">
                   <ul style={nave ? { transform: "translateX(0%) " } : {}}>

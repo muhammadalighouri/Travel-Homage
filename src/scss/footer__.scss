@@ -102,12 +102,12 @@ footer {
 
     .bottom__footer {
       position: relative;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       @include md {
-      flex-direction: column;
+        flex-direction: column;
         gap: 20px;
       }
 
@@ -143,8 +143,29 @@ footer {
         display: flex;
         align-items: center;
         justify-content: end;
-        align-items: center;
+        align-items: end;
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        cursor: pointer;
+        transition: 0.3s all;
+        z-index: 1001;
 
+        > img {
+          width: 80px;
+          transform: scale(0);
+        }
+        .card {
+          border-radius: 15px;
+          width: max-content;
+          max-width: 290px;
+          margin-right: 224px;
+        }
+        .card-header {
+          border-top-left-radius: 15px;
+          border-top-right-radius: 15px;
+          background: #ffcd00 !important;
+        }
         @include md {
           order: 3;
           img {

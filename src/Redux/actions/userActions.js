@@ -162,5 +162,5 @@ export const logout = () => async (dispatch) => {
     dispatch({ type: ORDER_DETAILS_RESET });
     dispatch({ type: ALL_ORDERS_RESET });
 
-    document.location.href = "/login";
+    document.location.href = "/";
 };

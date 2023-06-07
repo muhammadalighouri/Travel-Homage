@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../scss/footer__.scss";
 import { Partners_1, Partners_2 } from "../assests/data";
 import img1 from "../assests/footer-img/Badge.png";
 import img2 from "../assests/footer-img/Badge (1).png";
 import icon from "../assests/footer-img/Group.png";
-import chat from "../assests/footer-img/Chatbot.png";
+import chatImg from "../assests/footer-img/Chatbot.png";
 import arrow from "../assests/footer-img/Vector (6).png";
 import {
   FaFacebookF,
@@ -14,7 +14,10 @@ import {
 } from "react-icons/fa";
 import { Group, Instagram } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import ChatBox from "./ChatBox";
 const Footer = () => {
+  const [scroll, setScroll] = useState(false);
+  const [chat, setChat] = useState(false);
   const data = [
     {
       name: "قانوني",
@@ -34,8 +37,17 @@ const Footer = () => {
       h6: "             المركز الإعلامي     ",
     },
   ];
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+      setChat(false)
+    }
+  });
   return (
     <footer>
+
       <div className="container">
         <div className="top">
           <div className="box">
@@ -76,8 +88,13 @@ const Footer = () => {
             <span>مزود خدمة التنقل السعودي لحلول تأجير السيارات</span>
             <span>شركة ترفل المحدودة © 2023</span>
           </div>
-          <div className="chatbot">
-            <img src={chat} alt="" />
+          <div className="chatbot"
+
+          >
+            {
+              chat && <ChatBox />
+            }
+            <img src={chatImg} style={scroll ? { transform: "scale(1)" } : {}} onClick={() => setChat(!chat)} alt="" />
           </div>
         </div>
       </div>

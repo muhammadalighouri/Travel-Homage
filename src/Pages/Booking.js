@@ -303,7 +303,7 @@ const Booking = () => {
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    const isAllValuesEntered = true
     let totalPrice = 0;
 
     if (option === "perDay") {
@@ -317,42 +317,48 @@ const Booking = () => {
       const days = diffInDays;
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
     }
+    if (isAllValuesEntered) {
+      if (option === "delivery") {
+        dispatch(
+          createBooking({
+            car,
+            user: user._id,
+            address: deliveryAddress,
+            returnLocation,
+            startDate: pickupTime,
+            endDate: returnTime,
+            addons,
+            totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
+            rate: option,
+          })
 
-    if (option === "delivery") {
-      dispatch(
-        createBooking({
-          car,
-          user: user._id,
-          address: deliveryAddress,
-          returnLocation,
-          startDate: pickupTime,
-          endDate: returnTime,
-          addons,
-          totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
-          rate: option,
-        })
+        );
+        navigate('/booking-history');
 
-      );
-      navigate('/booking-history');
+      } else {
 
+        dispatch(
+          createBooking({
+            car,
+            user: user._id,
+            pickupLocation,
+            returnLocation,
+            startDate: pickupTime,
+            endDate: returnTime,
+            addons,
+            totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
+            rate: option,
+            delivery: option === "delivery" ? true : false,
+          })
+        );
+        navigate('/booking-history');
+      }
     } else {
-
-      dispatch(
-        createBooking({
-          car,
-          user: user._id,
-          pickupLocation,
-          returnLocation,
-          startDate: pickupTime,
-          endDate: returnTime,
-          addons,
-          totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
-          rate: option,
-          delivery: option === "delivery" ? true : false,
-        })
-      );
-      navigate('/booking-history');
+      // Display a toast message or any other notification to inform the user
+      // that all values are required before submitting
+      // toast.warning('Please enter all values');
     }
+
   };
 
   useEffect(() => {
@@ -516,71 +522,7 @@ const Booking = () => {
                             />
                           </div>
                         </div>
-                        {/* <div className="input-box-wrap">
-                          <div></div>
-                          <div className="input-box">
-                            <p>سطر العنوان 1</p>
-                            <div className="input">
-                              <input
-                                type="text"
-                                name="addressLine1"
-                                value={addressLine1}
-                                onChange={(e) => setAddressLine1(e.target.value)}
-                                placeholder="سطر العنوان 1"
-                              />
-                              <img src={i2} alt="" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="input-box-wrap">
-                          <div></div>
 
-                          <div className="input-box">
-                            <p>سطر العنوان 2</p>
-                            <div className="input">
-                              <input
-                                type="text"
-                                value={addressLine2}
-                                onChange={(e) => setAddressLine2(e.target.value)}
-                                name="addressLine2"
-                                placeholder="سطر العنوان 2"
-                              />
-                              <img src={i2} alt="" />
-                            </div>
-                          </div>
-                        </div> */}
-                        {/* <div className="input-box-wrap">
-                          <div></div>
-
-                          <div className="two-input-boxes">
-                            <div className="input-box">
-                              <p>المدينة</p>
-                              <div className="input">
-                                <input
-                                  type="text"
-                                  name="city"
-                                  value={city}
-                                  onChange={(e) => setCity(e.target.value)}
-                                  placeholder="مدينتك"
-                                />
-                                <img src={i2} alt="" />
-                              </div>
-                            </div>
-                            <div className="input-box">
-                              <p>المحافظة</p>
-                              <div className="input">
-                                <input
-                                  type="text"
-                                  name="state"
-                                  value={state}
-                                  onChange={(e) => setState(e.target.value)}
-                                  placeholder="محافظتك"
-                                />
-                                <img src={i3} alt="" />
-                              </div>
-                            </div>
-                          </div>
-                        </div> */}
                         <div className="input-box-wrap">
                           <div className="plus" style={{ opacity: '0' }} >
                             <img src={plus} alt="" />
