@@ -10,6 +10,12 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
+
+    @include md {
+      margin: 0px !important;
+      padding: 0px !important;
+    }
+
     .active {
       color: #1c1f1f;
       background: white;
@@ -18,15 +24,9 @@
         filter: invert(1);
       }
     }
-    li {
-      //   &:nth-child(4) {
-      //     color: #1c1f1f;
-      //     background: white;
 
-      //     img {
-      //       filter: invert(1);
-      //     }
-      //   }
+    li {
+
 
       display: flex;
       cursor: pointer;
@@ -41,6 +41,19 @@
       height: 45px;
       background: #a2a9ad;
       border-radius: 20px 20px 0px 0px;
+
+      @include md {
+        width: auto;
+        height: auto;
+        padding: 8px 6px;
+        width: 200px;
+      }
+
+      img {
+        @include md {
+          display: none;
+        }
+      }
     }
   }
 
@@ -52,6 +65,10 @@
     flex-direction: column;
     gap: 80px;
     height: 100%;
+
+    @include md {
+      border-radius: 5px 5px 0 0;
+    }
 
     .box {
       display: grid;
@@ -125,6 +142,7 @@
             }
           }
         }
+
         .list {
           /* display: flex; */
           display: flex;
@@ -161,10 +179,10 @@
             justify-content: center;
             flex-direction: column;
 
-            li {
-            }
+            li {}
           }
         }
+
         .para {
           /* display: flex; */
           display: flex;
@@ -201,8 +219,7 @@
             justify-content: center;
             flex-direction: column;
 
-            li {
-            }
+            li {}
           }
         }
       }
@@ -215,9 +232,11 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+
           img {
             width: 100%;
           }
+
           .btn {
             background: #ffcd00;
 

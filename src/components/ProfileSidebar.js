@@ -10,7 +10,7 @@ import "../scss/side.scss";
 import { useSelector } from "react-redux";
 const ProfileSidebar = () => {
   const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
-  const { firstName, lastName, avatar } = user || {}
+  const { firstName, lastName, avatar } = user || {};
   return (
     <>
       <section id="sidebar">
@@ -19,7 +19,9 @@ const ProfileSidebar = () => {
             <div className="detail">
               <img src={avatar?.url ? avatar?.url : p} alt="" />
 
-              <span>{firstName}&nbsp;{lastName}</span>
+              <span>
+                {firstName}&nbsp;{lastName}
+              </span>
             </div>
             <div className="image">
               <img src={img1} alt="" />
@@ -28,22 +30,22 @@ const ProfileSidebar = () => {
             <ul className="flex">
               {side.map((a) => {
                 return (
-                  <li
+                  <Link
+                    to={a.path}
                     style={
                       window.location.pathname === a.path
                         ? { background: "#00afaa " }
                         : { background: "none" }
                     }
                   >
-                    <Link
-                      to={a.path}
+                    <div
                       style={{
                         color:
                           window.location.pathname === a.path ? "white" : null,
                       }}
                     >
                       {a.name}
-                    </Link>{" "}
+                    </div>{" "}
                     <img
                       src={a.icon}
                       alt=""
@@ -54,7 +56,7 @@ const ProfileSidebar = () => {
                             : null,
                       }}
                     />
-                  </li>
+                  </Link>
                 );
               })}
             </ul>
