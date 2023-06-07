@@ -11,7 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/actions/userActions";
 const ProfileSidebar = () => {
   const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
-  const { firstName, lastName, avatar } = user || {}
+  const { firstName, lastName, avatar } = user || {};
+  const dispatch = useDispatch();
   return (
     <>
       <section id="sidebar">
@@ -60,21 +61,9 @@ const ProfileSidebar = () => {
                   </Link>
                 );
               })}
-              <li
-
-              >
-                <Link
-                  onClick={() => dispatch(logout())}
-
-                >
-                  خروج
-                </Link>{" "}
-                <img
-                  src={icon10}
-                  alt=""
-
-                />
-              </li>
+              <Link onClick={() => dispatch(logout())}>
+                <div>خروج</div> <img src={icon10} alt="" />
+              </Link>
             </ul>
           </aside>
         </div>
