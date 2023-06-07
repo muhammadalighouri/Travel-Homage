@@ -1,19 +1,28 @@
 @import "./variable.scss";
 @import "./media.scss";
 
-
-
 #banner-wrapper-2 {
     width: 100%;
     position: relative;
     padding-top: 20px;
+
+    @include sm {
+        padding-top: 50px;
+    }
+
+    .swiper-wrapper {
+
+        padding-bottom: 60px;
+    }
+
     .swiper-pagination {
         display: flex !important;
         align-items: center !important;
         width: 100% !important;
         justify-content: center !important;
         gap: 10px !important;
-        span{
+
+        span {
             left: 24px !important;
             background: #F2F2F2 !important;
             height: 20px !important;
@@ -22,10 +31,11 @@
             border-radius: 15px !important;
         }
     }
+
     .swiper-pagination-bullet {
 
         width: 120px !important;
-      
+
 
     }
 
@@ -56,6 +66,10 @@
             margin: auto;
         }
 
+        @include sm {
+            grid-gap: 15px;
+        }
+
         .start-2 {
             position: relative;
 
@@ -67,7 +81,7 @@
                 width: 100%;
 
                 @include md {
-                    width: 90%;
+                    width: 100%;
                     margin: auto;
                 }
             }
@@ -125,11 +139,12 @@
         position: relative;
         height: 100%;
         overflow: hidden;
-        padding: 16px 0 20px;
-        padding-bottom: 170px;
+        padding: 50px 0 20px;
+        padding-bottom: 180px;
 
         @include md {
-            // padding-bottom: 180px;
+            padding-bottom: 210px;
+            padding-top: 0px;
         }
 
 

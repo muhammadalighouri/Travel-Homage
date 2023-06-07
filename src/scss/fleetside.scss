@@ -1,32 +1,114 @@
+@import "./variable.scss";
+@import "./media.scss";
+
 #fleet-side {
+  .filter {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    @include md {
+      display: block;
+    }
+
+    button {
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #373a36;
+      font-size: 18px;
+      gap: 6px;
+      border-radius: 5px;
+      background-color: transparent;
+      border: 1px solid #dddddd;
+      cursor: pointer;
+      padding: 10px 12px 10px 30px;
+      font-family: "Cairo", sans-serif;
+
+      img {
+        width: 100%;
+        max-width: 30px;
+        transform: rotateY(180deg);
+      }
+    }
+  }
+
   aside {
+
     * {
       color: black;
     }
+
+    @include md {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      width: 280px;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      z-index: 7444;
+      height: 100vh;
+      overflow-y: scroll;
+      will-change: transform;
+      transition: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+      box-shadow: rgba(54, 54, 54, 0.2) 2px 0px 10px, rgba(54, 54, 54, 0.2) -2px 0px 10px;
+      background-color: white;
+      color: #272727;
+      visibility: visible !important;
+      opacity: 0;
+      transform: translateX(300px);
+    }
+
     .item__ {
       padding: 15px 10px;
       border-bottom: 1px solid #e0e0e0a1;
+
       .name {
-        text-align: end;
         padding: 14px 0;
         color: #03aea8;
         text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .cross {
+          display: none;
+          cursor: pointer;
+
+          @include md {
+            display: block;
+            // font-size: 30px;
+            fill: #373a36;
+            font-size: 2.5rem;
+            background: #0000000d;
+            border-radius: 50%;
+            padding: 4px;
+
+          }
+        }
       }
+
       .tools {
         display: flex;
         justify-content: space-between;
         padding: 10px 0;
         align-items: center;
       }
+
       ul {
         display: grid;
         grid-gap: 10px;
         list-style: none;
         margin: 0;
+
         li {
           display: flex;
           justify-content: space-between;
           align-items: center;
+
           .range-slider {
             width: 100%;
             margin: 2rem auto;
@@ -37,8 +119,8 @@
             cursor: pointer;
           }
 
-          .start {
-          }
+          .start {}
+
           .end {
             display: flex;
             align-items: center;

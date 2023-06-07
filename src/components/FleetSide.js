@@ -2,18 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "../scss/fleetside.scss";
 import { useSelector } from "react-redux";
-import suv from "../assests/cars/SUV (2).png"
-import sedan from "../assests/cars/sedan (2).png"
-import luxury from "../assests/cars/luxury (2).png"
-import family from "../assests/cars/faamily.png"
-import economy from "../assests/cars/economy.png"
+import suv from "../assests/cars/SUV (2).png";
+import sedan from "../assests/cars/sedan (2).png";
+import luxury from "../assests/cars/luxury (2).png";
+import family from "../assests/cars/faamily.png";
+import economy from "../assests/cars/economy.png";
 import { fetchCars } from "../Redux/actions/carActions";
+import { RxCross2 } from "react-icons/rx";
+import filter from "../assests/filter.png";
+
 const FleetSide = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const { filters } = useSelector((state) => state.Filters);
   const { categories, brands, availabilityCount, priceRange } = filters;
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [nve, setNve] = useState(false);
   const [selectedAvailability, setSelectedAvailability] = useState([]);
   const [value, setValue] = useState({ min: 0, max: 1500 });
   const dispatch = useDispatch();
@@ -58,10 +62,32 @@ const FleetSide = () => {
   return (
     <>
       <div id="fleet-side">
-        <aside>
+        <div
+          className="filter"
+          onClick={() => {
+            setNve(true);
+            document.body.style.overflow = "hidden";          }}
+        >
+          <button>
+            منقي
+            <img src={filter} alt="" />
+          </button>
+        </div>
+        <aside
+          style={nve ? { transform: "translateX(0px)", opacity: "1" } : {}}
+        >
           {categories && (
             <div className="item__">
-              <div className="name">{categories?.name}</div>
+              <div className="name">
+                <RxCross2
+                  className="cross"
+                  onClick={() => {
+                    setNve(false);
+                    document.body.style.overflow = "unset";  
+                  }}
+                />{" "}
+                {categories?.name}{" "}
+              </div>
               <div className="tools">
                 <div className="first">Reset</div>
                 <div className="second">0 Selected</div>

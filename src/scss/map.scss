@@ -31,9 +31,9 @@
                     align-items: center;
                     justify-content: center;
                 }
-                @include md{
-                    > div
-                    {
+
+                @include md {
+                    >div {
                         height: 466px;
                         width: 100% !important;
                         border-radius: 30px;
@@ -82,9 +82,16 @@
             align-items: center;
             justify-content: center;
             gap: 20px;
-@include md {
-    order: 2;
-}
+
+            @include md {
+                order: 2;
+                /* flex-wrap: wrap; */
+                flex-direction: column;
+                align-items: end;
+                width: 100%;
+                row-gap: 30px;
+            }
+
             &:nth-child(1) {
                 display: flex;
                 flex-direction: row;

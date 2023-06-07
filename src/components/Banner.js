@@ -9,7 +9,7 @@ const Banner = ({ img, text, icon, mi, p }) => {
         <section id="banner">
           <div
             className="container__"
-            style={p ? { marginBottom: "-160px" } : {}}
+            style={p ? { marginBottom: "-140px" } : {}}
           >
             <div className="grid">
               <div className="start">

@@ -21,7 +21,7 @@ swiper-container {
   padding: 0;
   z-index: 1;
   display: block;
-  padding: 35px !important;
+  /* padding: 35px !important; */
 }
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next {

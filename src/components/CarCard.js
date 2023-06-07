@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration'; // you need to import the plugin
 dayjs.extend(duration); // make sure to extend dayjs with the plugin
 const CarCard = ({ i, text, type }) => {
-  const { car } = i
+  const { car } = i;
   const timeLeft = (startDate) => {
     let now = dayjs();
     let start = dayjs(startDate);
@@ -54,14 +54,12 @@ const CarCard = ({ i, text, type }) => {
               <li>{car?.bags}</li>
               <li>{car?.numDoors}</li>
               <li>{car?.engine}</li>
-
             </ul>
             <ul className="bold">
               <li>Max Person</li>
               <li>No Of Bags</li>
               <li>No Of Doors</li>
               <li>Engine </li>
-
             </ul>
           </div>
         </div>
@@ -69,13 +67,15 @@ const CarCard = ({ i, text, type }) => {
           <div className="img-wrapper">
             <img src={i?.car?.mainImages[0]} alt="" />
 
-            {
-              type === "ongoing" ? <div className="btn">
+            {type === "ongoing" ? (
+              <div className="btn">
                 <a href="#">{timeLeft(i.endDate)}</a>
-              </div> : <div className="btn">
+              </div>
+            ) : (
+              <div className="btn">
                 <a href="#">{timeLeft(i.startDate)}</a>
               </div>
-            }
+            )}
             <div className="wrap-vector">
               <div className="vector">
                 <img src={i.vi1} alt="" />

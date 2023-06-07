@@ -2,176 +2,176 @@
 @import "./media.scss";
 
 #faq-page {
-    .container-faq {
-        margin: auto;
-        background-color: white;
-        border-radius: 75px 75px 0px 0px;
-
-        .top-heading {
-            display: flex;
-    align-items: end;
-    flex-direction: column;
-    justify-content: center;
-    gap: 110px;
-    max-width: 1200px;
+  .container-faq {
     margin: auto;
-    padding: 130px 20px 90px;
-            .heading-s {
-                display: flex;
-                align-items: center;
-                justify-content: end;
-                gap: 8px;
+    background-color: white;
+    border-radius: 75px 75px 0px 0px;
 
-                .input-box-wrap {
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    gap: 20px;
-                    justify-content: end;
-
-                    .input-box {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        padding: 0px;
-                        gap: 8px;
-                        width: 100%;
-                        font-family: "Cairo", sans-serif;
-                        position: relative;
-
-                        p {
-                            font-weight: 600;
-                            font-size: 16px;
-                            font-family: "Cairo", sans-serif;
-                            color: #373a36;
-                        }
-
-                        .input {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 16px;
-                            height: 48px;
-                            background: #fafafa;
-                            border: 1px solid rgba(47, 43, 67, 0.1);
-                            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
-                                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
-                            border-radius: 12px;
-                            width: 100%;
-                            padding: 0 16px;
-
-                            input {
-                                background: #fafafa;
-                                height: 100%;
-                                max-width: 100%;
-                                border: 0px;
-                                outline: none;
-                                display: flex;
-                                align-items: center;
-                                text-align: right;
-                                font-family: "Cairo", sans-serif;
-                                font-size: 16px;
-                                font-weight: 400;
-                                color: rgba(47, 43, 67, 0.6);
-                                width: 480px;
-                                @include sm {
-                                    width: 100%;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .content {
-                color: #373a36;
-                font-weight: 400;
-                font-size: 25px;
-                text-align: end;
-                line-height: 48px;
-                font-family: "Cairo", sans-serif;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                @include lg{
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-                }
-                @include md{
-              grid-template-columns: 1fr 1fr 1fr ;
-                }
-                @include sm{
-              grid-template-columns: 1fr 1fr ;
-                }
-                .icon{
-                    text-align: center;
-                }
-            }
+    .top-heading {
+      display: flex;
+      align-items: end;
+      flex-direction: column;
+      justify-content: center;
+      gap: 110px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 130px 20px 90px;
+      .heading-s {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 8px;
+        @include md {
+          width: 100%;
         }
+        .input-box-wrap {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          justify-content: end;
 
-        .faq {
-            max-width: 1200px;
-            margin: auto;
-            padding: 90px 20px;
+          .input-box {
             display: flex;
             flex-direction: column;
-            align-items: end;
-            justify-content: center;
+            align-items: flex-end;
+            padding: 0px;
+            gap: 8px;
+            width: 100%;
+            font-family: "Cairo", sans-serif;
+            position: relative;
 
-            .heading {
-                text-align: center;
-                padding: 22px 0px;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                h1 {
-                    font-family: Cairo;
-                    font-size: 17px;
-                    font-weight: 700;
-                    text-align: right;
-                    color: #00AFAA;
-                    font-family: "Cairo", sans-serif;
-
-                }
-
-                h2 {
-
-                    font-size: 17px;
-                    font-weight: 700;
-                    text-align: right;
-
-                    font-family: "Cairo", sans-serif;
-                    color: #25282B;
-                }
+            p {
+              font-weight: 600;
+              font-size: 16px;
+              font-family: "Cairo", sans-serif;
+              color: #373a36;
             }
 
-            .center-content {
+            .input {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              gap: 16px;
+              height: 48px;
+              background: #fafafa;
+              border: 1px solid rgba(47, 43, 67, 0.1);
+              box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+              border-radius: 12px;
+              width: 100%;
+              padding: 0 16px;
+
+              input {
+                background: #fafafa;
+                height: 100%;
+                max-width: 100%;
+                border: 0px;
+                outline: none;
                 display: flex;
-                flex-direction: column;
-                align-items: end;
-                justify-content: center;
-                gap: 10px;
-                padding: 30px 0px;
-
-                h2 {
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 400;
-                    font-family: "Cairo", sans-serif;
-                    color: #161616;
+                align-items: center;
+                text-align: right;
+                font-family: "Cairo", sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                color: rgba(47, 43, 67, 0.6);
+                width: 480px;
+                @include md {
+                  width: 100%;
                 }
-
-                p {
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 400;
-                    text-align: right;
-                    max-width: 500px;
-                    color: #161616;
-                }
+              }
             }
+          }
         }
+      }
+
+      .content {
+        color: #373a36;
+        font-weight: 400;
+        font-size: 25px;
+        text-align: end;
+        line-height: 48px;
+        font-family: "Cairo", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        @include lg {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+        @include md {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        @include sm {
+          grid-template-columns: 1fr 1fr;
+        }
+        .icon {
+          text-align: center;
+        }
+      }
     }
+
+    .faq {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      justify-content: center;
+
+      .heading {
+        text-align: center;
+        padding: 22px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        h1 {
+          font-family: Cairo;
+          font-size: 17px;
+          font-weight: 700;
+          text-align: right;
+          color: #00afaa;
+          font-family: "Cairo", sans-serif;
+        }
+
+        h2 {
+          font-size: 17px;
+          font-weight: 700;
+          text-align: right;
+
+          font-family: "Cairo", sans-serif;
+          color: #25282b;
+        }
+      }
+
+      .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: center;
+        gap: 10px;
+        padding: 30px 0px;
+
+        h2 {
+          font-family: Cairo;
+          font-size: 15px;
+          font-weight: 400;
+          font-family: "Cairo", sans-serif;
+          color: #161616;
+        }
+
+        p {
+          font-family: Cairo;
+          font-size: 15px;
+          font-weight: 400;
+          text-align: right;
+          max-width: 500px;
+          color: #161616;
+        }
+      }
+    }
+  }
 }
