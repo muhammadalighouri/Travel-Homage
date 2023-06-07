@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../scss/bookingf.scss";
 import icon1 from "../assests/Profile/loader.png";
 import icon2 from "../assests/Profile/ban.png";
@@ -11,9 +11,10 @@ import car3 from "../assests/Profile/car3.png";
 import v1 from "../assests/Profile/Vector (1).png";
 import v2 from "../assests/Profile/Vector.png";
 import CarCard from "./CarCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserBookings } from "../Redux/actions/bookingActions";
 const BookingF = () => {
-  const [activeButton, setActiveButton] = useState("الغيت");
+  const [activeButton, setActiveButton] = useState("أكتملت");
   // const [activeButton, setActiveButton] = useState('جارية')
   const bookings = useSelector(state => state.Bookings.bookingsByStatus);
   const { upcoming, ongoing, completed, cancelled } = bookings || {};
@@ -91,6 +92,11 @@ const BookingF = () => {
     { h: "قادمة", icon: icon4 },
     { h: "الغيت", icon: icon1 },
   ];
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getUserBookings())
+  }, [])
+
 
   return (
     <>

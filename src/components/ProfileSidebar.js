@@ -5,12 +5,14 @@ import img2 from "../assests/Profile/p.2.png";
 import { side } from "../assests/data";
 import { Link } from "react-router-dom";
 import p from "../assests/Profile/Profile 2.png";
-
+import icon10 from "../assests/Profile/10.10.png";
 import "../scss/side.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/actions/userActions";
 const ProfileSidebar = () => {
   const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
   const { firstName, lastName, avatar } = user || {}
+  const dispatch = useDispatch()
   return (
     <>
       <section id="sidebar">
@@ -57,6 +59,21 @@ const ProfileSidebar = () => {
                   </li>
                 );
               })}
+              <li
+
+              >
+                <Link
+                  onClick={() => dispatch(logout())}
+
+                >
+                  خروج
+                </Link>{" "}
+                <img
+                  src={icon10}
+                  alt=""
+
+                />
+              </li>
             </ul>
           </aside>
         </div>

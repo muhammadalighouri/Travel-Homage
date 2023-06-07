@@ -137,10 +137,7 @@ export const side = [
     icon: icon9,
     path: "/roadside-assistance",
   },
-  {
-    name: "خروج",
-    icon: icon10,
-  },
+
 ];
 export const nav = [
   {
