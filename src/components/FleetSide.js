@@ -83,6 +83,7 @@ const FleetSide = () => {
                   className="cross"
                   onClick={() => {
                     setNve(false);
+                    document.body.style.overflow = "unset";  
                   }}
                 />{" "}
                 {categories?.name}{" "}

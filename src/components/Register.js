@@ -9,18 +9,18 @@ import "../scss/register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assests/Logo.png";
 import icon from "../assests/Group 17.png";
-import img1 from '../assests/Icons/Tail icon q.png'
-import img2 from '../assests/Icons/Lead icon.png'
-import img3 from '../assests/Icons/Lead icon.svg'
-import img4 from '../assests/Icons/Vector (6).png'
-import img5 from '../assests/Icons/Tail icon.svg'
+import img1 from "../assests/Icons/Tail icon q.png";
+import img2 from "../assests/Icons/Lead icon.png";
+import img3 from "../assests/Icons/Lead icon.svg";
+import img4 from "../assests/Icons/Vector (6).png";
+import img5 from "../assests/Icons/Tail icon.svg";
 import { Close } from "@mui/icons-material";
 const Register = ({ setMode }) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Track the submit state
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.UserRegister);
   const { error, userInfo, loading } = userRegister;
-  const navigate = useNavigate('')
+  const navigate = useNavigate("");
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -52,13 +52,11 @@ const Register = ({ setMode }) => {
             values.phone
           )
         );
-
       } catch (error) {
         toast.error(error || error.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-      }
-      finally {
+      } finally {
         setIsSubmitting(false); // Stop submitting
       }
     },
@@ -69,13 +67,12 @@ const Register = ({ setMode }) => {
         toast.success("Registration Successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate('/profile');
-        setMode("")
+        navigate("/profile");
+        setMode("");
       } else {
         toast.error(userInfo.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-
       }
     }
   }, [userInfo, navigate]);
@@ -83,19 +80,30 @@ const Register = ({ setMode }) => {
     <>
       <section id="register">
         <div className="form__">
-          <div className="cross" onClick={() => setMode("")}>
+          <div
+            className="cross"
+            onClick={() => {
+              setMode("");
+              document.body.style.overflow = "unset";
+            }}
+          >
             <Close />
           </div>
           <div className="heading">
             <h1>Create An Account.</h1>
             <p>Welcome to Travel car rental solution.</p>
           </div>
-          <form onSubmit={formik.handleSubmit} >
+          <form onSubmit={formik.handleSubmit}>
             <div id="names" className="same">
               <div className="input">
                 <p>First name</p>
                 <div className="under">
-                  <input type="text" placeholder="First name" {...formik.getFieldProps("firstName")} /> <img src={img1} alt="" />
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    {...formik.getFieldProps("firstName")}
+                  />{" "}
+                  <img src={img1} alt="" />
                   {formik.touched.firstName && formik.errors.firstName ? (
                     <div className="error">{formik.errors.firstName}</div>
                   ) : null}
@@ -113,10 +121,15 @@ const Register = ({ setMode }) => {
               <div className="input">
                 <p>Last name</p>
                 <div className="under">
-                  <input type="text" placeholder="Last name" {...formik.getFieldProps("lastName")} />
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    {...formik.getFieldProps("lastName")}
+                  />
                   {formik.touched.lastName && formik.errors.lastName ? (
                     <div className="error">{formik.errors.lastName}</div>
-                  ) : null}<img src={img1} alt="" />
+                  ) : null}
+                  <img src={img1} alt="" />
                 </div>
               </div>
             </div>
@@ -124,7 +137,11 @@ const Register = ({ setMode }) => {
               <p>Phone Number</p>
               <div className="under">
                 {" "}
-                <input type="number" name="" {...formik.getFieldProps("phone")} />
+                <input
+                  type="number"
+                  name=""
+                  {...formik.getFieldProps("phone")}
+                />
                 {formik.touched.phone && formik.errors.phone ? (
                   <div className="error">{formik.errors.phone}</div>
                 ) : null}
@@ -133,18 +150,25 @@ const Register = ({ setMode }) => {
             <div id="email" className="same">
               <p>Email Adress</p>
               <div className="under">
-                <img src={img2} alt="" /><input type="email" name="" id="" placeholder="Example@domain.com" {...formik.getFieldProps("email")} />
+                <img src={img2} alt="" />
+                <input
+                  type="email"
+                  name=""
+                  id=""
+                  placeholder="Example@domain.com"
+                  {...formik.getFieldProps("email")}
+                />
                 {formik.touched.email && formik.errors.email ? (
                   <div className="error">{formik.errors.email}</div>
-                ) : null}<img src={img1} alt="" />
+                ) : null}
+                <img src={img1} alt="" />
               </div>
             </div>
             <div id="password" className="same">
               <p>Password</p>
               <div className="under">
-                <img src={img3} alt="" />   <input type="password"
-                  {...formik.getFieldProps("password")}
-                />
+                <img src={img3} alt="" />{" "}
+                <input type="password" {...formik.getFieldProps("password")} />
                 {formik.touched.password && formik.errors.password ? (
                   <div className="error">{formik.errors.password}</div>
                 ) : null}
@@ -153,12 +177,16 @@ const Register = ({ setMode }) => {
             <div id="password" className="same">
               <p>Confirm Password</p>
               <div className="under">
-                <img src={img3} alt="" />   <input type="password" name=""  {...formik.getFieldProps("confirmPassword")}
+                <img src={img3} alt="" />{" "}
+                <input
+                  type="password"
+                  name=""
+                  {...formik.getFieldProps("confirmPassword")}
                 />
-                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword ? (
                   <div className="error">{formik.errors.confirmPassword}</div>
                 ) : null}
-
               </div>
             </div>
             <button
@@ -170,7 +198,9 @@ const Register = ({ setMode }) => {
             </button>
             <p className="para">
               Already have an account
-              <Link to="" onClick={() => setMode("login")}>Sign in</Link>
+              <Link to="" onClick={() => setMode("login")}>
+                Sign in
+              </Link>
             </p>
           </form>
         </div>

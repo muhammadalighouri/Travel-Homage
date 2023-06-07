@@ -172,7 +172,9 @@ const Navigation = ({}) => {
                   </div>
                   <button
                     className="signup"
-                    onClick={() => setMode("register")}
+                    onClick={() => {setMode("register")
+                    document.body.style.overflow = "hidden";  }
+                  }
                   >
                     التسجيل
                   </button>

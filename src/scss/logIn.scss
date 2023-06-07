@@ -11,7 +11,8 @@
   justify-content: center;
   width: 100%;
   backdrop-filter: blur(2px);
-top: 0px;
+  top: 0px;
+
   input {
     color: black;
   }
@@ -58,15 +59,17 @@ top: 0px;
     position: relative;
     width: -webkit-fill-available;
     margin: 0px 20px;
+
     @include sm {
-      padding: 60px 52px;
+      padding: 50px 25px 50px 50px;
     }
+
     .cross {
       position: absolute;
       top: 4%;
       right: 5%;
       cursor: pointer;
-     
+
       svg {
         fill: #373a36;
         font-size: 2.5rem;
