@@ -20,6 +20,9 @@
     margin: auto;
     padding: 70px 15px 90px 15px;
     gap: 10px;
+    .swiper {
+      padding: 0 30px !important;
+    }
     @include md {
       grid-template-columns: 1fr;
     }

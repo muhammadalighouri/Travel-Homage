@@ -29,7 +29,7 @@ import Select from "react-select";
 import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
-
+import { createBooking } from "../Redux/actions/bookingActions"
 import {
   createAddress,
   getAllAddresses,
@@ -214,6 +214,7 @@ const Booking = () => {
   const [addons, setAddons] = useState([]);
   const minTime = setHours(setMinutes(new Date(), 0), 9);
   const [diffInDays, setDiffInDays] = useState(0);
+  const [confirmBooking, setConfirmBooking] = useState(false)
   const [price, setPrice] = useState(0);
   const { car } = useParams();
   const [diffInHours, setDiffInHours] = useState(0);
@@ -288,8 +289,9 @@ const Booking = () => {
     return discountAmount;
   };
   const dispatch = useDispatch();
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+
+    setConfirmBooking(false)
     let isAllValuesEntered = true;
     let isTimeChanged = true;
     let totalPrice = 0;
@@ -333,23 +335,23 @@ const Booking = () => {
     }
     if (isAllValuesEntered && isTimeChanged) {
       if (option === "delivery") {
-        // dispatch(
-        //   createBooking({
-        //     car,
-        //     user: user._id,
-        //     address: deliveryAddress,
-        //     returnLocation,
-        //     startDate: pickupTime,
-        //     endDate: returnTime,
-        //     addons,
-        //     totalPrice:
-        //       totalPrice +
-        //       addonsPrice -
-        //       calculateDiscountAmount(price, selectedCar?.discount),
-        //     rate: option,
-        //   })
-        // );
-        // navigate("/booking-history");
+        dispatch(
+          createBooking({
+            car,
+            user: user._id,
+            address: deliveryAddress,
+            returnLocation,
+            startDate: pickupTime,
+            endDate: returnTime,
+            addons,
+            totalPrice:
+              totalPrice +
+              addonsPrice -
+              calculateDiscountAmount(price, selectedCar?.discount),
+            rate: option,
+          })
+        );
+        navigate("/booking-history");
         console.log({
           car,
           user: user._id,
@@ -365,24 +367,24 @@ const Booking = () => {
           rate: option,
         });
       } else {
-        // dispatch(
-        //   createBooking({
-        //     car,
-        //     user: user._id,
-        //     pickupLocation,
-        //     returnLocation,
-        //     startDate: pickupTime,
-        //     endDate: returnTime,
-        //     addons,
-        //     totalPrice:
-        //       totalPrice +
-        //       addonsPrice -
-        //       calculateDiscountAmount(price, selectedCar?.discount),
-        //     rate: option,
-        //     delivery: option === "delivery" ? true : false,
-        //   })
-        // );
-        // navigate("/booking-history");
+        dispatch(
+          createBooking({
+            car,
+            user: user._id,
+            pickupLocation,
+            returnLocation,
+            startDate: pickupTime,
+            endDate: returnTime,
+            addons,
+            totalPrice:
+              totalPrice +
+              addonsPrice -
+              calculateDiscountAmount(price, selectedCar?.discount),
+            rate: option,
+            delivery: option === "delivery" ? true : false,
+          })
+        );
+        navigate("/booking-history");
         console.log({
           car,
           user: user._id,
@@ -472,14 +474,13 @@ const Booking = () => {
       setReturnLocation(rentalInfo.returnLocation || "");
       setPickupTime(rentalInfo.pickupTime || new Date());
       setReturnTime(rentalInfo.returnTime || new Date());
-
       setDelivery(rentalInfo.deliveryAddress || false);
     }
   }, [rentalInfo]);
 
   useEffect(() => {
     dispatch(fetchCars());
-
+    console.log(returnLocation, pickupLocation);
   }, [])
 
   return (
@@ -492,6 +493,13 @@ const Booking = () => {
             price={price}
             addonsPrice={addonsPrice}
             selectedCar={selectedCar}
+            pickupLocation={pickupLocation}
+            returnLocation={returnLocation}
+            pickupTime={pickupTime}
+            returnTime={returnTime}
+            confirmBooking={confirmBooking}
+            handleSubmit={handleSubmit}
+            setConfirmBooking={setConfirmBooking}
           />
           <div className="container">
             <div className="grid__one">
@@ -990,7 +998,7 @@ const Booking = () => {
                       </div>
                     </div> */}
                     <div className="select-btns">
-                      <div className="btn1" onClick={handleSubmit}>
+                      <div className="btn1" onClick={() => setConfirmBooking(true)}>
                         التالى
                       </div>
                       <div
@@ -1097,6 +1105,7 @@ const Booking = () => {
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );

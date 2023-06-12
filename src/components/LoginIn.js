@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../scss/register.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assests/Logo.png";
 import icon from "../assests/Group 17.png";
 import img1 from "../assests/Icons/Tail icon q.png";
@@ -117,8 +117,8 @@ const LoginIn = ({ setMode }) => {
               {isSubmitting || loading ? "Submitting..." : "Login"}
             </button>
             <p className="para">
-              Forgot your password?
-              <a href="#">Click here</a>
+              I don't have an account to sign in
+              <Link to="/" onClick={() => setMode("register")} >Click here</Link>
             </p>
           </form>
         </div>

@@ -105,7 +105,7 @@ footer {
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
 
       @include md {
         flex-direction: column;
@@ -156,7 +156,7 @@ footer {
           flex-direction: column;
         }
 
-        >img {
+        > img {
           width: 65px !important;
           transform: scale(0);
         }
@@ -169,7 +169,6 @@ footer {
 
           @include mobile {
             margin-right: 0px;
-
           }
         }
 

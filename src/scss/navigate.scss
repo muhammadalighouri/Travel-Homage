@@ -36,7 +36,7 @@
       grid-template-columns: 1fr 1.2fr;
       background: #fafafa;
       grid-gap: 35px;
-      border-radius: 95px;
+      border-radius: 30px;
 
       @include md {
         grid-template-columns: 1fr;
@@ -65,10 +65,9 @@
           justify-content: end;
           width: 100%;
           gap: 40px;
-@include md{
-  justify-content: space-between;
-
-}
+          @include md {
+            justify-content: space-between;
+          }
           li {
             display: flex;
             flex-direction: column;
@@ -147,10 +146,10 @@
           align-items: center;
           justify-content: end;
           gap: 50px;
-@include md {
-  gap: 0px;
-  justify-content: space-between;
-}
+          @include md {
+            gap: 0px;
+            justify-content: space-between;
+          }
           p {
             font-family: "Cairo", sans-serif;
 
@@ -199,7 +198,8 @@
             justify-content: center;
             flex-direction: column;
 
-            li {}
+            li {
+            }
           }
         }
 
@@ -241,7 +241,6 @@
 
               @include md {
                 font-size: 14px;
-
               }
             }
           }
@@ -309,7 +308,6 @@
 
         @include md {
           order: 2;
-
         }
 
         img {
@@ -321,7 +319,6 @@
             height: 100%;
             max-width: 300px;
           }
-
         }
       }
     }

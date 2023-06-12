@@ -204,38 +204,40 @@ const Controls = () => {
     const handleSubmit = () => {
         if (pickupTime.getTime() === returnTime.getTime()) {
             toast.error("Change the time");
-        }
-        if (selectedOption === "delivery") {
-            if (!deliveryAddress || !pickupTime || !returnTime || !selectedOption) {
-                toast.error("Please fill out all fields");
-                return;
-            }
-            dispatch(
-                setRentalDetails({
-                    deliveryAddress,
-                    pickupTime,
-                    returnTime,
-                    selectedOption,
-                })
-            );
         } else {
-            if (!pickupLocation || !pickupTime || !returnTime || !selectedOption) {
-                toast.error("Please fill out all fields");
-                return;
+            if (selectedOption === "delivery") {
+                if (!deliveryAddress || !pickupTime || !returnTime || !selectedOption) {
+                    toast.error("Please fill out all fields");
+                    return;
+                }
+                dispatch(
+                    setRentalDetails({
+                        deliveryAddress,
+                        pickupTime,
+                        returnTime,
+                        selectedOption,
+                    })
+                );
+            } else {
+                if (!pickupLocation || !pickupTime || !returnTime || !selectedOption) {
+                    toast.error("Please fill out all fields");
+                    return;
+                }
+                dispatch(
+                    setRentalDetails({
+                        pickupLocation,
+                        returnLocation,
+                        deliveryAddress,
+                        pickupTime,
+                        returnTime,
+                        selectedOption,
+                    })
+                );
             }
-            dispatch(
-                setRentalDetails({
-                    pickupLocation,
-                    returnLocation,
-                    deliveryAddress,
-                    pickupTime,
-                    returnTime,
-                    selectedOption,
-                })
-            );
+
+            navigate("/fleet");
         }
 
-        navigate("/fleet");
     };
     useEffect(() => {
         if (rentalInfo) {
