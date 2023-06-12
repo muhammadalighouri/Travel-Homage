@@ -467,6 +467,9 @@ const Booking = () => {
       setPhone(user.phone || "");
       setEmail(user.email || "");
     }
+    else {
+      navigate('/')
+    }
   }, [user]);
   useEffect(() => {
     if (rentalInfo) {
