@@ -244,7 +244,7 @@ const CarD = ({ display }) => {
                 );
               })}
               {selectedCar && (
-                <Navigate closeModal={closeModal} car={selectedCar} />
+                <Navigate closeModal={closeModal} car={selectedCar}  />
               )}
             </>
           )}

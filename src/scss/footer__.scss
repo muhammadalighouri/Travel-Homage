@@ -86,6 +86,7 @@ footer {
         text-align: end;
         font-family: "Cairo", sans-serif;
         list-style: none;
+
         @include md {
           text-align: center;
         }
@@ -151,26 +152,38 @@ footer {
         transition: 0.3s all;
         z-index: 1001;
 
-        > img {
-          width: 80px;
+        @include mobile {
+          flex-direction: column;
+        }
+
+        >img {
+          width: 65px !important;
           transform: scale(0);
         }
+
         .card {
           border-radius: 15px;
           width: max-content;
           max-width: 290px;
           margin-right: 224px;
+
+          @include mobile {
+            margin-right: 0px;
+
+          }
         }
+
         .card-header {
           border-top-left-radius: 15px;
           border-top-right-radius: 15px;
           background: #ffcd00 !important;
         }
+
         @include md {
           order: 3;
-          img {
-            width: 50px;
-          }
+          // img {
+          //   width: 50px;
+          // }
         }
       }
 
@@ -179,6 +192,7 @@ footer {
         align-items: center;
         justify-content: start;
         align-items: center;
+
         @include md {
           order: 2;
           position: absolute;

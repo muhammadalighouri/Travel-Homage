@@ -1,8 +1,14 @@
-#saved {
-  background: #ffffff;
-  height: 100%;
-  border-radius: 75px 75px 0 0;
+@import "./variable.scss";
+@import "./media.scss";
 
+#saved {
+  background: #FFFFFF;
+  border-radius: 75px 75px 0 0;
+  height: 100%;
+@include md{
+  height: 100vh;
+
+}
   .container {
     padding: 90px 20px;
     display: flex;

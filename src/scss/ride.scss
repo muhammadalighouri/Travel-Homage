@@ -21,15 +21,21 @@
             grid-gap: 40px;
             grid-template-columns: 1fr 0.5fr;
 
+            @include md {
+                grid-template-columns: 1fr;
+            }
+
             .img-box {
                 .img-wrapper {
                     position: relative;
-                    overflow: hidden;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+img{
+    width: 100%;
+}
                     .btn {
                         background: #FFCD00;
 

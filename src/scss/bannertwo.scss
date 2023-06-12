@@ -12,7 +12,7 @@
 
     .swiper-wrapper {
 
-        padding-bottom: 60px;
+        padding-bottom: 75px;
     }
 
     .swiper-pagination {
@@ -61,13 +61,14 @@
 
         @include md {
             grid-template-columns: 1fr;
-            grid-gap: 3rem;
-            width: 90%;
-            margin: auto;
+    /* grid-gap: 3rem; */
+    /* width: 90%; */
+    margin: auto;
+    padding: 0px 20px;
         }
 
         @include sm {
-            grid-gap: 15px;
+            grid-gap: 5px;
         }
 
         .start-2 {

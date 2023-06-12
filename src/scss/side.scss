@@ -6,6 +6,11 @@
     position: relative;
     border-top-left-radius: 75px;
     border-top-right-radius: 75px;
+@include md{
+    max-width: 100% !important;
+    border-radius: 50px;
+}
+
     .container {
 
         max-width: 300px;
@@ -14,7 +19,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
+@include md{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 25px !important;
+}
         aside {
             display: flex;
             display: flex;
@@ -56,7 +65,9 @@
                 justify-content: center;
                 gap: 5px;
                 padding-top: 115px;
-
+@include md{
+    padding-top: 90px
+}
                 img {
                     width: 100%;
                     height: 100%;
@@ -73,7 +84,13 @@
                 justify-content: center;
                 gap: 10px;
 
-                li {
+                @include md {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                }
+
+                a {
                     display: flex;
                     align-items: center;
                     justify-content: end;
@@ -82,9 +99,15 @@
                     padding: 15px;
                     border-radius: 20px;
                     width: 100%;
-    
+
                     height: 50px;
-                    a {
+
+                    @include md {
+                        width: auto;
+                        justify-content: center;
+                    }
+
+                    div {
                         color: #373A36;
                         font-family: "Cairo", sans-serif;
                         font-size: 18px;
@@ -92,10 +115,13 @@
                         font-weight: 400;
                         text-align: end;
 
+                        @include md {
+                            display: none;
+                        }
                     }
 
                     img {
-                     object-fit: contain;
+                        object-fit: contain;
                     }
                 }
             }

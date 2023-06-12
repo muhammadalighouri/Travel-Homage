@@ -2,8 +2,13 @@
 @import "./media.scss";
 
 .road-input {
-    background-color: white;
-    border-radius: 75px 75px 0px 0px;
+    background: #FFFFFF;
+    border-radius: 75px 75px 0 0;
+    height: 100%;
+@include md{
+    height: 100vh;
+
+}
 
     .input-box-wrap {
         width: 100%;

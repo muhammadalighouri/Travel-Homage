@@ -14,10 +14,13 @@
     display: grid;
     grid-template-columns: 2fr 4fr;
     grid-gap: 25px;
-    /* max-width: 1200px; */
+    max-width: 1200px;
     margin: auto;
     padding: 90px 20px;
     padding-bottom: 0px;
+    @include md {
+      grid-template-columns: 1fr;
+    }
 
     .container {
       .grid__one {
@@ -25,11 +28,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
         @include md {
           grid-template-columns: 1fr;
         }
-
         .btns {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
