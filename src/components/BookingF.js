@@ -16,7 +16,7 @@ import { getUserBookings } from "../Redux/actions/bookingActions";
 const BookingF = () => {
   const [activeButton, setActiveButton] = useState("أكتملت");
   // const [activeButton, setActiveButton] = useState('جارية')
-  const bookings = useSelector(state => state.Bookings.bookingsByStatus);
+  const bookings = useSelector((state) => state.Bookings.bookingsByStatus);
   const { upcoming, ongoing, completed, cancelled } = bookings || {};
   const data1 = [
     {
@@ -92,11 +92,10 @@ const BookingF = () => {
     { h: "قادمة", icon: icon4 },
     { h: "الغيت", icon: icon1 },
   ];
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserBookings())
-  }, [])
-
+    dispatch(getUserBookings());
+  }, []);
 
   return (
     <>
@@ -117,80 +116,112 @@ const BookingF = () => {
           })}
         </ul>
         <div className="product">
-          {activeButton === "الغيت" && <>
-            {
-              ongoing &&
-
-                ongoing.length > 0 ? ongoing.map((i) => {
+          {activeButton === "الغيت" && (
+            <>
+              {ongoing && ongoing.length > 0 ? (
+                ongoing.map((i) => {
                   return (
                     <>
                       <CarCard type={"ongoing"} i={i} text={""} />
                     </>
                   );
                 })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      display: "grid",
+                      placeItems: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h2 style={{ color: "black" }}>No Items Available</h2>
                   </div>
                 </>
-            }
-          </>}
-          {activeButton === "قادمة" && <>
-            {
-              completed &&
-
-                completed.length > 0 ? completed.map((i) => {
+              )}
+            </>
+          )}
+          {activeButton === "قادمة" && (
+            <>
+              {completed && completed.length > 0 ? (
+                completed.map((i) => {
                   return (
                     <>
                       <CarCard i={i} text={""} />
                     </>
                   );
                 })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      display: "grid",
+                      placeItems: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h2 style={{ color: "black" }}>No Items Available</h2>
                   </div>
                 </>
-            }
-          </>}
-          {activeButton === "أكتملت" && <>
-            {
-              upcoming &&
-
-                upcoming.length > 0 ? upcoming.map((i) => {
+              )}
+            </>
+          )}
+          {activeButton === "أكتملت" && (
+            <>
+              {upcoming && upcoming.length > 0 ? (
+                upcoming.map((i) => {
                   return (
                     <>
                       <CarCard i={i} text={""} />
                     </>
                   );
                 })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      display: "grid",
+                      placeItems: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h2 style={{ color: "black" }}>No Items Available</h2>
                   </div>
                 </>
-            }
-          </>}
-          {activeButton === "جارية" && <>
-            {
-              cancelled &&
-
-                cancelled.length > 0 ? cancelled.map((i) => {
+              )}
+            </>
+          )}
+          {activeButton === "جارية" && (
+            <>
+              {cancelled && cancelled.length > 0 ? (
+                cancelled.map((i) => {
                   return (
                     <>
                       <CarCard i={i} text={""} />
                     </>
                   );
                 })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      display: "grid",
+                      placeItems: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h2 style={{ color: "black" }}>No Items Available</h2>
                   </div>
                 </>
-            }
-          </>}
+              )}
+            </>
+          )}
         </div>
-      </div >
+      </div>
     </>
   );
 };

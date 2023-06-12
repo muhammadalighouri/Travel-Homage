@@ -232,7 +232,6 @@ const data = [
     branchMobile: ""
   }
 ];
-
 function Maps() {
   const [location, setLocation] = useState(center);
   const [selectedCity, setSelectedCity] = useState(null);
@@ -240,10 +239,13 @@ function Maps() {
   const [cities, setCities] = useState([]);
   const [branches, setBranches] = useState([]);
 
+
   useEffect(() => {
-    const uniqueCities = Array.from(new Set(data.map((item) => item.city))).map((city) => {
-      return { value: city, label: city };
-    });
+    const uniqueCities = Array.from(new Set(data.map((item) => item.city))).map(
+      (city) => {
+        return { value: city, label: city };
+      }
+    );
     setCities(uniqueCities);
   }, []);
 
@@ -252,7 +254,12 @@ function Maps() {
       const branchesInCity = data
         .filter((item) => item.city === selectedCity.value)
         .map((item) => {
-          return { value: item.branch, label: item.branch, lat: item.lat, lng: item.lng };
+          return {
+            value: item.branch,
+            label: item.branch,
+            lat: item.lat,
+            lng: item.lng,
+          };
         });
       setBranches(branchesInCity);
     } else {
@@ -276,7 +283,11 @@ function Maps() {
         <div className="container__">
           <div className="grid">
             <div className="start">
-              <GoogleMap mapContainerStyle={containerStyle} center={location} zoom={15}>
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={location}
+                zoom={15}
+              >
                 <Marker position={location} />
               </GoogleMap>
             </div>
@@ -312,38 +323,54 @@ function Maps() {
             </div>
           </div>
           <div className="bottom">
-            <div className="item">
-              <div className="end">
-                <h4>شارع النجد بالرياض</h4>
-                <p>LS230201</p>
-              </div>
-            </div>
-            <div className="item">
-              <img src={phone} alt="" />
-              <div className="end">
-                {" "}
-                <p>+9665xxxxxxxx</p>
-              </div>
-            </div>
-            <div className="item">
-              <div className="icon">
-                <img src={watch} alt="" />
-              </div>
-              <div className="end">
-                {" "}
-                <h4>الأحد إلى الخميس</h4>
-                <p>9:00 صباحًا - 11:00 مساءً</p>
-              </div>
-            </div>
+            {selectedBranch && (
+              <>
+                <div className="item">
+                  <div className="end">
+                    <h4>{selectedBranch.value}</h4>
+                    <p>
+                      {
+                        data.find(
+                          (item) => item.branch === selectedBranch.value
+                        ).detailedAddress
+                      }
+                    </p>
+                  </div>
+                </div>
+                <div className="item">
+                  <img src={phone} alt="" />
+                  <div className="end">
+                    {" "}
+                    <p>
+                      {
+                        data.find(
+                          (item) => item.branch === selectedBranch.value
+                        ).branchMobile
+                      }
+                    </p>
+                  </div>
+                </div>
+                {/* Here you need to have the opening hours data as well*/}
+                <div className="item">
+                  <div className="icon">
+                    <img src={watch} alt="" />
+                  </div>
+                  <div className="end">
+                    {" "}
+                    <h4>الأحد إلى الخميس</h4>
+                    <p>9:00 صباحًا - 11:00 مساءً</p>
+                  </div>
+                </div>
 
-            <div className="item">
-              <div className="end">
-                <h4>الجمعة - السبت</h4>
-                <p>4:00 مساءً - 11:00 مساءً</p>
-              </div>
-            </div>
+                <div className="item">
+                  <div className="end">
+                    <h4>الجمعة - السبت</h4>
+                    <p>4:00 مساءً - 11:00 مساءً</p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
-
         </div>
       </div>
     </LoadScript>

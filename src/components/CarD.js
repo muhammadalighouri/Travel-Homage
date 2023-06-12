@@ -7,6 +7,8 @@ import Vector from "../assests/Fleet/Vector1.png";
 import top from "../assests/Fleet/top-left.png";
 import bottom from "../assests/Fleet/bottom-right.jpeg";
 import s1 from "../assests/Fleet/span1.png";
+import Skeleton from '@mui/material/Skeleton';
+
 import green from "../assests/green.png";
 import s2 from "../assests/Fleet/span2.png";
 import s3 from "../assests/Fleet/span3.png";
@@ -29,6 +31,7 @@ import {
 import { toast } from "react-toastify";
 import { fetchCars, toggleAction } from "../Redux/actions/carActions";
 import filter from "../assests/filter.png";
+import { hideLoader, showLoader } from "../Redux/actions/loading";
 const CarD = ({ display }) => {
   const { cars, loading } = useSelector((state) => state.Cars) || {};
   const info = useSelector((state) => state.RentalInfo?.selectedOption);
@@ -38,7 +41,7 @@ const CarD = ({ display }) => {
   const [favoriteCars, setFavoriteCars] = useState(null);
   const dispatch = useDispatch();
   const toggle = useSelector((state) => state.toggle.toggle);
-  const handleShowFavorites = () => {};
+  const handleShowFavorites = () => { };
   useEffect(() => {
     dispatch(fetchCars());
   }, [toggle]);
@@ -56,7 +59,10 @@ const CarD = ({ display }) => {
     return price - (price * discount) / 100;
   };
   // Function to handle adding a car to favorites
-  const handleAddFavorite = (carId) => {
+  const handleAddFavorite = (event, carId) => {
+    dispatch(showLoader())
+    event.stopPropagation();
+
     // Assuming you have access to the userId, you can pass it here
     if (user?._id) {
       dispatch(addFavorite(user._id, carId)).then(() => {
@@ -66,6 +72,7 @@ const CarD = ({ display }) => {
     } else {
       toast.error("You need to Login your account");
     }
+    dispatch(hideLoader())
   };
   const handleFavorite = (carId) => {
     // Assuming you have access to the userId, you can pass it here
@@ -77,12 +84,15 @@ const CarD = ({ display }) => {
   };
 
   // Function to handle removing a car from favorites
-  const handleRemoveFavorite = (carId) => {
+  const handleRemoveFavorite = (event, carId) => {
     // Assuming you have access to the userId, you can pass it here
+    dispatch(showLoader())
+    event.stopPropagation();
     dispatch(removeFavorite(user._id, carId)).then(() => {
       dispatch(fetchCars());
       toast.success("Removed from your favourites");
     });
+    dispatch(hideLoader())
   };
 
   const getCategoryIcon = (cat) => {
@@ -106,7 +116,7 @@ const CarD = ({ display }) => {
     <>
       <div>
         <div className="btns">
-          <div className="impression" >
+          <div className="impression">
             <div
               className={toggle ? "btn__active btn" : "btn"}
               onClick={handleFavorite}
@@ -116,15 +126,22 @@ const CarD = ({ display }) => {
               <img src={!toggle ? f5 : green} alt="" />
             </div>
           </div>
-    
         </div>
         <div className="flex">
           {loading ? (
             <>
-              <div className="box"></div>
-              <div className="box"></div>
-              <div className="box"></div>
+
+              {
+                [1, 2, 3, 4, 5, 6].map((item, index) => {
+                  return (
+                    <div className="box">
+                      <Skeleton style={{ borderRadius: '30px' }} variant="rectangular" width={291} height={285} />
+                    </div>
+                  )
+                })
+              }
             </>
+
           ) : (
             <>
               {carsToRender.map((car) => {
@@ -139,7 +156,7 @@ const CarD = ({ display }) => {
                           <div className="start">
                             <span>خصم {car.discount}%</span>
                           </div>
-                          <div className="center">{car.type}</div>
+                          <div className="center">{car.category}</div>
                           <div className="end">
                             <img
                               src={getCategoryIcon(car.category)}
@@ -180,7 +197,7 @@ const CarD = ({ display }) => {
                           </div>
                           <div className="wrap-img">
                             <img src={car?.image} alt="" className="main" />
-                            <div className="icons">
+                            {/* <div className="icons">
                               <li>
                                 <img src={s1} alt="" />
                                 <span>{car?.maxPeople}</span>
@@ -197,30 +214,30 @@ const CarD = ({ display }) => {
                                 <img src={s4} alt="" />
                                 <span>{car?.engine}</span>
                               </li>
+                            </div> */}
+                            <div className="impression">
+                              {/* Render the "Remove from Favorites" button for cars that are already favorited */}
+                              {car.isFavorited ? (
+                                <div
+                                  className=" btn__active"
+                                  onClick={(e) => handleRemoveFavorite(e, car._id)}
+                                >
+                                  <img src={green} alt="" />
+                                </div>
+                              ) : (
+                                <div
+                                  className="btn"
+                                  onClick={(e) => handleAddFavorite(e, car._id)}
+                                >
+                                  <img src={f5} alt="" />
+                                </div>
+                              )}
                             </div>
                             <div className="main-btn">
                               <span>احجز الآن</span>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="impression">
-                        {/* Render the "Remove from Favorites" button for cars that are already favorited */}
-                        {car.isFavorited ? (
-                          <div
-                            className=" btn__active"
-                            onClick={() => handleRemoveFavorite(car._id)}
-                          >
-                            <img src={green} alt="" /> اضافة للمفضله
-                          </div>
-                        ) : (
-                          <div
-                            className="btn"
-                            onClick={() => handleAddFavorite(car._id)}
-                          >
-                            <img src={f5} alt="" /> مفضل
-                          </div>
-                        )}
                       </div>
                     </div>
                   </>
@@ -232,9 +249,11 @@ const CarD = ({ display }) => {
             </>
           )}
         </div>
-      </div>
+      </div >
     </>
   );
 };
 
 export default CarD;
+
+

@@ -54,7 +54,7 @@ const Navigate = ({ car, closeModal }) => {
                   <span>{car?.engine}</span>
                 </li>
               </div>
-              <div className="list">
+              {/* <div className="list">
                 <ul className="light">
                   <li>{car?.maxPeople}</li>
                   <li>{car?.bags}</li>
@@ -69,7 +69,7 @@ const Navigate = ({ car, closeModal }) => {
                   <li>Engine </li>
 
                 </ul>
-              </div>
+              </div> */}
               <div className="price-btn" onClick={() => navigate(`/${car._id}/booking`)}>
                 <div className="btn-1">
                   <span>أحجز الآن</span>

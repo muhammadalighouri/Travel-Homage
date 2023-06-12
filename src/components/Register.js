@@ -53,7 +53,7 @@ const Register = ({ setMode }) => {
           )
         );
       } catch (error) {
-        toast.error(error || error.message, {
+        toast.error(userInfo, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       } finally {
@@ -67,10 +67,10 @@ const Register = ({ setMode }) => {
         toast.success("Registration Successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate("/profile");
+        navigate("/verify-email");
         setMode("");
       } else {
-        toast.error(userInfo.message, {
+        toast.error(userInfo, {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
@@ -184,7 +184,7 @@ const Register = ({ setMode }) => {
                   {...formik.getFieldProps("confirmPassword")}
                 />
                 {formik.touched.confirmPassword &&
-                formik.errors.confirmPassword ? (
+                  formik.errors.confirmPassword ? (
                   <div className="error">{formik.errors.confirmPassword}</div>
                 ) : null}
               </div>

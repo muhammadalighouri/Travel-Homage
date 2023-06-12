@@ -23,19 +23,24 @@ import AboutPage from "./Pages/AboutPage";
 import ServicesPage from "./Pages/ServicesPage";
 import FaqPage from "./Pages/FaqPage";
 import Booking from "./Pages/Booking";
+import VerifyEmail from "./Pages/VerifyEmail";
+import Loading from "./components/Loading";
+import { useSelector } from "react-redux";
 
 function App() {
-  let [loading, setLoading] = useState(true);
+  const { loading } = useSelector((state) => state.loading)
   useEffect(() => {
     AOS.init({
       duration: 1200,
     });
   }, []);
-  const particlesLoaded = useCallback(async (container) => {
-    await console.log(container);
-  }, []);
+
   return (
     <div className="App">
+      {
+        loading && <Loader />
+      }
+
       <>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
@@ -57,6 +62,7 @@ function App() {
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/:car/booking" element={<Booking />} />
         </Routes>
         {/* <Footer /> */}

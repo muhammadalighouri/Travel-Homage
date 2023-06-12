@@ -93,7 +93,6 @@ const Navigation = ({ }) => {
       path: "/booking-side",
     },
   ];
-  console.log(mode);
   return (
     <>
       <header>

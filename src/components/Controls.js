@@ -202,6 +202,9 @@ const Controls = () => {
     }, [activeInput]);
 
     const handleSubmit = () => {
+        if (pickupTime.getTime() === returnTime.getTime()) {
+            toast.error("Change the time");
+        }
         if (selectedOption === "delivery") {
             if (!deliveryAddress || !pickupTime || !returnTime || !selectedOption) {
                 toast.error("Please fill out all fields");
