@@ -404,7 +404,7 @@ const Booking = () => {
     } else {
 
       if (!isAllValuesEntered) {
-
+        toast.warning("Enter all fields");
       }
     }
   };

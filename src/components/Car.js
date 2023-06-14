@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,9 +12,49 @@ import "../scss/car.scss";
 import img from "../assests/Group 938.png";
 import img1 from "../assests/Car Card (1).png";
 import img2 from "../assests/Car Card.png";
+import suv from "../assests/cars/SUV (2).png";
+import sedan from "../assests/cars/sedan (2).png";
+import luxury from "../assests/cars/luxury (2).png";
+import family from "../assests/cars/faamily.png";
+import economy from "../assests/cars/economy.png";
 import Controls from "../components/Controls";
+import { useDispatch, useSelector } from "react-redux";
+import CarBox from "./CarBox";
+import { fetchCars } from "../Redux/actions/carActions";
+import Navigate from "./Navigate";
 const Car = () => {
   const [slide, setSlide] = useState(2);
+  const [selectedCar, setSelectedCar] = useState(null);
+  const { cars, loading } = useSelector((state) => state.Cars) || {};
+  const info = useSelector((state) => state.RentalInfo?.selectedOption);
+  const dispatch = useDispatch()
+  // Function to handle when a car card is clicked
+  const cardDetails = (car) => {
+    setSelectedCar(car);
+  };
+  const closeModal = () => {
+    setSelectedCar(null);
+  };
+  const priceAfterDiscount = (price, discount) => {
+    return price - (price * discount) / 100;
+  };
+  const getCategoryIcon = (cat) => {
+    if (cat === "SUV") {
+      return suv;
+    }
+    if (cat === "Luxury") {
+      return luxury;
+    }
+    if (cat === "Sedan") {
+      return sedan;
+    }
+    if (cat === "Economy") {
+      return economy;
+    }
+    if (cat === "Family") {
+      return family;
+    }
+  };
   window.addEventListener("scroll", () => {
     if (window.innerWidth > 786) {
       setSlide(2);
@@ -24,6 +63,9 @@ const Car = () => {
       setSlide(1);
     }
   });
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, []);
   return (
     <>
       <section id="car">
@@ -35,46 +77,34 @@ const Car = () => {
               navigation={true}
               modules={[Navigation]}
               slidesPerView={slide}
-              spaceBetween={35}
+              spaceBetween={10}
               pagination={{
                 clickable: true,
               }}
               className="mySwiper"
             >
-              <SwiperSlide>
-                {" "}
-                <div className="box">
-                  <img src={img1} alt="" />
-                  <div className="title">
-                    *السعر يشمل خصم الدفع الإلكتروني (10%)
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <div className="box">
-                  <img src={img1} alt="" />
-                  <div className="title">
-                    *السعر يشمل خصم الدفع الإلكتروني (10%)
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="box">
-                  <img src={img2} alt="" />
-                  <div className="title">
-                    *السعر يشمل خصم الدفع الإلكتروني (10%)
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="box">
-                  <img src={img2} alt="" />
-                  <div className="title">
-                    *السعر يشمل خصم الدفع الإلكتروني (10%)
-                  </div>
-                </div>
-              </SwiperSlide>
+              {
+                cars.map((car, index) => {
+                  return (
+                    <SwiperSlide>
+                      {" "}
+                      <CarBox
+                        key={index}
+                        cardDetails={cardDetails}
+                        car={car}
+                        getCategoryIcon={getCategoryIcon}
+                        info={info}
+                        priceAfterDiscount={priceAfterDiscount}
+
+                        isFav={false}
+                      />
+
+                    </SwiperSlide>
+                  )
+                })
+              }
+
+
             </Swiper>
           </div>
           <div className="content">
@@ -90,6 +120,9 @@ const Car = () => {
             </div>
           </div>
         </div>
+        {selectedCar && (
+          <Navigate closeModal={closeModal} car={selectedCar} />
+        )}
       </section>
     </>
   );

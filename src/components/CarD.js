@@ -7,7 +7,7 @@ import Vector from "../assests/Fleet/Vector1.png";
 import top from "../assests/Fleet/top-left.png";
 import bottom from "../assests/Fleet/bottom-right.jpeg";
 import s1 from "../assests/Fleet/span1.png";
-import Skeleton from '@mui/material/Skeleton';
+import Skeleton from "@mui/material/Skeleton";
 
 import green from "../assests/green.png";
 import s2 from "../assests/Fleet/span2.png";
@@ -32,6 +32,7 @@ import { toast } from "react-toastify";
 import { fetchCars, toggleAction } from "../Redux/actions/carActions";
 import filter from "../assests/filter.png";
 import { hideLoader, showLoader } from "../Redux/actions/loading";
+import CarBox from "./CarBox";
 const CarD = ({ display }) => {
   const { cars, loading } = useSelector((state) => state.Cars) || {};
   const info = useSelector((state) => state.RentalInfo?.selectedOption);
@@ -60,7 +61,7 @@ const CarD = ({ display }) => {
   };
   // Function to handle adding a car to favorites
   const handleAddFavorite = (event, carId) => {
-    dispatch(showLoader())
+    dispatch(showLoader());
     event.stopPropagation();
 
     // Assuming you have access to the userId, you can pass it here
@@ -72,7 +73,7 @@ const CarD = ({ display }) => {
     } else {
       toast.error("You need to Login your account");
     }
-    dispatch(hideLoader())
+    dispatch(hideLoader());
   };
   const handleFavorite = (carId) => {
     // Assuming you have access to the userId, you can pass it here
@@ -86,13 +87,13 @@ const CarD = ({ display }) => {
   // Function to handle removing a car from favorites
   const handleRemoveFavorite = (event, carId) => {
     // Assuming you have access to the userId, you can pass it here
-    dispatch(showLoader())
+    dispatch(showLoader());
     event.stopPropagation();
     dispatch(removeFavorite(user._id, carId)).then(() => {
       dispatch(fetchCars());
       toast.success("Removed from your favourites");
     });
-    dispatch(hideLoader())
+    dispatch(hideLoader());
   };
 
   const getCategoryIcon = (cat) => {
@@ -130,130 +131,47 @@ const CarD = ({ display }) => {
         <div className="flex">
           {loading ? (
             <>
-
-              {
-                [1, 2, 3, 4, 5, 6].map((item, index) => {
-                  return (
-                    <div className="box">
-                      <Skeleton style={{ borderRadius: '30px' }} variant="rectangular" width={291} height={285} />
-                    </div>
-                  )
-                })
-              }
+              {[1, 2, 3, 4, 5, 6].map((item, index) => {
+                return (
+                  <div className="box">
+                    <Skeleton
+                      style={{ borderRadius: "30px" }}
+                      variant="rectangular"
+                      width={291}
+                      height={285}
+                    />
+                  </div>
+                );
+              })}
             </>
-
           ) : (
             <>
-              {carsToRender.map((car) => {
+              {carsToRender.map((car, index) => {
                 return (
                   <>
-                    <div className="box">
-                      <div
-                        className="wrapper-main"
-                        onClick={() => cardDetails(car)}
-                      >
-                        <div className="top-h">
-                          <div className="start">
-                            <span>خصم {car.discount}%</span>
-                          </div>
-                          <div className="center">{car.category}</div>
-                          <div className="end">
-                            <img
-                              src={getCategoryIcon(car.category)}
-                              alt=""
-                              className="vector"
-                            />
-                          </div>
-                        </div>
-                        <div className="bottom-h">
-                          <div className="content">
-                            <div className="heading-1">
-                              <h1>{car.name}</h1>
-                            </div>
-                            <div className="year">
-                              <span>{car.year}</span>
-                              <div className="price">
-                                <span className="n1">ر.س.</span>
-                                <span className="n2">
-                                  {" "}
-                                  {info === "perDay"
-                                    ? car?.pricePerDay
-                                    : car?.pricePerHour}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="layer">
-                              <h2>
-                                {priceAfterDiscount(
-                                  info === "perDay"
-                                    ? car?.pricePerDay
-                                    : car?.pricePerHour,
-                                  car?.discount
-                                )}
-                                <span className="l1">ر.س.*</span>
-                              </h2>
-                            </div>
-                          </div>
-                          <div className="wrap-img">
-                            <img src={car?.image} alt="" className="main" />
-                            {/* <div className="icons">
-                              <li>
-                                <img src={s1} alt="" />
-                                <span>{car?.maxPeople}</span>
-                              </li>
-                              <li>
-                                <img src={s2} alt="" />
-                                <span>{car?.bags}</span>
-                              </li>
-                              <li>
-                                <img src={s3} alt="" />
-                                <span>{car?.numDoors}</span>
-                              </li>
-                              <li>
-                                <img src={s4} alt="" />
-                                <span>{car?.engine}</span>
-                              </li>
-                            </div> */}
-                            <div className="impression">
-                              {/* Render the "Remove from Favorites" button for cars that are already favorited */}
-                              {car.isFavorited ? (
-                                <div
-                                  className=" btn__active"
-                                  onClick={(e) => handleRemoveFavorite(e, car._id)}
-                                >
-                                  <img src={green} alt="" />
-                                </div>
-                              ) : (
-                                <div
-                                  className="btn"
-                                  onClick={(e) => handleAddFavorite(e, car._id)}
-                                >
-                                  <img src={f5} alt="" />
-                                </div>
-                              )}
-                            </div>
-                            <div className="main-btn">
-                              <span>احجز الآن</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <CarBox
+                      cardDetails={cardDetails}
+                      car={car}
+                      key={index}
+                      getCategoryIcon={getCategoryIcon}
+                      info={info}
+                      priceAfterDiscount={priceAfterDiscount}
+                      handleRemoveFavorite={handleRemoveFavorite}
+                      handleAddFavorite={handleAddFavorite}
+                      isFav={true}
+                    />
                   </>
                 );
               })}
               {selectedCar && (
-                <Navigate closeModal={closeModal} car={selectedCar}  />
+                <Navigate closeModal={closeModal} car={selectedCar} />
               )}
             </>
           )}
         </div>
-      </div >
+      </div>
     </>
   );
 };
 
 export default CarD;
-
-

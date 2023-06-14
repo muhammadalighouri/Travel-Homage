@@ -19,6 +19,7 @@ import BookingF from "../components/BookingF";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchFilters());

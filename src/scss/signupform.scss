@@ -9,6 +9,8 @@
   border-top-left-radius: 75px;
   margin-top: -80px;
   overflow: hidden;
+  position: relative;
+  z-index: 0;
   .inner {
     /* background: #a2a9ad; */
     position: relative;
