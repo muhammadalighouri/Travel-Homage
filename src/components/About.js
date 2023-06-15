@@ -5,7 +5,8 @@ import a33 from "../assests/About-img/a.33.png";
 const About = ({ mainImg, heading, img, des, order, end, top }) => {
   return (
     <>
-      <section
+    <section id="about-wrapper">
+    <div
         className="about-box"
         style={order ? { gridTemplateColumns: "  2fr 1fr" } : {}}
       >
@@ -27,7 +28,8 @@ const About = ({ mainImg, heading, img, des, order, end, top }) => {
             <p style={end ? { textAlign: "end" } : {}}>{des}</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     </>
   );
 };

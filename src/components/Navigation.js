@@ -86,12 +86,12 @@ const Navigation = ({ }) => {
     {
       icon: i8,
       name: "المركز الإعلامي",
-      path: "/faq",
+      path: "/booking-side",
     },
     {
       icon: i9,
       name: "الأسئلة المتكررة",
-      path: "/booking-side",
+      path: "/faq",
     },
   ];
   return (
