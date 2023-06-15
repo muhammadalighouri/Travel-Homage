@@ -10,11 +10,11 @@ import cross from "../assests/Fleet/Xmark.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const Navigate = ({ car, closeModal }) => {
-  const info = useSelector(state => state.RentalInfo?.selectedOption);
-  const navigate = useNavigate()
+  const info = useSelector((state) => state.RentalInfo?.selectedOption);
+  const navigate = useNavigate();
   const priceAfterDiscount = (price, discount) => {
-    return price - (price * discount / 100);
-  }
+    return price - (price * discount) / 100;
+  };
   return (
     <>
       <div className="navigate-wrapper">
@@ -27,16 +27,14 @@ const Navigate = ({ car, closeModal }) => {
                 </div>
                 <span className="year">{car?.model}</span>
 
-                <h1>
-                  {car?.name}
-                </h1>
+                <h1>{car?.name}</h1>
+              </div>
 
-              </div>
-              <div className="para">
-                <img src={star} alt="" />
-                <p>{car?.description}</p>
-              </div>
-              <div className="icons">
+          <div className="icons-wrapper">
+    <div className="para">
+      <span>Car Detial</span>
+    </div>
+          <div className="icons">
                 <li>
                   <img src={v1} alt="" />
                   <span>{car?.maxPeople}</span>
@@ -54,6 +52,7 @@ const Navigate = ({ car, closeModal }) => {
                   <span>{car?.engine}</span>
                 </li>
               </div>
+          </div>
               {/* <div className="list">
                 <ul className="light">
                   <li>{car?.maxPeople}</li>
@@ -70,14 +69,35 @@ const Navigate = ({ car, closeModal }) => {
 
                 </ul>
               </div> */}
-              <div className="price-btn" onClick={() => navigate(`/${car._id}/booking`)}>
-                <div className="btn-1">
+              <div
+                className="price-btn"
+                onClick={() => navigate(`/${car._id}/booking`)}
+              >
+           <div className="btn-top">
+           <div className="btn">
+                  <p className="one">
+                    {info === "perDay" ? car?.pricePerDay : car?.pricePerHour}
+                  </p>
+                  <p className="second">
+                    {" "}
+                    {priceAfterDiscount(
+                      info === "perDay" ? car?.pricePerDay : car?.pricePerHour,
+                      car?.discount
+                    )}{" "}
+                    ر.س
+                  </p>
+                </div>
+              
+           </div>
+           
+           <div className="btn-bottom">
+           <div className="btn-2">
                   <span>أحجز الآن</span>
                 </div>
-                <div className="btn-2">
-                  <p className="one">{info === "perDay" ? car?.pricePerDay : car?.pricePerHour}</p>
-                  <p className="second"> {priceAfterDiscount(info === "perDay" ? car?.pricePerDay : car?.pricePerHour, car?.discount)} ر.س</p>
+                <div className="btn-1">
+                  <span>849 <b>SAR/Day</b></span>
                 </div>
+           </div>
               </div>
             </div>
             <div className="img">
