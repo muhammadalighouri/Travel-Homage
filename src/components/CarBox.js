@@ -52,7 +52,7 @@ const CarBox = ({ cardDetails, car, getCategoryIcon, info, priceAfterDiscount, h
                         </div>
                     </div>
                     <div className="wrap-img">
-                        <img src={car?.image.url} alt="" className="main" />
+                        <img src={car?.image?.url} alt="" className="main" />
                         {/* <div className="icons">
                               <li>
                                 <img src={s1} alt="" />
