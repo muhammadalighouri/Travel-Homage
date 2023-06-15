@@ -6,8 +6,9 @@ import i3 from "../assests/Lead icon (2).png";
 import i4 from "../assests/Lead icon (3).png";
 import i5 from "../assests/Lead icon (4).png";
 import i6 from "../assests/Lead icon (5).png";
-import i7 from "../assests/Lead icon (6).png";
-import i8 from "../assests/Lead icon (7).png";
+import i7 from "../assests/services.png";
+import i8 from "../assests/Lead icon (6).png";
+import i9 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
 import { nav } from "../assests/data";
@@ -88,7 +89,7 @@ const Navigation = ({ }) => {
       path: "/faq",
     },
     {
-      icon: i8,
+      icon: i9,
       name: "الأسئلة المتكررة",
       path: "/booking-side",
     },
@@ -164,12 +165,13 @@ const Navigation = ({ }) => {
                       </div>
                     </div>
                   )}
-                  <div className="icon">
-                    <img src={bell} alt="" />
-                  </div>
+            
                   <span>
                     {user?.firstName} {user?.lastName}
                   </span>
+                  <div className="icon">
+                    <img src={bell} alt="" />
+                  </div>
                 </div>
               ) : (
                 <div className="user__signout">

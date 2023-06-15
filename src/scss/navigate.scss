@@ -19,55 +19,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 20px 40px;
     overflow: auto;
 
-    @include md {
-      background-color: #fafafa;
-    }
+
 
     .container {
       max-width: 1300px;
       padding: 30px;
-      height: 90vh;
       margin: auto;
-      display: grid;
+      display: flex;
+      flex-direction: column-reverse;
       padding: 40px;
-      grid-template-columns: 1fr 1.2fr;
       background: #fafafa;
       grid-gap: 35px;
       border-radius: 30px;
 
-      @include md {
-        grid-template-columns: 1fr;
-        height: 100%;
-        background-color: transparent;
-        padding: 40px 0px;
-      }
 
+      width: 450px;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      margin: 0px;
+@include sm{
+  width: 320px;
+}
       .content {
         position: relative;
         display: flex;
         flex-direction: column;
-        align-items: end;
-        gap: 20px;
+        align-items: center;
         justify-content: start;
 
-        @include md {
-          order: 2;
-          row-gap: 8px;
-        }
+
 
         .icons {
           display: flex;
           align-items: center;
           padding: 10px;
-          justify-content: end;
+          justify-content: center;
           width: 100%;
           gap: 40px;
-          @include md {
-            justify-content: space-between;
-          }
+
           li {
             display: flex;
             flex-direction: column;
@@ -76,6 +70,9 @@
             justify-content: center;
 
             img {
+              max-width: 40px;
+              width: 100%;
+
               @include mobile {
                 width: 38px;
               }
@@ -110,7 +107,9 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
-
+@include mobile{
+  font-size: 30px;
+}
             span {
               font-size: 40px;
               font-weight: 500;
@@ -135,9 +134,12 @@
 
           .cross {
             position: absolute;
-            left: 0;
-            top: 0;
+            left: -30px;
+            top: -95px;
             cursor: pointer;
+            @include mobile {
+              margin-top: 18px;
+            }
           }
         }
 
@@ -146,10 +148,12 @@
           align-items: center;
           justify-content: end;
           gap: 50px;
+
           @include md {
             gap: 0px;
             justify-content: space-between;
           }
+
           p {
             font-family: "Cairo", sans-serif;
 
@@ -198,8 +202,7 @@
             justify-content: center;
             flex-direction: column;
 
-            li {
-            }
+            li {}
           }
         }
 
@@ -212,10 +215,10 @@
 
           @include md {
             width: 100%;
+            gap: 30px;
           }
 
           .btn-1 {
-            width: 177px;
 
             background: #ffcd00;
             box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
@@ -246,7 +249,7 @@
           }
 
           .btn-2 {
-            width: 177px;
+
 
             gap: 10px;
             background: rgba(47, 43, 67, 0.05);
@@ -311,8 +314,9 @@
         }
 
         img {
-          width: 100%;
+          width: 250px;
           height: 100%;
+          max-width: 300px;
 
           @include sm {
             width: 100%;

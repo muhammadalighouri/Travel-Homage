@@ -4,7 +4,7 @@ import v1 from "../assests/Fleet/Vector (3).png";
 import v2 from "../assests/Fleet/Vector (4).png";
 import v3 from "../assests/Fleet/Vector (5).png";
 import v4 from "../assests/Fleet/Group (2).png";
-import img1 from "../assests/Fleet/Rectangle 23.png";
+import img1 from "../assests/car.png";
 import "../scss/navigate.scss";
 import cross from "../assests/Fleet/Xmark.png";
 import { useSelector } from "react-redux";
@@ -81,7 +81,7 @@ const Navigate = ({ car, closeModal }) => {
               </div>
             </div>
             <div className="img">
-              <img src={car?.mainImages[0]} alt="" />
+              <img src={car?.image} alt="" />
             </div>
           </div>
         </section>
