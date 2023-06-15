@@ -62,16 +62,16 @@
           gap: 20px;
 
           .para {
-            width: 100%;
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
             span {
               font-family: "Cairo", sans-serif;
-              font-size: 20px;
               font-weight: 700;
-              line-height: 30px;
-              letter-spacing: 0em;
-              text-align: left;
-              color: black;
+              color: #373a36;
+              position: relative;
+              font-size: 22px;
             }
           }
 
