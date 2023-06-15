@@ -20,11 +20,12 @@ const Navigate = ({ car, closeModal }) => {
       <div className="navigate-wrapper">
         <section id="navigate">
           <div className="container">
-            <div className="content">
-              <div className="heading">
-                <div className="cross" onClick={closeModal}>
+          <div className="cross" onClick={closeModal}>
                   <img src={cross} alt="" />
                 </div>
+            <div className="content">
+              <div className="heading">
+             
                 <span className="year">{car?.model}</span>
 
                 <h1>{car?.name}</h1>
@@ -53,22 +54,7 @@ const Navigate = ({ car, closeModal }) => {
                 </li>
               </div>
           </div>
-              {/* <div className="list">
-                <ul className="light">
-                  <li>{car?.maxPeople}</li>
-                  <li>{car?.bags}</li>
-                  <li>{car?.numDoors}</li>
-                  <li>{car?.engine}</li>
-
-                </ul>
-                <ul className="bold">
-                  <li>Max Person</li>
-                  <li>No Of Bags</li>
-                  <li>No Of Doors</li>
-                  <li>Engine </li>
-
-                </ul>
-              </div> */}
+            
               <div
                 className="price-btn"
                 onClick={() => navigate(`/${car._id}/booking`)}

@@ -19,10 +19,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 40px;
+    padding: 20px 20px;
     overflow: auto;
-
-
 
     .container {
       max-width: 1300px;
@@ -34,14 +32,26 @@
       background: #fafafa;
       grid-gap: 35px;
       border-radius: 75px;
-      width: 342px;
+      width: 338px;
       height: 62vh;
       display: flex;
       align-items: center;
       justify-content: end;
       margin: 0px;
+      position: relative;
+      @include mobile{
+        width: 100%;
+      }
+      .cross {
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        cursor: pointer;
 
-
+        @include mobile {
+          margin-top: 18px;
+        }
+      }
 
       .content {
         position: relative;
@@ -59,13 +69,15 @@
           align-items: center;
           width: 100%;
           justify-content: center;
-          gap: 20px;
+          gap: 10px;
 
           .para {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 5px;
+            width: 100%;
+
             span {
               font-family: "Cairo", sans-serif;
               font-weight: 700;
@@ -156,16 +168,7 @@
             text-align: left;
           }
 
-          .cross {
-            position: absolute;
-            left: -30px;
-            top: -95px;
-            cursor: pointer;
-
-            @include mobile {
-              margin-top: 18px;
-            }
-          }
+      
         }
 
 
