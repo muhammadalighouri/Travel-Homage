@@ -8,8 +8,9 @@
   border-top-left-radius: 75px;
   padding-top: 200px;
   margin-top: 0px;
-  z-index: 2;
-  position: relative;
+  // z-index: 1;
+  // position: relative;
+  // position: relative;
   @include md {
     padding-top: 90px;
   }
@@ -20,6 +21,9 @@
     margin: auto;
     padding: 70px 15px 90px 15px;
     gap: 10px;
+    .swiper {
+      padding: 0 30px !important;
+    }
     @include md {
       grid-template-columns: 1fr;
     }
@@ -34,10 +38,25 @@
         order: 2;
       }
       .box {
-        img {
-          width: 100%;
-          object-fit: contain;
-          height: auto;
+        // img {
+        //   width: 100%;
+        //   object-fit: contain;
+        //   height: auto;
+        // }
+        .year {
+          gap: 0px !important;
+        }
+        .layer::before {
+          content: "";
+
+          left: 26px !important;
+        }
+        .layer {
+          h2 {
+            margin-right: 0 !important;
+
+            padding-left: 10px !important;
+          }
         }
         .title {
           text-align: center;
@@ -53,7 +72,6 @@
       align-items: end;
       justify-content: center;
       flex-direction: column;
-      gap: 20px;
 
       .icon {
         img {

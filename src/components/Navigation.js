@@ -93,7 +93,6 @@ const Navigation = ({ }) => {
       path: "/booking-side",
     },
   ];
-  console.log(mode);
   return (
     <>
       <header>
@@ -177,7 +176,7 @@ const Navigation = ({ }) => {
                   <div className="avatar">
                     <img src={avatarLogout} alt="" />
                   </div>
-                  <button
+                  {/* <button
                     className="signup"
                     onClick={() => {
                       setMode("register")
@@ -186,7 +185,7 @@ const Navigation = ({ }) => {
                     }
                   >
                     التسجيل
-                  </button>
+                  </button> */}
                   <button className="login" onClick={() => setMode("login")}>
                     تسجيل الدخول
                   </button>

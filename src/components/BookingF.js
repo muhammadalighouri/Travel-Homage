@@ -14,10 +14,11 @@ import CarCard from "./CarCard";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserBookings } from "../Redux/actions/bookingActions";
 const BookingF = () => {
-  const [activeButton, setActiveButton] = useState("أكتملت");
+  const [activeButton, setActiveButton] = useState("الغيت");
+  const [activeTab, setactiveTab] = useState("Running")
   // const [activeButton, setActiveButton] = useState('جارية')
-  const bookings = useSelector(state => state.Bookings.bookingsByStatus);
-  const { upcoming, ongoing, completed, cancelled } = bookings || {};
+  const bookings = useSelector((state) => state.Bookings.bookingsByStatus);
+  const { processing, running, completed, cancelled } = bookings || {};
   const data1 = [
     {
       para: "Lorem ipsum dolor sit amet, consectetuer ",
@@ -87,16 +88,20 @@ const BookingF = () => {
     },
   ];
   const btns = [
-    { h: "جارية", icon: icon2 },
+    // { h: "جارية", icon: icon2 },
     { h: "أكتملت", icon: icon3 },
-    { h: "قادمة", icon: icon4 },
+    // { h: "قادمة", icon: icon4 },
     { h: "الغيت", icon: icon1 },
   ];
-  const dispatch = useDispatch()
+  const contractBtns = [
+    { h: "Running", icon: icon1 },
+    { h: "Completed", icon: icon1 },
+    { h: "Cancelled", icon: icon1 },
+  ];
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserBookings())
-  }, [])
-
+    dispatch(getUserBookings());
+  }, []);
 
   return (
     <>
@@ -117,80 +122,132 @@ const BookingF = () => {
           })}
         </ul>
         <div className="product">
-          {activeButton === "الغيت" && <>
-            {
-              ongoing &&
-
-                ongoing.length > 0 ? ongoing.map((i) => {
+          {activeButton === "الغيت" && (
+            <>
+              {processing && processing.length > 0 ? (
+                processing.map((i) => {
                   return (
                     <>
                       <CarCard type={"ongoing"} i={i} text={""} />
                     </>
                   );
                 })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      display: "grid",
+                      placeItems: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h2 style={{ color: "black" }}>No Items Available</h2>
                   </div>
                 </>
-            }
-          </>}
-          {activeButton === "قادمة" && <>
-            {
-              completed &&
+              )}
+            </>
+          )}
 
-                completed.length > 0 ? completed.map((i) => {
+          {activeButton === "أكتملت" && (
+            <>
+              <div className="btns__">
+                {contractBtns.map((a) => {
                   return (
                     <>
-                      <CarCard i={i} text={""} />
+                      <li
+                        onClick={() => setactiveTab(a.h)}
+                        className={activeTab === a.h ? "active" : ""}
+                      >
+                        {a.h}
+                      </li>
                     </>
                   );
-                })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
-                  </div>
-                </>
-            }
-          </>}
-          {activeButton === "أكتملت" && <>
-            {
-              upcoming &&
-
-                upcoming.length > 0 ? upcoming.map((i) => {
-                  return (
+                })}
+              </div>
+              {
+                activeTab === "Running" && <>
+                  {running && running.length > 0 ? (
+                    running.map((i) => {
+                      return (
+                        <>
+                          <CarCard i={i} text={""} />
+                        </>
+                      );
+                    })
+                  ) : (
                     <>
-                      <CarCard i={i} text={""} />
+                      <div
+                        style={{
+                          display: "grid",
+                          placeItems: "center",
+                          alignItems: "center",
+                          textAlign: "center",
+                        }}
+                      >
+                        <h2 style={{ color: "black" }}>No Items Available</h2>
+                      </div>
                     </>
-                  );
-                })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
-                  </div>
+                  )}
                 </>
-            }
-          </>}
-          {activeButton === "جارية" && <>
-            {
-              cancelled &&
-
-                cancelled.length > 0 ? cancelled.map((i) => {
-                  return (
+              }
+              {
+                activeTab === "Completed" && <>
+                  {completed && completed.length > 0 ? (
+                    completed.map((i) => {
+                      return (
+                        <>
+                          <CarCard i={i} text={""} />
+                        </>
+                      );
+                    })
+                  ) : (
                     <>
-                      <CarCard i={i} text={""} />
+                      <div
+                        style={{
+                          display: "grid",
+                          placeItems: "center",
+                          alignItems: "center",
+                          textAlign: "center",
+                        }}
+                      >
+                        <h2 style={{ color: "black" }}>No Items Available</h2>
+                      </div>
                     </>
-                  );
-                })
-                : <>
-                  <div style={{ display: 'grid', placeItems: 'center', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ color: 'black' }}>No Items Available</h2>
-                  </div>
+                  )}
                 </>
-            }
-          </>}
+              }
+              {
+                activeTab === "Cancelled" && <>
+                  {cancelled && cancelled.length > 0 ? (
+                    cancelled.map((i) => {
+                      return (
+                        <>
+                          <CarCard i={i} text={""} />
+                        </>
+                      );
+                    })
+                  ) : (
+                    <>
+                      <div
+                        style={{
+                          display: "grid",
+                          placeItems: "center",
+                          alignItems: "center",
+                          textAlign: "center",
+                        }}
+                      >
+                        <h2 style={{ color: "black" }}>No Items Available</h2>
+                      </div>
+                    </>
+                  )}
+                </>
+              }
+            </>
+          )}
+
         </div>
-      </div >
+      </div>
     </>
   );
 };

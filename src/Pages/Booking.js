@@ -8,27 +8,15 @@ import b1 from "../assests/booking/b.1.png";
 import b2 from "../assests/booking/b.2.png";
 import b3 from "../assests/booking/b.3.png";
 import arrow from "../assests/booking/arrow.png";
-import i1 from "../assests/booking/bb1.png";
-import i2 from "../assests/booking/bb2.png";
-import i3 from "../assests/booking/bb3.png";
+
 import i4 from "../assests/booking/bb4.png";
-import sort from "../assests/booking/sort.png";
+
 import plus from "../assests/booking/plus.png";
-import update from "../assests/Profile/Vector.png";
+
 import tick from "../assests/booking/tick.png";
-import key from "../assests/Profile/key.png";
-import eye from "../assests/Profile/eye.png";
+
 import a from "../assests/booking/Lead icon.png";
-import f1 from "../assests/booking/Frame 163.png";
-import f2 from "../assests/booking/Frame 164.png";
-import f3 from "../assests/booking/Frame 165.png";
-import f4 from "../assests/booking/Frame 166.png";
-import f5 from "../assests/booking/Visa.1.png";
-import f6 from "../assests/booking/Mastercard.2.png";
-import f7 from "../assests/booking/Braintree.3.png";
-import f8 from "../assests/booking/PayPal.4.png";
-import f9 from "../assests/booking/GooglePay.5.png";
-import f10 from "../assests/booking/ApplePay.6.png";
+
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import differenceInDays from "date-fns/differenceInDays";
@@ -41,12 +29,13 @@ import Select from "react-select";
 import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
-import { createBooking } from "../Redux/actions/bookingActions";
+import { createBooking } from "../Redux/actions/bookingActions"
 import {
   createAddress,
   getAllAddresses,
 } from "../Redux/actions/addressActions";
 import { toast } from "react-toastify";
+import { fetchCars } from "../Redux/actions/carActions";
 const branches = [
   {
     name: "الرياض - الشفا لبن",
@@ -208,8 +197,8 @@ const Booking = () => {
   const [addressLine2, setAddressLine2] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [returnAddress, setReturnAddress] = useState("");
-  const [deliveryAddress, setDeliveryAddress] = useState("")
-  const [title, setTitle] = useState("")
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [title, setTitle] = useState("");
   const [passport, setPassport] = useState("");
   const [email, setEmail] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
@@ -220,11 +209,12 @@ const Booking = () => {
   const [perHour, setPerHour] = useState(false);
   const [delivery, setDelivery] = useState(false);
   const [city, setCity] = useState("");
-  const [selectedCar, setSelectedCar] = useState();
+  const [selectedCar, setSelectedCar] = useState(null);
   const [state, setState] = useState("");
   const [addons, setAddons] = useState([]);
   const minTime = setHours(setMinutes(new Date(), 0), 9);
   const [diffInDays, setDiffInDays] = useState(0);
+  const [confirmBooking, setConfirmBooking] = useState(false)
   const [price, setPrice] = useState(0);
   const { car } = useParams();
   const [diffInHours, setDiffInHours] = useState(0);
@@ -235,7 +225,7 @@ const Booking = () => {
   const [addressState, setAddressState] = useState("");
   const [zip, setZip] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const creatingAddress = useSelector((state) => state.Address.creatingAddress);
   const { addresses } = useSelector((state) => state.Address);
 
@@ -261,8 +251,6 @@ const Booking = () => {
 
     try {
       await dispatch(createAddress(addressData));
-
-
 
       setShowModal(false);
 
@@ -301,10 +289,39 @@ const Booking = () => {
     return discountAmount;
   };
   const dispatch = useDispatch();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const isAllValuesEntered = true
+  const handleSubmit = () => {
+
+    setConfirmBooking(false)
+    let isAllValuesEntered = true;
+    let isTimeChanged = true;
     let totalPrice = 0;
+    if (option === 'perHour') {
+      if (diffInHours === 0) {
+        toast.warning("Change the time");
+        isTimeChanged = false
+      }
+
+    } else {
+      if (diffInDays === 0) {
+        toast.warning("Change the time");
+        isTimeChanged = false
+      }
+    }
+
+    // Checks if the required fields are filled out
+    if (!selectedCar || !pickupTime || !returnTime || !option || !returnLocation) {
+      isAllValuesEntered = false;
+    }
+
+    // If option === 'delivery' checks additional required fields
+    if (option === 'delivery' && (!car || !delivery)) {
+      isAllValuesEntered = false;
+    }
+
+    // If option !== 'delivery' checks additional required fields
+    if (option !== 'delivery' && (!car || !pickupLocation)) {
+      isAllValuesEntered = false;
+    }
 
     if (option === "perDay") {
       const days = diffInDays;
@@ -312,12 +329,11 @@ const Booking = () => {
     } else if (option === "perHour") {
       const hours = diffInHours;
       totalPrice = (selectedCar?.pricePerHour || 0) * hours;
-    }
-    else {
+    } else {
       const days = diffInDays;
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
     }
-    if (isAllValuesEntered) {
+    if (isAllValuesEntered && isTimeChanged) {
       if (option === "delivery") {
         dispatch(
           createBooking({
@@ -328,15 +344,29 @@ const Booking = () => {
             startDate: pickupTime,
             endDate: returnTime,
             addons,
-            totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
+            totalPrice:
+              totalPrice +
+              addonsPrice -
+              calculateDiscountAmount(price, selectedCar?.discount),
             rate: option,
           })
-
         );
-        navigate('/booking-history');
-
+        navigate("/booking-history");
+        console.log({
+          car,
+          user: user._id,
+          address: deliveryAddress,
+          returnLocation,
+          startDate: pickupTime,
+          endDate: returnTime,
+          addons,
+          totalPrice:
+            totalPrice +
+            addonsPrice -
+            calculateDiscountAmount(price, selectedCar?.discount),
+          rate: option,
+        });
       } else {
-
         dispatch(
           createBooking({
             car,
@@ -346,19 +376,37 @@ const Booking = () => {
             startDate: pickupTime,
             endDate: returnTime,
             addons,
-            totalPrice: totalPrice + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount),
+            totalPrice:
+              totalPrice +
+              addonsPrice -
+              calculateDiscountAmount(price, selectedCar?.discount),
             rate: option,
             delivery: option === "delivery" ? true : false,
           })
         );
-        navigate('/booking-history');
+        navigate("/booking-history");
+        console.log({
+          car,
+          user: user._id,
+          pickupLocation,
+          returnLocation,
+          startDate: pickupTime,
+          endDate: returnTime,
+          addons,
+          totalPrice:
+            totalPrice +
+            addonsPrice -
+            calculateDiscountAmount(price, selectedCar?.discount),
+          rate: option,
+          delivery: option === "delivery" ? true : false,
+        });
       }
     } else {
-      // Display a toast message or any other notification to inform the user
-      // that all values are required before submitting
-      // toast.warning('Please enter all values');
-    }
 
+      if (!isAllValuesEntered) {
+        toast.warning("Enter all fields");
+      }
+    }
   };
 
   useEffect(() => {
@@ -385,18 +433,13 @@ const Booking = () => {
 
     if (option === "perDay") {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
-    }
-
-    else if (option === "perHour") {
+    } else if (option === "perHour") {
       totalPrice = (selectedCar?.pricePerHour || 0) * hours;
-    }
-    else if (option === "delivery") {
+    } else if (option === "delivery") {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
-      console.log(totalPrice);
     }
 
     setPrice(totalPrice);
-    console.log(price);
   }, [pickupTime, returnTime, option, selectedCar, car]);
 
   const presentDay = new Date();
@@ -424,6 +467,9 @@ const Booking = () => {
       setPhone(user.phone || "");
       setEmail(user.email || "");
     }
+    else {
+      navigate('/')
+    }
   }, [user]);
   useEffect(() => {
     if (rentalInfo) {
@@ -431,10 +477,15 @@ const Booking = () => {
       setReturnLocation(rentalInfo.returnLocation || "");
       setPickupTime(rentalInfo.pickupTime || new Date());
       setReturnTime(rentalInfo.returnTime || new Date());
-
       setDelivery(rentalInfo.deliveryAddress || false);
     }
   }, [rentalInfo]);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+    console.log(returnLocation, pickupLocation);
+  }, [])
+
   return (
     <>
       <Navigation />
@@ -445,6 +496,13 @@ const Booking = () => {
             price={price}
             addonsPrice={addonsPrice}
             selectedCar={selectedCar}
+            pickupLocation={pickupLocation}
+            returnLocation={returnLocation}
+            pickupTime={pickupTime}
+            returnTime={returnTime}
+            confirmBooking={confirmBooking}
+            handleSubmit={handleSubmit}
+            setConfirmBooking={setConfirmBooking}
           />
           <div className="container">
             <div className="grid__one">
@@ -511,6 +569,7 @@ const Booking = () => {
                             <Select
                               options={addressesData}
                               isSearchable={true}
+                              value={addressesData.find(option => option.value === deliveryAddress)}
                               onChange={(selectedOption) => {
                                 setDeliveryAddress(selectedOption.value);
                                 dispatch(getAllAddresses());
@@ -520,11 +579,12 @@ const Booking = () => {
                               }}
                               placeholder="تحديد موقع"
                             />
+
                           </div>
                         </div>
 
                         <div className="input-box-wrap">
-                          <div className="plus" style={{ opacity: '0' }} >
+                          <div className="plus" style={{ opacity: "0" }}>
                             <img src={plus} alt="" />
                             إضافة عنوان
                           </div>
@@ -678,7 +738,7 @@ const Booking = () => {
                     <div className="grid__two">
                       <div className="booking-address">
                         <div className="input-box-wrap">
-                          <div className="plus" style={{ opacity: '0' }}>
+                          <div className="plus" style={{ opacity: "0" }}>
                             <img src={plus} alt="" />
                             إضافة عنوان
                           </div>
@@ -696,7 +756,7 @@ const Booking = () => {
                         </div>
 
                         <div className="input-box-wrap">
-                          <div className="plus" style={{ opacity: '0' }} >
+                          <div className="plus" style={{ opacity: "0" }}>
                             <img src={plus} alt="" />
                             إضافة عنوان
                           </div>
@@ -920,7 +980,7 @@ const Booking = () => {
               {activeButton === "btn3" && (
                 <div className="grid__four">
                   <div className="booking-address">
-                    <div className="choose-1">
+                    {/* <div className="choose-1">
                       <h1>اختر نقاط الولاء</h1>
                       <div className="choose-points">
                         <img src={f1} alt="" />
@@ -939,9 +999,9 @@ const Booking = () => {
                         <img src={f9} alt="" />
                         <img src={f10} alt="" />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="select-btns">
-                      <div className="btn1" onClick={handleSubmit}>
+                      <div className="btn1" onClick={() => setConfirmBooking(true)}>
                         التالى
                       </div>
                       <div
@@ -1048,6 +1108,7 @@ const Booking = () => {
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );

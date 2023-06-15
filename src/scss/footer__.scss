@@ -4,7 +4,7 @@
 footer {
   position: relative;
   background-color: #ffcd00;
-  z-index: 4;
+  z-index: 0;
 
   .container {
     max-width: 1200px;
@@ -156,7 +156,7 @@ footer {
           flex-direction: column;
         }
 
-        >img {
+        > img {
           width: 65px !important;
           transform: scale(0);
         }
@@ -169,7 +169,6 @@ footer {
 
           @include mobile {
             margin-right: 0px;
-
           }
         }
 

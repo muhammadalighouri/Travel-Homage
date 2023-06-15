@@ -24,7 +24,6 @@ export const fetchCars = (
         const {
             toggle: { toggle },
         } = getState();
-        console.log(isFav);
         try {
             if (userInfo) {
                 const { data } = await axios.post(

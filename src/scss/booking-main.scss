@@ -134,7 +134,11 @@
                   }
 
                   .btn {
-                    .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+                    .react-datepicker__time-container
+                      .react-datepicker__time
+                      .react-datepicker__time-box
+                      ul.react-datepicker__time-list
+                      li.react-datepicker__time-list-item {
                       height: 30px;
                       padding: 5px 10px;
                       white-space: nowrap;
@@ -157,7 +161,7 @@
                       padding: 12px;
                     }
 
-                    >div {
+                    > div {
                       color: rgba(47, 43, 67, 0.6);
                     }
 
@@ -630,6 +634,271 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+.booking__modal {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  right: 0px;
+  z-index: 11111;
+  background: #0000005c;
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .grid {
+    max-width: 1300px;
+    padding: 30px;
+    margin: auto;
+    display: grid;
+    padding: 40px;
+    grid-template-columns: 1fr 1.2fr;
+    background: #fafafa;
+    grid-gap: 35px;
+    border-radius: 30px;
+    .start {
+      .top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          max-height: 200px;
+        }
+
+        .detial {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+
+          h2 {
+            font-family: "Cairo", sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #00afaa;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+
+            span {
+              font-family: "Cairo", sans-serif;
+              font-size: 38px;
+              font-weight: 500;
+              color: #00afaa;
+            }
+          }
+
+          span {
+            font-size: 16px;
+            font-weight: 400;
+            color: black;
+            font-family: "Cairo", sans-serif;
+          }
+        }
+      }
+      .item {
+        text-align: end;
+        display: grid;
+        grid-gap: 10px;
+        margin-top: 20px;
+        h2 {
+          font-size: 22px;
+          color: #373a36;
+          font-weight: 900;
+          margin: 0;
+        }
+        p {
+          font-size: 18px;
+          color: black;
+          margin: 0;
+        }
+      }
+    }
+    .end {
+      .detial {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        h2 {
+          font-family: "Cairo", sans-serif;
+          font-size: 40px;
+          font-weight: 700;
+          color: #00afaa;
+          display: flex;
+
+          align-items: center;
+          justify-content: center;
+          gap: 2px;
+
+          span {
+            font-family: "Cairo", sans-serif;
+            font-size: 38px;
+            font-weight: 500;
+            color: #00afaa;
+          }
+        }
+
+        span {
+          font-size: 16px;
+          font-weight: 400;
+          color: black;
+          font-family: "Cairo", sans-serif;
+        }
+      }
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        flex-direction: column;
+        padding: 0;
+
+        .box {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          flex-direction: row-reverse;
+
+          .h {
+            font-weight: 400;
+            font-size: 22px;
+            font-family: "Cairo", sans-serif;
+            color: #373a36;
+          }
+
+          .n {
+            font-weight: 400;
+            font-size: 20px;
+            font-family: "Cairo", sans-serif;
+            color: #373a36;
+          }
+        }
+
+        .btns {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+
+          .input-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 8px;
+            width: 100%;
+            font-family: "Cairo", sans-serif;
+
+            p {
+              font-weight: 600;
+              font-size: 16px;
+              font-family: "Cairo", sans-serif;
+              color: #373a36;
+            }
+
+            .input {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              padding: 0px 16px;
+              gap: 12px;
+              height: 48px;
+              background: #fafafa;
+              border: 1px solid rgba(47, 43, 67, 0.1);
+              box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+                inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+              border-radius: 12px;
+              width: 100%;
+              padding: 0px 16px;
+
+              input {
+                background: #fafafa;
+                height: 100%;
+                width: 100%;
+                border: 0px;
+                outline: none;
+                display: flex;
+                align-items: center;
+                text-align: right;
+                font-family: "Cairo", sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                color: rgba(47, 43, 67, 0.6);
+              }
+            }
+          }
+
+          .submit-btn {
+            background: #ffcd00;
+            padding: 12px 42px;
+            box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+              inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+              font-weight: 700;
+              font-size: 16px;
+              color: #373a36;
+            }
+          }
+        }
+      }
+      .btns {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .cancel {
+          font-weight: 700;
+          font-size: 16px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 12px 16px;
+          gap: 8px;
+          max-width: 442px;
+          color: white;
+          height: auto;
+          font-family: "Cairo", sans-serif;
+          cursor: pointer;
+          background: #f34141;
+          box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+            inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+          border-radius: 25px;
+        }
+        .confirm {
+          width: 100%;
+          background: #ffcd00;
+          box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+            inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+          border-radius: 25px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 12px 16px;
+          color: black;
         }
       }
     }
