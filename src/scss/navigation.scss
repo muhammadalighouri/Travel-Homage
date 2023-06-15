@@ -206,7 +206,9 @@ header {
                   color: #2f2b43;
                   text-decoration: none;
                   font-family: "Cairo", sans-serif;
-                  &:n
+                  &:nth-child(3){
+                    filter: invert(1);
+                  }
                 }
 
                 &:hover {
