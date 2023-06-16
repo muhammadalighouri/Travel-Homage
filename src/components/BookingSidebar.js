@@ -8,18 +8,17 @@ import moment from 'moment';
 
 import "../scss/bookingside.scss";
 import img1 from "../assests/booking/Rectangle 23.png";
-const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, pickupLocation, pickupTime, returnTime, setConfirmBooking, confirmBooking, handleSubmit }) => {
+const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, pickupLocation, pickupTime, returnTime, setConfirmBooking, confirmBooking, handleSubmit, BookingLoading }) => {
   const calculateDiscountAmount = (price, discount) => {
     const discountAmount = (price * discount) / 100;
     return discountAmount;
   };
-  console.log(returnLocation, pickupLocation);
   return (
     <>
       <section id="sidebar">
         <div className="container">
           <div className="top">
-            <img src={selectedCar?.mainImages[0]} alt="" />
+            <img src={selectedCar?.image?.url} alt="" />
             <div className="detial">
               <span className="year">{selectedCar?.year}</span>
               <h2 className="title">{selectedCar?.name}</h2>
@@ -80,7 +79,7 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
             <div className="grid">
               <div className="start">
                 <div className="top">
-                  <img src={selectedCar?.mainImages[0]} alt="" />
+                  <img src={selectedCar?.image?.url} alt="" />
                 </div>
                 {
                   pickupLocation && <div className="item">
@@ -155,7 +154,9 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
                   </li>
                   <div className="btns">
                     <button className="cancel" onClick={() => setConfirmBooking(false)}>Cancel</button>
-                    <button className="confirm" onClick={handleSubmit}>Confirm</button>
+                    {
+                      BookingLoading ? <button className="confirm">Confirming...</button> : <button className="confirm" onClick={handleSubmit}>Confirm</button>
+                    }
                   </div>
 
                 </ul>

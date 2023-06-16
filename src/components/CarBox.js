@@ -71,31 +71,32 @@ const CarBox = ({ cardDetails, car, getCategoryIcon, info, priceAfterDiscount, h
                                 <span>{car?.engine}</span>
                               </li>
                             </div> */}
-                        {
-                            isFav && <div className="impression">
-                                {/* Render the "Remove from Favorites" button for cars that are already favorited */}
-                                {car.isFavorited ? (
-                                    <div
-                                        className=" btn__active"
-                                        onClick={(e) => handleRemoveFavorite(e, car._id)}
-                                    >
-                                        <img src={green} alt="" />
-                                    </div>
-                                ) : (
-                                    <div
-                                        className="btn"
-                                        onClick={(e) => handleAddFavorite(e, car._id)}
-                                    >
-                                        <img src={f5} alt="" />
-                                    </div>
-                                )}
-                            </div>
-                        }
-                        <div className="main-btn">
+
+                        {/* <div className="main-btn">
                             <span>احجز الآن</span>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
+                {
+                    isFav && <div className="impression">
+                        {/* Render the "Remove from Favorites" button for cars that are already favorited */}
+                        {car.isFavorited ? (
+                            <div
+                                className=" btn__active"
+                                onClick={(e) => handleRemoveFavorite(e, car._id)}
+                            >
+                                <img src={green} alt="" /> اضافة للمفضله
+                            </div>
+                        ) : (
+                            <div
+                                className="btn"
+                                onClick={(e) => handleAddFavorite(e, car._id)}
+                            >
+                                <img src={f5} alt="" /> مفضل
+                            </div>
+                        )}
+                    </div>
+                }
             </div>
         </div>
     )

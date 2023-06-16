@@ -20,74 +20,79 @@ const Navigate = ({ car, closeModal }) => {
       <div className="navigate-wrapper">
         <section id="navigate">
           <div className="container">
-          <div className="cross" onClick={closeModal}>
-                  <img src={cross} alt="" />
-                </div>
+            <div className="cross" onClick={closeModal}>
+              <img src={cross} alt="" />
+            </div>
             <div className="content">
               <div className="heading">
-             
                 <span className="year">{car?.model}</span>
 
                 <h1>{car?.name}</h1>
               </div>
 
-          <div className="icons-wrapper">
-    <div className="para">
-      <span>Car Detial</span>
-    </div>
-          <div className="icons">
-                <li>
-                  <img src={v1} alt="" />
-                  <span>{car?.maxPeople}</span>
-                </li>
-                <li>
-                  <img src={v2} alt="" />
-                  <span>{car?.bags}</span>
-                </li>
-                <li>
-                  <img src={v3} alt="" />
-                  <span>{car?.numDoors}</span>
-                </li>
-                <li>
-                  <img src={v4} alt="" />
-                  <span>{car?.engine}</span>
-                </li>
+              <div className="icons-wrapper">
+                <div className="para">
+                  <span>Car Detial</span>
+                </div>
+                <div className="icons">
+                  <li>
+                    <img src={v1} alt="" />
+                    <span>{car?.maxPeople}</span>
+                  </li>
+                  <li>
+                    <img src={v2} alt="" />
+                    <span>{car?.bags}</span>
+                  </li>
+                  <li>
+                    <img src={v3} alt="" />
+                    <span>{car?.numDoors}</span>
+                  </li>
+                  <li>
+                    <img src={v4} alt="" />
+                    <span>{car?.engine}</span>
+                  </li>
+                </div>
               </div>
-          </div>
-            
+
               <div
                 className="price-btn"
-                onClick={() => navigate(`/${car._id}/booking`)}
+                onClick={() => {
+                  navigate(`/${car._id}/booking`)
+                  window.scroll(0, 0)
+                }}
               >
-           <div className="btn-top">
-           <div className="btn">
-                  <p className="one">
-                    {info === "perDay" ? car?.pricePerDay : car?.pricePerHour}
-                  </p>
-                  <p className="second">
-                    {" "}
-                    {priceAfterDiscount(
-                      info === "perDay" ? car?.pricePerDay : car?.pricePerHour,
-                      car?.discount
-                    )}{" "}
-                    ر.س
-                  </p>
+                <div className="btn-top">
+                  <div className="btn">
+                    <p className="one">
+                      {info === "perDay" ? car?.pricePerDay : car?.pricePerHour}
+                    </p>
+                    <p className="second">
+                      {" "}
+                      {priceAfterDiscount(
+                        info === "perDay"
+                          ? car?.pricePerDay
+                          : car?.pricePerHour,
+                        car?.discount
+                      )}{" "}
+                      ر.س
+                    </p>
+                  </div>
                 </div>
-              
-           </div>
-           
-           <div className="btn-bottom">
-           <div className="btn-2">
-                  <span>أحجز الآن</span>
+
+                <div className="btn-bottom">
+                  <div className="btn-2">
+                    <span>أحجز الآن</span>
+                  </div>
+                  <div className="btn-1">
+                    <span>
+                      849 <b>SAR/Day</b>
+                    </span>
+                  </div>
                 </div>
-                <div className="btn-1">
-                  <span>849 <b>SAR/Day</b></span>
-                </div>
-           </div>
               </div>
             </div>
             <div className="img">
-              <img src={car?.image} alt="" />
+              <img src={car?.image?.url} alt="" />
             </div>
           </div>
         </section>

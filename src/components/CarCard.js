@@ -65,7 +65,7 @@ const CarCard = ({ i, text, type }) => {
         </div>
         <div className="img-box">
           <div className="img-wrapper">
-            <img src={i?.car?.mainImages[0]} alt="" />
+            <img src={i?.car?.image.url} alt="" />
 
             {type === "ongoing" ? (
               <div className="btn">
