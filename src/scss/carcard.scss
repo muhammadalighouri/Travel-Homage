@@ -2,17 +2,38 @@
 @import "./media.scss";
 
 .box-wrapper {
+    max-height: -moz-fit-content;
     max-height: fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     padding: 10px 20px;
     border-radius: 35px;
     background: white;
-    box-shadow: 0 0 6px 1px #0000001f;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1215686275);
+    max-width: 375px;
+    overflow: hidden;
+
+    @include mobile {
+        max-width: 270px;
+    }
 
     .box {
-        display: flex;
+        display: flex !important;
         align-items: center;
+        gap: 40px !important;
         justify-content: center;
+
+        @include md {
+            gap: 20px !important;
+
+
+        }
+
+        .img {
+            img {
+                width: 115%;
+            }
+        }
 
         .first {
             max-width: fit-content;
@@ -35,7 +56,9 @@
                     padding: 0px !important;
                     margin: 0px !important;
 
-
+                    @include mobile {
+                        font-size: 28px;
+                    }
 
                 }
 
@@ -50,18 +73,23 @@
                     padding: 0px !important;
                     margin: 0px !important;
 
+                    @include mobile {
+                        font-size: 28px;
+                    }
 
 
                 }
 
                 span {
                     font-family: "Cairo", sans-serif;
-                    font-size: 28px;
+                    font-size: 24px;
                     font-weight: 600;
                     color: #373A36;
                     line-height: 32px;
 
-
+                    @include mobile {
+                        font-size: 22px;
+                    }
 
                 }
 
@@ -97,6 +125,9 @@
                     top: 0px;
                     left: 40px;
 
+                    @include mobile {
+                        left: 10px;
+                    }
                 }
 
                 .layer {
@@ -130,6 +161,11 @@
                         left: 45px;
                         max-width: 100%;
                         width: 28px;
+
+                        @include mobile {
+                            top: 8px;
+                            width: 25px;
+                        }
                     }
                 }
             }
