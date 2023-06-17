@@ -6,8 +6,13 @@ import s3 from "../assests/Fleet/span3.png";
 import s4 from "../assests/Fleet/span4.png";
 import f4 from "../assests/Fleet/i.11.png";
 import f5 from "../assests/Fleet/i.22.png";
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration'; // you need to import the plugin
+import {AiFillHeart}from 'react-icons/ai'
+import bac from '../assests/top-left.png'
+import dayjs from "dayjs";
+import icon from '../assests/upper.png'
+import "../scss/carcard.scss";
+import car1 from "../assests/car.png";
+import duration from "dayjs/plugin/duration"; // you need to import the plugin
 dayjs.extend(duration); // make sure to extend dayjs with the plugin
 const CarCard = ({ i, text, type }) => {
   const { car } = i;
@@ -16,7 +21,7 @@ const CarCard = ({ i, text, type }) => {
     let start = dayjs(startDate);
     let diff = start.diff(now); // difference in milliseconds
     if (diff < 0) {
-      return 'Start'; // if the start date has already passed, return 'Start'
+      return "Start"; // if the start date has already passed, return 'Start'
     } else {
       let duration = dayjs.duration(diff); // convert difference to a duration
       let days = duration.asDays(); // get the duration in days
@@ -37,14 +42,26 @@ const CarCard = ({ i, text, type }) => {
       <div className="box-wrapper">
         <div className="box">
           <div className="first">
-
+            <div className="heading">
+              <h1>Lexus</h1>
+              <h2>Es250</h2>
+              <span>
+                2023
+              </span>
+        
+            <AiFillHeart/>
+      
+            </div>
           </div>
           <div className="second">
             <div className="top">
               <div className="layer">
-
+                <img src={icon} alt="" />
               </div>
               <span>Luxury</span>
+            </div>
+            <div className="img">
+              <img src={car1} alt="" />
             </div>
           </div>
         </div>
