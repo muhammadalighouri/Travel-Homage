@@ -497,9 +497,9 @@ header {
               z-index: 2222;
               overflow: auto;
 
-              @include smobile {
-                width: 320px;
-                width: 100%;
+              @include mobile {
+                width: 270px;
+         
               }
             }
 

@@ -53,13 +53,15 @@
     background: #ffffff;
     border-radius: 75px 75px 0 0;
     padding: 90px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+  
 
     @include md {
       border-radius: 5px 5px 0 0;
+      grid-template-columns: 1fr;
     }
     .btns__ {
       display: flex;
