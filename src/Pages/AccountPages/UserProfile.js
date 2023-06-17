@@ -16,7 +16,8 @@ const UserProfile = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
+
       <Banner text={"الملف الشخصي"} img={first} />
       <section id="user-profile">
         <div className="user-container">

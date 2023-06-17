@@ -17,7 +17,8 @@ import ProfileSidebar from "../../components/ProfileSidebar";
 const RideRatings = () => {
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
+
       <Banner text={"العضوية"}   img={first}/>
       <section id="user-profile">
         <div className="user-container">

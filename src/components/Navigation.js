@@ -11,7 +11,6 @@ import i8 from "../assests/Lead icon (6).png";
 import i9 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
-import { nav } from "../assests/data";
 import { ArrowUpward } from "@material-ui/icons";
 
 import "../scss/navigation.scss";
@@ -26,7 +25,7 @@ import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
 import { logout } from "../Redux/actions/userActions";
-const Navigation = ({ }) => {
+const Navigation = ({ nav }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -39,7 +38,7 @@ const Navigation = ({ }) => {
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
   const success = userInfo?.success;
   const user = userInfo?.user;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleDropdown2 = () => setDropdownOpen2(!dropdownOpen2);
   window.addEventListener("scroll", () => {
@@ -65,7 +64,6 @@ const Navigation = ({ }) => {
       name: "المساعدة على الطريق",
       path: "/roadside-assistance",
     },
-
   ];
   const dropdown2 = [
     {
@@ -100,8 +98,21 @@ const Navigation = ({ }) => {
         <div className="outer">
           <div className="container">
             <div className="nav__grid">
+              <div
+                className="bars"
+                onClick={() => {
+                  setNave(!nave);
+                  setColor(!color);
+                  // document.body.style.overflow = "hidden";
+                }}
+              >
+                {nave ? <RxCross2 className="cross" /> : <HiOutlineBars3 />}
+              </div>
               {success ? (
                 <div className="user">
+                  <div className="icon">
+                    <img src={bell} alt="" />
+                  </div>
                   <div className="avatar" onClick={toggleDropdown}>
                     <img
                       src={user.avatar?.url ? user.avatar?.url : avatar}
@@ -153,10 +164,8 @@ const Navigation = ({ }) => {
                           );
                         })}
                         <>
-                          <Link
-                            onClick={() => dispatch(logout())}
-                          >
-                            <div className="n" >
+                          <Link onClick={() => dispatch(logout())}>
+                            <div className="n">
                               تسجيل الخروج
                               <img src={i4} alt="" />
                             </div>
@@ -165,13 +174,10 @@ const Navigation = ({ }) => {
                       </div>
                     </div>
                   )}
-            
+
                   <span>
                     {user?.firstName} {user?.lastName}
                   </span>
-                  <div className="icon">
-                    <img src={bell} alt="" />
-                  </div>
                 </div>
               ) : (
                 <div className="user__signout">
@@ -229,9 +235,70 @@ const Navigation = ({ }) => {
               <nav>
                 <div className="nav-wrap">
                   <ul style={nave ? { transform: "translateX(0%) " } : {}}>
-                    <div className="nav-logo-side">
-                      <Link to={"/"}>
-                        <img src={logo} alt="" />
+                    {success ? (
+                      <div className="user">
+                        <div className="icon">
+                          <img src={bell} alt="" />
+                        </div>
+                        <div className="avatar" onClick={toggleDropdown}>
+                          <img
+                            src={user.avatar?.url ? user.avatar?.url : avatar}
+                            alt=""
+                          />
+                        </div>
+
+                        <span>
+                          {user?.firstName} {user?.lastName}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="user__signout">
+                        <div className="avatar">
+                          <img src={avatarLogout} alt="" />
+                        </div>
+                        {/* <button
+                    className="signup"
+                    onClick={() => {
+                      setMode("register")
+                      document.body.style.overflow = "hidden";
+                    }
+                    }
+                  >
+                    التسجيل
+                  </button> */}
+                        <button
+                          className="login"
+                          onClick={() => setMode("login")}
+                        >
+                          تسجيل الدخول
+                        </button>
+                      </div>
+                    )}
+                    <div className="dropdown-list">
+                      {dropdown1.map((a) => {
+                        return (
+                          <>
+                            <Link
+                              to={a.path}
+                              style={
+                                window.location.pathname === a.path
+                                  ? { background: " #00000014" }
+                                  : { background: "none" }
+                              }
+                            >
+                              <div className="n">
+                                {a.name}
+                                <img src={a.icon} alt="" />
+                              </div>
+                            </Link>
+                          </>
+                        );
+                      })}
+                      <Link onClick={() => dispatch(logout())}>
+                        <div className="n">
+                          تسجيل الخروج
+                          <img src={i4} alt="" />
+                        </div>
                       </Link>
                     </div>
                     {nav.map((ite, ind) => {
@@ -275,6 +342,7 @@ const Navigation = ({ }) => {
                         </div>
                       )}
                     </li>
+
                     <li className="translate__option">
                       <div className="translate">
                         <div className="first">ر.س</div>
@@ -288,15 +356,6 @@ const Navigation = ({ }) => {
                 <Link to={"/"}>
                   <img src={logo} alt="" />
                 </Link>
-              </div>
-              <div
-                className="bars"
-                onClick={() => {
-                  setNave(!nave);
-                  setColor(!color);
-                }}
-              >
-                {nave ? <RxCross2 className="cross" /> : <HiOutlineBars3 />}
               </div>
             </div>
           </div>

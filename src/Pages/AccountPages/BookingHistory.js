@@ -9,6 +9,7 @@ import BookingF from "../../components/BookingF";
 import ProfileSidebar from "../../components/ProfileSidebar";
 import { useDispatch } from "react-redux";
 import { getUserBookings } from "../../Redux/actions/bookingActions";
+import { HomeNav } from "../../assests/data";
 const BookingHistory = () => {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -17,7 +18,7 @@ const BookingHistory = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation nav={HomeNav}/>
       <Banner text={"حجوزاتي "} img={first} />
       <section id="user-profile">
         <div className="user-container">

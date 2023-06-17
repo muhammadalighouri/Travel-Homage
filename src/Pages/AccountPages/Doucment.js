@@ -15,7 +15,8 @@ import ProfileSidebar from "../../components/ProfileSidebar";
 const Doucment = () => {
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
+
       <Banner text={"ملفاتي"}  img={first} />
       <section id="user-profile">
         <div className="user-container">

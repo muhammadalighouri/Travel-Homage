@@ -34,53 +34,17 @@ const CarCard = ({ i, text, type }) => {
   };
   return (
     <>
-      <div className="box">
-        <div className="content">
-          <div className="heading">
-            <div className="main">
-              <h1>
-                <img src={i.star} alt="" />
-                {car?.name}
-              </h1>
-              <p>{car?.description}</p>
-            </div>
-            <div className="h-btn">
-              <a href="#"> ر.س.{i.totalPrice} </a>
-            </div>
-          </div>
-          <div className="list">
-            <ul className="light">
-              <li>{car?.maxPeople}</li>
-              <li>{car?.bags}</li>
-              <li>{car?.numDoors}</li>
-              <li>{car?.engine}</li>
-            </ul>
-            <ul className="bold">
-              <li>Max Person</li>
-              <li>No Of Bags</li>
-              <li>No Of Doors</li>
-              <li>Engine </li>
-            </ul>
-          </div>
-        </div>
-        <div className="img-box">
-          <div className="img-wrapper">
-            <img src={i?.car?.image.url} alt="" />
+      <div className="box-wrapper">
+        <div className="box">
+          <div className="first">
 
-            {type === "ongoing" ? (
-              <div className="btn">
-                <a href="#">{timeLeft(i.endDate)}</a>
+          </div>
+          <div className="second">
+            <div className="top">
+              <div className="layer">
+
               </div>
-            ) : (
-              <div className="btn">
-                <a href="#">{timeLeft(i.startDate)}</a>
-              </div>
-            )}
-            <div className="wrap-vector">
-              <div className="vector">
-                <img src={i.vi1} alt="" />
-                <img src={i.vi2} alt="" />
-              </div>
+              <span>Luxury</span>
             </div>
           </div>
         </div>

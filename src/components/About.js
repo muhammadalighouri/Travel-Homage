@@ -2,10 +2,10 @@ import React from "react";
 import "../scss/about.scss";
 import a33 from "../assests/About-img/a.33.png";
 
-const About = ({ mainImg, heading, img, des, order, end, top }) => {
+const About = ({ mainImg, heading, img, des, order, end, top, id }) => {
   return (
     <>
-      <section id="about-wrapper">
+      <section id={id} className="about-wrapper">
         <div
           className="about-box"
           style={order ? { gridTemplateColumns: "  2fr 1fr" } : {}}

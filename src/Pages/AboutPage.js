@@ -18,11 +18,12 @@ import i4 from "../assests/About-img/i.4.png";
 import "../scss/aboutmain.scss";
 import About from "../components/About";
 import Footer from "../components/Footer";
+import { AboutNav } from "../assests/data";
 const AboutPage = () => {
   return (
     <>
       <section id="about-page">
-        <Navigation />
+        <Navigation nav={AboutNav} />
         <Banner text={"من نحن تتوالى النجاحات عبر السنين "} img={first} />
         <div className="container-about">
           <div className="top-heading">
@@ -43,6 +44,7 @@ const AboutPage = () => {
             heading={"رؤيتنا"}
             img={a2}
             order={false}
+            id={"رؤيتنا"}
             des={
               "To professionally be the best‭, ‬earn loyalty of our customers and make them pleased by providing exceptional service and innovative solutions for mobility and logistics‭. ‬"
             }
@@ -56,6 +58,7 @@ const AboutPage = () => {
             des={
               "تقديــم الأفضــل دومــا عبــر خدماتنــا المبتكــرة لحلــول التنقــل والخدمــات اللوجيســتية وبشــكل يلبــي إحتياجــات العمــلاء وإســعادهم بــكل ثقــة وبأفضــل مســتويات الجــودة وتوفيــر باقــات متنوعــة ومميــزة بجهــد وإخــلاص ومثابــرة غيــر مســبوقة ومتطــورة ومــن أي مــكان.    "
             }
+            id={"رسالتنا"}
           />
           <About
             mainImg={a5}
@@ -64,6 +67,7 @@ const AboutPage = () => {
             img={a6}
             order={false}
             top={true}
+            id={"أهدافنا"}
             des={` دائما وأبدا نحــن شــركة خدمــات يحركهــا العمــلاء وإرضــاء العمــلاء يمثل الإهتمــام بمــا يريــدون وتقديــم حلــول مــن الدرجــة الأولــى وإعــادة تقييــم مســتمرة لــكل خطواتنــا حيــث نديــر أعمالنــا بشــكل لا يتجــزأ مــن نهــج طموحاتنــا. 
            إن كل ابتــكار نقــوم بتطويــره يضمــن جــودة الخدمــة التــي تقدمهــا العلامــة التجاريــة لترفــل وذلــك لخلــق قيمــة مقابــل خدماتنــا وتجربــة قيــادة آمنــة وخدمــة لوجيســتية متطــورة، فنحــن نقــدم خدماتنــا باحترافيــة وموثوقيــة، والجــودة فــي كل منتــج مــن منتجاتنــا لتقديــم أفضــل النتائــج. 
            فــي كل يــوم نرتقــي إلــى مســتوى قيمنــا حتــى نتمكــن مــن الحفــاظ علــى عملائنــا، ونحافــظ علــى مكانتنــا الخاصــة فــي المجتمــع فنحــن نشــجع موظفينــا علــى التطــور إلــى أقصــى إمكاناتهــم ونغمــر كل جانــب مــن جوانــب أعمالنــا بــروح الابتــكار.`}
@@ -71,33 +75,33 @@ const AboutPage = () => {
           <About
             mainImg={a7}
             heading={"قيمنا"}
+            id={"قيمنا"}
             img={a8}
             order={true}
             end={true}
             des={` إن قيمنــا العاليــة هــي محــور ســعادتنا وســعادة عملائنــا لكوننــا شــركة ملتزمــة بالقيــم والمبــادئ المجتمعيــة وتراعي الأنظمــة والقوانيــن المحليــة والعالميــة ونضــع نصــب أعيننــا  هــذه القيــم حتــى نحافــظ علــى الصــورة الأجمــل فــي ًدومــا نظــر عملائنــا والمجتمــع بــكل رحابــة وفــرح.
             .`}
           />
-              <div className="bottom">
-          <div className="icon">
-            <img src={i1} alt="" />
-            المسؤولية الاجتماعية
+          <div className="bottom">
+            <div className="icon">
+              <img src={i1} alt="" />
+              المسؤولية الاجتماعية
+            </div>
+            <div className="icon">
+              <img src={i2} alt="" />
+              النمو والابتكار
+            </div>
+            <div className="icon">
+              <img src={i3} alt="" />
+              النزاهة
+            </div>
+            <div className="icon">
+              <img src={i4} alt="" />
+              الجودة
+            </div>
           </div>
-          <div className="icon">
-            <img src={i2} alt="" />
-            النمو والابتكار
-          </div>
-          <div className="icon">
-            <img src={i3} alt="" />
-            النزاهة
-          </div>
-          <div className="icon">
-            <img src={i4} alt="" />
-            الجودة
-          </div>
-        </div>
         </div>
         <Footer />
-    
       </section>
     </>
   );

@@ -15,7 +15,7 @@ import ProfileSidebar from "../../components/ProfileSidebar";
 const ChangePassword = () => {
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
       <Banner text={"كلمة المرور"} img={first
       } />
       <section id="user-profile">

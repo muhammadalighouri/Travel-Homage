@@ -12,10 +12,11 @@ const Services = ({
   bold,
   con,
   reverse,
+  id
 }) => {
   return (
     <>
-      <section
+      <section id={id}
         className="service-box"
         style={order ? { gridTemplateColumns: "  1fr 1fr" } : {}}
       >

@@ -16,6 +16,7 @@ import Booking from "./Booking";
 import Navigate from "../components/Navigate";
 import Slider from "../components/Slider";
 import BookingF from "../components/BookingF";
+import { HomeNav } from "../assests/data";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -39,10 +40,11 @@ const HomePage = () => {
       text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
     },
   ];
+ 
   return (
     <>
       <section id="home">
-        <Navigation />
+        <Navigation nav={HomeNav}/>
         {/* <Banner /> */}
         <Slider content={array} />
         <Car />

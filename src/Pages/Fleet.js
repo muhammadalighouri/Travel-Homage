@@ -26,7 +26,7 @@ const Fleet = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
       <Banner text={"اسطولنا"} img={first} p={true} />
       <section id="fleet">
         <div className="container">

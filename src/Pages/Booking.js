@@ -511,7 +511,7 @@ const Booking = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
       <Banner />
       <section id="booking">
         <div className="container-main">

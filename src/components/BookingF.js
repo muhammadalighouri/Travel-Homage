@@ -19,74 +19,7 @@ const BookingF = () => {
   // const [activeButton, setActiveButton] = useState('جارية')
   const bookings = useSelector((state) => state.Bookings.bookingsByStatus);
   const { processing, running, completed, cancelled } = bookings || {};
-  const data1 = [
-    {
-      para: "Lorem ipsum dolor sit amet, consectetuer ",
-      h: "سيدان",
-      star: star,
-      img: car1,
-      itext: "",
-      li1: "هذا النص:",
-      li2: "   هو مثال:",
-      li3: "لنص يمكن أن:",
-      li4: "يستبدل في:",
-      li5: "نفس:",
-      li6: "المساحة:",
-      p1: "ومن هنا وجب على المصمم أن يضع",
-      p2: "  نصوصا مؤقتة على التصميم.",
-      p3: " يظهر للعميل الشكل كاملاًدور مولد النص.",
-      p4: "      العربى أن يوفر على المصمم عناء البحث .      ",
-      p5: "ومن هنا وجب على المصمم أن يضع",
-      p6: "      عنه التصميم فيظهر بشكل لا يليق.      ",
-      btn: "460 ر.س",
-      vi1: v1,
-      vi2: v2,
-    },
-    {
-      para: "Lorem ipsum dolor sit amet, consectetuer ",
-      h: "دفع رباعي",
-      star: star,
-      img: car2,
-      itext: "",
-      li1: "هذا النص:",
-      li2: "   هو مثال:",
-      li3: "لنص يمكن أن:",
-      li4: "يستبدل في:",
-      li5: "نفس:",
-      li6: "المساحة:",
-      p1: "ومن هنا وجب على المصمم أن يضع",
-      p2: "  نصوصا مؤقتة على التصميم.",
-      p3: " يظهر للعميل الشكل كاملاًدور مولد النص.",
-      p4: "      العربى أن يوفر على المصمم عناء البحث .      ",
-      p5: "ومن هنا وجب على المصمم أن يضع",
-      p6: "      عنه التصميم فيظهر بشكل لا يليق.      ",
-      btn: "460 ر.س",
-      vi1: v1,
-      vi2: v2,
-    },
-    {
-      para: "Lorem ipsum dolor sit amet, consectetuer ",
-      h: "نقل",
-      star: star,
-      img: car3,
-      itext: "",
-      li1: "هذا النص:",
-      li2: "   هو مثال:",
-      li3: "لنص يمكن أن:",
-      li4: "يستبدل في:",
-      li5: "نفس:",
-      li6: "المساحة:",
-      p1: "ومن هنا وجب على المصمم أن يضع",
-      p2: "  نصوصا مؤقتة على التصميم.",
-      p3: " يظهر للعميل الشكل كاملاًدور مولد النص.",
-      p4: "      العربى أن يوفر على المصمم عناء البحث .      ",
-      p5: "ومن هنا وجب على المصمم أن يضع",
-      p6: "      عنه التصميم فيظهر بشكل لا يليق.      ",
-      btn: "460 ر.س",
-      vi1: v1,
-      vi2: v2,
-    },
-  ];
+
   const btns = [
     // { h: "جارية", icon: icon2 },
     { h: "أكتملت", icon: icon3 },
@@ -124,8 +57,8 @@ const BookingF = () => {
         <div className="product">
           {activeButton === "الغيت" && (
             <>
-              {processing && processing.length > 0 ? (
-                processing.map((i) => {
+              {true? (
+                [1,2,3].map((i) => {
                   return (
                     <>
                       <CarCard type={"ongoing"} i={i} text={""} />

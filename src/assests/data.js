@@ -137,9 +137,8 @@ export const side = [
     icon: icon9,
     path: "/roadside-assistance",
   },
-
 ];
-export const nav = [
+export const HomeNav = [
   {
     name: "تواصل معنا",
     path: "#contact__form",
@@ -151,6 +150,58 @@ export const nav = [
   {
     name: "العروض",
     path: "#car",
+  },
+];
+export const AboutNav = [
+  {
+    name: "قيمنا",
+    path: "#قيمنا",
+  },
+  {
+    name: "أهدافنا",
+    path: "#أهدافنا",
+  },
+  {
+    name: "رسالتنا",
+    path: "#رسالتنا",
+  },
+  {
+    name: "رؤيتنا",
+    path: "#رؤيتنا",
+  },
+];
+export const ServiceNav = [
+  {
+    name: " المساعدة على الطريق",
+    path: "# المساعدة على الطريق",
+  },
+  {
+    name: " مبيعات السيارات المستعملة",
+    path: "# مبيعات السيارات المستعملة",
+  },
+  {
+    name: "العضويات",
+    path: "#العضويات",
+  },
+  {
+    name: "خدمات الأعمال",
+    path: "#خدمات الأعمال",
+  },
+  {
+    name: "ليمو",
+    path: "#ليمو",
+  },
+  {
+    name: "غير محدود",
+    path: "#غير محدود",
+  },
+  {
+    name: "Limitless",
+    path: "#Limitless",
+  },
+  {
+    name: "مسارك ",
+    path: "#مسارك ",
   },
 ];
 export const FAQ = [

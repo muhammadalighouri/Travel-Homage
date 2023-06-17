@@ -17,7 +17,8 @@ import ProfileSidebar from "../../components/ProfileSidebar";
 const SavedAdress = () => {
   return (
     <>
-    <Navigation />
+      <Navigation nav={[]}/>
+
     <Banner text={"العناوين المحفوظة"}  img={first} />
     <section id="user-profile">
       <div className="user-container">

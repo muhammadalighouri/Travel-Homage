@@ -19,7 +19,7 @@ const FaqPage = () => {
   return (
     <>
       <section id="faq-page">
-        <Navigation />
+      <Navigation nav={[]}/>
         <Banner
           text={"  الأسئلةالمتكررة "}
           img={first}

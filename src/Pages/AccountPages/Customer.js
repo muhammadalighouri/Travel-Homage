@@ -17,7 +17,8 @@ import ProfileSidebar from "../../components/ProfileSidebar";
 const Customer = () => {
   return (
     <>
-      <Navigation />
+      <Navigation nav={[]}/>
+
       <Banner text={"الدعم الفني"} img={first} />
       <section id="user-profile">
         <div className="user-container">

@@ -19,12 +19,13 @@ import s7 from "../assests/Services-img/s.77.png";
 import i1 from "../assests/Services-img/si.1.png";
 import i2 from "../assests/Services-img/si.2.png";
 import i3 from "../assests/Services-img/si.3.png";
+import { ServiceNav } from "../assests/data";
 
 const ServicesPage = () => {
   return (
     <>
       <section id="services-page">
-        <Navigation />
+        <Navigation nav={ServiceNav} />
         <Banner text={" خدمات "} img={first} icon={true} mi={icon1} p={true} />
         <div className="container-services">
           <div className="top-heading">
@@ -43,6 +44,7 @@ const ServicesPage = () => {
           <Services
             heading={" (خدمة وجهة واحدة)"}
             span={"مسارك "}
+            id={"مسارك"}
             des={
               " لتوفير أقصى درجات الراحة لعملائنا ، قدمنا لهم خدمة المسار الخاص بك ، حيث يمكنهم التنقل بين مناطق المملكة العربية السعودية بسلاسة وسهولة ، واستلام سيارتهم في أي مكان. ضعها وقم بتسليمها في مكان آخر ، برسوم مخفضة عندما تختلف المدينة ورسوم مجانية في نفس المدينة."
             }
@@ -52,6 +54,7 @@ const ServicesPage = () => {
           <Services
             heading={" (  (خدمة تصاريح السفر الدولية))"}
             span={"Limitless"}
+            id={"Limitless"}
             reverse={true}
             order={true}
             des={
@@ -61,6 +64,7 @@ const ServicesPage = () => {
           />
           <Services
             heading={" ( غير محدود (الكيلومتر المفتوح))"}
+           id ={"غير محدود"}
             des={
               " نجعل عميلنا غير مقيد وغير محدود في تحركاته حتى يتمكن من إضافة خدمة الكيلومتر المفتوح إلى عقده ، وبعد ذلك لن يكون هناك سبب للتفكير في مسافة رحلاته وأسفاره. سوف يستمتع بجميع أسفاره إلى مختلف أنحاء المملكة العربية السعودية وخارجها. ‬"
             }
@@ -69,13 +73,14 @@ const ServicesPage = () => {
           <Services
             heading={" (خدمة المركبات بسائق)"}
             span={"ليمو"}
+            id={"ليمو"}
             order={true}
             des={
               " نقدم خدمات المركبات بسائقين مسئولين وكفؤين يتحدثون اللغتين العربية والإنجليزية ويرتدون زي موحد يعكس مدى الاحتراف والجودة لخدمة عملائنا في القطاعين الحكومي والخاص والوفود الزائرة ، بالإضافة إلى الزوار إلى المشاعر المقدسة في كل من مكة المكرمة والمدينة المنورة.‬"
             }
             mainImg={s4}
           />
-          <div className="center-wrapper">
+          <div className="center-wrapper" id='خدمات الأعمال'>
             <div className="center">
               <div className="img">
                 <img src={c1} alt="" />
@@ -99,6 +104,7 @@ const ServicesPage = () => {
           </div>
           <Services
             span={" العضويات"}
+            id={" العضويات"}
             con={true}
             img={i1}
             des={
@@ -108,6 +114,7 @@ const ServicesPage = () => {
           />
           <Services
             span={"  مبيعات السيارات المستعملة"}
+            id={"  مبيعات السيارات المستعملة"}
             con={true}
             order={true}
             img={i2}
@@ -118,6 +125,7 @@ const ServicesPage = () => {
           />
           <Services
             span={" المساعدة على الطريق"}
+        id={" المساعدة على الطريق"}
             con={true}
             img={i3}
             des={
