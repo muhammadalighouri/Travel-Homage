@@ -28,7 +28,7 @@ import Loading from "./components/Loading";
 import { useSelector } from "react-redux";
 
 function App() {
-  const { loading } = useSelector((state) => state.loading)
+  const { loading } = useSelector((state) => state.loading);
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -37,9 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      {
-        loading && <Loader />
-      }
+      {loading && <Loader />}
 
       <>
         <Routes>

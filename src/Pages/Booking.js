@@ -511,7 +511,7 @@ const Booking = () => {
 
   return (
     <>
-      <Navigation nav={[]}/>
+      <Navigation nav={[]} />
       <Banner />
       <section id="booking">
         <div className="container-main">
@@ -912,7 +912,7 @@ const Booking = () => {
                       <div className="input-box">
                         <p>رخصة القيادة</p>
                         <div className="input">
-                          <img src={i4} alt="" />
+                          {/* <img src={i4} alt="" /> */}
                           <input
                             type="text"
                             value={drivingLicense}
@@ -924,10 +924,11 @@ const Booking = () => {
                     </div>
                     <div className="input-box-wrap">
                       <div className="tick">
-                        <span>
+                        <span
+                          style={{ background: "#ffcd00", color: "#373A36" }}
+                        >
                           {" "}
-                          <img src={tick} alt="" />
-                          تم التأكيد{" "}
+                          تأكيد
                         </span>
                       </div>
                       <div className="input-box">
@@ -944,10 +945,11 @@ const Booking = () => {
                     </div>
                     <div className="input-box-wrap">
                       <div className="tick">
-                        <span>
+                        <span
+                          style={{ background: "#ffcd00", color: "#373A36" }}
+                        >
                           {" "}
-                          <img src={tick} alt="" />
-                          تم التأكيد{" "}
+                          تأكيد
                         </span>
                       </div>
                       <div className="input-box">
@@ -965,10 +967,11 @@ const Booking = () => {
                     </div>
                     <div className="input-box-wrap">
                       <div className="tick">
-                        <span>
+                        <span
+                          style={{ background: "#ffcd00", color: "#373A36" }}
+                        >
                           {" "}
-                          <img src={tick} alt="" />
-                          تم التأكيد{" "}
+                          تأكيد
                         </span>
                       </div>
                       <div className="input-box">

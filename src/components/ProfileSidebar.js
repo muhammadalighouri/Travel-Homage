@@ -9,7 +9,12 @@ import icon10 from "../assests/Profile/10.10.png";
 import "../scss/side.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/actions/userActions";
-const ProfileSidebar = () => {
+const ProfileSidebar = ({
+  handleDataChange,
+  setAvatar,
+  setAvatarPreview,
+  avatarPreview,
+}) => {
   const user = useSelector((state) => state.UserLogin?.userInfo?.user) || {};
   const { firstName, lastName, avatar } = user || {};
   const dispatch = useDispatch();
@@ -18,13 +23,24 @@ const ProfileSidebar = () => {
       <section id="sidebar">
         <div className="container">
           <aside>
-            <div className="detail">
-              <img src={avatar?.url ? avatar?.url : p} alt="" />
+            <input
+              type="file"
+              name="avatar"
+              id="upload"
+              accept="image/*"
+              onChange={handleDataChange}
+              className="update"
+              style={{ display: "none" }}
+            />
+            <label htmlFor="upload" className="detail">
+              {
+                avatarPreview ? <img src={avatarPreview} alt="" /> : <img src={avatar?.url ? avatar?.url : p} alt="" />
+              }
 
               <span>
                 {firstName}&nbsp;{lastName}
               </span>
-            </div>
+            </label>
             <div className="image">
               <img src={img1} alt="" />
               <img src={img2} alt="" />

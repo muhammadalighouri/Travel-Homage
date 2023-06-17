@@ -148,6 +148,10 @@ header {
                   display: flex;
                   align-items: center;
                   justify-content: end;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
                 }
 
                 .detial {
@@ -290,7 +294,7 @@ header {
         justify-content: start;
         gap: 15px;
         align-items: center;
-        @include md{
+        @include md {
           display: none;
         }
         @include sm {
@@ -760,7 +764,6 @@ header {
               gap: 4px;
               height: 25px;
               padding: 5px 6px;
-              border-left: 1px solid #dcdae2;
 
               @include md {
                 display: none;
