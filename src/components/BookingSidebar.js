@@ -13,6 +13,10 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
     const discountAmount = (price * discount) / 100;
     return discountAmount;
   };
+  const calculateTaxesAmount = (price) => {
+    const taxesAmount = (price * 15) / 100;
+    return taxesAmount;
+  };
   return (
     <>
       <section id="sidebar">
@@ -61,14 +65,14 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
             <li className="box">
               <span className="h">الضريبة</span>
               <span className="n" style={{ color: "#00AFAA" }}>
-                مجاناً
+                +{calculateTaxesAmount(price)} (15%)
               </span>
             </li>
             <li className="box">
               <span className="h" style={{ fontWeight: "700" }}>
                 الإجمالي
               </span>
-              <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount)} ر.س.</span>
+              <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount) + calculateTaxesAmount(price)} ر.س.</span>
             </li>
           </ul>
         </div>
@@ -143,7 +147,7 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
                   <li className="box">
                     <span className="h">الضريبة</span>
                     <span className="n" style={{ color: "#00AFAA" }}>
-                      مجاناً
+                      +{calculateTaxesAmount(price)} (15%)
                     </span>
                   </li>
                   <li className="box">

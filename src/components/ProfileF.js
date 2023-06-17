@@ -14,7 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserDetails, updateProfile } from "../Redux/actions/userActions";
 import { toast } from "react-toastify";
-const ProfileF = () => {
+const ProfileF = ({
+  handleDataChange,
+  avatar,
+  setAvatar,
+  setAvatarPreview,
+  avatarPreview,
+}) => {
   const { user } = useSelector((state) => state.UserLogin?.userInfo) || {};
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -25,8 +31,7 @@ const ProfileF = () => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [avatar, setAvatar] = useState();
-  const [avatarPreview, setAvatarPreview] = useState(p);
+
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -51,18 +56,7 @@ const ProfileF = () => {
 
     dispatch(updateProfile(updatedUserData));
   };
-  const handleDataChange = (e) => {
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatarPreview(reader.result);
-        setAvatar(reader.result);
-      }
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
-  };
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName || "");
@@ -191,7 +185,7 @@ const ProfileF = () => {
                   value={drivingLicense}
                   onChange={(e) => setDrivingLicense(e.target.value)}
                   placeholder="رخصة القيادة"
-                  // {...formik.getFieldProps("email")}
+                // {...formik.getFieldProps("email")}
                 />
                 {/* {formik.touched.email && formik.errors.email ? (
                     <div className="error">{formik.errors.email}</div>
@@ -216,7 +210,7 @@ const ProfileF = () => {
                   placeholder="الرقم القومي أو رقم جواز السفر"
                   value={nationalId}
                   onChange={(e) => setNationalId(e.target.value)}
-                  // {...formik.getFieldProps("password")}
+                // {...formik.getFieldProps("password")}
                 />
                 {/* {formik.touched.password && formik.errors.password ? (
                     <div className="error">{formik.errors.password}</div>
@@ -226,16 +220,19 @@ const ProfileF = () => {
           </div>
 
           <div className="profile-img">
-            <div className="img">
+            <label htmlFor="upload" className="img">
               <img src={avatarPreview} alt="" />
-            </div>
+            </label>
+
             <div className="btns">
               <input
                 type="file"
                 name="avatar"
+                id="upload"
                 accept="image/*"
                 onChange={handleDataChange}
                 className="update"
+
               />
               <Link onClick={handleSubmit} className="confirm">
                 تأكيد التغيير

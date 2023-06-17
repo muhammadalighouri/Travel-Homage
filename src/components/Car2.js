@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../scss/car2.scss";
 import img from "../assests/Group 938.png";
 import img1 from "../assests/Promos (1).png";
@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-
+import axios from "../api/axios"
 import "../scss/styles.scss";
 import "../scss/modal.scss";
 
@@ -16,7 +16,7 @@ const Car2 = () => {
   const [slide, setSlide] = useState(2);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [sponsors, setSponsors] = useState([])
   // Other methods...
 
   function openModal(imgSrc) {
@@ -35,6 +35,13 @@ const Car2 = () => {
       setSlide(1);
     }
   });
+  const getSponsors = async () => {
+    const { data } = await axios.get("/api/v1/sponsor");
+    setSponsors(data);
+  };
+  useEffect(() => {
+    getSponsors()
+  }, [])
   return (
     <>
       <section id="car2">
@@ -51,21 +58,18 @@ const Car2 = () => {
                 }}
                 className="mySwiper"
               >
-                <SwiperSlide onClick={() => openModal(img1)}>
-                  <div className="box">
-                    <img src={img1} alt="" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide onClick={() => openModal(img2)}>
-                  <div className="box">
-                    <img src={img2} alt="" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide onClick={() => openModal(img3)}>
-                  <div className="box">
-                    <img src={img3} alt="" />
-                  </div>
-                </SwiperSlide>
+                {
+                  sponsors.map((spon) => {
+                    return (
+                      <SwiperSlide onClick={() => openModal(spon?.image?.url)}>
+                        <div className="box">
+                          <img src={spon?.image?.url} alt="" />
+                        </div>
+                      </SwiperSlide>
+                    )
+                  })
+                }
+
               </Swiper>
               {modalIsOpen && (
                 <div className="modal__">

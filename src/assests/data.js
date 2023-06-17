@@ -172,11 +172,11 @@ export const AboutNav = [
 ];
 export const ServiceNav = [
   {
-    name: " المساعدة على الطريق",
+    name: "  الطريق",
     path: "# المساعدة على الطريق",
   },
   {
-    name: " مبيعات السيارات المستعملة",
+    name: "  المستعملة",
     path: "# مبيعات السيارات المستعملة",
   },
   {
@@ -184,7 +184,7 @@ export const ServiceNav = [
     path: "#العضويات",
   },
   {
-    name: "خدمات الأعمال",
+    name: "خدمات ",
     path: "#خدمات الأعمال",
   },
   {
@@ -195,10 +195,10 @@ export const ServiceNav = [
     name: "غير محدود",
     path: "#غير محدود",
   },
-  {
-    name: "Limitless",
-    path: "#Limitless",
-  },
+  // {
+  //   name: "Limitless",
+  //   path: "#Limitless",
+  // },
   {
     name: "مسارك ",
     path: "#مسارك ",
