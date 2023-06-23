@@ -18,7 +18,7 @@ const BookingHistory = () => {
 
   return (
     <>
-      <Navigation nav={HomeNav}/>
+      <Navigation nav={[]}/>
       <Banner text={"حجوزاتي "} img={first} />
       <section id="user-profile">
         <div className="user-container">
