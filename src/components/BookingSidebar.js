@@ -86,16 +86,16 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
                   <img src={selectedCar?.image?.url} alt="" />
                 </div>
                 {
-                  pickupLocation && <div className="item">
+                  pickupLocation.value && <div className="item">
                     <h2>Pickup Location</h2>
-                    <p>{pickupLocation}</p>
+                    <p>{pickupLocation.value}</p>
                   </div>
                 }
 
                 {
-                  returnLocation && <div className="item">
+                  returnLocation.value && <div className="item">
                     <h2>Return Location</h2>
-                    <p>{returnLocation}</p>
+                    <p>{returnLocation.value}</p>
                   </div>
                 }
                 <div className="item">

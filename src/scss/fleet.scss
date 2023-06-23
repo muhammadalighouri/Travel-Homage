@@ -8,7 +8,6 @@
 
   @include sm {
     border-radius: 60px 60px 0px 0px;
-
   }
 
   .container {
@@ -102,8 +101,6 @@
             background: #d9f9e6;
           }
         }
-
-
       }
     }
 
@@ -120,8 +117,9 @@
 
       .flex {
         display: grid;
-        grid-gap: 60px 25px;
+        grid-gap: 100px 25px;
         grid-template-columns: 1fr 1fr 1fr;
+        height: -moz-fit-content;
         height: fit-content;
         width: max-content;
 
@@ -134,13 +132,9 @@
           width: 100%;
         }
 
-        @media (max-width:686px) {
-
+        @media (max-width: 686px) {
           grid-template-columns: 1fr;
-
         }
-
-
       }
     }
   }

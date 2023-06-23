@@ -2,134 +2,165 @@
 @import "./media.scss";
 
 #banner-wrapper-2 {
+  width: 100%;
+  position: relative;
+  padding-top: 20px;
+
+  @include sm {
+    padding-top: 50px;
+  }
+
+  .swiper-wrapper {
+    padding-bottom: 75px;
+  }
+
+  .swiper-pagination {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 10px !important;
+
+    span {
+      left: 24px !important;
+      background: #f2f2f2 !important;
+      height: 20px !important;
+      width: 12px !important;
+      opacity: 1;
+      border-radius: 15px !important;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    width: 120px !important;
+  }
+
+  &::before {
+    content: "";
     width: 100%;
-    position: relative;
-    padding-top: 20px;
+    height: 80vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../assests/Pattern.png);
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center right;
+    z-index: -2;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    // margin-bottom: 50px;
+
+    @include md {
+      grid-template-columns: 1fr;
+      /* grid-gap: 3rem; */
+      /* width: 90%; */
+      margin: auto;
+      padding: 0px 20px;
+    }
 
     @include sm {
-        padding-top: 50px;
+      grid-gap: 5px;
     }
 
-    .swiper-wrapper {
+    .start-2 {
+      position: relative;
+      height: 360px;
+      @include md {
+        order: 2;
+      }
 
-        padding-bottom: 75px;
-    }
-
-    .swiper-pagination {
-        display: flex !important;
-        align-items: center !important;
-        width: 100% !important;
-        justify-content: center !important;
-        gap: 10px !important;
-
-        span {
-            left: 24px !important;
-            background: #F2F2F2 !important;
-            height: 20px !important;
-            width: 12px !important;
-            opacity: 1;
-            border-radius: 15px !important;
-        }
-    }
-
-    .swiper-pagination-bullet {
-
-        width: 120px !important;
-
-
-    }
-
-    &::before {
-        content: "";
+      img {
         width: 100%;
-        height: 80vh;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: url(../assests/Pattern.png);
-        background-size: 200px;
-        background-repeat: no-repeat;
-        background-position: center right;
-        z-index: -2;
-    }
-
-    .grid-2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        // margin-bottom: 50px;
 
         @include md {
-            grid-template-columns: 1fr;
-    /* grid-gap: 3rem; */
-    /* width: 90%; */
-    margin: auto;
-    padding: 0px 20px;
+          width: 100%;
+          margin: auto;
         }
-
-        @include sm {
-            grid-gap: 5px;
-        }
-
-        .start-2 {
-            position: relative;
-
-            @include md {
-                order: 2;
-            }
-
-            img {
-                width: 100%;
-
-                @include md {
-                    width: 100%;
-                    margin: auto;
-                }
-            }
-        }
-
-        .end-2 {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-
-            @include md {
-                order: 1;
-                gap: 25px;
-                flex-direction: column-reverse;
-            }
-
-            .img-2 {
-                height: 100%;
-                display: flex;
-                align-items: baseline;
-                justify-content: center;
-
-                img {
-                    object-fit: cover;
-                }
-            }
-
-            >h1 {
-                text-align: end;
-                line-height: 1.4;
-                font-weight: 700;
-                font-size: 48px;
-                max-width: 390px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                >h1 {
-                    font-weight: 700;
-                    display: inline;
-                    font-size: 3rem;
-                }
-            }
-        }
+      }
     }
 
-    #banner-2 {
+    .end-2 {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+
+      @include md {
+        order: 1;
+        gap: 25px;
+        flex-direction: column-reverse;
+      }
+
+      .img-2 {
+        height: 100%;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+
+        img {
+          object-fit: cover;
+        }
+      }
+
+      > h1 {
+        text-align: end;
+        line-height: 1.4;
+        font-weight: 700;
+        font-size: 48px;
+        max-width: 390px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > h1 {
+          font-weight: 700;
+          display: inline;
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  #banner-2 {
+    width: 100%;
+    margin-top: 0px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    z-index: 0;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    padding: 50px 0 20px;
+    padding-bottom: 180px;
+
+    @include md {
+      padding-bottom: 210px;
+      padding-top: 0px;
+    }
+
+    @include md {
+      margin-top: 20px;
+      position: relative;
+      height: 100%;
+    }
+
+    .container__ {
+      width: 100%;
+      max-width: 1080px;
+    }
+  }
+
+  .swiper {
+    // .swiper-wrapper {
+
+    .mySwiper {
+      #banner {
         width: 100%;
         margin-top: 0px !important;
         display: flex;
@@ -140,155 +171,115 @@
         position: relative;
         height: 100%;
         overflow: hidden;
-        padding: 50px 0 20px;
-        padding-bottom: 180px;
+        padding: 55px 0 20px;
 
         @include md {
-            padding-bottom: 210px;
-            padding-top: 0px;
+          // padding-bottom: 180px;
         }
 
-
+        // &::before {
+        //     content: "";
+        //     width: 100%;
+        //     height: 80vh;
+        //     position: absolute;
+        //     top: 0;
+        //     right: 0;
+        //     background: url(../assests/Pattern.png);
+        //     background-size: 200px;
+        //     background-repeat: no-repeat;
+        //     background-position: center right;
+        //     z-index: -2;
+        // }
 
         @include md {
-            margin-top: 20px;
-            position: relative;
-            height: 100%;
+          margin-top: 20px;
+          position: relative;
+          height: 100%;
         }
 
         .container__ {
-            width: 100%;
-            max-width: 1080px;
+          width: 100%;
+          max-width: 1080px;
 
+          .swiper-slide {
+            .grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              align-items: center;
 
-        }
-    }
+              @include md {
+                grid-template-columns: 1fr;
+                grid-gap: 3rem;
+                width: 90%;
+                margin: auto;
+              }
 
-    .swiper {
-        // .swiper-wrapper {
-
-        .mySwiper {
-            #banner {
-                width: 100%;
-                margin-top: 0px !important;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: start;
-                z-index: 0;
+              .start {
                 position: relative;
-                height: 100%;
-                overflow: hidden;
-                padding: 55px 0 20px;
 
                 @include md {
-                    // padding-bottom: 180px;
+                  order: 2;
                 }
 
-                // &::before {
-                //     content: "";
-                //     width: 100%;
-                //     height: 80vh;
-                //     position: absolute;
-                //     top: 0;
-                //     right: 0;
-                //     background: url(../assests/Pattern.png);
-                //     background-size: 200px;
-                //     background-repeat: no-repeat;
-                //     background-position: center right;
-                //     z-index: -2;
-                // }
+                img {
+                  width: 100%;
+
+                  @include md {
+                    width: 90%;
+                    margin: auto;
+                  }
+                }
+              }
+
+              .end {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
 
                 @include md {
-                    margin-top: 20px;
-                    position: relative;
-                    height: 100%;
+                  order: 1;
+                  gap: 25px;
+                  flex-direction: column-reverse;
                 }
 
-                .container__ {
-                    width: 100%;
-                    max-width: 1080px;
+                .img {
+                  height: 100%;
+                  display: flex;
+                  align-items: baseline;
+                  justify-content: center;
 
-                    .swiper-slide {
-
-                        .grid {
-                            display: grid;
-                            grid-template-columns: 1fr 1fr;
-                            align-items: center;
-
-                            @include md {
-                                grid-template-columns: 1fr;
-                                grid-gap: 3rem;
-                                width: 90%;
-                                margin: auto;
-                            }
-
-                            .start {
-                                position: relative;
-
-                                @include md {
-                                    order: 2;
-                                }
-
-                                img {
-                                    width: 100%;
-
-                                    @include md {
-                                        width: 90%;
-                                        margin: auto;
-                                    }
-                                }
-                            }
-
-                            .end {
-                                display: flex;
-                                justify-content: center;
-                                gap: 50px;
-
-                                @include md {
-                                    order: 1;
-                                    gap: 25px;
-                                    flex-direction: column-reverse;
-                                }
-
-                                .img {
-                                    height: 100%;
-                                    display: flex;
-                                    align-items: baseline;
-                                    justify-content: center;
-
-                                    img {
-                                        object-fit: cover;
-                                    }
-                                }
-
-                                >h1 {
-                                    text-align: end;
-                                    line-height: 1.4;
-                                    font-weight: 700;
-                                    font-size: 48px;
-                                    max-width: 390px;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-
-                                    >h1 {
-                                        font-weight: 700;
-                                        display: inline;
-                                        font-size: 3rem;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                  img {
+                    object-fit: cover;
+                  }
                 }
+
+                > h1 {
+                  text-align: end;
+                  line-height: 1.4;
+                  font-weight: 700;
+                  font-size: 48px;
+                  max-width: 390px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  > h1 {
+                    font-weight: 700;
+                    display: inline;
+                    font-size: 3rem;
+                  }
+                }
+              }
             }
+          }
         }
+      }
     }
+  }
 }
 
 // }
 
 .grey {
-    color: #006281 !important;
+  color: #006281 !important;
 }

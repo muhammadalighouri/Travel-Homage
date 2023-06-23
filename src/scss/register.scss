@@ -59,7 +59,7 @@
     align-items: center;
     padding: 20px 52px 15px 52px;
     gap: 16px;
-    max-width: 570px;
+    max-width: 660px;
     background: #ffffff;
     box-shadow: 10px 10px 48px rgba(148, 139, 126, 0.25);
     border-radius: 50px;
@@ -111,7 +111,20 @@
       align-items: center;
       gap: 10px;
       justify-content: center;
-
+      width: 100%;
+      .user-type {
+        width: 100%;
+        .under {
+          display: flex;
+          justify-content: space-around;
+          width: 81%;
+          margin: auto;
+          label {
+            display: flex;
+            gap: 10px;
+          }
+        }
+      }
       .input {
         display: flex;
         flex-direction: column;
@@ -121,6 +134,46 @@
         gap: 5px;
         font-family: "Cairo", sans-serif;
 
+        .under {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 0px 16px;
+          gap: 12px;
+
+          height: 48px;
+
+          /* White */
+
+          background: #fafafa;
+          /* Alpha-black/10% */
+
+          border: 1px solid rgba(47, 43, 67, 0.1);
+          /* Shadows/1 */
+
+          box-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+            inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+          border-radius: 12px;
+
+          width: 100%;
+          padding: 0px 16px;
+
+          input,
+          select {
+            background: #fafafa;
+
+            height: 100%;
+
+            width: 100%;
+            border: 0px;
+            outline: none;
+            color: black;
+            option {
+              color: black;
+            }
+          }
+        }
         p {
           font-weight: 600;
           font-size: 16px;
@@ -179,6 +232,18 @@
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+          @include md {
+            flex-direction: column;
+          }
+        }
+
+        .grid__two {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          gap: 10px;
           @include md {
             flex-direction: column;
           }
@@ -244,9 +309,8 @@
         .under {
           display: flex;
           flex-direction: row;
-          justify-content: center;
+          justify-content: start;
           align-items: center;
-
           gap: 12px;
 
           input {

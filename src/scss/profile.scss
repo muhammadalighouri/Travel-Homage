@@ -3,7 +3,6 @@
 
 #user-profile {
   position: relative;
-  z-index: 3;
   overflow: hidden;
 
   .user-container {
@@ -21,13 +20,13 @@
     }
 
     .form {
-      @include md {}
+      @include md {
+      }
     }
 
     #sidebar {
       @include md {
         order: 1;
-
       }
     }
 

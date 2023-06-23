@@ -106,7 +106,17 @@
             justify-content: center;
             gap: 20px;
             max-width: 560px;
-
+            .item__ {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              justify-content: space-between;
+              align-self: self-end;
+              p {
+                color: black;
+                font-size: 20px;
+              }
+            }
             .input-box-wrap {
               width: 100%;
               display: grid;

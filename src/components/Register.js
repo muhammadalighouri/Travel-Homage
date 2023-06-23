@@ -13,13 +13,27 @@ import img1 from "../assests/Icons/Tail icon q.png";
 import img2 from "../assests/Icons/Lead icon.png";
 import img3 from "../assests/Icons/Lead icon.svg";
 import img4 from "../assests/Icons/Vector (6).png";
+import axios from "axios";
 import img5 from "../assests/Icons/Tail icon.svg";
 import { Close } from "@mui/icons-material";
 const Register = ({ setMode }) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Track the submit state
   const dispatch = useDispatch();
+  const [countries, setCountries] = useState([]);
   const userRegister = useSelector((state) => state.UserRegister);
   const { error, userInfo, loading } = userRegister;
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        setCountries(response.data);
+      } catch (error) {
+        console.error("Failed to fetch countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
   const navigate = useNavigate("");
   const formik = useFormik({
     initialValues: {
@@ -28,6 +42,11 @@ const Register = ({ setMode }) => {
       email: "",
       password: "",
       phone: "",
+      saudiId: "", // Add initial value for saudiId
+      passportNumber: "", // Add initial value for passportNumber
+      nationality: "", // Add initial value for nationality
+      userType: "citizen",
+      birthday: "",
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("Required"),
@@ -42,14 +61,43 @@ const Register = ({ setMode }) => {
         .required("Required"),
     }),
     onSubmit: async (values) => {
+      if (!values.birthday) {
+        toast.error("add your date of birth");
+        setIsSubmitting(false);
+        return;
+      }
+      if (values.userType === "citizen" && !values.saudiId) {
+        setIsSubmitting(false);
+        return;
+        toast.error("add your ID");
+      }
+      if (values.userType === "resident" && !values.saudiId) {
+        toast.error("add your ID");
+        setIsSubmitting(false);
+        return;
+      }
+      if (
+        values.userType === "visitor" &&
+        !values.passportNumber &&
+        !values.nationality
+      ) {
+        toast.error("add your information");
+        setIsSubmitting(false);
+        return;
+      }
       try {
-        await dispatch(
+        dispatch(
           register(
             values.firstName,
             values.lastName,
             values.email,
             values.password,
-            values.phone
+            values.phone,
+            values.userType,
+            values.nationality,
+            values.saudiId,
+            values.birthday,
+            values.passportNumber
           )
         );
       } catch (error) {
@@ -61,6 +109,78 @@ const Register = ({ setMode }) => {
       }
     },
   });
+  const handleUserTypeChange = (event) => {
+    const userType = event.target.value;
+    formik.setFieldValue("userType", userType);
+  };
+
+  const renderAdditionalFields = () => {
+    const userType = formik.values.userType;
+
+    if (userType === "citizen" || userType === "resident") {
+      return (
+        <>
+          <div className="input">
+            <p>Saudi ID Number</p>
+            <div className="under">
+              <input
+                type="text"
+                placeholder="Saudi ID Number"
+                {...formik.getFieldProps("saudiId")}
+              />
+              {formik.touched.saudiId && formik.errors.saudiId && (
+                <div className="error">{formik.errors.saudiId}</div>
+              )}
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    if (userType === "visitor") {
+      return (
+        <>
+          <div className="grid__two">
+            <div className="input">
+              <p>Passport Number</p>
+              <div className="under">
+                <input
+                  type="number"
+                  placeholder="Passport Number"
+                  {...formik.getFieldProps("passportNumber")}
+                />
+                {formik.touched.passportNumber &&
+                  formik.errors.passportNumber && (
+                    <div className="error">{formik.errors.passportNumber}</div>
+                  )}
+              </div>
+            </div>
+            <div className="input">
+              <p>Choose Your Nationality</p>
+              <div className="under">
+                <select
+                  name="nationality"
+                  {...formik.getFieldProps("nationality")}
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    Select Nationality
+                  </option>
+                  {countries.map((country) => (
+                    <option key={country.cca2} value={country.name.common}>
+                      {country.name.common}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    return null;
+  };
   useEffect(() => {
     if (userInfo) {
       if (userInfo.success) {
@@ -162,6 +282,51 @@ const Register = ({ setMode }) => {
                   <div className="error">{formik.errors.email}</div>
                 ) : null}
                 <img src={img1} alt="" />
+              </div>
+            </div>
+            <div className="user-type">
+              <p>User Type</p>
+              <div className="under">
+                <label>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="citizen"
+                    onChange={handleUserTypeChange}
+                    checked={formik.values.userType === "citizen"}
+                  />
+                  Citizen
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="resident"
+                    onChange={handleUserTypeChange}
+                    checked={formik.values.userType === "resident"}
+                  />
+                  Resident
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="userType"
+                    value="visitor"
+                    onChange={handleUserTypeChange}
+                    checked={formik.values.userType === "visitor"}
+                  />
+                  Visitor
+                </label>
+              </div>
+            </div>
+            <div className="same">{renderAdditionalFields()}</div>
+            <div className="same">
+              <p>Birthday</p>
+              <div className="under">
+                <input type="date" {...formik.getFieldProps("birthday")} />
+                {formik.touched.birthday && formik.errors.birthday && (
+                  <div className="error">{formik.errors.birthday}</div>
+                )}
               </div>
             </div>
             <div id="password" className="same">

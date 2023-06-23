@@ -40,11 +40,11 @@ const HomePage = () => {
       text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
     },
   ];
- 
+
   return (
     <>
       <section id="home">
-        <Navigation nav={HomeNav}/>
+        <Navigation nav={HomeNav} />
         {/* <Banner /> */}
         <Slider content={array} />
         <Car />

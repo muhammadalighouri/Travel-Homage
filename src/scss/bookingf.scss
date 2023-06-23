@@ -53,20 +53,24 @@
     background: #ffffff;
     border-radius: 75px 75px 0 0;
     padding: 90px 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 30px;
-  
+    /* display: grid; */
+    /* gap: 30px; */
+    height: 100%;
 
     @include md {
       border-radius: 5px 5px 0 0;
       grid-template-columns: 1fr;
     }
+    .booking__grid__ {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2rem;
+    }
     .btns__ {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 40px;
       gap: 10px;
       li {
         display: flex;
@@ -91,6 +95,7 @@
       align-items: center;
       grid-gap: 40px;
       grid-template-columns: 1fr 0.5fr;
+      position: relative;
 
       .content {
         height: 100%;
@@ -294,4 +299,8 @@
       }
     }
   }
+}
+.booking__modal__ p,
+.booking__modal__ strong {
+  color: black !important;
 }

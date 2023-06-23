@@ -27,7 +27,7 @@ header {
     .container {
       max-width: 1300px;
       margin: 0 auto;
-      padding: 30px 30px;
+      padding: 30px 50px;
       background: #ffffff;
       border-bottom-right-radius: 75px;
       border-bottom-left-radius: 75px;
@@ -499,7 +499,6 @@ header {
 
               @include mobile {
                 width: 270px;
-         
               }
             }
 

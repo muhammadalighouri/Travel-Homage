@@ -36,6 +36,8 @@ import {
 } from "../Redux/actions/addressActions";
 import { toast } from "react-toastify";
 import { fetchCars } from "../Redux/actions/carActions";
+import { startOfDay } from "date-fns";
+import SelectMe from "./SelectMe";
 const branches = [
   {
     name: "الرياض - الشفا لبن",
@@ -199,12 +201,13 @@ const Booking = () => {
   const [pickupAddress, setPickupAddress] = useState("");
   const [returnAddress, setReturnAddress] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
   const [title, setTitle] = useState("");
   const [passport, setPassport] = useState("");
   const [email, setEmail] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
   const [returnLocation, setReturnLocation] = useState("");
-  const [pickupTime, setPickupTime] = useState(new Date());
+  const [pickupTime, setPickupTime] = useState(startOfDay(new Date()));
   const [returnTime, setReturnTime] = useState(new Date());
   const [perDay, setPerDay] = useState(false);
   const [perHour, setPerHour] = useState(false);
@@ -312,12 +315,11 @@ const Booking = () => {
       !selectedCar ||
       !pickupTime ||
       !returnTime ||
-      !option ||
-      !returnLocation
+      !option
+
     ) {
       isAllValuesEntered = false;
     }
-
     // If option === 'delivery' checks additional required fields
     if (option === "delivery" && (!car || !delivery)) {
       isAllValuesEntered = false;
@@ -327,7 +329,13 @@ const Booking = () => {
     if (option !== "delivery" && (!car || !pickupLocation)) {
       isAllValuesEntered = false;
     }
+    if (option !== "delivery" && (!car || !pickupLocation)) {
+      isAllValuesEntered = false;
+    }
 
+    if (option !== "delivery" && (differentReturnLocation && !returnLocation)) {
+      isAllValuesEntered = false;
+    }
     if (option === "perDay") {
       const days = diffInDays;
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
@@ -353,7 +361,7 @@ const Booking = () => {
               totalPrice +
               addonsPrice -
               calculateDiscountAmount(price, selectedCar?.discount),
-            rate: option,
+            rate: "delivery",
           })
         )
           .then((res) => {
@@ -365,13 +373,15 @@ const Booking = () => {
             setBookingLoading(false);
             setConfirmBooking(false);
           });
+
       } else {
+
         dispatch(
           createBooking({
             car,
             user: user._id,
-            pickupLocation,
-            returnLocation,
+            pickupLocation: pickupLocation.value,
+            returnLocation: returnLocation.value,
             startDate: pickupTime,
             endDate: returnTime,
             addons,
@@ -381,6 +391,8 @@ const Booking = () => {
               calculateDiscountAmount(price, selectedCar?.discount),
             rate: option,
             delivery: option === "delivery" ? true : false,
+            hours: diffInHours,
+            days: diffInDays
           })
         )
           .then((res) => {
@@ -404,20 +416,24 @@ const Booking = () => {
       if (pickupLocation && deliveryAddress && pickupTime && returnTime) {
         if (diffInDays === 0) {
           toast.warning("Change the time");
-        }
-        else {
+        } else {
           setActiveButton("btn2");
         }
       } else {
         toast.warning("enter all values");
       }
     } else {
-      if (pickupLocation && returnLocation && pickupTime && returnTime) {
-        if (diffInDays === 0) {
-          toast.warning("Change the time");
+      if (pickupLocation && pickupTime && returnTime) {
+        if (differentReturnLocation && !returnLocation) {
+          toast.warning("enter all values");
+
         }
         else {
-          setActiveButton("btn2");
+          if (diffInDays === 0) {
+            toast.warning("Change the time");
+          } else {
+            setActiveButton("btn2");
+          }
         }
       } else {
         toast.warning("enter all values");
@@ -446,7 +462,7 @@ const Booking = () => {
     let totalPrice = 0;
     let days = 0;
     let hours = 0;
-
+    console.log(pickupTime);
     if (option === "perHour") {
       hours = differenceInHours(returnTime, pickupTime);
       setDiffInHours(hours);
@@ -466,7 +482,7 @@ const Booking = () => {
     setPrice(totalPrice);
   }, [pickupTime, returnTime, option, selectedCar, car]);
 
-  const presentDay = new Date();
+  const presentDay = startOfDay(new Date());
 
   // End time at 9PM
   const maxTime = setHours(setMinutes(new Date(), 0), 21);
@@ -492,21 +508,23 @@ const Booking = () => {
       setEmail(user.email || "");
     } else {
       navigate("/");
+      toast.warning("You need to Login First!")
     }
   }, [user]);
   useEffect(() => {
     if (rentalInfo) {
       setPickupLocation(rentalInfo.pickupLocation || "");
       setReturnLocation(rentalInfo.returnLocation || "");
-      setPickupTime(rentalInfo.pickupTime || new Date());
+      setPickupTime(rentalInfo.pickupTime || startOfDay(new Date()));
       setReturnTime(rentalInfo.returnTime || new Date());
       setDelivery(rentalInfo.deliveryAddress || false);
     }
+    console.log(rentalInfo.pickupTime);
+    console.log(pickupTime);
   }, [rentalInfo]);
 
   useEffect(() => {
     dispatch(fetchCars());
-    console.log(returnLocation, pickupLocation);
   }, []);
 
   return (
@@ -531,9 +549,7 @@ const Booking = () => {
           <div className="container">
             <div className="grid__one">
               <div className="btns">
-                <button
-                  className={activeButton === "btn3" ? "active" : ""}
-                >
+                <button className={activeButton === "btn3" ? "active" : ""}>
                   <span>
                     {" "}
                     {activeButton === "btn3" ? <img src={arrow} alt="" /> : ""}
@@ -545,10 +561,7 @@ const Booking = () => {
                     <img src={w3} alt="" />
                   )}
                 </button>
-                <button
-                  className={activeButton === "btn2" ? "active" : ""}
-
-                >
+                <button className={activeButton === "btn2" ? "active" : ""}>
                   <span>
                     {activeButton === "btn2" ? <img src={arrow} alt="" /> : ""}
                   </span>
@@ -559,9 +572,7 @@ const Booking = () => {
                     <img src={w2} alt="" />
                   )}
                 </button>
-                <button
-                  className={activeButton === "btn1" ? "active" : ""}
-                >
+                <button className={activeButton === "btn1" ? "active" : ""}>
                   <span>
                     {activeButton === "btn1" ? <img src={arrow} alt="" /> : ""}
                   </span>
@@ -615,13 +626,43 @@ const Booking = () => {
                             <p>عنوان الاتسلام</p>
                             <Select
                               options={branchesData}
+                              defaultValue={
+                                rentalInfo.returnLocation
+                                  ? [
+                                    {
+                                      label: rentalInfo.returnLocation.label,
+                                      value: rentalInfo.returnLocation.value,
+                                    },
+                                  ]
+                                  : null
+                              }
+                              isSearchable={true}
+                              onChange={(selectedOption) => {
+                                setReturnLocation(selectedOption);
+                              }}
+
+                              placeholder="تحديد موقع"
+                            />
+                          </div>
+                          <div className="input-box">
+                            <p>عنوان الاتسلام</p>
+                            <Select
+                              options={branchesData}
+                              defaultValue={
+                                rentalInfo.returnLocation
+                                  ? [
+                                    {
+                                      label: rentalInfo.returnLocation.label,
+                                      value: rentalInfo.returnLocation.value,
+                                    }
+                                  ]
+                                  : null
+                              }
                               isSearchable={true}
                               onChange={(selectedOption) => {
                                 setReturnLocation(selectedOption.value);
-                                dispatch(getAllAddresses());
                               }}
                               onClick={() => {
-                                dispatch(getAllAddresses());
                               }}
                               placeholder="تحديد موقع"
                             />
@@ -638,7 +679,11 @@ const Booking = () => {
                                   <div className="btn">
                                     <DatePicker
                                       selected={pickupTime}
-                                      onChange={(date) => setPickupTime(date)}
+                                      onChange={(date) => {
+                                        date = startOfDay(date); // Sets the time to midnight
+                                        setPickupTime(date);
+                                        console.log(date);
+                                      }}
                                       dateFormat="MMMM d, yyyy"
                                       minDate={presentDay}
                                     />
@@ -667,7 +712,11 @@ const Booking = () => {
                                   <div className="btn">
                                     <DatePicker
                                       selected={pickupTime}
-                                      onChange={(date) => setPickupTime(date)}
+                                      onChange={(date) => {
+                                        date = startOfDay(date); // Sets the time to midnight
+                                        setPickupTime(date);
+                                        console.log(date);
+                                      }}
                                       dateFormat="MMMM d, yyyy"
                                       minDate={presentDay}
                                     />
@@ -768,33 +817,99 @@ const Booking = () => {
                           <div className="input-box">
                             <p>عنوان الاتسلام</p>
                             <Select
+                              defaultValue={
+                                rentalInfo.pickupLocation
+                                  ? [
+                                    {
+                                      label: rentalInfo.pickupLocation.label,
+                                      value: rentalInfo.pickupLocation.value,
+                                    },
+                                  ]
+                                  : null
+                              }
                               options={branchesData}
                               isSearchable={true}
                               onChange={(selectedOption) =>
-                                setPickupLocation(selectedOption.value)
+                                setPickupLocation(selectedOption)
                               }
                               placeholder="تحديد موقع"
                             />
                           </div>
                         </div>
 
-                        <div className="input-box-wrap">
-                          <div className="plus" style={{ opacity: "0" }}>
-                            <img src={plus} alt="" />
-                            إضافة عنوان
-                          </div>
-                          <div className="input-box">
-                            <p>عنوان الاتسلام</p>
-                            <Select
-                              options={branchesData}
-                              isSearchable={true}
-                              onChange={(selectedOption) =>
-                                setReturnLocation(selectedOption.value)
+                        {
+                          returnLocation === "" ? <>
+                            <div className="item__" >
+                              <p>Return to a different location</p>
+                              <input
+                                type="checkbox"
+                                onChange={(e) =>
+                                  setDifferentReturnLocation(e.target.checked)
+                                }
+                              />
+                            </div>
+                            <div className="input-box-wrap">
+
+                              {
+                                differentReturnLocation && <>
+                                  <div className="plus" style={{ opacity: "0" }}>
+                                    <img src={plus} alt="" />
+                                    إضافة عنوان
+                                  </div>
+                                  <div className="input-box">
+                                    <p>عنوان الاتسلام</p>
+                                    <Select
+                                      defaultValue={
+                                        rentalInfo.returnLocation
+                                          ? [
+                                            {
+                                              label: rentalInfo.returnLocation.label,
+                                              value: rentalInfo.returnLocation.value,
+                                            },
+                                          ]
+                                          : null
+                                      }
+                                      options={branchesData}
+                                      isSearchable={true}
+                                      onChange={(selectedOption) =>
+                                        setReturnLocation(selectedOption)
+                                      }
+                                      placeholder="تحديد موقع"
+                                    />
+                                  </div>
+                                </>
                               }
-                              placeholder="تحديد موقع"
-                            />
-                          </div>
-                        </div>
+
+                            </div>
+                          </> : <>
+                            <div className="input-box-wrap">
+                              <div className="plus" style={{ opacity: "0" }}>
+                                <img src={plus} alt="" />
+                                إضافة عنوان
+                              </div>
+                              <div className="input-box">
+                                <p>عنوان الاتسلام</p>
+                                <Select
+                                  defaultValue={
+                                    rentalInfo.returnLocation
+                                      ? [
+                                        {
+                                          label: rentalInfo.returnLocation.label,
+                                          value: rentalInfo.returnLocation.value,
+                                        },
+                                      ]
+                                      : null
+                                  }
+                                  options={branchesData}
+                                  isSearchable={true}
+                                  onChange={(selectedOption) =>
+                                    setReturnLocation(selectedOption)
+                                  }
+                                  placeholder="تحديد موقع"
+                                />
+                              </div>
+                            </div></>
+                        }
 
                         <div className="input-box-wrap">
                           {option === "perDay" ? (
@@ -882,11 +997,7 @@ const Booking = () => {
                           ))}
                         </div>
                         <div className="select-btns">
-                          <div
-                            className="btn1"
-                            onClick={bookingValuesHandler}
-
-                          >
+                          <div className="btn1" onClick={bookingValuesHandler}>
                             التالى
                           </div>
                           <div className="btn2">إلغاء</div>

@@ -171,37 +171,29 @@ export const AboutNav = [
   },
 ];
 export const ServiceNav = [
+
+
+
+
+
+
+
+
   {
-    name: "  الطريق",
+    name: "المساعدة على الطريق ",
     path: "# المساعدة على الطريق",
   },
   {
-    name: "  المستعملة",
-    path: "# مبيعات السيارات المستعملة",
-  },
-  {
     name: "العضويات",
-    path: "#العضويات",
+    path: "# العضويات",
   },
   {
-    name: "خدمات ",
+    name: "  الأعمال",
     path: "#خدمات الأعمال",
   },
   {
-    name: "ليمو",
-    path: "#ليمو",
-  },
-  {
-    name: "غير محدود",
-    path: "#غير محدود",
-  },
-  // {
-  //   name: "Limitless",
-  //   path: "#Limitless",
-  // },
-  {
-    name: "مسارك ",
-    path: "#مسارك ",
+    name: "  الأفراد",
+    path: "#فردي",
   },
 ];
 export const FAQ = [

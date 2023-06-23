@@ -27,7 +27,7 @@ const ServicesPage = () => {
       <section id="services-page">
         <Navigation nav={ServiceNav} />
         <Banner text={" خدمات "} img={first} icon={true} mi={icon1} p={true} />
-        <div className="container-services">
+        <div className="container-services" id="فردي">
           <div className="top-heading">
             <div className="heading-s">
               <h2> فردي</h2>
@@ -64,7 +64,7 @@ const ServicesPage = () => {
           />
           <Services
             heading={" ( غير محدود (الكيلومتر المفتوح))"}
-           id ={"غير محدود"}
+            id={"غير محدود"}
             des={
               " نجعل عميلنا غير مقيد وغير محدود في تحركاته حتى يتمكن من إضافة خدمة الكيلومتر المفتوح إلى عقده ، وبعد ذلك لن يكون هناك سبب للتفكير في مسافة رحلاته وأسفاره. سوف يستمتع بجميع أسفاره إلى مختلف أنحاء المملكة العربية السعودية وخارجها. ‬"
             }
@@ -125,7 +125,7 @@ const ServicesPage = () => {
           />
           <Services
             span={" المساعدة على الطريق"}
-        id={" المساعدة على الطريق"}
+            id={" المساعدة على الطريق"}
             con={true}
             img={i3}
             des={

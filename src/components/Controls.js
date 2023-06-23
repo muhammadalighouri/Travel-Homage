@@ -6,6 +6,8 @@ import CreatableSelect from "react-select/creatable";
 import switch1 from "../assests/Switches.png";
 import switch2 from "../assests/Switches (1).png";
 import switchIcon from "../assests/Seach mid ICON.png";
+import { startOfDay, toDate } from "date-fns";
+
 import text1 from "../assests/text1.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -162,7 +164,7 @@ const Controls = () => {
     const option = useSelector((state) => state.RentalInfo?.selectedOption);
     const [pickupLocation, setPickupLocation] = useState("");
     const [returnLocation, setReturnLocation] = useState("");
-    const [pickupTime, setPickupTime] = useState(new Date());
+    const [pickupTime, setPickupTime] = useState(toDate(startOfDay(new Date())));
     const [returnTime, setReturnTime] = useState(new Date());
     const [perDay, setPerDay] = useState(false);
     const [perHour, setPerHour] = useState(false);
@@ -237,13 +239,12 @@ const Controls = () => {
 
             navigate("/fleet");
         }
-
     };
     useEffect(() => {
         if (rentalInfo) {
             setPickupLocation(rentalInfo.pickupLocation || "");
             setReturnLocation(rentalInfo.returnLocation || "");
-            setPickupTime(rentalInfo.pickupTime || new Date());
+            setPickupTime(rentalInfo.pickupTime || startOfDay(new Date()));
             setReturnTime(rentalInfo.returnTime || new Date());
             setPerDay(rentalInfo.perDay || false);
             setPerHour(rentalInfo.perHour || false);
@@ -256,7 +257,6 @@ const Controls = () => {
     const handleOptionChange = (value) => {
         setSelectedOption(value);
 
-        // Uncheck the "Return to a different location" checkbox when "Delivery" is selected
         dispatch(getAllAddresses());
         if (value === "delivery") {
             setDifferentReturnLocation(false);
@@ -315,7 +315,11 @@ const Controls = () => {
                                     <div className="btn">
                                         <DatePicker
                                             selected={pickupTime}
-                                            onChange={(date) => setPickupTime(date)}
+                                            onChange={(date) => {
+                                                date = toDate(startOfDay(date));
+                                                setPickupTime(date);
+                                                console.log(date);
+                                            }}
                                             dateFormat="MMMM d, yyyy"
                                             minDate={presentDay}
                                         />
@@ -333,9 +337,7 @@ const Controls = () => {
                                     </div>
                                 </div>
                             </div>
-                        )
-
-                        }
+                        )}
                         {selectedOption === "delivery" && (
                             <div className="two">
                                 <div className="item">
@@ -361,9 +363,7 @@ const Controls = () => {
                                     </div>
                                 </div>
                             </div>
-                        )
-
-                        }
+                        )}
                         {selectedOption === "perHour" && (
                             <div className="two">
                                 <div className="item">
@@ -374,7 +374,6 @@ const Controls = () => {
                                             onChange={(date) => setPickupTime(date)}
                                             showTimeSelect
                                             minTime={minTime}
-
                                             maxTime={maxTime}
                                             dateFormat="Pp"
                                         />
@@ -394,9 +393,7 @@ const Controls = () => {
                                     </div>
                                 </div>
                             </div>
-                        )
-
-                        }
+                        )}
 
                         <div className="three">
                             <div className="top">
@@ -462,7 +459,7 @@ const Controls = () => {
                                                         options={options}
                                                         isSearchable={true}
                                                         onChange={(selectedOption) =>
-                                                            setPickupLocation(selectedOption.value)
+                                                            setPickupLocation(selectedOption)
                                                         }
                                                         placeholder="delivery"
                                                     />
@@ -471,7 +468,7 @@ const Controls = () => {
                                                         options={options}
                                                         isSearchable={true}
                                                         onChange={(selectedOption) =>
-                                                            setPickupLocation(selectedOption.value)
+                                                            setPickupLocation(selectedOption)
                                                         }
                                                         placeholder="تحديد موقع"
                                                     />
@@ -485,7 +482,7 @@ const Controls = () => {
                                                     options={options}
                                                     isSearchable={true}
                                                     onChange={(selectedOption) =>
-                                                        setReturnLocation(selectedOption.value)
+                                                        setReturnLocation(selectedOption)
                                                     }
                                                     placeholder="تحديد موقع"
                                                 />
@@ -514,7 +511,7 @@ const Controls = () => {
                                                         options={options}
                                                         isSearchable={true}
                                                         onChange={(selectedOption) =>
-                                                            setPickupLocation(selectedOption.value)
+                                                            setPickupLocation(selectedOption)
                                                         }
                                                         placeholder="تحديد موقع"
                                                     />
@@ -527,7 +524,6 @@ const Controls = () => {
                         </div>
                     </div>
                 )}
-
                 {activeButton === "btn2" && (
                     <div className="grid__two ">
                         <div className="one">

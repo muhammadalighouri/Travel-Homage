@@ -53,13 +53,13 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const register =
-    (firstName, lastName, email, password, phone) => async (dispatch) => {
+    (firstName, lastName, email, password, phone, userType, nationality, saudiId, birthday, passportNumber) => async (dispatch) => {
         try {
             dispatch({ type: USER_REGISTER_REQUEST });
 
             const { data } = await axios.post(
                 "/api/v1/user/register",
-                { firstName, lastName, email, password, phone },
+                { firstName, lastName, email, password, phone, userType, nationality, saudiId, birthday, passportNumber },
                 {
                     headers: {
                         Accept: "application/json",

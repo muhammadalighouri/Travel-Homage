@@ -42,7 +42,6 @@ const CarD = ({ display }) => {
   const [favoriteCars, setFavoriteCars] = useState(null);
   const dispatch = useDispatch();
   const toggle = useSelector((state) => state.toggle.toggle);
-  const handleShowFavorites = () => { };
   useEffect(() => {
     dispatch(fetchCars());
   }, [toggle]);

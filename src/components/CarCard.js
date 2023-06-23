@@ -6,16 +6,21 @@ import s3 from "../assests/Fleet/span3.png";
 import s4 from "../assests/Fleet/span4.png";
 import f4 from "../assests/Fleet/i.11.png";
 import f5 from "../assests/Fleet/i.22.png";
-import {AiFillHeart}from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai'
 import bac from '../assests/top-left.png'
 import dayjs from "dayjs";
 import icon from '../assests/upper.png'
+import suv from "../assests/cars/SUV (2).png";
+import sedan from "../assests/cars/sedan (2).png";
+import luxury from "../assests/cars/luxury (2).png";
+import family from "../assests/cars/faamily.png";
+import economy from "../assests/cars/economy.png";
 import "../scss/carcard.scss";
 import car1 from "../assests/car.png";
 import duration from "dayjs/plugin/duration"; // you need to import the plugin
 dayjs.extend(duration); // make sure to extend dayjs with the plugin
-const CarCard = ({ i, text, type }) => {
-  const { car } = i;
+const CarCard = ({ i, text, type, handleRowClick }) => {
+  const { startDate, endDate } = i;
   const timeLeft = (startDate) => {
     let now = dayjs();
     let start = dayjs(startDate);
@@ -37,32 +42,59 @@ const CarCard = ({ i, text, type }) => {
       }
     }
   };
+  const timeDuration = () => {
+    let start = dayjs(startDate);
+    let end = dayjs(endDate);
+    let diff = end.diff(start); // difference in milliseconds
+
+    let duration = dayjs.duration(diff); // convert difference to a duration
+    let days = duration.asDays(); // get the duration in days
+
+    return `${Math.floor(days)} days`;
+  };
+  const getCategoryIcon = (cat) => {
+    if (cat === "SUV") {
+      return suv;
+    }
+    if (cat === "Luxury") {
+      return luxury;
+    }
+    if (cat === "Sedan") {
+      return sedan;
+    }
+    if (cat === "Economy") {
+      return economy;
+    }
+    if (cat === "Family") {
+      return family;
+    }
+  };
   return (
     <>
-      <div className="box-wrapper">
+      <div className="box-wrapper" onClick={() => handleRowClick(i)}>
         <div className="box">
           <div className="first">
             <div className="heading">
-              <h1>Lexus</h1>
-              <h2>Es250</h2>
+              <h1>{i.car?.name}</h1>
               <span>
-                2023
+                {i.car?.year}
               </span>
-        
-            <AiFillHeart/>
-      
+              <h2 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}>{timeDuration()}</h2>
+              <h2 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}>ر.س.{i?.totalPrice}</h2>
+
             </div>
           </div>
           <div className="second">
             <div className="top">
               <div className="layer">
-                <img src={icon} alt="" />
+                <img src={getCategoryIcon(i.car?.category)} alt="" />
               </div>
-              <span>Luxury</span>
+              <span>{i.car?.category}</span>
             </div>
             <div className="img">
-              <img src={car1} alt="" />
+              <img src={i?.car?.image?.url} alt="" />
             </div>
+            <p style={{ color: 'black' }}>status: {i?.rideStatus}</p>
           </div>
         </div>
       </div>
