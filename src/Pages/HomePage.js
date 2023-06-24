@@ -17,6 +17,7 @@ import Navigate from "../components/Navigate";
 import Slider from "../components/Slider";
 import BookingF from "../components/BookingF";
 import { HomeNav } from "../assests/data";
+import PrivacyPage from "./PrivacyPage";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -57,6 +58,7 @@ const HomePage = () => {
         <Footer />
         {/* <Booking/> */}
         {/* <BookingF /> */}
+        <PrivacyPage/>
       </section>
     </>
   );

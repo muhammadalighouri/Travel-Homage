@@ -1,0 +1,75 @@
+#privacy {
+    background-color: white;
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 90px 20px;
+
+        .para {
+            color: #373A36;
+            font-weight: 400;
+            font-size: 23px;
+            text-align: start;
+            line-height: 44px;
+            font-family: "Cairo", sans-serif;
+        }
+
+        .heading {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            width: 100%;
+            justify-content: center;
+margin-bottom: 60px;
+            h1 {
+                color: #373a36;
+                font-family: "Cairo", sans-serif;
+                font-size: clamp(18%, 12vw, 50px);
+                width: 100%;
+                text-align: center;
+                text-transform: none;
+                font-weight: 600;
+                margin-bottom: 40px;
+
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            row-gap: 60px;
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    row-gap: 10px
+    ;
+}
+            p {
+                color: #373A36;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 40px;
+                width: 100%;
+                text-align: start;
+                font-family: "Cairo", sans-serif;
+            }
+
+            h3 {
+                color: #373a36;
+                font-family: "Cairo", sans-serif;
+                font-size: clamp(18%, 12vw, 40px);
+                width: 100%;
+                text-align: start;
+
+                text-transform: none;
+                font-weight: 600;
+            }
+
+        }
+    }
+}
