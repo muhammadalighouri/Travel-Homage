@@ -329,11 +329,10 @@ const Navigation = ({ nav }) => {
                                         ? { background: " #00000014" }
                                         : { background: "none" }
                                     }
-
                                   >
                                     <div className="n">
                                       {a.name}
-                                      <img style={{ filter: a.name === "الخدمات" && "invert(1)" }} src={a.icon} alt="" />
+                                      <img src={a.icon} alt="" />
                                     </div>
                                   </Link>
                                 </>
