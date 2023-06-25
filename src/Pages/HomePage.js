@@ -58,7 +58,6 @@ const HomePage = () => {
         <Footer />
         {/* <Booking/> */}
         {/* <BookingF /> */}
-        <PrivacyPage/>
       </section>
     </>
   );

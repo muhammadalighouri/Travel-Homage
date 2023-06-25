@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllAddresses } from "../Redux/actions/addressActions";
 import axios from "../api/axios";
 import { toast } from "react-toastify";
+import CreateAddress from "./CreateAddress";
 const Saved = () => {
   const { addresses } = useSelector((state) => state.Address) || {};
   const [edit, setEdit] = useState(null);
@@ -60,7 +61,9 @@ const Saved = () => {
 
   return (
     <>
+
       <section id="saved">
+        <CreateAddress />
         <div className="container">
           <CreateAddressForm setEdit={setEdit} edit={edit} />
           {addresses?.map((a) => {

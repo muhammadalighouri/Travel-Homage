@@ -1,8 +1,14 @@
 import React from "react";
 import "../scss/privacy-page.scss";
+import Navigation from "../components/Navigation";
+import first from "../assests/Photo car.png";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 const PrivacyPage = () => {
   return (
     <>
+      <Navigation nav={[]} />
+      <Banner text={"سياسة الخصوصية"} img={first} p={true} />
       <section id="privacy">
         <div className="container">
           <div className="heading">
@@ -241,6 +247,7 @@ const PrivacyPage = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

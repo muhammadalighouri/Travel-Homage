@@ -46,8 +46,8 @@ function App() {
           <Route path="/confirm_email/:token" element={<EmailConfirmation />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<LoginIn />} />
-          {/* <Route path="/profile" element={<UserProfile />} /> */}
-          {/* <Route path="/booking-history" element={<BookingHistory />} /> */}
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/booking-history" element={<BookingHistory />} />
           <Route path="/doucment" element={<Doucment />} />
           <Route path="/membership" element={<MemberShip />} />
           <Route path="/saved-adress" element={<SavedAdress />} />
@@ -62,11 +62,9 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
-          {/* <Route path="/:car/booking" element={<Booking />} /> */}
+          <Route path="/:car/booking" element={<Booking />} />
           <Route
-            path="/
-          privacy-policy 
-          "
+            path="/privacy-policy"
             element={<PrivacyPage />}
           />
         </Routes>

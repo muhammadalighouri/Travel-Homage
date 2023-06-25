@@ -13,7 +13,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { Group, Instagram } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ChatBox from "./ChatBox";
 const Footer = () => {
   const [scroll, setScroll] = useState(false);
@@ -42,12 +42,12 @@ const Footer = () => {
       setScroll(true);
     } else {
       setScroll(false);
-      setChat(false)
+      setChat(false);
     }
   });
+  const navigate = useNavigate()
   return (
     <footer>
-
       <div className="container">
         <div className="top">
           <div className="box">
@@ -71,7 +71,10 @@ const Footer = () => {
                   <h2>{i.name}</h2>
                   <ul>
                     <li>{i.h1}</li>
-                    <li>{i.h2}</li>
+                    <li onClick={() => {
+                      navigate('/privacy-policy')
+                      window.scroll(0, 0)
+                    }}>{i.h2}</li>
                     <li>{i.h3}</li>
                     <li>{i.h4}</li>
                     <li>{i.h5}</li>
@@ -88,13 +91,14 @@ const Footer = () => {
             <span>مزود خدمة التنقل السعودي لحلول تأجير السيارات</span>
             <span>شركة ترفل المحدودة © 2023</span>
           </div>
-          <div className="chatbot"
-
-          >
-            {
-              chat && <ChatBox />
-            }
-            <img src={chatImg} style={scroll ? { transform: "scale(1)" } : {}} onClick={() => setChat(!chat)} alt="" />
+          <div className="chatbot">
+            {chat && <ChatBox />}
+            <img
+              src={chatImg}
+              style={scroll ? { transform: "scale(1)" } : {}}
+              onClick={() => setChat(!chat)}
+              alt=""
+            />
           </div>
         </div>
       </div>

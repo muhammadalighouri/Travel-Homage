@@ -31,6 +31,14 @@
 label {
   color: black;
 }
+.custom-autocomplete .pac-item * {
+  color: black; /* Set the text color to white */
+}
+.pac-matched {
+  font-weight: 700;
+  color: black;
+}
+
 h5.modal-title {
   color: black;
 }
