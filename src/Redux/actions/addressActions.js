@@ -42,12 +42,11 @@ export const createAddress = (addressData) => {
     return (dispatch) => {
         dispatch(createAddressRequest());
 
-        axios
+        return axios
             .post('/api/v1/address', addressData)
             .then((response) => {
                 const address = response.data;
                 dispatch(createAddressSuccess(address));
-
             })
             .catch((error) => {
                 const errorMessage = error.response?.data?.error || 'Failed to create address';
@@ -55,6 +54,7 @@ export const createAddress = (addressData) => {
             });
     };
 };
+
 export const getAllAddresses = () => async (dispatch, getState) => {
     try {
         dispatch({ type: GET_ALL_ADDRESSES_REQUEST });

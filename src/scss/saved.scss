@@ -1,14 +1,59 @@
 @import "./variable.scss";
 @import "./media.scss";
+.top-btns {
+  display: flex;
+  list-style: none;
+  font-family: "Cairo", sans-serif !important;
 
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  .active {
+    color: #1c1f1f;
+    background: white;
+
+    img {
+      filter: invert(1);
+    }
+  }
+
+  li {
+    display: flex;
+    cursor: pointer;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Cairo", sans-serif !important;
+
+    justify-content: center;
+    padding: 0px 30px;
+    gap: 12px;
+    width: 185px;
+    height: 45px;
+    background: #a2a9ad;
+    border-radius: 20px 20px 0px 0px;
+
+    @include md {
+      width: auto;
+      height: auto;
+      padding: 8px 6px;
+      width: 200px;
+    }
+
+    img {
+      @include md {
+        display: none;
+      }
+    }
+  }
+}
 #saved {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 75px 75px 0 0;
   height: 100%;
-@include md{
-  height: 100vh;
 
-}
+  @include md {
+    height: 100vh;
+  }
   .container {
     padding: 90px 20px;
     display: flex;

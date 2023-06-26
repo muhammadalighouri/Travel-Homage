@@ -117,6 +117,25 @@ const Register = ({ setMode }) => {
   const renderAdditionalFields = () => {
     const userType = formik.values.userType;
 
+    if (userType === "resident") {
+      return (
+        <>
+          <div className="input">
+            <p>Iqama ID Number</p>
+            <div className="under">
+              <input
+                type="text"
+                placeholder="Iqama ID Number"
+                {...formik.getFieldProps("saudiId")}
+              />
+              {formik.touched.saudiId && formik.errors.saudiId && (
+                <div className="error">{formik.errors.saudiId}</div>
+              )}
+            </div>
+          </div>
+        </>
+      );
+    }
     if (userType === "citizen" || userType === "resident") {
       return (
         <>

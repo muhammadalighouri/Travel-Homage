@@ -20,7 +20,7 @@ import a from "../assests/booking/Lead icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import differenceInDays from "date-fns/differenceInDays";
-import differenceInHours from "date-fns/differenceInHours";
+import differenceInMonths from "date-fns/differenceInMonths";
 import "react-datepicker/dist/react-datepicker.css";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -218,6 +218,7 @@ const Booking = () => {
   const [addons, setAddons] = useState([]);
   const minTime = setHours(setMinutes(new Date(), 0), 9);
   const [diffInDays, setDiffInDays] = useState(0);
+  const [diffInMonths, setDiffInMonths] = useState(0);
   const [confirmBooking, setConfirmBooking] = useState(false);
   const [price, setPrice] = useState(0);
   const { car } = useParams();
@@ -444,7 +445,11 @@ const Booking = () => {
     if (option === "perHour") {
       const hours = differenceInHours(returnTime, pickupTime);
       setDiffInHours(hours);
-    } else {
+    } else if (option === "perMonth") {
+      const months = differenceInMonths(returnTime, pickupTime);
+      setDiffInMonths(months);
+    }
+    else {
       const days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
     }
@@ -453,7 +458,12 @@ const Booking = () => {
     if (option === "perHour") {
       const hours = differenceInHours(returnTime, pickupTime);
       setDiffInHours(hours);
-    } else {
+    }
+    else if (option === "perMonth") {
+      const months = differenceInMonths(returnTime, pickupTime);
+      setDiffInMonths(months);
+    }
+    else {
       const days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
     }
@@ -466,7 +476,12 @@ const Booking = () => {
     if (option === "perHour") {
       hours = differenceInHours(returnTime, pickupTime);
       setDiffInHours(hours);
-    } else {
+    }
+    else if (option === "perMonth") {
+      const months = differenceInMonths(returnTime, pickupTime);
+      setDiffInMonths(months);
+    }
+    else {
       days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
     }
@@ -477,6 +492,9 @@ const Booking = () => {
       totalPrice = (selectedCar?.pricePerHour || 0) * hours;
     } else if (option === "delivery") {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
+    }
+    else if (option === "perMonth") {
+      totalPrice = (selectedCar?.pricePerMonth || selectedCar?.pricePerDay * 30) * days;
     }
 
     setPrice(totalPrice);
@@ -598,76 +616,103 @@ const Booking = () => {
                             إضافة عنوان
                           </div>
                           <div className="input-box">
-                            <p>عنوان الاتسلام</p>
+                            <p>عنوان التسليم</p>
                             <Select
                               options={addressesData}
                               isSearchable={true}
-                              value={addressesData.find(
-                                (option) => option.value === deliveryAddress
-                              )}
+
                               onChange={(selectedOption) => {
                                 setDeliveryAddress(selectedOption.value);
-                                dispatch(getAllAddresses());
                               }}
-                              onClick={() => {
-                                dispatch(getAllAddresses());
-                              }}
-                              placeholder="تحديد موقع"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="input-box-wrap">
-                          <div className="plus" style={{ opacity: "0" }}>
-                            <img src={plus} alt="" />
-                            إضافة عنوان
-                          </div>
-                          <div className="input-box">
-                            <p>عنوان الاتسلام</p>
-                            <Select
-                              options={branchesData}
                               defaultValue={
-                                rentalInfo.returnLocation
+                                rentalInfo.deliveryAddress
                                   ? [
                                     {
-                                      label: rentalInfo.returnLocation.label,
-                                      value: rentalInfo.returnLocation.value,
+                                      label: rentalInfo.deliveryAddress.label,
+                                      value: rentalInfo.deliveryAddress.value,
                                     },
                                   ]
                                   : null
                               }
-                              isSearchable={true}
-                              onChange={(selectedOption) => {
-                                setReturnLocation(selectedOption);
-                              }}
+                              placeholder="تحديد موقع"
+                            />
 
-                              placeholder="تحديد موقع"
-                            />
-                          </div>
-                          <div className="input-box">
-                            <p>عنوان الاتسلام</p>
-                            <Select
-                              options={branchesData}
-                              defaultValue={
-                                rentalInfo.returnLocation
-                                  ? [
-                                    {
-                                      label: rentalInfo.returnLocation.label,
-                                      value: rentalInfo.returnLocation.value,
-                                    }
-                                  ]
-                                  : null
-                              }
-                              isSearchable={true}
-                              onChange={(selectedOption) => {
-                                setReturnLocation(selectedOption.value);
-                              }}
-                              onClick={() => {
-                              }}
-                              placeholder="تحديد موقع"
-                            />
                           </div>
                         </div>
+
+                        {
+                          returnLocation === "" ? <>
+                            <div className="item__" >
+                              <p>Return to a different location</p>
+                              <input
+                                type="checkbox"
+                                onChange={(e) =>
+                                  setDifferentReturnLocation(e.target.checked)
+                                }
+                              />
+                            </div>
+                            <div className="input-box-wrap">
+
+                              {
+                                differentReturnLocation && <>
+                                  <div className="plus" style={{ opacity: "0" }}>
+                                    <img src={plus} alt="" />
+                                    إضافة عنوان
+                                  </div>
+                                  <div className="input-box">
+                                    <p>عنوان الاتسلام</p>
+                                    <Select
+                                      defaultValue={
+                                        rentalInfo.returnLocation
+                                          ? [
+                                            {
+                                              label: rentalInfo.returnLocation.label,
+                                              value: rentalInfo.returnLocation.value,
+                                            },
+                                          ]
+                                          : null
+                                      }
+                                      options={branchesData}
+                                      isSearchable={true}
+                                      onChange={(selectedOption) =>
+                                        setReturnLocation(selectedOption)
+                                      }
+                                      placeholder="تحديد موقع"
+                                    />
+                                  </div>
+                                </>
+                              }
+
+                            </div>
+                          </> : <>
+                            <div className="input-box-wrap">
+                              <div className="plus" style={{ opacity: "0" }}>
+                                <img src={plus} alt="" />
+                                إضافة عنوان
+                              </div>
+                              <div className="input-box">
+                                <p>عنوان الاتسلام</p>
+                                <Select
+                                  defaultValue={
+                                    rentalInfo.returnLocation
+                                      ? [
+                                        {
+                                          label: rentalInfo.returnLocation.label,
+                                          value: rentalInfo.returnLocation.value,
+                                        },
+                                      ]
+                                      : null
+                                  }
+                                  options={branchesData}
+                                  isSearchable={true}
+                                  onChange={(selectedOption) =>
+                                    setReturnLocation(selectedOption)
+                                  }
+                                  placeholder="تحديد موقع"
+                                />
+                              </div>
+                            </div></>
+                        }
 
                         <div className="input-box-wrap">
                           {option === "perDay" && (
@@ -912,7 +957,7 @@ const Booking = () => {
                         }
 
                         <div className="input-box-wrap">
-                          {option === "perDay" ? (
+                          {option === "perDay" && (
                             <>
                               <div className="day">{diffInDays} days</div>
                               <div className="two">
@@ -939,39 +984,81 @@ const Booking = () => {
                                 </div>
                               </div>
                             </>
-                          ) : (
-                            <>
-                              <div className="day">{diffInHours} hours</div>
-                              <div className="two">
-                                <div className="item">
-                                  <p>المدينة</p>
-                                  <div className="btn">
-                                    <DatePicker
-                                      selected={pickupTime}
-                                      onChange={(date) => setPickupTime(date)}
-                                      showTimeSelect
-                                      minTime={minTime}
-                                      maxTime={maxTime}
-                                      dateFormat="Pp"
-                                    />
-                                  </div>
-                                </div>
-                                <div className="item">
-                                  <p>المحافظة</p>
-                                  <div className="btn">
-                                    <DatePicker
-                                      selected={returnTime}
-                                      onChange={(date) => setReturnTime(date)}
-                                      showTimeSelect
-                                      minTime={minTime}
-                                      maxTime={maxTime}
-                                      dateFormat="Pp"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </>
                           )}
+                          {
+                            option === "perHour" && (
+                              <>
+                                <div className="day">{diffInHours} hours</div>
+                                <div className="two">
+                                  <div className="item">
+                                    <p>المدينة</p>
+                                    <div className="btn">
+                                      <DatePicker
+                                        selected={pickupTime}
+                                        onChange={(date) => setPickupTime(date)}
+                                        showTimeSelect
+                                        minTime={minTime}
+                                        maxTime={maxTime}
+                                        dateFormat="Pp"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="item">
+                                    <p>المحافظة</p>
+                                    <div className="btn">
+                                      <DatePicker
+                                        selected={returnTime}
+                                        onChange={(date) => setReturnTime(date)}
+                                        showTimeSelect
+                                        minTime={minTime}
+                                        maxTime={maxTime}
+                                        dateFormat="Pp"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )
+                          }
+                          {
+                            option === "perMonth" && (
+                              <>
+                                <div className="day">{diffInMonths} Months</div>
+                                <div className="two">
+                                  <div className="item">
+                                    <p>المدينة</p>
+                                    <div className="btn">
+                                      <DatePicker
+                                        selected={pickupTime}
+                                        onChange={(date) => {
+
+                                          setPickupTime(date);
+                                        }}
+                                        dateFormat="MMMM yyyy"
+                                        showMonthYearPicker
+                                        placeholderText="Select a month"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="item">
+                                    <p>المحافظة</p>
+                                    <div className="btn">
+                                      <DatePicker
+                                        selected={returnTime}
+                                        onChange={(date) => {
+
+                                          setReturnTime(date);
+                                        }}
+                                        dateFormat="MMMM yyyy"
+                                        showMonthYearPicker
+                                        placeholderText="Select a month"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )
+                          }
                         </div>
 
                         <div className="offers">

@@ -11,9 +11,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllAddresses } from "../Redux/actions/addressActions";
 import axios from "../api/axios";
 import { toast } from "react-toastify";
+import icon1 from "../assests/Profile/loader.png";
+import icon2 from "../assests/Profile/ban.png";
+import icon3 from "../assests/Profile/forward-fast.png";
 import CreateAddress from "./CreateAddress";
 const Saved = () => {
   const { addresses } = useSelector((state) => state.Address) || {};
+  const [activeButton, setActiveButton] = useState("Create New");
+  const [activeTab, setactiveTab] = useState("Running")
   const [edit, setEdit] = useState(null);
   const list = [
     {
@@ -44,6 +49,12 @@ const Saved = () => {
       btni2: i2,
     },
   ];
+  const btns = [
+    // { h: "جارية", icon: icon2 },
+    { h: "Create New", icon: icon3 },
+    // { h: "قادمة", icon: icon4 },
+    { h: "Addresses", icon: icon1 },
+  ];
   const dispatch = useDispatch();
   const deleteAddress = async (id) => {
     try {
@@ -60,42 +71,59 @@ const Saved = () => {
   }, []);
 
   return (
-    <>
-
+    <div>
+      <ul className="top-btns">
+        {btns.map((a) => {
+          return (
+            <>
+              <li
+                onClick={() => setActiveButton(a.h)}
+                className={activeButton === a.h ? "active" : ""}
+              >
+                {a.h}
+                <img src={a.icon} alt="" />
+              </li>
+            </>
+          );
+        })}
+      </ul>
       <section id="saved">
-        <CreateAddress />
-        <div className="container">
-          <CreateAddressForm setEdit={setEdit} edit={edit} />
-          {addresses?.map((a) => {
-            return (
-              <>
-                <div className="saved-box">
-                  <div className="btns">
+        {
+          activeButton === "Create New" ?
+            <CreateAddress setActiveButton={setActiveButton} /> : <div className="container">
+              <CreateAddressForm setEdit={setEdit} edit={edit} />
+              {addresses?.map((a) => {
+                return (
+                  <>
+                    <div className="saved-box">
+                      <div className="btns">
 
-                    <div className="btn2">
-                      <Link onClick={() => setEdit(a._id)}>
-                        تعديل العنوان  <img src={i2} alt="" />{" "}
-                      </Link>
-                    </div>
-                  </div>
+                        <div className="btn2">
+                          <Link onClick={() => setEdit(a._id)}>
+                            تعديل العنوان  <img src={i2} alt="" />{" "}
+                          </Link>
+                        </div>
+                      </div>
 
-                  <div className="box">
-                    <div className="content">
-                      <img style={{ cursor: 'pointer' }} onClick={() => deleteAddress(a._id)} src={t1} alt="" />
-                      <h1>{a.title}</h1>
+                      <div className="box">
+                        <div className="content">
+                          <img style={{ cursor: 'pointer' }} onClick={() => deleteAddress(a._id)} src={t1} alt="" />
+                          <h1>{a.title}</h1>
+                        </div>
+                        <p>City: {a.city}</p>
+                        <p>State: {a.state}</p>
+                        <p>Street: {a.street}</p>
+                        <p>Zip: {a.zip}</p>
+                      </div>
                     </div>
-                    <p>City: {a.city}</p>
-                    <p>State: {a.state}</p>
-                    <p>Street: {a.street}</p>
-                    <p>Zip: {a.zip}</p>
-                  </div>
-                </div>
-              </>
-            );
-          })}
-        </div>
+                  </>
+                );
+              })}
+            </div>
+        }
+
       </section>
-    </>
+    </div>
   );
 };
 

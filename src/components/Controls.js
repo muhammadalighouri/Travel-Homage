@@ -181,6 +181,12 @@ const Controls = () => {
     const [activeInput, setActiveInput] = useState(null);
     const [selectedOption, setSelectedOption] = useState("perDay");
     const [deliveryAddress, setDeliveryAddress] = useState("");
+    const [selectedMonth, setSelectedMonth] = useState(null);
+
+    const handleMonthChange = (date) => {
+        setSelectedMonth(date);
+    };
+
     // Default selection is 'perDay'
     const options = branches.map((branch) => ({
         value: branch.name,
@@ -241,14 +247,17 @@ const Controls = () => {
         }
     };
     useEffect(() => {
+        const presentHour = setMinutes(setHours(new Date(), new Date().getHours()), 0);
+        const minTime = setHours(setMinutes(new Date(), 0), 9);
+        const maxTime = setHours(setMinutes(new Date(), 0), 17);
         if (rentalInfo) {
             setPickupLocation(rentalInfo.pickupLocation || "");
             setReturnLocation(rentalInfo.returnLocation || "");
-            setPickupTime(rentalInfo.pickupTime || startOfDay(new Date()));
-            setReturnTime(rentalInfo.returnTime || new Date());
+            setPickupTime(rentalInfo.pickupTime || presentHour); setPickupTime(rentalInfo.pickupTime || presentHour);
+            setReturnTime(rentalInfo.returnTime || presentHour);
             setPerDay(rentalInfo.perDay || false);
             setPerHour(rentalInfo.perHour || false);
-            setDelivery(rentalInfo.delivery || false);
+            setDelivery(rentalInfo.deliveryAddress || false);
         }
     }, [rentalInfo]);
     useEffect(() => {
@@ -266,9 +275,11 @@ const Controls = () => {
     const handleReturnLocationChange = (checked) => {
         setDifferentReturnLocation(checked);
 
-        // Select the "perDay" option when "Return to a different location" checkbox is checked
+
         if (checked) {
-            setSelectedOption("perDay");
+            if (!selectedOption === "perMonth") {
+                setSelectedOption("perDay");
+            }
         }
     };
     return (
@@ -279,19 +290,27 @@ const Controls = () => {
                     <div className="btns">
                         <button
                             className={activeButton === "btn1" ? "active" : ""}
-                            onClick={() => setActiveButton("btn1")}
+                            onClick={() => {
+                                setActiveButton("btn1")
+                            }}
                         >
                             <img src={text1} alt="" />
                         </button>
                         <button
                             className={activeButton === "btn2" ? "active" : ""}
-                            onClick={() => setActiveButton("btn2")}
+                            onClick={() => {
+                                setActiveButton("btn2")
+                                setSelectedOption('perMonth')
+                            }}
                         >
                             <img src={text2} alt="" />
                         </button>
                         <button
                             className={activeButton === "btn3" ? "active" : ""}
-                            onClick={() => setActiveButton("btn3")}
+                            onClick={() => {
+                                setActiveButton("btn3")
+                                setSelectedOption('perDay')
+                            }}
                         >
                             <img src={text3} alt="" />
                         </button>
@@ -323,6 +342,10 @@ const Controls = () => {
                                             dateFormat="MMMM d, yyyy"
                                             minDate={presentDay}
                                         />
+                                    </div>
+                                    <div className="btn">
+
+
                                     </div>
                                 </div>
                                 <div className="item">
@@ -376,6 +399,8 @@ const Controls = () => {
                                             minTime={minTime}
                                             maxTime={maxTime}
                                             dateFormat="Pp"
+                                            timeIntervals={60}
+
                                         />
                                     </div>
                                 </div>
@@ -389,6 +414,8 @@ const Controls = () => {
                                             minTime={minTime}
                                             maxTime={maxTime}
                                             dateFormat="Pp"
+                                            timeIntervals={60}
+
                                         />
                                     </div>
                                 </div>
@@ -461,6 +488,16 @@ const Controls = () => {
                                                         onChange={(selectedOption) =>
                                                             setPickupLocation(selectedOption)
                                                         }
+                                                        defaultValue={
+                                                            rentalInfo.pickupLocation
+                                                                ? [
+                                                                    {
+                                                                        label: rentalInfo.pickupLocation.label,
+                                                                        value: rentalInfo.pickupLocation.value,
+                                                                    },
+                                                                ]
+                                                                : null
+                                                        }
                                                         placeholder="delivery"
                                                     />
                                                 ) : (
@@ -469,6 +506,16 @@ const Controls = () => {
                                                         isSearchable={true}
                                                         onChange={(selectedOption) =>
                                                             setPickupLocation(selectedOption)
+                                                        }
+                                                        defaultValue={
+                                                            rentalInfo.pickupLocation
+                                                                ? [
+                                                                    {
+                                                                        label: rentalInfo.pickupLocation.label,
+                                                                        value: rentalInfo.pickupLocation.value,
+                                                                    },
+                                                                ]
+                                                                : null
                                                         }
                                                         placeholder="تحديد موقع"
                                                     />
@@ -484,6 +531,16 @@ const Controls = () => {
                                                     onChange={(selectedOption) =>
                                                         setReturnLocation(selectedOption)
                                                     }
+                                                    defaultValue={
+                                                        rentalInfo.returnLocation
+                                                            ? [
+                                                                {
+                                                                    label: rentalInfo.returnLocation.label,
+                                                                    value: rentalInfo.returnLocation.value,
+                                                                },
+                                                            ]
+                                                            : null
+                                                    }
                                                     placeholder="تحديد موقع"
                                                 />
                                             </div>
@@ -495,13 +552,23 @@ const Controls = () => {
                                                 {selectedOption === "delivery" ? (
                                                     <>
                                                         {addressesData.length === 0 && (
-                                                            <Link to={"/saved-adress"}>Create Address</Link>
+                                                            <Link to={"/saved-adress/1"}>Add Location</Link>
                                                         )}
                                                         <CreatableSelect
                                                             options={addressesData}
                                                             isSearchable={true}
                                                             onChange={(selectedOption) =>
-                                                                setDeliveryAddress(selectedOption.value)
+                                                                setDeliveryAddress(selectedOption)
+                                                            }
+                                                            defaultValue={
+                                                                rentalInfo.deliveryAddress
+                                                                    ? [
+                                                                        {
+                                                                            label: rentalInfo.deliveryAddress.label,
+                                                                            value: rentalInfo.deliveryAddress.value,
+                                                                        },
+                                                                    ]
+                                                                    : null
                                                             }
                                                             placeholder="تحديد موقع"
                                                         />
@@ -512,6 +579,16 @@ const Controls = () => {
                                                         isSearchable={true}
                                                         onChange={(selectedOption) =>
                                                             setPickupLocation(selectedOption)
+                                                        }
+                                                        defaultValue={
+                                                            rentalInfo.pickupLocation
+                                                                ? [
+                                                                    {
+                                                                        label: rentalInfo.pickupLocation.label,
+                                                                        value: rentalInfo.pickupLocation.value,
+                                                                    },
+                                                                ]
+                                                                : null
                                                         }
                                                         placeholder="تحديد موقع"
                                                     />
@@ -541,11 +618,13 @@ const Controls = () => {
                                     <div className="btn">
                                         <DatePicker
                                             selected={pickupTime}
-                                            onChange={(date) => setPickupTime(date)}
-                                            showTimeSelect
-                                            minTime={minTime}
-                                            maxTime={maxTime}
-                                            dateFormat="Pp"
+                                            onChange={(date) => {
+                                                date = toDate(startOfDay(date));
+                                                setPickupTime(date);
+                                            }}
+                                            dateFormat="MMMM yyyy"
+                                            showMonthYearPicker
+                                            placeholderText="Select a month"
                                         />
                                     </div>
                                 </div>
@@ -554,9 +633,13 @@ const Controls = () => {
                                     <div className="btn">
                                         <DatePicker
                                             selected={returnTime}
-                                            onChange={(date) => setReturnTime(date)}
-                                            showTimeSelect
-                                            dateFormat="Pp"
+                                            onChange={(date) => {
+                                                date = toDate(startOfDay(date));
+                                                setReturnTime(date);
+                                            }}
+                                            dateFormat="MMMM yyyy"
+                                            showMonthYearPicker
+                                            placeholderText="Select a month"
                                         />
                                     </div>
                                 </div>
@@ -568,11 +651,13 @@ const Controls = () => {
                                     <div className="btn">
                                         <DatePicker
                                             selected={pickupTime}
-                                            onChange={(date) => setPickupTime(date)}
-                                            showTimeSelect
-                                            minTime={minTime}
-                                            maxTime={maxTime}
-                                            dateFormat="MMMM d, yyyy"
+                                            onChange={(date) => {
+                                                date = toDate(startOfDay(date));
+                                                setPickupTime(date);
+                                            }}
+                                            dateFormat="MMMM yyyy"
+                                            showMonthYearPicker
+                                            placeholderText="Select a month"
                                         />
                                     </div>
                                 </div>
@@ -581,9 +666,13 @@ const Controls = () => {
                                     <div className="btn">
                                         <DatePicker
                                             selected={returnTime}
-                                            onChange={(date) => setReturnTime(date)}
-                                            showTimeSelect
-                                            dateFormat="MMMM d, yyyy"
+                                            onChange={(date) => {
+                                                date = toDate(startOfDay(date));
+                                                setReturnTime(date);
+                                            }}
+                                            dateFormat="MMMM yyyy"
+                                            showMonthYearPicker
+                                            placeholderText="Select a month"
                                         />
                                     </div>
                                 </div>
@@ -597,22 +686,24 @@ const Controls = () => {
                                             <p>Return to a different location</p>
                                             <input
                                                 type="checkbox"
+                                                checked={differentReturnLocation}
                                                 onChange={(e) =>
-                                                    setDifferentReturnLocation(e.target.checked)
+                                                    handleReturnLocationChange(e.target.checked)
                                                 }
                                             />
                                         </div>
                                     </li>
                                     <li>
                                         <div className="item">
-                                            <p>Delivery</p>
+                                            <p>Per Month</p>
                                             <input
                                                 type="radio"
-                                                value="delivery"
-                                                checked={selectedOption === "delivery"}
+                                                value="perMonth"
+                                                checked={selectedOption === "perMonth"}
                                                 onChange={(e) => setSelectedOption(e.target.value)}
                                             />
                                         </div>
+
                                     </li>
                                 </ul>
                                 <div className="end">موقع الاستلام والعودة</div>
@@ -621,19 +712,129 @@ const Controls = () => {
                                 <div
                                     className="grid"
                                     style={{
-                                        gridTemplateColumns: "1fr",
+                                        gridTemplateColumns: !differentReturnLocation
+                                            ? "1fr"
+                                            : "auto 50px auto",
                                     }}
                                 >
-                                    <div className="btn ">
-                                        <Select
-                                            options={options}
-                                            isSearchable={true}
-                                            onChange={(selectedOption) =>
-                                                setPickupLocation(selectedOption.value)
-                                            }
-                                            placeholder="تحديد موقع"
-                                        />
-                                    </div>
+                                    {differentReturnLocation && (
+                                        <>
+                                            <div className="btn">
+                                                {option === "delivery" ? (
+                                                    <Select
+                                                        options={options}
+                                                        isSearchable={true}
+                                                        onChange={(selectedOption) =>
+                                                            setPickupLocation(selectedOption)
+                                                        }
+                                                        defaultValue={
+                                                            rentalInfo.pickupLocation
+                                                                ? [
+                                                                    {
+                                                                        label: rentalInfo.pickupLocation.label,
+                                                                        value: rentalInfo.pickupLocation.value,
+                                                                    },
+                                                                ]
+                                                                : null
+                                                        }
+                                                        placeholder="delivery"
+                                                    />
+                                                ) : (
+                                                    <Select
+                                                        options={options}
+                                                        isSearchable={true}
+                                                        onChange={(selectedOption) =>
+                                                            setPickupLocation(selectedOption)
+                                                        }
+                                                        defaultValue={
+                                                            rentalInfo.pickupLocation
+                                                                ? [
+                                                                    {
+                                                                        label: rentalInfo.pickupLocation.label,
+                                                                        value: rentalInfo.pickupLocation.value,
+                                                                    },
+                                                                ]
+                                                                : null
+                                                        }
+                                                        placeholder="تحديد موقع"
+                                                    />
+                                                )}
+                                            </div>
+                                            <div className="switch">
+                                                <img src={switchIcon} alt="" />
+                                            </div>
+                                            <div className="btn">
+                                                <Select
+                                                    options={options}
+                                                    isSearchable={true}
+                                                    onChange={(selectedOption) =>
+                                                        setReturnLocation(selectedOption)
+                                                    }
+                                                    defaultValue={
+                                                        rentalInfo.returnLocation
+                                                            ? [
+                                                                {
+                                                                    label: rentalInfo.returnLocation.label,
+                                                                    value: rentalInfo.returnLocation.value,
+                                                                },
+                                                            ]
+                                                            : null
+                                                    }
+                                                    placeholder="تحديد موقع"
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+                                    {!differentReturnLocation && (
+                                        <>
+                                            <div className="btn" style={{ textAlign: "end" }}>
+                                                {selectedOption === "delivery" ? (
+                                                    <>
+                                                        {addressesData.length === 0 && (
+                                                            <Link to={"/saved-adress/1"}>Add Location</Link>
+                                                        )}
+                                                        <CreatableSelect
+                                                            options={addressesData}
+                                                            isSearchable={true}
+                                                            onChange={(selectedOption) =>
+                                                                setDeliveryAddress(selectedOption)
+                                                            }
+                                                            defaultValue={
+                                                                rentalInfo.deliveryAddress
+                                                                    ? [
+                                                                        {
+                                                                            label: rentalInfo.deliveryAddress.label,
+                                                                            value: rentalInfo.deliveryAddress.value,
+                                                                        },
+                                                                    ]
+                                                                    : null
+                                                            }
+                                                            placeholder="تحديد موقع"
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <Select
+                                                        options={options}
+                                                        isSearchable={true}
+                                                        onChange={(selectedOption) =>
+                                                            setPickupLocation(selectedOption)
+                                                        }
+                                                        defaultValue={
+                                                            rentalInfo.pickupLocation
+                                                                ? [
+                                                                    {
+                                                                        label: rentalInfo.pickupLocation.label,
+                                                                        value: rentalInfo.pickupLocation.value,
+                                                                    },
+                                                                ]
+                                                                : null
+                                                        }
+                                                        placeholder="تحديد موقع"
+                                                    />
+                                                )}
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

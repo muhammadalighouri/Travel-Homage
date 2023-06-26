@@ -38,6 +38,13 @@ label {
   font-weight: 700;
   color: black;
 }
+.react-datepicker__month .react-datepicker__month-text,
+.react-datepicker__month .react-datepicker__quarter-text {
+  display: inline-block;
+  width: 4em;
+  margin: 2px;
+  color: black !important;
+}
 
 h5.modal-title {
   color: black;
