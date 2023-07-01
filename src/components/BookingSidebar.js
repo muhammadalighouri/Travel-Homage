@@ -154,7 +154,7 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
                     <span className="h" style={{ fontWeight: "700" }}>
                       الإجمالي
                     </span>
-                    <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount)} ر.س.</span>
+                    <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount) + calculateTaxesAmount(price)} ر.س.</span>
                   </li>
                   <div className="btns">
                     <button className="cancel" onClick={() => setConfirmBooking(false)}>Cancel</button>

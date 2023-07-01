@@ -130,11 +130,17 @@ const MapComponent = ({ setActiveButton }) => {
                 location: selectedLocation,
             };
 
-            setLocations([...locations, newLocation]);
         }
         setModalVisible(true);
         setSearchQuery('');
         setTitle('');
+        dispatch(createAddress({ ...selectedLocation, title, user: user._id })).then((res) => {
+            dispatch(getAllAddresses());
+            setActiveButton('addresses');
+            toast.success('Address created successfully!');
+        }).catch(error => {
+            toast.error(error.message || 'Failed to create address. Please try again.');
+        });
     };
 
     const handleModalConfirm = async () => {

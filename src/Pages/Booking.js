@@ -351,7 +351,7 @@ const Booking = () => {
       if (option === "delivery") {
         dispatch(
           createBooking({
-            car,
+            carId: car,
             user: user._id,
             address: deliveryAddress,
             returnLocation,
@@ -379,7 +379,7 @@ const Booking = () => {
 
         dispatch(
           createBooking({
-            car,
+            carId: car,
             user: user._id,
             pickupLocation: pickupLocation.value,
             returnLocation: returnLocation.value,
@@ -472,13 +472,14 @@ const Booking = () => {
     let totalPrice = 0;
     let days = 0;
     let hours = 0;
+    let months = 0;
     console.log(pickupTime);
     if (option === "perHour") {
       hours = differenceInHours(returnTime, pickupTime);
       setDiffInHours(hours);
     }
     else if (option === "perMonth") {
-      const months = differenceInMonths(returnTime, pickupTime);
+      months = differenceInMonths(returnTime, pickupTime);
       setDiffInMonths(months);
     }
     else {
@@ -494,7 +495,7 @@ const Booking = () => {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
     }
     else if (option === "perMonth") {
-      totalPrice = (selectedCar?.pricePerMonth || selectedCar?.pricePerDay * 30) * days;
+      totalPrice = (selectedCar?.pricePerMonth || selectedCar?.pricePerDay * 30) * months;
     }
 
     setPrice(totalPrice);

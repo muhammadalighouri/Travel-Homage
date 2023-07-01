@@ -6,7 +6,7 @@ import i3 from "../assests/Lead icon (2).png";
 import i4 from "../assests/Lead icon (3).png";
 import i5 from "../assests/Lead icon (4).png";
 import i6 from "../assests/Lead icon (5).png";
-import i7 from "../assests/services.png";
+import i7 from "../assests/Schema.png";
 import i8 from "../assests/Lead icon (6).png";
 import i9 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
@@ -332,7 +332,7 @@ const Navigation = ({ nav }) => {
                                   >
                                     <div className="n">
                                       {a.name}
-                                      <img src={a.icon} alt="" />
+                                      <img style={{ width: '20px' }} src={a.icon} alt="" />
                                     </div>
                                   </Link>
                                 </>
