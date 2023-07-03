@@ -6,6 +6,7 @@ import sh from "../assests/Services-img/s.h.png";
 import mail from "../assests/mail.png"
 import phone from "../assests/phone.png"
 import icon from "../assests/172.png"
+import closeIcon from "../assests/close.png"
 import message from "../assests/message.png"
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
@@ -188,9 +189,12 @@ const ServicesPage = () => {
       </section>
 
       {
-        show && <section id="contact__form">
+        show && <section id="contact__form__services">
+
           <div className="inner">
+
             <div className="container">
+              <img src={closeIcon} className="close__ico" alt="" onClick={() => setShow(false)} />
               <div className="grid">
                 <div className="start">
                   <form onSubmit={handleSubmit}>
@@ -242,27 +246,7 @@ const ServicesPage = () => {
                     </div>
                   </form>
                 </div>
-                <div className="end">
-                  <div className="img">
-                    <img src={icon} alt="" />
-                  </div>
-                  <h2>اتصل بنا</h2>
-                  <h3>خدمة العملاء</h3>
-                  <div className="item">
-                    <h4>الأحد إلى الخميس</h4>
-                    <p>9:00 صباحا - 11:00 مساءا</p>
-                  </div>
-                  <div className="item">
-                    <h4>الجمعة - السبت</h4>
-                    <p>4:00 مساءً - 11:00 مساءً</p>
-                  </div>
-                  <div className="flex">
-                    cs@travelcrs.com <img src={mail} alt="" />
-                  </div>
-                  <div className="flex">
-                    966 920033361 <img src={phone} alt="" />
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
