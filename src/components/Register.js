@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../Redux/actions/userActions";
+import { allCountries } from 'country-telephone-data';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -273,9 +274,16 @@ const Register = ({ setMode }) => {
               </div>
             </div>
             <div id="phone" className="same">
+
               <p>Phone Number</p>
               <div className="under">
                 {" "}
+                <select id='countryCode' >
+                  <option value="" disabled selected hidden>+000</option>
+                  {allCountries.map((country, index) =>
+                    <option key={index} value={country.dialCode}>{`${country.name} (+${country.dialCode})`}</option>
+                  )}
+                </select>
                 <input
                   type="number"
                   name=""

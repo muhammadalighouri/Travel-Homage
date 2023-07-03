@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import "../scss/signupform.scss";
 import first from "../assests/Photo car.png";
 import icon1 from "../assests/Services-img/icon.1.png";
 import sh from "../assests/Services-img/s.h.png";
+import mail from "../assests/mail.png"
+import phone from "../assests/phone.png"
+import icon from "../assests/172.png"
+import message from "../assests/message.png"
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
@@ -20,8 +25,41 @@ import i1 from "../assests/Services-img/si.1.png";
 import i2 from "../assests/Services-img/si.2.png";
 import i3 from "../assests/Services-img/si.3.png";
 import { ServiceNav } from "../assests/data";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ServicesPage = () => {
+  const [show, setShow] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
+  const [isVerified, setIsVerified] = useState(false);
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleCaptchaChange = value => {
+    setIsVerified(true);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    if (!isVerified) {
+      toast.error("يرجى التحقق من أنك لست روبوت!");
+      return;
+    }
+    try {
+      const response = await axios.post('/api/v1/contact', formData);
+      if (response.status === 200) {
+        toast.success("تم إرسال الرسالة بنجاح!");
+      }
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+    }
+  };
   return (
     <>
       <section id="services-page">
@@ -84,6 +122,7 @@ const ServicesPage = () => {
             <div className="center">
               <div className="img">
                 <img src={c1} alt="" />
+
               </div>
               <div className="content">
                 <div className="heading">
@@ -99,6 +138,17 @@ const ServicesPage = () => {
                   المساعدة على الطريق واستبدال السيارة في حالة حدوث عطل أو صيانة
                   على مدار الساعة. ‬
                 </div>
+                <button style={{
+                  color: 'black',
+                  background: '#ffcd00',
+                  padding: '12px 42px',
+                  boxShadow: '0px 1px 3px rgba(47, 43, 67, 0.1), inset 0px -1px 0px rgba(47, 43, 67, 0.1)',
+                  borderRadius: '25px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '10px'
+                }} onClick={() => setShow(true)}>Contact Us</button>
               </div>
             </div>
           </div>
@@ -136,6 +186,88 @@ const ServicesPage = () => {
         </div>
         <Footer />
       </section>
+
+      {
+        show && <section id="contact__form">
+          <div className="inner">
+            <div className="container">
+              <div className="grid">
+                <div className="start">
+                  <form onSubmit={handleSubmit}>
+                    <div className="item">
+                      <div className="item__">
+                        <label htmlFor="name">الاسم</label>
+                        <input
+                          required={true} type="text" name="name" placeholder="اكتب اسمك هنا" onChange={handleChange} />
+                      </div>
+                    </div>
+                    <div className="item">
+                      <div className="item__grid">
+                        <div className="item__">
+                          <label htmlFor="phone">الهاتف</label>
+                          <input
+                            required={true} type="number" name="phone" placeholder="رقم الهاتف" onChange={handleChange} />
+                        </div>
+                        <div className="item__">
+                          <label htmlFor="email">البريد الإلكتروني</label>
+                          <input
+                            required={true} type="email" name="email" placeholder="البريد الإلكتروني" onChange={handleChange} />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="item">
+                      <div className="item__">
+                        <label htmlFor="message">رسالتك</label>
+                        <textarea
+                          name="message"
+                          id=""
+                          required={true}
+                          placeholder="اكتب رسالتك هنا..."
+                          cols="30"
+                          rows="10"
+                          onChange={handleChange}
+                        ></textarea>
+                      </div>
+                    </div>
+                    <p>بالنقر على "إرسال"، فإنك توافق على الشروط والأحكام الخاصة بنا.</p>
+                    <div className="btns">
+                      <ReCAPTCHA
+                        sitekey="6LciM3YmAAAAADJzGKnaMOLBJfEFxZEcsUwbwqNB"
+                        onChange={handleCaptchaChange}
+                      />
+                      <button type="submit">
+                        إرسال
+                        <img src={message} alt="" />
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div className="end">
+                  <div className="img">
+                    <img src={icon} alt="" />
+                  </div>
+                  <h2>اتصل بنا</h2>
+                  <h3>خدمة العملاء</h3>
+                  <div className="item">
+                    <h4>الأحد إلى الخميس</h4>
+                    <p>9:00 صباحا - 11:00 مساءا</p>
+                  </div>
+                  <div className="item">
+                    <h4>الجمعة - السبت</h4>
+                    <p>4:00 مساءً - 11:00 مساءً</p>
+                  </div>
+                  <div className="flex">
+                    cs@travelcrs.com <img src={mail} alt="" />
+                  </div>
+                  <div className="flex">
+                    966 920033361 <img src={phone} alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      }
     </>
   );
 };

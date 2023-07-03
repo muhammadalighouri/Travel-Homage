@@ -112,6 +112,16 @@
       gap: 10px;
       justify-content: center;
       width: 100%;
+      select {
+        color: black;
+        width: 150px;
+        border: 0;
+        background: transparent;
+      }
+      option,
+      select {
+        color: black;
+      }
       .user-type {
         width: 100%;
         .under {
@@ -119,6 +129,7 @@
           justify-content: space-around;
           width: 81%;
           margin: auto;
+
           label {
             display: flex;
             gap: 10px;
