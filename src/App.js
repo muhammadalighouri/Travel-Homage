@@ -27,6 +27,7 @@ import VerifyEmail from "./Pages/VerifyEmail";
 import Loading from "./components/Loading";
 import { useSelector } from "react-redux";
 import PrivacyPage from "./Pages/PrivacyPage";
+import MediaPage from "./Pages/MediaPage";
 
 function App() {
   const { loading } = useSelector((state) => state.loading);
@@ -63,10 +64,8 @@ function App() {
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/:car/booking" element={<Booking />} />
-          <Route
-            path="/privacy-policy"
-            element={<PrivacyPage />}
-          />
+          <Route path="/privacy-policy" element={<PrivacyPage />} />
+          <Route path="/media" element={<MediaPage />} />
         </Routes>
         {/* <Footer /> */}
       </>

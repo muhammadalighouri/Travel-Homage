@@ -18,6 +18,7 @@ import Slider from "../components/Slider";
 import BookingF from "../components/BookingF";
 import { HomeNav } from "../assests/data";
 import PrivacyPage from "./PrivacyPage";
+
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -27,7 +28,6 @@ const HomePage = () => {
     dispatch(fetchFilters());
   }, []);
   const array = [
-
     {
       img: first,
       text: " نصنع من رحلتكم وترحالكم شيئأ ممتعاً",
@@ -56,9 +56,13 @@ const HomePage = () => {
         </div>
         <Signup />
         <Footer />
+
         {/* <Booking/> */}
         {/* <BookingF /> */}
       </section>
+
+
+
     </>
   );
 };

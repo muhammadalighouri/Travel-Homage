@@ -84,7 +84,7 @@ const Navigation = ({ nav }) => {
     {
       icon: i8,
       name: "المركز الإعلامي",
-      path: "/booking-side",
+      path: "/media",
     },
     {
       icon: i9,
@@ -144,10 +144,10 @@ const Navigation = ({ nav }) => {
                             </div>
                           </Link>
                         </div>
-                        {dropdown1.map((a) => {
+                        {dropdown1.map((a ,index) => {
                           return (
                             <>
-                              <Link
+                              <Link 
                                 to={a.path}
                                 style={
                                   window.location.pathname === a.path
