@@ -1,0 +1,373 @@
+@import "./variable.scss";
+@import "./media.scss";
+
+#media-page {
+    position: relative;
+    background-color: white;
+    color: black !important;
+    padding: 90px 0;
+    z-index: -1;
+    border-radius: 75px 75px 0px 0px;
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 90px 20px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        grid-gap: 50px;
+
+        @include md {
+            grid-template-columns: 1fr;
+        }
+
+        .box-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            span {
+                color: rgb(0, 175, 170);
+                text-align: end;
+
+                font-family: "Cairo";
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                text-align: end;
+                font-family: "Cairo";
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                color: black;
+
+                svg {
+                    fill: black;
+                    cursor: pointer;
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .bottom-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            span {
+                color: black;
+                text-align: end;
+                font-family: "Cairo";
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+            .icons {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: 5px;
+                font-size: 20px;
+
+                svg {
+                    fill: black;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .grid-1 {
+            display: flex;
+            flex-direction: column;
+            row-gap: 40px;
+            margin-top: 120px;
+
+            @include md {
+                row-gap: 20px;
+                margin-top: 0%;
+            }
+
+            .box-heading {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    color: rgb(0, 175, 170);
+                    text-align: end;
+
+                    font-family: "Cairo";
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+
+                svg {
+                    fill: black;
+                    cursor: pointer;
+                }
+            }
+
+            .boxes-top {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+
+                @include md {
+                    justify-content: end;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    row-gap: 50px;
+                }
+
+                @include mobile {
+                    grid-template-columns: 1fr;
+                }
+
+                .box {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                    justify-content: center;
+                    gap: 8px;
+                    width: fit-content;
+
+                    img {
+                        width: 100%;
+                        max-width: 200px;
+
+                        @include mobile {
+                            max-width: 100%;
+                        }
+                    }
+
+                    h2 {
+                        color: rgb(0, 0, 0);
+                        text-align: end;
+                        font-size: 16px;
+                        font-weight: 400;
+                        font-family: "Cairo";
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                    }
+
+                    p {
+                        color: rgb(0, 0, 0);
+                        text-align: end;
+                        font-size: 14px;
+                        font-weight: 400;
+                        font-family: "Cairo";
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 12px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .boxes-bottom {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+
+                @include md {
+                    justify-content: end;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    row-gap: 50px;
+                }
+
+                @include mobile {
+                    grid-template-columns: 1fr;
+                }
+
+                .box {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                    justify-content: center;
+                    gap: 8px;
+                    width: fit-content;
+
+                    h2 {
+                        color: rgb(0, 0, 0);
+                        text-align: end;
+                        font-size: 16px;
+                        font-weight: 400;
+                        font-family: "Cairo";
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                    }
+
+                    p {
+                        color: rgb(0, 0, 0);
+                        text-align: end;
+                        font-size: 14px;
+                        font-weight: 400;
+                        font-family: "Cairo";
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 12px;
+                        margin-bottom: 10px;
+                    }
+
+                    img {
+                        max-width: 200px;
+
+                        width: 100%;
+
+                        @include mobile {
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .grid-2 {
+            .main-box {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                justify-content: center;
+                row-gap: 70px;
+
+                img {
+                    width: 100%;
+                }
+
+                h2 {
+                    color: rgb(0, 0, 0);
+                    text-align: end;
+                    font-family: "Cairo";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 22px;
+                    line-height: 40px;
+                }
+
+                span {
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+
+    .layer-wrapper {
+        margin-right: 100px;
+        padding: 90px 0px;
+
+        @include md {
+            margin-right: 50px;
+        }
+
+        @include mobile {
+            margin-right: 20px;
+        }
+
+        .layer {
+            background-color: #636365;
+            border-radius: 0 75px 75px 0;
+            padding: 60px 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include md {
+                flex-direction: column-reverse;
+                row-gap: 30px;
+                padding: 60px 20px;
+            }
+
+            .start {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+
+                @include mobile {
+                    justify-content: end;
+                }
+
+                .btn1 {
+                    width: 160px;
+                    background: #ffcd00;
+                    place-content: center;
+                    border-radius: 100px;
+                    pointer-events: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    color: #000;
+                    /* border: 3px solid #006281; */
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    fill: #636365;
+                    box-shadow: 0 0px 5px -2px rgba(0, 0, 0, 0.8196078431);
+
+                    svg {
+                        font-size: 20px;
+                        fill: black;
+                    }
+                }
+            }
+
+            .end {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: 10px;
+
+                .log {
+                    display: flex;
+                    align-items: baseline;
+                    justify-content: end;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                h1 {
+                    display: flex;
+                    align-items: end;
+                    justify-content: center;
+                    flex-direction: column;
+                    row-gap: 12px;
+                    color: white;
+                    text-align: end;
+                    font-family: "Cairo";
+                    font-weight: 900;
+                    font-size: 30px;
+                    margin-bottom: 10px;
+                    width: 100%;
+
+                    @include mobile {
+                        font-size: 25px;
+
+                    }
+
+                    p {
+                        font-size: 20px;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+}
