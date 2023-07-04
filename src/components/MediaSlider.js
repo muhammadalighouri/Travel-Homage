@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import axios from "../api/axios";
 import "../scss/styles.scss";
 import "../scss/modal.scss";
-import slideImg from "../assests/Promos.png";
+import slideImg from "../assests/Basemap image.png";
 
 const MediaSlider = () => {
   const [slide, setSlide] = useState(2);
@@ -29,8 +29,11 @@ const MediaSlider = () => {
     setIsOpen(false);
   }
   window.addEventListener("scroll", () => {
+    // if (window.innerWidth > 1200) {
+    //   setSlide(4);
+    // }
     if (window.innerWidth > 786) {
-      setSlide(3);
+      setSlide(4);
     }
     if (window.innerWidth < 786) {
       setSlide(1);
@@ -49,6 +52,7 @@ const MediaSlider = () => {
         <div className="inner">
           <div className="container">
             <div className="img">
+              {/* <img src={slideImg} alt="" /> */}
               <Swiper
                 navigation={true}
                 modules={[Navigation]}
@@ -64,14 +68,34 @@ const MediaSlider = () => {
                     <SwiperSlide onClick={() => openModal(spon?.image?.url)}>
                       <div className="box">
                         <img src={spon?.image?.url} alt="" />
-                        <img sr={slideImg} alt="" />
+                        <img src={slideImg} alt="" />
                       </div>
                     </SwiperSlide>
                   );
                 })} */}
                 <SwiperSlide>
                   <div className="box">
-                    <img sr={slideImg} alt="" />
+                    <img src={img3} alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="box">
+                    <img src={img1} alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="box">
+                    <img src={img2} alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="box">
+                    <img src={img3} alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="box">
+                    <img src={img1} alt="" />
                   </div>
                 </SwiperSlide>
               </Swiper>

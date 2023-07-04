@@ -5,13 +5,7 @@ import img1 from "../assests/footer-img/Badge.png";
 import img2 from "../assests/footer-img/Badge (1).png";
 import icon from "../assests/footer-img/Group.png";
 import chatImg from "../assests/footer-img/Chatbot.png";
-import arrow from "../assests/footer-img/Vector (6).png";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaPinterestP,
-  FaLinkedin,
-} from "react-icons/fa";
+
 import { Group, Instagram } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import ChatBox from "./ChatBox";
@@ -26,6 +20,9 @@ const Footer = () => {
       h3: "              إشعارات قانونية      ",
       h4: "              سياسة الكوكيز      ",
       h5: "              إدارة الكوكيز      ",
+      link1: "",
+      link2: "",
+      link3: "",
     },
     {
       name: "الشركة",
@@ -35,6 +32,9 @@ const Footer = () => {
       h4: "              الخدمات     ",
       h5: "             الفروع      ",
       h6: "             المركز الإعلامي     ",
+      link1: "/fleet",
+      link2: "/services",
+      link3: "/media",
     },
   ];
   window.addEventListener("scroll", () => {
@@ -45,7 +45,7 @@ const Footer = () => {
       setChat(false);
     }
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <footer>
       <div className="container">
@@ -70,15 +70,46 @@ const Footer = () => {
                 <div className="box">
                   <h2>{i.name}</h2>
                   <ul>
-                    <li>{i.h1}</li>
-                    <li onClick={() => {
-                      navigate('/privacy-policy')
-                      window.scroll(0, 0)
-                    }}>{i.h2}</li>
-                    <li>{i.h3}</li>
-                    <li>{i.h4}</li>
-                    <li>{i.h5}</li>
-                    <li>{i.h6}</li>
+                    <li
+                      onClick={() => {
+                        navigate("/privacy-policy");
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      {i.h2}
+                    </li>
+                    <Link
+                      to={i.link1}
+                      onClick={() => {
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      <li>{i.h3}</li>
+                    </Link>
+                    <Link
+                      to={i.link2}
+                      onClick={() => {
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      <li>{i.h4}</li>
+                    </Link>
+                    <Link
+                      to={""}
+                      onClick={() => {
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      <li>{i.h5}</li>
+                    </Link>
+                    <Link
+                      to={i.link3}
+                      onClick={() => {
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      <li>{i.h6}</li>
+                    </Link>
                   </ul>
                 </div>
               </>

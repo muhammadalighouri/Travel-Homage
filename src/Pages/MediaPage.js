@@ -11,7 +11,7 @@ import logo from "../assests/logo-media.png";
 import { GoShareAndroid } from "react-icons/go";
 import { BiDotsVerticalRounded, BiGridAlt } from "react-icons/bi";
 import MediaSlider from "../components/MediaSlider";
-import {BsFillArrowDownCircleFill} from 'react-icons/bs'
+import { BsFillArrowDownCircleFill } from "react-icons/bs";
 const MediaPage = () => {
   return (
     <>
@@ -19,7 +19,7 @@ const MediaPage = () => {
       <Banner
         text={"اسطولنا"}
         img={first}
-        p={true}
+        p={false}
         icon={true}
         mi={mediaIcon}
       />
@@ -139,18 +139,14 @@ const MediaPage = () => {
         <div className="layer-wrapper">
           <div className="layer">
             <div className="start">
-              <div className="btn1"
-              >              
-              <BsFillArrowDownCircleFill/>
-              
-              إلى عملائن
-
+              <div className="btn1">
+                <BsFillArrowDownCircleFill />
+                إلى عملائن
               </div>
             </div>
             <div className="end">
               <h1>
-                لدينا خطة توسع شاملة للوصول إلى عملائنا
-                <p>أينما كانوا داخل وخارج</p>
+                لدينا خطة توسع أينما كانوا <p>أينما كانوا داخل وخارج</p>
               </h1>
               <div className="log">
                 <img src={logo} alt="" />

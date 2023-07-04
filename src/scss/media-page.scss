@@ -6,7 +6,7 @@
     background-color: white;
     color: black !important;
     padding: 90px 0;
-    z-index: -1;
+    // z-index: -1;
     border-radius: 75px 75px 0px 0px;
 
     .container {
@@ -294,7 +294,7 @@
             }
 
             .start {
-                width: 100%;
+
                 display: flex;
                 align-items: center;
                 justify-content: start;
@@ -353,7 +353,7 @@
                     text-align: end;
                     font-family: "Cairo";
                     font-weight: 900;
-                    font-size: 30px;
+                    font-size: 35px;
                     margin-bottom: 10px;
                     width: 100%;
 
