@@ -182,9 +182,17 @@ const Controls = () => {
     const [selectedOption, setSelectedOption] = useState("perDay");
     const [deliveryAddress, setDeliveryAddress] = useState("");
     const [selectedMonth, setSelectedMonth] = useState(null);
+    const [selectedDuration, setSelectedDuration] = useState(0);
+    const [selectedMonthsInfo, setSelectedMonthsInfo] = useState(0);
 
-    const handleMonthChange = (date) => {
-        setSelectedMonth(date);
+    const handleDurationChange = (event) => {
+        setSelectedDuration(event.target.value);
+    };
+
+    const durations = [1, 2, 3, 4, 5, 6];
+    const monthsDuration = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const handleMonthChange = (event) => {
+        setSelectedMonthsInfo(event.target.value);
     };
 
     // Default selection is 'perDay'
@@ -210,50 +218,68 @@ const Controls = () => {
     }, [activeInput]);
 
     const handleSubmit = () => {
-        if (pickupTime.getTime() === returnTime.getTime()) {
-            toast.error("Change the time");
+        if (selectedOption === "perDay") {
+        }
+
+        if (selectedOption === "delivery") {
+            if (!deliveryAddress || !pickupTime || !returnTime || !selectedOption) {
+                toast.error("Please fill out all fields");
+                return;
+            }
+            dispatch(
+                setRentalDetails({
+                    deliveryAddress,
+                    pickupTime,
+                    returnTime,
+                    selectedOption,
+                    hours: selectedDuration,
+                    months: selectedMonthsInfo,
+                })
+            );
         } else {
-            if (selectedOption === "delivery") {
-                if (!deliveryAddress || !pickupTime || !returnTime || !selectedOption) {
-                    toast.error("Please fill out all fields");
-                    return;
-                }
-                dispatch(
-                    setRentalDetails({
-                        deliveryAddress,
-                        pickupTime,
-                        returnTime,
-                        selectedOption,
-                    })
-                );
-            } else {
+            if (selectedOption === "perDay") {
                 if (!pickupLocation || !pickupTime || !returnTime || !selectedOption) {
                     toast.error("Please fill out all fields");
                     return;
                 }
-                dispatch(
-                    setRentalDetails({
-                        pickupLocation,
-                        returnLocation,
-                        deliveryAddress,
-                        pickupTime,
-                        returnTime,
-                        selectedOption,
-                    })
-                );
+                if (pickupTime.getTime() === returnTime.getTime()) {
+                    toast.error("Change the time");
+                    return
+                }
+            } else {
+                if (!pickupLocation || !pickupTime || !selectedOption) {
+                    toast.error("Please fill out all fields");
+                    return;
+                }
             }
-
-            navigate("/fleet");
+            dispatch(
+                setRentalDetails({
+                    pickupLocation,
+                    returnLocation,
+                    deliveryAddress,
+                    pickupTime,
+                    returnTime,
+                    selectedOption,
+                    hours: selectedDuration,
+                    months: selectedMonthsInfo,
+                })
+            );
         }
+
+        navigate("/fleet");
     };
     useEffect(() => {
-        const presentHour = setMinutes(setHours(new Date(), new Date().getHours()), 0);
+        const presentHour = setMinutes(
+            setHours(new Date(), new Date().getHours()),
+            0
+        );
         const minTime = setHours(setMinutes(new Date(), 0), 9);
         const maxTime = setHours(setMinutes(new Date(), 0), 17);
         if (rentalInfo) {
             setPickupLocation(rentalInfo.pickupLocation || "");
             setReturnLocation(rentalInfo.returnLocation || "");
-            setPickupTime(rentalInfo.pickupTime || presentHour); setPickupTime(rentalInfo.pickupTime || presentHour);
+            setPickupTime(rentalInfo.pickupTime || presentHour);
+            setPickupTime(rentalInfo.pickupTime || presentHour);
             setReturnTime(rentalInfo.returnTime || presentHour);
             setPerDay(rentalInfo.perDay || false);
             setPerHour(rentalInfo.perHour || false);
@@ -275,7 +301,6 @@ const Controls = () => {
     const handleReturnLocationChange = (checked) => {
         setDifferentReturnLocation(checked);
 
-
         if (checked) {
             if (!selectedOption === "perMonth") {
                 setSelectedOption("perDay");
@@ -291,7 +316,7 @@ const Controls = () => {
                         <button
                             className={activeButton === "btn1" ? "active" : ""}
                             onClick={() => {
-                                setActiveButton("btn1")
+                                setActiveButton("btn1");
                             }}
                         >
                             <img src={text1} alt="" />
@@ -299,8 +324,8 @@ const Controls = () => {
                         <button
                             className={activeButton === "btn2" ? "active" : ""}
                             onClick={() => {
-                                setActiveButton("btn2")
-                                setSelectedOption('perMonth')
+                                setActiveButton("btn2");
+                                setSelectedOption("perMonth");
                             }}
                         >
                             <img src={text2} alt="" />
@@ -308,8 +333,8 @@ const Controls = () => {
                         <button
                             className={activeButton === "btn3" ? "active" : ""}
                             onClick={() => {
-                                setActiveButton("btn3")
-                                setSelectedOption('perDay')
+                                setActiveButton("btn3");
+                                setSelectedOption("perDay");
                             }}
                         >
                             <img src={text3} alt="" />
@@ -334,19 +359,15 @@ const Controls = () => {
                                     <div className="btn">
                                         <DatePicker
                                             selected={pickupTime}
-                                            onChange={(date) => {
-                                                date = toDate(startOfDay(date));
-                                                setPickupTime(date);
-                                                console.log(date);
-                                            }}
-                                            dateFormat="MMMM d, yyyy"
-                                            minDate={presentDay}
+                                            onChange={(date) => setPickupTime(date)}
+                                            showTimeSelect
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="Pp"
+                                            timeIntervals={60}
                                         />
                                     </div>
-                                    <div className="btn">
-
-
-                                    </div>
+                                    <div className="btn"></div>
                                 </div>
                                 <div className="item">
                                     <p>Return date</p>
@@ -354,8 +375,11 @@ const Controls = () => {
                                         <DatePicker
                                             selected={returnTime}
                                             onChange={(date) => setReturnTime(date)}
-                                            minDate={pickupTime || presentDay}
-                                            dateFormat="MMMM d, yyyy"
+                                            showTimeSelect
+                                            minTime={minTime}
+                                            maxTime={maxTime}
+                                            dateFormat="Pp"
+                                            timeIntervals={60}
                                         />
                                     </div>
                                 </div>
@@ -400,23 +424,31 @@ const Controls = () => {
                                             maxTime={maxTime}
                                             dateFormat="Pp"
                                             timeIntervals={60}
-
                                         />
                                     </div>
                                 </div>
-                                <div className="item">
-                                    <p>Return date & time</p>
-                                    <div className="btn">
-                                        <DatePicker
-                                            selected={returnTime}
-                                            onChange={(date) => setReturnTime(date)}
-                                            showTimeSelect
-                                            minTime={minTime}
-                                            maxTime={maxTime}
-                                            dateFormat="Pp"
-                                            timeIntervals={60}
-
-                                        />
+                                <div>
+                                    <label htmlFor="pickupHours" className="pickupHours__">
+                                        {" "}
+                                        Pickup duration:
+                                    </label>
+                                    <div className="input-group">
+                                        <select
+                                            className="form-select"
+                                            id="pickupHours"
+                                            value={selectedDuration}
+                                            onChange={(event) => handleDurationChange(event)}
+                                        >
+                                            <option value="">Select duration</option>
+                                            {durations.map((duration) => (
+                                                <option key={duration} value={duration}>
+                                                    {duration} hour
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <label className="input-group-text" htmlFor="pickupHours">
+                                            Hours
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -611,73 +643,46 @@ const Controls = () => {
                                 </button>
                             </div>
                         </div>
-                        {selectedOption === "perDay" ? (
-                            <div className="two">
-                                <div className="item">
-                                    <p>Pickup date & time</p>
-                                    <div className="btn">
-                                        <DatePicker
-                                            selected={pickupTime}
-                                            onChange={(date) => {
-                                                date = toDate(startOfDay(date));
-                                                setPickupTime(date);
-                                            }}
-                                            dateFormat="MMMM yyyy"
-                                            showMonthYearPicker
-                                            placeholderText="Select a month"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <p>Return date & time</p>
-                                    <div className="btn">
-                                        <DatePicker
-                                            selected={returnTime}
-                                            onChange={(date) => {
-                                                date = toDate(startOfDay(date));
-                                                setReturnTime(date);
-                                            }}
-                                            dateFormat="MMMM yyyy"
-                                            showMonthYearPicker
-                                            placeholderText="Select a month"
-                                        />
-                                    </div>
+                        <div className="two">
+                            <div className="item">
+                                <p>Pickup date & time</p>
+                                <div className="btn">
+                                    <DatePicker
+                                        selected={pickupTime}
+                                        onChange={(date) => setPickupTime(date)}
+                                        showTimeSelect
+                                        minTime={minTime}
+                                        maxTime={maxTime}
+                                        dateFormat="Pp"
+                                        timeIntervals={60}
+                                    />
                                 </div>
                             </div>
-                        ) : (
-                            <div className="two">
-                                <div className="item">
-                                    <p>Pickup date & time</p>
-                                    <div className="btn">
-                                        <DatePicker
-                                            selected={pickupTime}
-                                            onChange={(date) => {
-                                                date = toDate(startOfDay(date));
-                                                setPickupTime(date);
-                                            }}
-                                            dateFormat="MMMM yyyy"
-                                            showMonthYearPicker
-                                            placeholderText="Select a month"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <p>Return date & time</p>
-                                    <div className="btn">
-                                        <DatePicker
-                                            selected={returnTime}
-                                            onChange={(date) => {
-                                                date = toDate(startOfDay(date));
-                                                setReturnTime(date);
-                                            }}
-                                            dateFormat="MMMM yyyy"
-                                            showMonthYearPicker
-                                            placeholderText="Select a month"
-                                        />
-                                    </div>
+                            <div className="item">
+                                <label htmlFor="pickupHours" className="pickupHours__">
+                                    {" "}
+                                    Pickup duration:
+                                </label>
+                                <div className="input-group">
+                                    <select
+                                        className="form-select"
+                                        id="pickupHours"
+                                        value={selectedMonthsInfo}
+                                        onChange={(event) => handleMonthChange(event)}
+                                    >
+                                        <option value="">Select duration</option>
+                                        {monthsDuration.map((duration) => (
+                                            <option key={duration} value={duration}>
+                                                {duration} Months
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <label className="input-group-text" htmlFor="pickupHours">
+                                        Months
+                                    </label>
                                 </div>
                             </div>
-                        )}
+                        </div>
                         <div className="three">
                             <div className="top">
                                 <ul className="start">
@@ -703,7 +708,6 @@ const Controls = () => {
                                                 onChange={(e) => setSelectedOption(e.target.value)}
                                             />
                                         </div>
-
                                     </li>
                                 </ul>
                                 <div className="end">موقع الاستلام والعودة</div>

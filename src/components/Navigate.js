@@ -37,7 +37,7 @@ const Navigate = ({ car, closeModal }) => {
                 <div className="icons">
                   <li>
                     <img src={v1} alt="" />
-                    <span>{car?.maxPeople}</span>
+                    <span>{car?.seats}</span>
                   </li>
                   <li>
                     <img src={v2} alt="" />
@@ -45,7 +45,7 @@ const Navigate = ({ car, closeModal }) => {
                   </li>
                   <li>
                     <img src={v3} alt="" />
-                    <span>{car?.numDoors}</span>
+                    <span>{car?.doors}</span>
                   </li>
                   <li>
                     <img src={v4} alt="" />

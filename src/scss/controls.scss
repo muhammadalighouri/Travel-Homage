@@ -9,6 +9,15 @@
     max-width: 1300px;
 
     margin: auto;
+    .pickupHours__ {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      padding: 10px 0;
+    }
+    option {
+      color: black;
+    }
     .grid__one {
       display: grid;
       grid-template-columns: 0.55fr auto;
@@ -91,6 +100,7 @@
           justify-content: end;
           gap: 5px;
           margin-top: 0;
+
           p {
             text-align: end;
             color: #373a36;
