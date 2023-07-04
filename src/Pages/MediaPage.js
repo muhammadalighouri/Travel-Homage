@@ -19,7 +19,7 @@ const MediaPage = () => {
       <Banner
         text={"اسطولنا"}
         img={first}
-        p={true}
+        p={false}
         icon={true}
         mi={mediaIcon}
       />
