@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import { getAllAddresses } from "../Redux/actions/addressActions";
+import MapComponent from "./CreateAddressModal";
 const branches = [
     {
         name: "الرياض - الشفا لبن",
@@ -169,6 +170,7 @@ const Controls = () => {
     const [perDay, setPerDay] = useState(false);
     const [perHour, setPerHour] = useState(false);
     const [delivery, setDelivery] = useState(false);
+    const [show, setShow] = useState(false)
     const dispatch = useDispatch();
     const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
     const [activeButton, setActiveButton] = useState("btn3");
@@ -584,7 +586,7 @@ const Controls = () => {
                                                 {selectedOption === "delivery" ? (
                                                     <>
                                                         {addressesData.length === 0 && (
-                                                            <Link to={"/saved-adress/1"}>Add Location</Link>
+                                                            <Link onClick={() => setShow(true)}>Add Location</Link>
                                                         )}
                                                         <CreatableSelect
                                                             options={addressesData}
@@ -960,6 +962,9 @@ const Controls = () => {
                     </div>
                 )}
             </div>
+            {
+                show && <MapComponent setShow={setShow} />
+            }
         </section>
     );
 };

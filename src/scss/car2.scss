@@ -7,7 +7,14 @@
   margin-top: -10px;
   // position: relative;
   // z-index: 1;
-
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px !important;
+  }
   .inner {
     background: #f2f2f2;
     box-shadow: 5.99415px -3.74635px 10.4898px rgba(17, 17, 17, 0.08);
