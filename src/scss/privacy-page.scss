@@ -22,6 +22,7 @@
       width: 100%;
       justify-content: center;
       margin-bottom: 60px;
+
       h1 {
         color: #373a36;
         font-family: "Cairo", sans-serif;
@@ -40,6 +41,7 @@
       align-items: center;
       justify-content: center;
       row-gap: 60px;
+
       .box {
         display: flex;
         flex-direction: column;
@@ -47,6 +49,7 @@
         justify-content: center;
         row-gap: 0;
       }
+
       p {
         color: #373a36;
         font-weight: 400;
