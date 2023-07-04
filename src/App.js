@@ -28,6 +28,7 @@ import Loading from "./components/Loading";
 import { useSelector } from "react-redux";
 import PrivacyPage from "./Pages/PrivacyPage";
 import MediaPage from "./Pages/MediaPage";
+import CookieModal from "./components/CookieModal";
 
 function App() {
   const { loading } = useSelector((state) => state.loading);
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <div className="App">
+      <CookieModal />
       {loading && <Loader />}
 
       <>

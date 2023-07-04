@@ -144,10 +144,10 @@ const Navigation = ({ nav }) => {
                             </div>
                           </Link>
                         </div>
-                        {dropdown1.map((a ,index) => {
+                        {dropdown1.map((a, index) => {
                           return (
                             <>
-                              <Link 
+                              <Link
                                 to={a.path}
                                 style={
                                   window.location.pathname === a.path
@@ -182,7 +182,7 @@ const Navigation = ({ nav }) => {
               ) : (
                 <div className="user__signout">
                   <div className="avatar">
-                    <img src={avatarLogout} alt="" />
+                    {/* <img src={avatarLogout} alt="" /> */}
                   </div>
                   {/* <button
                     className="signup"

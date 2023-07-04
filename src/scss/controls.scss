@@ -181,7 +181,7 @@
               flex-wrap: wrap;
               justify-content: center;
               align-items: center;
-              gap: 10px;
+              grid-gap: 0px 10px;
               .item {
                 display: flex;
                 justify-content: end;

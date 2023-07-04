@@ -304,7 +304,6 @@ const Booking = () => {
     let isTimeChanged = true;
     let totalPrice = 0;
     if (option === "perHour") {
-
     } else {
       if (diffInDays === 0) {
         toast.warning("Change the time");
@@ -314,23 +313,11 @@ const Booking = () => {
 
     // Checks if the required fields are filled out
     if (option === "perDay") {
-      if (
-        !selectedCar ||
-        !pickupTime ||
-        !returnTime ||
-        !option
-
-      ) {
+      if (!selectedCar || !pickupTime || !returnTime || !option) {
         isAllValuesEntered = false;
       }
-    }
-    else {
-      if (
-        !selectedCar ||
-        !pickupTime ||
-        !option
-
-      ) {
+    } else {
+      if (!selectedCar || !pickupTime || !option) {
         isAllValuesEntered = false;
       }
     }
@@ -344,7 +331,7 @@ const Booking = () => {
       isAllValuesEntered = false;
     }
 
-    if (option !== "delivery" && (differentReturnLocation && !returnLocation)) {
+    if (option !== "delivery" && differentReturnLocation && !returnLocation) {
       isAllValuesEntered = false;
     }
     if (option === "perDay") {
@@ -384,9 +371,7 @@ const Booking = () => {
             setBookingLoading(false);
             setConfirmBooking(false);
           });
-
       } else {
-
         dispatch(
           createBooking({
             carId: car,
@@ -403,7 +388,7 @@ const Booking = () => {
             rate: option,
             delivery: option === "delivery" ? true : false,
             hours: diffInHours,
-            days: diffInDays
+            days: diffInDays,
           })
         )
           .then((res) => {
@@ -433,21 +418,23 @@ const Booking = () => {
       } else {
         toast.warning("enter all values");
       }
-    }
-
-
-
-    else {
+    } else {
       if (pickupLocation && pickupTime && returnTime) {
         if (differentReturnLocation && !returnLocation) {
           toast.warning("enter all values");
+        } else {
+          if (option === "perHour" || option === "perMonth") {
 
-        }
-        else {
-          if (diffInDays === 0) {
-            toast.warning("Change the time");
-          } else {
             setActiveButton("btn2");
+
+          }
+
+          else {
+            if (diffInDays === 0) {
+              toast.warning("Change the time");
+            } else {
+              setActiveButton("btn2");
+            }
           }
         }
       } else {
@@ -461,8 +448,7 @@ const Booking = () => {
     } else if (option === "perMonth") {
       // const months = differenceInMonths(returnTime, pickupTime);
       // setDiffInMonths(months);
-    }
-    else {
+    } else {
       const days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
     }
@@ -474,14 +460,11 @@ const Booking = () => {
     let hours = 0;
     let months = 0;
     if (option === "perHour") {
-      hours = differenceInHours(returnTime, pickupTime);
+      // hours = differenceInHours(returnTime, pickupTime);
       // setDiffInHours(hours);
-    }
-    else if (option === "perMonth") {
+    } else if (option === "perMonth") {
       months = differenceInMonths(returnTime, pickupTime);
-
-    }
-    else {
+    } else {
       days = differenceInDays(returnTime, pickupTime);
       setDiffInDays(days);
     }
@@ -489,16 +472,25 @@ const Booking = () => {
     if (option === "perDay") {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
     } else if (option === "perHour") {
-      totalPrice = (selectedCar?.pricePerHour || 0) * hours;
+      totalPrice = (selectedCar?.pricePerHour || 0) * diffInHours;
     } else if (option === "delivery") {
       totalPrice = (selectedCar?.pricePerDay || 0) * days;
-    }
-    else if (option === "perMonth") {
-      totalPrice = (selectedCar?.pricePerMonth || selectedCar?.pricePerDay * 30) * months;
+    } else if (option === "perMonth") {
+      totalPrice =
+        (selectedCar?.pricePerMonth || selectedCar?.pricePerDay * 30) *
+        diffInMonths;
     }
 
     setPrice(totalPrice);
-  }, [pickupTime, returnTime, option, selectedCar, car]);
+  }, [
+    pickupTime,
+    returnTime,
+    option,
+    selectedCar,
+    car,
+    diffInHours,
+    diffInMonths,
+  ]);
 
   const presentDay = startOfDay(new Date());
 
@@ -526,7 +518,7 @@ const Booking = () => {
       setEmail(user.email || "");
     } else {
       navigate("/");
-      toast.warning("You need to Login First!")
+      toast.warning("You need to Login First!");
     }
   }, [user]);
   useEffect(() => {
@@ -536,8 +528,8 @@ const Booking = () => {
       setPickupTime(rentalInfo.pickupTime || startOfDay(new Date()));
       setReturnTime(rentalInfo.returnTime || new Date());
       setDelivery(rentalInfo.deliveryAddress || false);
-      setDiffInHours(rentalInfo.hours)
-      setDiffInMonths(rentalInfo.months)
+      setDiffInHours(rentalInfo.hours);
+      setDiffInMonths(rentalInfo.months);
     }
     console.log(rentalInfo.months);
   }, [rentalInfo]);
@@ -559,7 +551,10 @@ const Booking = () => {
         <div className="container-main">
           <BookingSidebar
             price={price}
+            option={option}
             addonsPrice={addonsPrice}
+            diffInHours={diffInHours}
+            diffInMonths={diffInMonths}
             selectedCar={selectedCar}
             pickupLocation={pickupLocation}
             returnLocation={returnLocation}
@@ -626,7 +621,6 @@ const Booking = () => {
                             <Select
                               options={addressesData}
                               isSearchable={true}
-
                               onChange={(selectedOption) => {
                                 setDeliveryAddress(selectedOption.value);
                               }}
@@ -642,13 +636,12 @@ const Booking = () => {
                               }
                               placeholder="تحديد موقع"
                             />
-
                           </div>
                         </div>
 
-                        {
-                          rentalInfo.returnLocation === "" ? <>
-                            <div className="item__" >
+                        {rentalInfo.returnLocation === "" ? (
+                          <>
+                            <div className="item__">
                               <p>Return to a different location</p>
                               <input
                                 type="checkbox"
@@ -658,10 +651,12 @@ const Booking = () => {
                               />
                             </div>
                             <div className="input-box-wrap">
-
-                              {
-                                differentReturnLocation && <>
-                                  <div className="plus" style={{ opacity: "0" }}>
+                              {differentReturnLocation && (
+                                <>
+                                  <div
+                                    className="plus"
+                                    style={{ opacity: "0" }}
+                                  >
                                     <img src={plus} alt="" />
                                     إضافة عنوان
                                   </div>
@@ -672,8 +667,12 @@ const Booking = () => {
                                         rentalInfo.returnLocation
                                           ? [
                                             {
-                                              label: rentalInfo.returnLocation.label,
-                                              value: rentalInfo.returnLocation.value,
+                                              label:
+                                                rentalInfo.returnLocation
+                                                  .label,
+                                              value:
+                                                rentalInfo.returnLocation
+                                                  .value,
                                             },
                                           ]
                                           : null
@@ -687,10 +686,11 @@ const Booking = () => {
                                     />
                                   </div>
                                 </>
-                              }
-
+                              )}
                             </div>
-                          </> : <>
+                          </>
+                        ) : (
+                          <>
                             <div className="input-box-wrap">
                               <div className="plus" style={{ opacity: "0" }}>
                                 <img src={plus} alt="" />
@@ -703,8 +703,10 @@ const Booking = () => {
                                     rentalInfo.returnLocation
                                       ? [
                                         {
-                                          label: rentalInfo.returnLocation.label,
-                                          value: rentalInfo.returnLocation.value,
+                                          label:
+                                            rentalInfo.returnLocation.label,
+                                          value:
+                                            rentalInfo.returnLocation.value,
                                         },
                                       ]
                                       : null
@@ -717,8 +719,9 @@ const Booking = () => {
                                   placeholder="تحديد موقع"
                                 />
                               </div>
-                            </div></>
-                        }
+                            </div>
+                          </>
+                        )}
 
                         <div className="input-box-wrap">
                           {option === "perDay" && (
@@ -787,7 +790,6 @@ const Booking = () => {
                               </div>
                             </>
                           )}
-
                         </div>
 
                         <div className="offers">
@@ -854,9 +856,9 @@ const Booking = () => {
                           </div>
                         </div>
 
-                        {
-                          rentalInfo.returnLocation === "" ? <>
-                            <div className="item__" >
+                        {rentalInfo.returnLocation === "" ? (
+                          <>
+                            <div className="item__">
                               <p>Return to a different location</p>
                               <input
                                 type="checkbox"
@@ -866,10 +868,12 @@ const Booking = () => {
                               />
                             </div>
                             <div className="input-box-wrap">
-
-                              {
-                                differentReturnLocation && <>
-                                  <div className="plus" style={{ opacity: "0" }}>
+                              {differentReturnLocation && (
+                                <>
+                                  <div
+                                    className="plus"
+                                    style={{ opacity: "0" }}
+                                  >
                                     <img src={plus} alt="" />
                                     إضافة عنوان
                                   </div>
@@ -880,8 +884,12 @@ const Booking = () => {
                                         rentalInfo.returnLocation
                                           ? [
                                             {
-                                              label: rentalInfo.returnLocation.label,
-                                              value: rentalInfo.returnLocation.value,
+                                              label:
+                                                rentalInfo.returnLocation
+                                                  .label,
+                                              value:
+                                                rentalInfo.returnLocation
+                                                  .value,
                                             },
                                           ]
                                           : null
@@ -895,10 +903,11 @@ const Booking = () => {
                                     />
                                   </div>
                                 </>
-                              }
-
+                              )}
                             </div>
-                          </> : <>
+                          </>
+                        ) : (
+                          <>
                             <div className="input-box-wrap">
                               <div className="plus" style={{ opacity: "0" }}>
                                 <img src={plus} alt="" />
@@ -911,8 +920,10 @@ const Booking = () => {
                                     rentalInfo.returnLocation
                                       ? [
                                         {
-                                          label: rentalInfo.returnLocation.label,
-                                          value: rentalInfo.returnLocation.value,
+                                          label:
+                                            rentalInfo.returnLocation.label,
+                                          value:
+                                            rentalInfo.returnLocation.value,
                                         },
                                       ]
                                       : null
@@ -925,8 +936,9 @@ const Booking = () => {
                                   placeholder="تحديد موقع"
                                 />
                               </div>
-                            </div></>
-                        }
+                            </div>
+                          </>
+                        )}
 
                         <div className="input-box-wrap">
                           {option === "perDay" && (
@@ -957,91 +969,105 @@ const Booking = () => {
                               </div>
                             </>
                           )}
-                          {
-                            option === "perHour" && (
-                              <>
-                                <div className="day">{diffInHours} hours</div>
-                                <div className="two">
-                                  <div className="item">
-                                    <p>Pickup duration:</p>
+                          {option === "perHour" && (
+                            <>
+                              <div className="day">{diffInHours} hours</div>
+                              <div className="two">
+                                <div className="item">
+                                  <p>Pickup duration:</p>
 
-                                    <div className="input-group">
-                                      <select className="form-select" id="pickupHours" value={diffInHours} onChange={(event) => handleDurationChange(event)}>
-                                        <option value="">Select duration</option>
-                                        {durations.map((duration) => (
-                                          <option key={duration} value={duration}>
-                                            {duration} hour
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <label className="input-group-text" htmlFor="pickupHours">Hours</label>
-                                    </div>
-                                  </div>
-                                  <div className="item">
-                                    <p>المدينة</p>
-                                    <div className="btn">
-                                      <DatePicker
-                                        selected={pickupTime}
-                                        onChange={(date) => setPickupTime(date)}
-                                        showTimeSelect
-                                        minTime={minTime}
-                                        maxTime={maxTime}
-                                        dateFormat="Pp"
-                                      />
-                                    </div>
-                                  </div>
-
-                                </div>
-                              </>
-                            )
-                          }
-                          {
-                            option === "perMonth" && (
-                              <>
-                                <div className="day">{diffInMonths} Months</div>
-                                <div className="two">
-                                  <div className="item">
-                                    <label htmlFor="pickupHours" className="pickupHours__">
-                                      {" "}
-                                      Pickup duration:
+                                  <div className="input-group">
+                                    <select
+                                      className="form-select"
+                                      id="pickupHours"
+                                      value={diffInHours}
+                                      onChange={(event) =>
+                                        handleDurationChange(event)
+                                      }
+                                    >
+                                      <option value="">Select duration</option>
+                                      {durations.map((duration) => (
+                                        <option key={duration} value={duration}>
+                                          {duration} hour
+                                        </option>
+                                      ))}
+                                    </select>
+                                    <label
+                                      className="input-group-text"
+                                      htmlFor="pickupHours"
+                                    >
+                                      Hours
                                     </label>
-                                    <div className="input-group">
-                                      <select
-                                        className="form-select"
-                                        id="pickupHours"
-                                        value={diffInMonths}
-                                        onChange={(event) => handleMonthChange(event)}
-                                      >
-                                        <option value="">Select duration</option>
-                                        {monthsDuration.map((duration) => (
-                                          <option key={duration} value={duration}>
-                                            {duration} Months
-                                          </option>
-                                        ))}
-                                      </select>
-                                      <label className="input-group-text" htmlFor="pickupHours">
-                                        Months
-                                      </label>
-                                    </div>
                                   </div>
-                                  <div className="item">
-                                    <p>المدينة</p>
-                                    <div className="btn">
-                                      <DatePicker
-                                        selected={pickupTime}
-                                        onChange={(date) => setPickupTime(date)}
-                                        showTimeSelect
-                                        minTime={minTime}
-                                        maxTime={maxTime}
-                                        dateFormat="Pp"
-                                      />
-                                    </div>
-                                  </div>
-
                                 </div>
-                              </>
-                            )
-                          }
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      showTimeSelect
+                                      minTime={minTime}
+                                      maxTime={maxTime}
+                                      dateFormat="Pp"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                          {option === "perMonth" && (
+                            <>
+                              <div className="day">{diffInMonths} Months</div>
+                              <div className="two">
+                                <div className="item">
+                                  <label
+                                    htmlFor="pickupHours"
+                                    className="pickupHours__"
+                                  >
+                                    {" "}
+                                    Pickup duration:
+                                  </label>
+                                  <div className="input-group">
+                                    <select
+                                      className="form-select"
+                                      id="pickupHours"
+                                      value={diffInMonths}
+                                      onChange={(event) =>
+                                        handleMonthChange(event)
+                                      }
+                                    >
+                                      <option value="">Select duration</option>
+                                      {monthsDuration.map((duration) => (
+                                        <option key={duration} value={duration}>
+                                          {duration} Months
+                                        </option>
+                                      ))}
+                                    </select>
+                                    <label
+                                      className="input-group-text"
+                                      htmlFor="pickupHours"
+                                    >
+                                      Months
+                                    </label>
+                                  </div>
+                                </div>
+                                <div className="item">
+                                  <p>المدينة</p>
+                                  <div className="btn">
+                                    <DatePicker
+                                      selected={pickupTime}
+                                      onChange={(date) => setPickupTime(date)}
+                                      showTimeSelect
+                                      minTime={minTime}
+                                      maxTime={maxTime}
+                                      dateFormat="Pp"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
                         </div>
 
                         <div className="offers">

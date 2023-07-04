@@ -8,7 +8,7 @@ import moment from 'moment';
 
 import "../scss/bookingside.scss";
 import img1 from "../assests/booking/Rectangle 23.png";
-const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, pickupLocation, pickupTime, returnTime, setConfirmBooking, confirmBooking, handleSubmit, BookingLoading }) => {
+const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, pickupLocation, pickupTime, returnTime, setConfirmBooking, confirmBooking, handleSubmit, BookingLoading, option, diffInHours, diffInMonths }) => {
   const calculateDiscountAmount = (price, discount) => {
     const discountAmount = (price * discount) / 100;
     return discountAmount;
@@ -98,17 +98,51 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
                     <p>{returnLocation.value}</p>
                   </div>
                 }
-                <div className="item">
-                  <h2>Pickup Time</h2>
-                  <p>{moment(pickupTime).format('dddd MMMM Do, h:mm a')}</p>
-                </div>
+                {
+                  option === "perHour" && <>
+                    <div className="item">
+                      <h2>Pickup Time</h2>
+                      <p>{moment(pickupTime).format('dddd MMMM Do, h:mm a')}</p>
+                    </div>
 
 
-                <div className="item">
-                  <h2>Return Time</h2>
-                  <p>{moment(returnTime).format('dddd MMMM Do, h:mm a')}</p>
-                </div>
+                    <div className="item">
+                      <h2>Duration Time</h2>
+                      <p>{diffInHours} Hours</p>
+                    </div>
 
+                  </>
+                }
+                {
+                  option === "perMonth" && <>
+                    <div className="item">
+                      <h2>Pickup Time</h2>
+                      <p>{moment(pickupTime).format('dddd MMMM Do, h:mm a')}</p>
+                    </div>
+
+
+                    <div className="item">
+                      <h2>Duration Time</h2>
+                      <p>{diffInMonths} Months</p>
+                    </div>
+
+                  </>
+                }
+                {
+                  option === "perDay" && <>
+                    <div className="item">
+                      <h2>Pickup Time</h2>
+                      <p>{moment(pickupTime).format('dddd MMMM Do, h:mm a')}</p>
+                    </div>
+
+
+                    <div className="item">
+                      <h2>Return Time</h2>
+                      <p>{moment(returnTime).format('dddd MMMM Do, h:mm a')}</p>
+                    </div>
+
+                  </>
+                }
 
 
               </div>

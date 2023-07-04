@@ -1,0 +1,53 @@
+.cookie-modal {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #00afaa;
+  padding: 35px 20px 20px;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 1000;
+}
+
+.cookie-modal h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cookie-modal p {
+  margin-bottom: 20px;
+}
+
+.cookie-modal button {
+  padding: 10px 20px;
+  background: #ffcd00;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 10px;
+}
+.modal-body label {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-content {
+  background: #00afaa !important;
+}
+.modal-header {
+  border-bottom: 1px solid #006f915e !important;
+}
+.modal-footer {
+  border-top: 1px solid #006f915e !important;
+}
+.modal-body form {
+  padding: var(--bs-modal-padding);
+  display: grid !important;
+  grid-gap: 10px;
+}
+button.btn-close {
+  filter: invert(1);
+}
