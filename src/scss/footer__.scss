@@ -79,16 +79,24 @@ footer {
         text-align: end;
       }
 
-      li {
-        color: #000000;
-        font-weight: 400;
-        width: 100%;
-        text-align: end;
-        font-family: "Cairo", sans-serif;
-        list-style: none;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding: 0px;
+        margin: 0px;
 
-        @include md {
-          text-align: center;
+        li {
+          color: #000000;
+          font-weight: 400;
+          width: 100%;
+          text-align: end;
+          font-family: "Cairo", sans-serif;
+          list-style: none;
+
+          @include md {
+            text-align: center;
+          }
         }
       }
 
@@ -156,7 +164,7 @@ footer {
           flex-direction: column;
         }
 
-        > img {
+        >img {
           width: 65px !important;
           transform: scale(0);
         }
