@@ -32,6 +32,7 @@ const Footer = () => {
       h4: "              الخدمات     ",
       h5: "             الفروع      ",
       h6: "             المركز الإعلامي     ",
+      h7: "                         المركز الإعلامي          ",
       link1: "/fleet",
       link2: "/services",
       link3: "/media",
@@ -104,6 +105,14 @@ const Footer = () => {
                     </Link>
                     <Link
                       to={i.link3}
+                      onClick={() => {
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      <li>{i.h6}</li>
+                    </Link>
+                    <Link
+                      to={""}
                       onClick={() => {
                         window.scroll(0, 0);
                       }}
