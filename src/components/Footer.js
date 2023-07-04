@@ -129,7 +129,7 @@ const Footer = () => {
           <div className="center">
             <p>ترفل حلول تأجير السيارات</p>
             <span>مزود خدمة التنقل السعودي لحلول تأجير السيارات</span>
-            <span>شركة ترفل المحدودة © 2023</span>
+            <span>Travel Limited شركة ترفل المحدودة  ©  2023 </span>
           </div>
           <div className="chatbot">
             {chat && <ChatBox />}

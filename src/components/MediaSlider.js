@@ -40,7 +40,7 @@ const MediaSlider = () => {
     }
   });
   const getSponsors = async () => {
-    const { data } = await axios.get("/api/v1/gallery");
+    const { data } = await axios.get("/api/v1/media/gallery");
     setSponsors(data);
   };
   useEffect(() => {
@@ -63,41 +63,21 @@ const MediaSlider = () => {
                 }}
                 className="mySwiper"
               >
-                {/* {sponsors.map((spon) => {
+                {sponsors.map((spon) => {
                   return (
-                    <SwiperSlide onClick={() => openModal(spon?.image?.url)}>
+                    <SwiperSlide>
                       <div className="box">
-                        <img src={spon?.image?.url} alt="" />
-                        <img src={slideImg} alt="" />
+                        <img style={{
+                          width: '100%',
+                          objectFit: 'contain',
+                          height: 'auto',
+                          borderRadius: '15px'
+}} src={spon.image.url} alt="" />
                       </div>
                     </SwiperSlide>
                   );
-                })} */}
-                <SwiperSlide>
-                  <div className="box">
-                    <img src={img3} alt="" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="box">
-                    <img src={img1} alt="" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="box">
-                    <img src={img2} alt="" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="box">
-                    <img src={img3} alt="" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="box">
-                    <img src={img1} alt="" />
-                  </div>
-                </SwiperSlide>
+                })}
+
               </Swiper>
               {modalIsOpen && (
                 <div className="modal__">

@@ -30,6 +30,7 @@ import PrivacyPage from "./Pages/PrivacyPage";
 import MediaPage from "./Pages/MediaPage";
 import TermsPage from "./Pages/TermsPage";
 import CookiesPage from "./Pages/CookiesPage";
+import CookieModal from "./components/CookieModal";
 
 function App() {
   const { loading } = useSelector((state) => state.loading);
