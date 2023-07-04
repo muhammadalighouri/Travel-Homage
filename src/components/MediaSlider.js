@@ -67,17 +67,20 @@ const MediaSlider = () => {
                   return (
                     <SwiperSlide>
                       <div className="box">
-                        <img style={{
-                          width: '100%',
-                          objectFit: 'contain',
-                          height: 'auto',
-                          borderRadius: '15px'
-}} src={spon.image.url} alt="" />
+                        <img
+                          style={{
+                            width: "100%",
+                            objectFit: "contain",
+                            height: "auto",
+                            borderRadius: "15px",
+                          }}
+                          src={spon.image.url}
+                          alt=""
+                        />
                       </div>
                     </SwiperSlide>
                   );
                 })}
-
               </Swiper>
               {modalIsOpen && (
                 <div className="modal__">
