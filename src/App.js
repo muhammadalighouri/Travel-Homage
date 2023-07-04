@@ -28,6 +28,8 @@ import Loading from "./components/Loading";
 import { useSelector } from "react-redux";
 import PrivacyPage from "./Pages/PrivacyPage";
 import MediaPage from "./Pages/MediaPage";
+import TermsPage from "./Pages/TermsPage";
+import CookiesPage from "./Pages/CookiesPage";
 
 function App() {
   const { loading } = useSelector((state) => state.loading);
@@ -45,7 +47,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/confirm_email/:token" element={<EmailConfirmation />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/login" element={<LoginIn />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/booking-history" element={<BookingHistory />} />
@@ -66,6 +68,8 @@ function App() {
           <Route path="/:car/booking" element={<Booking />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/media" element={<MediaPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
         </Routes>
         {/* <Footer /> */}
       </>
