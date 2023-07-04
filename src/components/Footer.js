@@ -5,13 +5,7 @@ import img1 from "../assests/footer-img/Badge.png";
 import img2 from "../assests/footer-img/Badge (1).png";
 import icon from "../assests/footer-img/Group.png";
 import chatImg from "../assests/footer-img/Chatbot.png";
-import arrow from "../assests/footer-img/Vector (6).png";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaPinterestP,
-  FaLinkedin,
-} from "react-icons/fa";
+
 import { Group, Instagram } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import ChatBox from "./ChatBox";
