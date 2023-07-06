@@ -51,7 +51,7 @@ header {
 
         @include sm {
           grid-template-columns: 1fr 2fr 0fr 0fr 2fr;
-    gap: 5px;
+          gap: 5px;
         }
 
         .MuiButtonBase-root {
@@ -100,10 +100,11 @@ header {
 
           svg {
             font-size: 45px;
-@include mobile {
-  font-size: 40px
-  ;
-}
+
+            @include mobile {
+              font-size: 40px;
+            }
+
             cursor: pointer;
           }
         }
