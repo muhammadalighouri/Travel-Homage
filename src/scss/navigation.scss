@@ -21,7 +21,7 @@ header {
     z-index: 22;
   }
   li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
-    color: black;
+    color: black !important;
   }
   .outer {
     position: relative;
@@ -44,7 +44,7 @@ header {
         align-items: center;
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 0fr 0.7fr 3fr 1fr;
+        grid-template-columns: 1.5fr 1.7fr 3fr 1fr;
         gap: 10px;
 
         @include md {
@@ -359,6 +359,8 @@ header {
         align-items: center;
         justify-content: center;
         gap: 10px;
+        display: grid;
+        grid-template-columns: 2.4fr 1fr;
 
         @include md {
           display: none;

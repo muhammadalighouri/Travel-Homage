@@ -8,27 +8,28 @@ export const fetchCars = (
     numDoors = '',
     minPricePerDay = 0,
     maxPricePerDay = 1500,
-    // minPricePerHour = 0,
-    // maxPricePerHour = 150,
+
     hasDiscount = '',
     carYear = '',
     page = 1,
-    currency = 'SAR',
+
     isFav = false
 ) => {
     return async (dispatch, getState) => {
         dispatch({ type: FETCH_CARS_REQUEST });
 
-        const {
-            UserLogin: { userInfo },
-        } = getState();
+
         const {
             toggle: { toggle },
+            Currency: { baseCurrency },
+            UserLogin: { userInfo },
+
         } = getState();
+
         try {
             if (userInfo) {
                 const { data } = await axios.post(
-                    `/api/v1/cars/all?&category=${carType}&carBrand=${carBrand}&maxPeople=${maxPeople}&numDoors=${numDoors}&minPricePerDay=${parseInt(minPricePerDay)}&maxPricePerDay=${parseInt(maxPricePerDay)}&hasDiscount=${hasDiscount}&carYear=${carYear}&page=${page}&favorites=${toggle}&currency=${currency}`, { user: userInfo?.user._id }
+                    `/api/v1/cars/all?&category=${carType}&carBrand=${carBrand}&maxPeople=${maxPeople}&numDoors=${numDoors}&minPricePerDay=${parseInt(minPricePerDay)}&maxPricePerDay=${parseInt(maxPricePerDay)}&hasDiscount=${hasDiscount}&carYear=${carYear}&page=${page}&favorites=${toggle}&currency=${baseCurrency}`, { user: userInfo?.user._id }
                 );
                 dispatch({ type: FETCH_CARS_SUCCESS, payload: data });
             }
@@ -53,3 +54,7 @@ export const toggleAction = () => {
         type: 'TOGGLE',
     };
 };
+export const setBaseCurrency = (currency) => ({
+    type: "SET_BASE_CURRENCY",
+    payload: currency,
+});

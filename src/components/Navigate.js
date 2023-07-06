@@ -15,6 +15,7 @@ const Navigate = ({ car, closeModal }) => {
   const priceAfterDiscount = (price, discount) => {
     return price - (price * discount) / 100;
   };
+  const currency = useSelector((state) => state.Currency.baseCurrency) || {};
   return (
     <>
       <div className="navigate-wrapper">
@@ -32,7 +33,7 @@ const Navigate = ({ car, closeModal }) => {
 
               <div className="icons-wrapper">
                 <div className="para">
-                  <span>Car Detial</span>
+                  <span>Car Detail</span>
                 </div>
                 <div className="icons">
                   <li>
@@ -57,24 +58,26 @@ const Navigate = ({ car, closeModal }) => {
               <div
                 className="price-btn"
                 onClick={() => {
-                  navigate(`/${car._id}/booking`)
-                  window.scroll(0, 0)
+                  navigate(`/${car._id}/booking`);
+                  window.scroll(0, 0);
                 }}
               >
                 <div className="btn-top">
                   <div className="btn">
                     <p className="one">
-                      {info === "perDay" ? car?.pricePerDay : car?.pricePerHour}
+                      {info === "perDay"
+                        ? car?.pricePerDay.toFixed(2)
+                        : car?.pricePerHour.toFixed(2)}
                     </p>
                     <p className="second">
                       {" "}
                       {priceAfterDiscount(
                         info === "perDay"
-                          ? car?.pricePerDay
-                          : car?.pricePerHour,
-                        car?.discount
+                          ? car?.pricePerDay.toFixed(2)
+                          : car?.pricePerHour.toFixed(2),
+                        car?.discount.toFixed(2)
                       )}{" "}
-                      ر.س
+                      {currency}
                     </p>
                   </div>
                 </div>
@@ -84,9 +87,25 @@ const Navigate = ({ car, closeModal }) => {
                     <span>أحجز الآن</span>
                   </div>
                   <div className="btn-1">
-                    <span>
-                      849 <b>SAR/Day</b>
-                    </span>
+                    {info === "perDay" ? (
+                      <span>
+                        {priceAfterDiscount(
+                          car?.pricePerDay.toFixed(2),
+
+                          car?.discount.toFixed(2)
+                        )}{" "}
+                        <b>{currency}/Day</b>
+                      </span>
+                    ) : (
+                      <span>
+                        {priceAfterDiscount(
+                          car?.pricePerHour.toFixed(2),
+
+                          car?.discount.toFixed(2)
+                        )}{" "}
+                        <b>{currency}/Hour</b>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
