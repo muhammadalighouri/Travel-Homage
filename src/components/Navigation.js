@@ -27,6 +27,7 @@ import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
 import { logout } from "../Redux/actions/userActions";
 import { Button, Menu, MenuItem } from "@mui/material";
+import { fetchCars } from "../Redux/actions/carActions";
 const Navigation = ({ nav }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
@@ -261,7 +262,7 @@ const Navigation = ({ nav }) => {
                       <MenuItem
                         key={item.code}
                         onClick={() => {
-                          dispatch(getProducts({}, 1, 10, item.code)); // Pass the selected currency code here
+                          dispatch(fetchCars(item.code)); // Pass the selected currency code here
                           handleCurrencyClose();
                         }}
                       >
