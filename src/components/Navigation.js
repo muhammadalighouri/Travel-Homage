@@ -8,6 +8,7 @@ import i5 from "../assests/Lead icon (4).png";
 import i6 from "../assests/Lead icon (5).png";
 import i7 from "../assests/Schema.png";
 import i8 from "../assests/Lead icon (6).png";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import i9 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
@@ -29,8 +30,10 @@ import { Button, Menu, MenuItem } from "@mui/material";
 const Navigation = ({ nav }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
+  const [currencyOpen, setCurrencyOpen] = React.useState(false);
   const [scroll, setScroll] = useState(false);
   const [translate, setTranslate] = useState(false);
+  const [currencyAnchorEl, setCurrencyAnchorEl] = React.useState(null);
   const [nave, setNave] = useState(false);
   const [mode, setMode] = useState();
   const [dropdownOpen, setDropdownOpen] = useState(false); // new state variable
@@ -49,6 +52,12 @@ const Navigation = ({ nav }) => {
       setScroll(false);
     }
   });
+  const handleCurrencyClick = (event) => {
+    setCurrencyAnchorEl(event.currentTarget);
+  };
+  const handleCurrencyClose = () => {
+    setCurrencyAnchorEl(null);
+  };
   const dropdown1 = [
     {
       icon: i1,
@@ -93,6 +102,27 @@ const Navigation = ({ nav }) => {
       path: "/faq",
     },
   ];
+  const currencies = [
+    { code: 'SAR', name: 'Saudi Riyal' },
+    { code: 'AED', name: 'United Arab Emirates Dirham' },
+    { code: 'EGP', name: 'Egyptian Pound' },
+    { code: 'USD', name: 'United States Dollar' },
+    { code: 'EUR', name: 'Euro' },
+    { code: 'BHD', name: 'Bahraini Dinar' },
+    { code: 'JPY', name: 'Japanese Yen' },
+    { code: 'CNY', name: 'Chinese Yuan' },
+    { code: 'GBP', name: 'British Pound' },
+    { code: 'IDR', name: 'Indonesian Rupiah' },
+    { code: 'INR', name: 'Indian Rupee' },
+    { code: 'IQD', name: 'Iraqi Dinar' },
+    { code: 'JOD', name: 'Jordanian Dinar' },
+    { code: 'KWD', name: 'Kuwaiti Dinar' },
+    { code: 'OMR', name: 'Omani Rial' },
+    { code: 'QAR', name: 'Qatari Riyal' },
+    { code: 'TRY', name: 'Turkish Lira' }
+  ];
+
+  // Example usag
   return (
     <>
       <header>
@@ -224,17 +254,23 @@ const Navigation = ({ nav }) => {
                   "aria-labelledby": "currency-button",
                 }}
               >
-                {Object.entries(currencies).map(([code, currency]) => (
-                  <MenuItem
-                    key={code}
-                    onClick={() => {
-                      dispatch(getProducts({}, 1, 10, code)); // Pass the selected currency code here
-                      handleCurrencyClose();
-                    }}
-                  >
-                    {code}: {currency} {currencySymbolMap[code]}
-                  </MenuItem>
-                ))}
+                {
+                  currencies.map((item, index) => {
+                    return (
+
+                      <MenuItem
+                        key={item.code}
+                        onClick={() => {
+                          dispatch(getProducts({}, 1, 10, item.code)); // Pass the selected currency code here
+                          handleCurrencyClose();
+                        }}
+                      >
+                        {item.code}: {item.name}
+                      </MenuItem>
+                    )
+                  })
+                }
+
               </Menu>
               <button className="res-drop" onClick={toggleDropdown2}>
                 الشركة
