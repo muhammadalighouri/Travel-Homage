@@ -170,7 +170,7 @@ const Controls = () => {
     const [perDay, setPerDay] = useState(false);
     const [perHour, setPerHour] = useState(false);
     const [delivery, setDelivery] = useState(false);
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const [differentReturnLocation, setDifferentReturnLocation] = useState(false);
     const [activeButton, setActiveButton] = useState("btn3");
@@ -220,7 +220,10 @@ const Controls = () => {
     }, [activeInput]);
 
     const handleSubmit = () => {
+
         if (selectedOption === "perDay") {
+            console.log(pickupTime);
+            console.log(returnTime);
         }
 
         if (selectedOption === "delivery") {
@@ -246,7 +249,7 @@ const Controls = () => {
                 }
                 if (pickupTime.getTime() === returnTime.getTime()) {
                     toast.error("Change the time");
-                    return
+                    return;
                 }
             } else {
                 if (!pickupLocation || !pickupTime || !selectedOption) {
@@ -586,7 +589,9 @@ const Controls = () => {
                                                 {selectedOption === "delivery" ? (
                                                     <>
                                                         {addressesData.length === 0 && (
-                                                            <Link onClick={() => setShow(true)}>Add Location</Link>
+                                                            <Link onClick={() => setShow(true)}>
+                                                                Add Location
+                                                            </Link>
                                                         )}
                                                         <CreatableSelect
                                                             options={addressesData}
@@ -962,9 +967,7 @@ const Controls = () => {
                     </div>
                 )}
             </div>
-            {
-                show && <MapComponent setShow={setShow} />
-            }
+            {show && <MapComponent setShow={setShow} />}
         </section>
     );
 };

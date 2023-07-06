@@ -262,7 +262,7 @@ const Navigation = ({ nav }) => {
                       <MenuItem
                         key={item.code}
                         onClick={() => {
-                          dispatch(fetchCars(item.code)); // Pass the selected currency code here
+                          dispatch(fetchCars("", "", "", "", "", "", "", "", "", "", "", "", item.code)); // Pass the selected currency code here
                           handleCurrencyClose();
                         }}
                       >
