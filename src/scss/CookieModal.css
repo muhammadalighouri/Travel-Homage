@@ -8,7 +8,21 @@
   text-align: center;
   z-index: 1000;
 }
-
+.cookie-modal .container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+.cookie-modal .container .start {
+  display: grid;
+  justify-content: start;
+  text-align: start;
+}
+.cookie-modal .container .end {
+  width: 50%;
+  margin: 0px 0px 20px;
+}
 .cookie-modal h2 {
   font-size: 20px;
   margin-bottom: 10px;

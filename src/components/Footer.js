@@ -71,14 +71,15 @@ const Footer = () => {
                 <div className="box">
                   <h2>{i.name}</h2>
                   <ul>
-                    <li
+                    <Link
                       onClick={() => {
                         navigate("/privacy-policy");
                         window.scroll(0, 0);
                       }}
+                      style={{ color: 'black' }}
                     >
                       {i.h2}
-                    </li>
+                    </Link>
                     <Link
                       to={i.link1}
                       onClick={() => {
@@ -129,7 +130,7 @@ const Footer = () => {
           <div className="center">
             <p>ترفل حلول تأجير السيارات</p>
             <span>مزود خدمة التنقل السعودي لحلول تأجير السيارات</span>
-            <span>Travel Limited شركة ترفل المحدودة  ©  2023 </span>
+            <span>Travel LTD شركة ترفل المحدودة  ©  2023 </span>
           </div>
           <div className="chatbot">
             {chat && <ChatBox />}

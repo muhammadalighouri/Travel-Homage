@@ -13,6 +13,7 @@ export const fetchCars = (
     hasDiscount = '',
     carYear = '',
     page = 1,
+    currency = 'SAR',
     isFav = false
 ) => {
     return async (dispatch, getState) => {
@@ -27,7 +28,7 @@ export const fetchCars = (
         try {
             if (userInfo) {
                 const { data } = await axios.post(
-                    `/api/v1/cars/all?&category=${carType}&carBrand=${carBrand}&maxPeople=${maxPeople}&numDoors=${numDoors}&minPricePerDay=${parseInt(minPricePerDay)}&maxPricePerDay=${parseInt(maxPricePerDay)}&hasDiscount=${hasDiscount}&carYear=${carYear}&page=${page}&favorites=${toggle}`, { user: userInfo?.user._id }
+                    `/api/v1/cars/all?&category=${carType}&carBrand=${carBrand}&maxPeople=${maxPeople}&numDoors=${numDoors}&minPricePerDay=${parseInt(minPricePerDay)}&maxPricePerDay=${parseInt(maxPricePerDay)}&hasDiscount=${hasDiscount}&carYear=${carYear}&page=${page}&favorites=${toggle}&currency=${currency}`, { user: userInfo?.user._id }
                 );
                 dispatch({ type: FETCH_CARS_SUCCESS, payload: data });
             }

@@ -60,20 +60,25 @@ const CookieModal = () => {
         <>
             {showModal && (
                 <div className="cookie-modal">
-                    <h2>موافقة ملفات تعريف الارتباط</h2>
-                    <p style={{ width: '70%', margin: '0 auto 20px' }}>
-                        نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك. باستمرار زيارتك لهذا الموقع, فإنك توافق على استخدامنا لملفات تعريف الارتباط.
-                    </p>
-                    <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <div className="container">
 
-                        <button onClick={acceptCookies}>قبول ملفات تعريف الارتباط</button>
-                        <button style={{ marginLeft: '10px' }} onClick={openSettingsModal}>
-                            الإعدادات
-                        </button>
-                        <button style={{ marginLeft: '10px' }} onClick={() => setShowModal(false)}>
-                            إلغاء
-                        </button>
-                    </div >
+                        <div className="start">
+                            <h2>موافقة ملفات تعريف الارتباط</h2>
+                            <p style={{ width: '70%', margin: '0 0   20px' }}>
+                                نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك. باستمرار زيارتك لهذا الموقع, فإنك توافق على استخدامنا لملفات تعريف الارتباط.
+                            </p>
+                        </div>
+                        <div className='end'>
+
+                            <button onClick={acceptCookies}>قبول ملفات تعريف الارتباط</button>
+                            <button style={{ marginLeft: '10px' }} onClick={openSettingsModal}>
+                                الإعدادات
+                            </button>
+                            <button style={{ marginLeft: '10px' }} onClick={() => setShowModal(false)}>
+                                إلغاء
+                            </button>
+                        </div >
+                    </div>
                 </div >
             )}
 

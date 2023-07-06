@@ -25,6 +25,7 @@ import Register from "./Register";
 import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
 import { logout } from "../Redux/actions/userActions";
+import { Button, Menu, MenuItem } from "@mui/material";
 const Navigation = ({ nav }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
@@ -203,6 +204,38 @@ const Navigation = ({ nav }) => {
                 <div className="first">ر.س</div>
                 <div className="second">English</div>
               </div>
+              <Button
+                className="curreny"
+                id="currency-button"
+                aria-controls={currencyOpen ? "currency-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={currencyOpen ? "true" : undefined}
+                onClick={handleCurrencyClick}
+                style={{ background: "none" }}
+              >
+                Currency <RiArrowDropDownLine style={{ fontSize: "16px" }} />
+              </Button>
+              <Menu
+                id="currency-menu"
+                anchorEl={currencyAnchorEl}
+                open={Boolean(currencyAnchorEl)}
+                onClose={handleCurrencyClose}
+                MenuListProps={{
+                  "aria-labelledby": "currency-button",
+                }}
+              >
+                {Object.entries(currencies).map(([code, currency]) => (
+                  <MenuItem
+                    key={code}
+                    onClick={() => {
+                      dispatch(getProducts({}, 1, 10, code)); // Pass the selected currency code here
+                      handleCurrencyClose();
+                    }}
+                  >
+                    {code}: {currency} {currencySymbolMap[code]}
+                  </MenuItem>
+                ))}
+              </Menu>
               <button className="res-drop" onClick={toggleDropdown2}>
                 الشركة
                 <img src={down} alt="" />

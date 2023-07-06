@@ -192,7 +192,7 @@ const MapComponent = ({ setActiveButton }) => {
             </div>
             <div style={{ height: '400px', width: '100%' }}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyA9wHLQcW2_cSLKnvcQ57jKsg48ltRpY0U' }}
+                    bootstrapURLKeys={{ key: 'AIzaSyDrW-XJ6MTOBsxqqI0Cyq_yIFYWqSKxRLs' }}
                     defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
                     defaultZoom={12}
                     center={selectedLocation}
