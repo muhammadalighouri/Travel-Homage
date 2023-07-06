@@ -220,7 +220,10 @@ const Controls = () => {
     }, [activeInput]);
 
     const handleSubmit = () => {
+
         if (selectedOption === "perDay") {
+            console.log(pickupTime);
+            console.log(returnTime);
         }
 
         if (selectedOption === "delivery") {
