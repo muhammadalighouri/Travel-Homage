@@ -13,7 +13,7 @@ import i9 from "../assests/Lead icon (7).png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
 import { ArrowUpward } from "@material-ui/icons";
-
+import Select from "react-select";
 import "../scss/navigation.scss";
 import { RxCross2 } from "react-icons/rx";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -27,7 +27,7 @@ import LoginIn from "./LoginIn";
 import down from "../assests/down.png";
 import { logout } from "../Redux/actions/userActions";
 import { Button, Menu, MenuItem } from "@mui/material";
-import { fetchCars } from "../Redux/actions/carActions";
+import { fetchCars, setBaseCurrency } from "../Redux/actions/carActions";
 const Navigation = ({ nav }) => {
   const [navToggler, setNavToggler] = useState(false);
   const [color, setColor] = useState(false);
@@ -43,6 +43,34 @@ const Navigation = ({ nav }) => {
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
   const success = userInfo?.success;
   const user = userInfo?.user;
+  const [selectedCurrency, setSelectedCurrency] = useState(null);
+  const currencies = [
+    { code: "SAR", name: "Saudi Riyal" },
+    { code: "AED", name: "United Arab Emirates Dirham" },
+    { code: "EGP", name: "Egyptian Pound" },
+    { code: "USD", name: "United States Dollar" },
+    { code: "EUR", name: "Euro" },
+    { code: "BHD", name: "Bahraini Dinar" },
+    { code: "JPY", name: "Japanese Yen" },
+    { code: "CNY", name: "Chinese Yuan" },
+    { code: "GBP", name: "British Pound" },
+    { code: "IDR", name: "Indonesian Rupiah" },
+    { code: "INR", name: "Indian Rupee" },
+    { code: "IQD", name: "Iraqi Dinar" },
+    { code: "JOD", name: "Jordanian Dinar" },
+    { code: "KWD", name: "Kuwaiti Dinar" },
+    { code: "OMR", name: "Omani Rial" },
+    { code: "QAR", name: "Qatari Riyal" },
+    { code: "TRY", name: "Turkish Lira" },
+  ];
+
+  const handleCurrencyChange = (selectedOption) => {
+    setSelectedCurrency(selectedOption);
+    const currencyCode = selectedOption ? selectedOption.code : "USD"; // Default to USD if no option is selected
+    dispatch(setBaseCurrency(currencyCode));
+    dispatch(fetchCars());
+  };
+
   const dispatch = useDispatch();
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleDropdown2 = () => setDropdownOpen2(!dropdownOpen2);
@@ -102,25 +130,6 @@ const Navigation = ({ nav }) => {
       name: "الأسئلة المتكررة",
       path: "/faq",
     },
-  ];
-  const currencies = [
-    { code: 'SAR', name: 'Saudi Riyal' },
-    { code: 'AED', name: 'United Arab Emirates Dirham' },
-    { code: 'EGP', name: 'Egyptian Pound' },
-    { code: 'USD', name: 'United States Dollar' },
-    { code: 'EUR', name: 'Euro' },
-    { code: 'BHD', name: 'Bahraini Dinar' },
-    { code: 'JPY', name: 'Japanese Yen' },
-    { code: 'CNY', name: 'Chinese Yuan' },
-    { code: 'GBP', name: 'British Pound' },
-    { code: 'IDR', name: 'Indonesian Rupiah' },
-    { code: 'INR', name: 'Indian Rupee' },
-    { code: 'IQD', name: 'Iraqi Dinar' },
-    { code: 'JOD', name: 'Jordanian Dinar' },
-    { code: 'KWD', name: 'Kuwaiti Dinar' },
-    { code: 'OMR', name: 'Omani Rial' },
-    { code: 'QAR', name: 'Qatari Riyal' },
-    { code: 'TRY', name: 'Turkish Lira' }
   ];
 
   // Example usag
@@ -213,66 +222,26 @@ const Navigation = ({ nav }) => {
                 </div>
               ) : (
                 <div className="user__signout">
-                  <div className="avatar">
-                    {/* <img src={avatarLogout} alt="" /> */}
-                  </div>
-                  {/* <button
-                    className="signup"
-                    onClick={() => {
-                      setMode("register")
-                      document.body.style.overflow = "hidden";
-                    }
-                    }
-                  >
-                    التسجيل
-                  </button> */}
+                  <div className="avatar"></div>
+
                   <button className="login" onClick={() => setMode("login")}>
                     تسجيل الدخول
                   </button>
                 </div>
               )}
               <div className="translate">
-                <div className="first">ر.س</div>
+                <Select
+                  id="currency-select"
+                  value={selectedCurrency}
+                  onChange={handleCurrencyChange}
+                  options={currencies}
+                  getOptionLabel={(option) => `${option.code}: ${option.name}`}
+                  getOptionValue={(option) => option.code}
+                  placeholder="Select Currency"
+                />
                 <div className="second">English</div>
               </div>
-              <Button
-                className="curreny"
-                id="currency-button"
-                aria-controls={currencyOpen ? "currency-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={currencyOpen ? "true" : undefined}
-                onClick={handleCurrencyClick}
-                style={{ background: "none" }}
-              >
-                Currency <RiArrowDropDownLine style={{ fontSize: "16px" }} />
-              </Button>
-              <Menu
-                id="currency-menu"
-                anchorEl={currencyAnchorEl}
-                open={Boolean(currencyAnchorEl)}
-                onClose={handleCurrencyClose}
-                MenuListProps={{
-                  "aria-labelledby": "currency-button",
-                }}
-              >
-                {
-                  currencies.map((item, index) => {
-                    return (
 
-                      <MenuItem
-                        key={item.code}
-                        onClick={() => {
-                          dispatch(fetchCars("", "", "", "", "", "", "", "", "", "", "", "", item.code)); // Pass the selected currency code here
-                          handleCurrencyClose();
-                        }}
-                      >
-                        {item.code}: {item.name}
-                      </MenuItem>
-                    )
-                  })
-                }
-
-              </Menu>
               <button className="res-drop" onClick={toggleDropdown2}>
                 الشركة
                 <img src={down} alt="" />
@@ -402,7 +371,11 @@ const Navigation = ({ nav }) => {
                                   >
                                     <div className="n">
                                       {a.name}
-                                      <img style={{ width: '20px' }} src={a.icon} alt="" />
+                                      <img
+                                        style={{ width: "20px" }}
+                                        src={a.icon}
+                                        alt=""
+                                      />
                                     </div>
                                   </Link>
                                 </>

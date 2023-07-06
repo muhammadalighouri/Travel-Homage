@@ -13,11 +13,12 @@ import CarD from "../components/CarD";
 import field from "../assests/Fleet/Field.png";
 import Navigate from "../components/Navigate";
 import FleetSide from "../components/FleetSide";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../Redux/actions/carActions";
 import { fetchFilters } from "../Redux/actions/filterActions";
 const Fleet = () => {
   const [display, setDisplay] = useState(false);
+  const cars = useSelector((state) => state.Cars) || {}
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCars());
@@ -26,7 +27,7 @@ const Fleet = () => {
 
   return (
     <>
-      <Navigation nav={[]}/>
+      <Navigation nav={[]} />
       <Banner text={"اسطولنا"} img={first} p={true} />
       <section id="fleet">
         <div className="container">

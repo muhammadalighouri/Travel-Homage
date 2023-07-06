@@ -56,7 +56,7 @@ const CarD = ({ display }) => {
   };
   // Function to calculate price after discount
   const priceAfterDiscount = (price, discount) => {
-    return price - (price * discount) / 100;
+    return (price - (price * discount) / 100).toFixed(2);
   };
   // Function to handle adding a car to favorites
   const handleAddFavorite = (event, carId) => {

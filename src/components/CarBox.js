@@ -1,13 +1,30 @@
-import React from 'react'
+import React from "react";
 import f5 from "../assests/Fleet/i.22.png";
 import green from "../assests/green.png";
-const CarBox = ({ cardDetails, car, getCategoryIcon, info, priceAfterDiscount, handleRemoveFavorite, handleAddFavorite, isFav }) => {
+import { useSelector } from "react-redux";
+const CarBox = ({
+    cardDetails,
+    car,
+    getCategoryIcon,
+    info,
+    priceAfterDiscount,
+    handleRemoveFavorite,
+    handleAddFavorite,
+    isFav,
+}) => {
+    const currency = useSelector((state) => state.Currency.baseCurrency) || {};
+    console.log(
+        priceAfterDiscount(
+            info === "perDay"
+                ? car?.pricePerDay.toFixed(2)
+                : car?.pricePerHour.toFixed(2),
+            car?.pricePerHour.toFixed(2)
+        )
+    );
+    console.log();
     return (
         <div className="box">
-            <div
-                className="wrapper-main"
-                onClick={() => cardDetails(car)}
-            >
+            <div className="wrapper-main" onClick={() => cardDetails(car)}>
                 <div className="top-h">
                     <div className="start">
                         <span>خصم {car.discount}%</span>
@@ -29,56 +46,44 @@ const CarBox = ({ cardDetails, car, getCategoryIcon, info, priceAfterDiscount, h
                         <div className="year">
                             <span>{car.year}</span>
                             <div className="price">
-                                <span className="n1">ر.س.</span>
+                                <span className="n1">{currency}</span>
                                 <span className="n2">
                                     {" "}
                                     {info === "perDay"
-                                        ? car?.pricePerDay
-                                        : car?.pricePerHour}
+                                        ? car?.pricePerDay.toFixed(2) // Displaying two decimal places for pricePerDay
+                                        : car?.pricePerHour.toFixed(2)}
                                 </span>
                             </div>
                         </div>
 
                         <div className="layer">
-                            <h2>
-                                {priceAfterDiscount(
-                                    info === "perDay"
-                                        ? car?.pricePerDay
-                                        : car?.pricePerHour,
-                                    car?.discount
-                                )}
-                                <span className="l1">ر.س.*</span>
-                            </h2>
+                            {info === "perDay" ? (
+                                <h2>
+                                    {priceAfterDiscount(
+                                        car?.pricePerDay.toFixed(2),
+
+                                        car?.discount.toFixed(2)
+                                    ).toFixed(2)}{" "}
+                                    <span>{currency}/Day</span>
+                                </h2>
+                            ) : (
+                                <span>
+                                    {priceAfterDiscount(
+                                        car?.pricePerHour.toFixed(2),
+
+                                        car?.discount.toFixed(2)
+                                    )}{" "}
+                                    <b>{currency}/Hour</b>
+                                </span>
+                            )}
                         </div>
                     </div>
                     <div className="wrap-img">
                         <img src={car?.image?.url} alt="" className="main" />
-                        {/* <div className="icons">
-                              <li>
-                                <img src={s1} alt="" />
-                                <span>{car?.maxPeople}</span>
-                              </li>
-                              <li>
-                                <img src={s2} alt="" />
-                                <span>{car?.bags}</span>
-                              </li>
-                              <li>
-                                <img src={s3} alt="" />
-                                <span>{car?.numDoors}</span>
-                              </li>
-                              <li>
-                                <img src={s4} alt="" />
-                                <span>{car?.engine}</span>
-                              </li>
-                            </div> */}
-
-                        {/* <div className="main-btn">
-                            <span>احجز الآن</span>
-                        </div> */}
                     </div>
                 </div>
-                {
-                    isFav && <div className="impression">
+                {isFav && (
+                    <div className="impression">
                         {/* Render the "Remove from Favorites" button for cars that are already favorited */}
                         {car.isFavorited ? (
                             <div
@@ -96,10 +101,10 @@ const CarBox = ({ cardDetails, car, getCategoryIcon, info, priceAfterDiscount, h
                             </div>
                         )}
                     </div>
-                }
+                )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CarBox
+export default CarBox;

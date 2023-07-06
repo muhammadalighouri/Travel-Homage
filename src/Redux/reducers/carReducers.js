@@ -26,6 +26,8 @@ export const carsReducer = (state = initialState, action) => {
             return {
                 loading: false,
                 cars: action.payload.cars,
+                currency: action.payload.currency,
+
                 error: '',
                 pagination: {
                     total: action.payload.total,
@@ -50,6 +52,21 @@ export const toggleReducer = (state = toggleInitialState, action) => {
             return {
                 ...state,
                 toggle: !state.toggle,
+            };
+        default:
+            return state;
+    }
+};
+const initialSt = {
+    baseCurrency: 'SAR', // Default base currency
+};
+
+export const currencyReducer = (state = initialSt, action) => {
+    switch (action.type) {
+        case "SET_BASE_CURRENCY":
+            return {
+                ...state,
+                baseCurrency: action.payload,
             };
         default:
             return state;
