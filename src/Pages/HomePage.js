@@ -18,6 +18,7 @@ import Slider from "../components/Slider";
 import BookingF from "../components/BookingF";
 import { HomeNav } from "../assests/data";
 import PrivacyPage from "./PrivacyPage";
+import CareersPage from "./CareersPage";
 
 const HomePage = () => {
   window.scroll(0, 0);
@@ -61,8 +62,7 @@ const HomePage = () => {
         {/* <BookingF /> */}
       </section>
 
-
-
+      {/* <CareersPage /> */}
     </>
   );
 };

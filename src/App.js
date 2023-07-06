@@ -31,6 +31,7 @@ import MediaPage from "./Pages/MediaPage";
 import TermsPage from "./Pages/TermsPage";
 import CookiesPage from "./Pages/CookiesPage";
 import CookieModal from "./components/CookieModal";
+import CareersPage from "./Pages/CareersPage";
 
 function App() {
   const { loading } = useSelector((state) => state.loading);
@@ -72,6 +73,7 @@ function App() {
           <Route path="/media" element={<MediaPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/cookies" element={<CookiesPage />} />
+          <Route path="/careers" element={<CareersPage/>} />
         </Routes>
         {/* <Footer /> */}
       </>
