@@ -5,7 +5,10 @@ import img1 from "../assests/footer-img/Badge.png";
 import img2 from "../assests/footer-img/Badge (1).png";
 import icon from "../assests/footer-img/Group.png";
 import chatImg from "../assests/footer-img/Chatbot.png";
-
+import scocialIcon1 from "../assests/footer-icons/download 1.svg";
+import scocialIcon2 from "../assests/footer-icons/download 2.svg";
+import scocialIcon3 from "../assests/footer-icons/download 3.svg";
+import scocialIcon4 from "../assests/footer-icons/download 4.svg";
 import { Group, Instagram } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import ChatBox from "./ChatBox";
@@ -39,6 +42,24 @@ const Footer = () => {
       link4: "/about-us",
     },
   ];
+  const icons = [
+    {
+      img: scocialIcon1,
+      link: "https://twitter.com/i/flow/login?redirect_after_login=%2Ftravelcrs",
+    },
+    {
+      img: scocialIcon2,
+      link: "https://web.facebook.com/travelcrs?_rdc=1&_rdr",
+    },
+    {
+      img: scocialIcon3,
+      link: "https://www.linkedin.com/company/travelcrs",
+    },
+    {
+      img: scocialIcon4,
+      link: "https://www.instagram.com/travel_crs/",
+    },
+  ];
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 300) {
       setScroll(true);
@@ -62,7 +83,16 @@ const Footer = () => {
               <img className="second" src={img2} alt="" />
             </div>
             <div className="media-icon">
-              <img src={icon} alt="" />
+              <div className="social-icons">
+                {icons.map((e) => {
+                  return (
+                    <a href={e.link}>
+                      <img src={e.img} alt="" />
+                    </a>
+                  );
+                })}
+                <div className="text">Travalcrs</div>
+              </div>
             </div>
           </div>
 
@@ -119,7 +149,7 @@ const Footer = () => {
                         window.scroll(0, 0);
                       }}
                     >
-                      <li>{i.h6}</li>
+                      <li>{i.h7}</li>
                     </Link>
                   </ul>
                 </div>
