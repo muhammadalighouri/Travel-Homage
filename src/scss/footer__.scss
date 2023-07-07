@@ -44,11 +44,12 @@ footer {
         }
 
         .icons {
+
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
-
+width: 100%;
           .second {
             border: 2px solid black;
             border-radius: 10px;
@@ -68,6 +69,23 @@ footer {
           @include md {
             margin-right: 0px;
             margin-right: 0px;
+          }
+
+          .social-icons {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 10px;
+
+            img {
+              width: 50%;
+            }
+          }
+
+          .text {
+            font-family: "Cairo", sans-serif;
+            color: #000000;
+            font-weight: 400;
           }
         }
       }

@@ -33,6 +33,7 @@ header {
       background: #ffffff;
       border-bottom-right-radius: 75px;
       border-bottom-left-radius: 75px;
+      box-shadow: 0 0 25px 2px #00000021;
 
       @include mobile {
         padding: 28px 15px;
