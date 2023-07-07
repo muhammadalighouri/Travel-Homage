@@ -3,12 +3,13 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import "../scss/careeers-page.scss";
 import { Input, Select } from "@material-ui/core";
+import Banner from "../components/Banner";
 const CareersPage = () => {
   return (
     <>
       <Navigation nav={[]} />
+      <Banner />
       <section id="careers-page">
-
         <div className="container">
           <div className="heading">
             <ul>

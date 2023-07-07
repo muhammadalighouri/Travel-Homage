@@ -1,0 +1,149 @@
+#career-form-page {
+    background-color: white;
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 90px 20px;
+
+        .heading {
+            width: 100%;
+            text-align: end;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            h1 {
+                color: #373a36 !important;
+                font-family: "Cairo", sans-serif;
+                font-size: 40px !important;
+                text-align: end !important;
+                text-transform: none !important;
+                font-weight: 500 !important;
+                padding: 40px 0px;
+                width: 100%;
+            }
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            row-gap: 30px;
+            width: 100%;
+
+            .grid-box {
+                height: 250px;
+                border: 1px solid #bdb8b86e;
+                border-radius: 7px;
+                background-color: #eeeeee40;
+                box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+                padding: 3rem !important;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .first {
+                    display: flex;
+                    align-items: start;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    row-gap: 40px;
+
+                    .first-heading {
+                        span {
+                            color: #333;
+                            font-weight: 500;
+                            font-size: 14px;
+
+                        }
+
+                        p {
+                            font-size: 13px;
+                            color: #808080a3;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .btn {
+                        padding: 10px 20px;
+                        color: #000000;
+                        background-color: #FFCD00;
+                        cursor: pointer;
+                        font-weight: bold;
+                        width: 180px;
+                        position: relative;
+                        top: 12px;
+                        font-size: 14px;
+                    }
+                }
+
+                .second {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                    justify-content: end;
+                    height: 100%;
+                    row-gap: 10px;
+
+                    .second-heading-1 {
+                        color: rgb(142, 136, 136);
+                        font-size: 14px;
+                        font-weight: 500;
+                        display: flex;
+                        flex-direction: row-reverse;
+                        gap: 5px;
+                        align-items: end;
+                        justify-content: end;
+
+                        .black {
+                            color: #000000;
+                            font-weight: bold;
+                        }
+                    }
+
+                    p {
+                        color: #333;
+                        font-size: 14px;
+                        font-weight: 500;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 6px;
+                        flex-direction: row-reverse;
+
+                        a {
+                            color: #333;
+                            transition: all 0.5s ease-in-out;
+
+                            &:hover {
+                                text-decoration: underline;
+                                color: rgba(78, 78, 210, 0.672);
+                            }
+                        }
+                    }
+
+                    .second-heading-2 {
+                        color: rgb(142, 136, 136);
+                        font-size: 14px;
+                        font-weight: 500;
+                        display: flex;
+                        flex-direction: row-reverse;
+                        gap: 5px;
+                        align-items: end;
+                        justify-content: end;
+margin-top: 20px;
+                     
+                    }
+
+                }
+            }
+        }
+    }
+
+}

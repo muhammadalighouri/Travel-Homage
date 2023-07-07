@@ -11,15 +11,14 @@ import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFilters } from "../Redux/actions/filterActions";
 import Maps from "../components/Maps";
-// import BookingSidebar from "../components/BookingSidebar";
 import Booking from "./Booking";
 import Navigate from "../components/Navigate";
 import Slider from "../components/Slider";
 import BookingF from "../components/BookingF";
 import { HomeNav } from "../assests/data";
 import PrivacyPage from "./PrivacyPage";
-import CareersPage from "./CareersPage";
 
+import CareerFormPage from "./CareerFormPage";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -62,7 +61,7 @@ const HomePage = () => {
         {/* <BookingF /> */}
       </section>
 
-      {/* <CareersPage /> */}
+      {/* <CareerFormPage /> */}
     </>
   );
 };
