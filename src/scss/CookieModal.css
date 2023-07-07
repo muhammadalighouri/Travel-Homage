@@ -13,11 +13,12 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: auto;
+  flex-direction: row-reverse;
 }
 .cookie-modal .container .start {
   display: grid;
-  justify-content: start;
-  text-align: start;
+  justify-content: end;
+  text-align: end;
 }
 .cookie-modal .container .end {
   width: 50%;
@@ -27,9 +28,18 @@
   font-size: 20px;
   margin-bottom: 10px;
 }
-
+.para {
+  max-width: 400px;
+}
 .cookie-modal p {
   margin-bottom: 20px;
+  width: 100% !important;
+}
+
+.end {
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 .cookie-modal button {

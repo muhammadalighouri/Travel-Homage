@@ -514,9 +514,8 @@ header {
             justify-content: end;
             list-style: none;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
             transform: translateX(0%);
-
             @include md {
               position: fixed;
               top: 0px;

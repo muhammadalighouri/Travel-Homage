@@ -2,10 +2,11 @@ const urls = {
   // baseUrl: "https://moto-tank-backend.vercel.app",
   // baseUrl: "http://server.travelcrs.sa/",
   baseUrl: "http://localhost:5000/",
-  // baseUrl: "https://travel-backend-7qhe.onrender.com/",
+  baseUrl: "https://travel-backend-7qhe.onrender.com/",
   auth: {
     login: "/auth/login",
     signup: "/auth/signup",
+
     refreshAccessToken: "/auth/RefreshAccessToken",
   },
   user: {

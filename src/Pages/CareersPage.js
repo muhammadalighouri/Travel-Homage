@@ -26,7 +26,7 @@ const CareerPage = () => {
                         <span>تم نشره في مارس 23, 2023</span>
                         <p>(تم التحديث قبل واحد عام مضت)</p>
                       </div>
-                      <Link to={"/carrers-form"} className="btn">
+                      <Link to={"/careers-form"} className="btn">
                         قدِّم الآن
                       </Link>
                     </div>
