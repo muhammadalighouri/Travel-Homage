@@ -6,8 +6,8 @@ import { Input, Select } from "@material-ui/core";
 const CareersPage = () => {
   return (
     <>
+      <Navigation nav={[]} />
       <section id="careers-page">
-        <Navigation nav={[]} />
 
         <div className="container">
           <div className="heading">

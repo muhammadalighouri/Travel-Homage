@@ -13,14 +13,7 @@ const CarBox = ({
     isFav,
 }) => {
     const currency = useSelector((state) => state.Currency.baseCurrency) || {};
-    console.log(
-        priceAfterDiscount(
-            info === "perDay"
-                ? car?.pricePerDay.toFixed(2)
-                : car?.pricePerHour.toFixed(2),
-            car?.pricePerHour.toFixed(2)
-        )
-    );
+
     console.log();
     return (
         <div className="box">
@@ -63,7 +56,7 @@ const CarBox = ({
                                         car?.pricePerDay.toFixed(2),
 
                                         car?.discount.toFixed(2)
-                                    ).toFixed(2)}{" "}
+                                    )}{" "}
                                     <span>{currency}/Day</span>
                                 </h2>
                             ) : (
