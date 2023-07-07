@@ -43,8 +43,8 @@ const CarBox = ({
                                 <span className="n2">
                                     {" "}
                                     {info === "perDay"
-                                        ? car?.pricePerDay.toFixed(2) // Displaying two decimal places for pricePerDay
-                                        : car?.pricePerHour.toFixed(2)}
+                                        ? car?.pricePerDay // Displaying two decimal places for pricePerDay
+                                        : car?.pricePerHour}
                                 </span>
                             </div>
                         </div>
@@ -53,18 +53,18 @@ const CarBox = ({
                             {info === "perDay" ? (
                                 <h2>
                                     {priceAfterDiscount(
-                                        car?.pricePerDay.toFixed(2),
+                                        car?.pricePerDay,
 
-                                        car?.discount.toFixed(2)
+                                        car?.discount
                                     )}{" "}
                                     <span>{currency}/Day</span>
                                 </h2>
                             ) : (
                                 <span>
                                     {priceAfterDiscount(
-                                        car?.pricePerHour.toFixed(2),
+                                        car?.pricePerHour,
 
-                                        car?.discount.toFixed(2)
+                                        car?.discount
                                     )}{" "}
                                     <b>{currency}/Hour</b>
                                 </span>

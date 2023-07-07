@@ -137,7 +137,13 @@ const Navigation = ({ nav }) => {
       path: "/careers",
     },
   ];
-
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      direction: 'rtl', // Set direction to right-to-left
+      textAlign: 'right', // Set text alignment to right
+    }),
+  };
   // Example usag
   return (
     <>
@@ -240,10 +246,12 @@ const Navigation = ({ nav }) => {
                   id="currency-select"
                   value={selectedCurrency}
                   onChange={handleCurrencyChange}
+                  styles={customStyles}
                   options={currencies}
                   getOptionLabel={(option) => `${option.code}: ${option.name}`}
                   getOptionValue={(option) => option.code}
                   placeholder="Select Currency"
+
                 />
                 <div className="second">English</div>
               </div>

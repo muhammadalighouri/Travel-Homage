@@ -66,16 +66,16 @@ const Navigate = ({ car, closeModal }) => {
                   <div className="btn">
                     <p className="one">
                       {info === "perDay"
-                        ? car?.pricePerDay.toFixed(2)
-                        : car?.pricePerHour.toFixed(2)}
+                        ? car?.pricePerDay
+                        : car?.pricePerHour}
                     </p>
                     <p className="second">
                       {" "}
                       {priceAfterDiscount(
                         info === "perDay"
-                          ? car?.pricePerDay.toFixed(2)
-                          : car?.pricePerHour.toFixed(2),
-                        car?.discount.toFixed(2)
+                          ? car?.pricePerDay
+                          : car?.pricePerHour,
+                        car?.discount
                       )}{" "}
                       {currency}
                     </p>
@@ -90,18 +90,18 @@ const Navigate = ({ car, closeModal }) => {
                     {info === "perDay" ? (
                       <span>
                         {priceAfterDiscount(
-                          car?.pricePerDay.toFixed(2),
+                          car?.pricePerDay,
 
-                          car?.discount.toFixed(2)
+                          car?.discount
                         )}{" "}
                         <b>{currency}/Day</b>
                       </span>
                     ) : (
                       <span>
                         {priceAfterDiscount(
-                          car?.pricePerHour.toFixed(2),
+                          car?.pricePerHour,
 
-                          car?.discount.toFixed(2)
+                          car?.discount
                         )}{" "}
                         <b>{currency}/Hour</b>
                       </span>

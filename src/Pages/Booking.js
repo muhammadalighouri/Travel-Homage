@@ -235,7 +235,7 @@ const Booking = () => {
   const { addresses } = useSelector((state) => state.Address);
 
   const error = useSelector((state) => state.Address.error);
-
+  const currency = useSelector((state) => state.Currency.baseCurrency) || {};
   const handleCreateAddress = () => {
     setShowModal(true);
   };
@@ -360,6 +360,7 @@ const Booking = () => {
               addonsPrice -
               calculateDiscountAmount(price, selectedCar?.discount),
             rate: "delivery",
+            currency
           })
         )
           .then((res) => {
@@ -386,6 +387,7 @@ const Booking = () => {
               addonsPrice -
               calculateDiscountAmount(price, selectedCar?.discount),
             rate: option,
+            currency,
             delivery: option === "delivery" ? true : false,
 
             days: diffInDays,

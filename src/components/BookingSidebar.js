@@ -8,6 +8,7 @@ import moment from 'moment';
 
 import "../scss/bookingside.scss";
 import img1 from "../assests/booking/Rectangle 23.png";
+import { useSelector } from "react-redux";
 const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, pickupLocation, pickupTime, returnTime, setConfirmBooking, confirmBooking, handleSubmit, BookingLoading, option, diffInHours, diffInMonths }) => {
   const calculateDiscountAmount = (price, discount) => {
     const discountAmount = (price * discount) / 100;
@@ -17,6 +18,7 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
     const taxesAmount = (price * 15) / 100;
     return taxesAmount;
   };
+  const currency = useSelector((state) => state.Currency.baseCurrency) || {};
   return (
     <>
       <section id="sidebar">
@@ -44,7 +46,7 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
             </li>
             <li className="box" style={{ marginTop: "-20px" }}>
               <span className="h">المجموع الأولي</span>
-              <span className="n">{price} ر.س.</span>
+              <span className="n">{currency}&nbsp;{price} </span>
             </li>
             {/* <li className="box">
               <span className="h">الخصم</span>
@@ -56,23 +58,23 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
             </li> */}
             <li className="box">
               <span className="h">الإضافات</span>
-              <span className="n">{addonsPrice}ر.س.</span>
+              <span className="n">{currency}&nbsp;{addonsPrice}</span>
             </li>
             <li className="box">
               <span className="h">discount</span>
-              <span className="n">-{calculateDiscountAmount(price, selectedCar?.discount)}ر.س.</span>
+              <span className="n">-{currency}&nbsp;{calculateDiscountAmount(price, selectedCar?.discount)}</span>
             </li>
             <li className="box">
               <span className="h">الضريبة</span>
               <span className="n" style={{ color: "#00AFAA" }}>
-                +{calculateTaxesAmount(price)} (15%)
+                +{currency}&nbsp;{calculateTaxesAmount(price)} (15%)
               </span>
             </li>
             <li className="box">
               <span className="h" style={{ fontWeight: "700" }}>
                 الإجمالي
               </span>
-              <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount) + calculateTaxesAmount(price)} ر.س.</span>
+              <span className="n">{currency}&nbsp;{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount) + calculateTaxesAmount(price)} </span>
             </li>
           </ul>
         </div>
@@ -167,28 +169,28 @@ const BookingSidebar = ({ selectedCar, addonsPrice, price, returnLocation, picku
                   </li>
                   <li className="box" style={{ marginTop: "-20px" }}>
                     <span className="h">المجموع الأولي</span>
-                    <span className="n">{price} ر.س.</span>
+                    <span className="n">{currency}&nbsp;{price} </span>
                   </li>
 
                   <li className="box">
                     <span className="h">الإضافات</span>
-                    <span className="n">{addonsPrice}ر.س.</span>
+                    <span className="n">{currency}&nbsp;{addonsPrice}</span>
                   </li>
                   <li className="box">
                     <span className="h">discount</span>
-                    <span className="n">-{calculateDiscountAmount(price, selectedCar?.discount)}ر.س.</span>
+                    <span className="n">-{currency}&nbsp;{calculateDiscountAmount(price, selectedCar?.discount)}</span>
                   </li>
                   <li className="box">
                     <span className="h">الضريبة</span>
                     <span className="n" style={{ color: "#00AFAA" }}>
-                      +{calculateTaxesAmount(price)} (15%)
+                      +{currency}&nbsp;{calculateTaxesAmount(price)} (15%)
                     </span>
                   </li>
                   <li className="box">
                     <span className="h" style={{ fontWeight: "700" }}>
                       الإجمالي
                     </span>
-                    <span className="n">{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount) + calculateTaxesAmount(price)} ر.س.</span>
+                    <span className="n">{currency}&nbsp;{price + addonsPrice - calculateDiscountAmount(price, selectedCar?.discount) + calculateTaxesAmount(price)}</span>
                   </li>
                   <div className="btns">
                     <button className="cancel" onClick={() => setConfirmBooking(false)}>Cancel</button>
