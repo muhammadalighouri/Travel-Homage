@@ -19,6 +19,8 @@ import { HomeNav } from "../assests/data";
 import PrivacyPage from "./PrivacyPage";
 
 import CareerFormPage from "./CareerFormPage";
+import MediaPage from "./MediaPage";
+import MediaModal from "../components/MediaModal";
 const HomePage = () => {
   window.scroll(0, 0);
   const filter = useSelector((state) => state.Filters);
@@ -61,7 +63,6 @@ const HomePage = () => {
         {/* <BookingF /> */}
       </section>
 
-      {/* <CareerFormPage /> */}
     </>
   );
 };

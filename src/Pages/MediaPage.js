@@ -1,6 +1,5 @@
 import React from "react";
 import first from "../assests/Photo car.png";
-
 import "../scss/media-page.scss";
 import mediaImg from "../assests/Sale.1.jpg";
 import Banner from "../components/Banner";

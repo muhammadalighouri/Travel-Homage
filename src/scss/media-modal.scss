@@ -1,0 +1,125 @@
+@import "./variable.scss";
+@import "./media.scss";
+
+#media-modal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    padding: 30px 30px;
+    right: 0px;
+    z-index: 11111;
+    background: rgba(0, 0, 0, 0.3607843137);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        max-width: 1300px;
+        flex-direction: column;
+        padding: 10px 20px;
+        background: #fafafa;
+        border-radius: 20px;
+        width: 700px;
+        padding-top: 90px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0px;
+        position: relative;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            border-radius: 5px;
+
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #fafafa;
+        }
+
+        .para {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            justify-content: center;
+            width: 100%;
+            row-gap: 12px;
+            padding: 0px 0px 20px;
+
+            p {
+                color: rgb(0, 0, 0);
+                text-align: end;
+                font-size: 16px;
+                font-weight: 400;
+                font-family: "Cairo";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 30px;
+                margin-bottom: 40px;
+            }
+        }
+
+        .date-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            margin-top: -10px;
+            margin-bottom: 15px;
+
+            .date {
+                color: black;
+                font-weight: 600;
+                font-family: "Cairo";
+                font-size: 16px;
+            }
+        }
+
+        .heading {
+            width: 100%;
+            text-align: end;
+            padding-bottom: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .cross {
+                padding: 10px;
+                border-radius: 100%;
+                background: rgba(0, 0, 0, 0.0509803922);
+
+                img {
+
+                    cursor: pointer;
+                    filter: drop-shadow(0px 0px 0px black) invert(1);
+
+                    @include mobile {
+                        margin-top: 18px;
+                    }
+                }
+            }
+
+            h1 {
+                color: #373a36 !important;
+                font-family: "Cairo", sans-serif;
+                font-size: 30px !important;
+                text-align: end !important;
+                text-transform: none !important;
+                font-weight: 700 !important;
+                margin: 0px;
+            }
+        }
+    }
+
+
+}

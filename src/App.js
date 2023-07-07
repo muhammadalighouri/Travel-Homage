@@ -32,7 +32,8 @@ import TermsPage from "./Pages/TermsPage";
 import CookiesPage from "./Pages/CookiesPage";
 import CookieModal from "./components/CookieModal";
 import CareersPage from "./Pages/CareersPage";
-import Test from "./Pages/Test";
+import CareerFormPage from "./Pages/CareerFormPage";
+// import Test from "./Pages/Test";
 
 function App() {
   const { loading } = useSelector((state) => state.loading);
@@ -75,6 +76,7 @@ function App() {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/cookies" element={<CookiesPage />} />
           <Route path="/careers" element={<CareersPage />} />
+          <Route path="/careers-form" element={<CareerFormPage />} />
         </Routes>
         {/* <Footer /> */}
       </>

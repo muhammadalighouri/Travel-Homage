@@ -10,6 +10,7 @@ import i7 from "../assests/Schema.png";
 import i8 from "../assests/Lead icon (6).png";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import i9 from "../assests/Lead icon (7).png";
+import i10 from "../assests/careers.png";
 import profile from "../assests/Avatar.png";
 import arrow1 from "../assests/arrow1.png";
 import { ArrowUpward } from "@material-ui/icons";
@@ -129,6 +130,11 @@ const Navigation = ({ nav }) => {
       icon: i9,
       name: "الأسئلة المتكررة",
       path: "/faq",
+    },
+    {
+      icon: i10,
+      name: "وظائف",
+      path: "/careers",
     },
   ];
 
