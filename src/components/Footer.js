@@ -45,15 +45,15 @@ const Footer = () => {
   const icons = [
     {
       img: scocialIcon1,
-      link: "https://twitter.com/i/flow/login?redirect_after_login=%2Ftravelcrs",
+      link: "https://www.linkedin.com/company/travelcrs",
     },
     {
       img: scocialIcon2,
-      link: "https://web.facebook.com/travelcrs?_rdc=1&_rdr",
-    },
-    {
-      img: scocialIcon3,
-      link: "https://www.linkedin.com/company/travelcrs",
+    link: "https://twitter.com/i/flow/login?redirect_after_login=%2Ftravelcrs",
+  },
+  {
+    img: scocialIcon3,
+    link: "https://web.facebook.com/travelcrs?_rdc=1&_rdr",
     },
     {
       img: scocialIcon4,
@@ -83,10 +83,11 @@ const Footer = () => {
               <img className="second" src={img2} alt="" />
             </div>
             <div className="media-icon">
-\              <div className="social-icons">
+       
+              <div className="social-icons">
                 {icons.map((e) => {
                   return (
-                    <a href={e.link}>
+                    <a href={e.link} target="blank_">
                       <img src={e.img} alt="" />
                     </a>
                   );
@@ -102,6 +103,14 @@ const Footer = () => {
                 <div className="box">
                   <h2>{i.name}</h2>
                   <ul>
+                    <Link
+                      to={i.link4}
+                      onClick={() => {
+                        window.scroll(0, 0);
+                      }}
+                    >
+                      <li>{i.h7}</li>
+                    </Link>
                     <Link
                       onClick={() => {
                         navigate("/privacy-policy");
@@ -142,14 +151,6 @@ const Footer = () => {
                       }}
                     >
                       <li>{i.h6}</li>
-                    </Link>
-                    <Link
-                      to={i.link4}
-                      onClick={() => {
-                        window.scroll(0, 0);
-                      }}
-                    >
-                      <li>{i.h7}</li>
                     </Link>
                   </ul>
                 </div>
