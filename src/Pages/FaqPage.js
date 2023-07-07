@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import first from "../assests/Photo car.png";
+import axios from "../api/axios"
 import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
@@ -16,10 +17,19 @@ import i6 from "../assests/Faq-img/i.6.png";
 import i7 from "../assests/Faq-img/i.7.png";
 import i8 from "../assests/Faq-img/i.8.png";
 const FaqPage = () => {
+  const [faqs, setFaqs] = useState([]);
+  const getSlides = async () => {
+    const { data } = await axios.get("/api/v1/media/faqs");
+    setFaqs(data);
+  };
+  useEffect(() => {
+    getSlides()
+  }, [])
+
   return (
     <>
       <section id="faq-page">
-      <Navigation nav={[]}/>
+        <Navigation nav={[]} />
         <Banner
           text={"  الأسئلةالمتكررة "}
           img={first}
@@ -74,34 +84,14 @@ const FaqPage = () => {
               <h1> جديد في تطبيق النشرة الإخبارية؟</h1>
               <h2> كل ما تحتاج لمعرفته حول البدء.</h2>
             </div>
-            <FaqAccordion title="عنوان رئيسي هنا">
-              <p>Content for Accordion 1</p>
-            </FaqAccordion>
-            <FaqAccordion title="عنوان رئيسي هنا">
-              <p>Content for Accordion 2</p>
-            </FaqAccordion>
-            <FaqAccordion title="عنوان رئيسي هنا">
-              <p>Content for Accordion 3</p>
-            </FaqAccordion>
-            <div className="center-content">
-              <h2> العنوان المشروط الخامل 4؟</h2>
-              <p>
-                ذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى
-                زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء
-                لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث
-                يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم
-                الموقع.
-              </p>
-            </div>
-            <FaqAccordion title="عنوان رئيسي هنا">
-              <p>Content for Accordion 1</p>
-            </FaqAccordion>
-            <FaqAccordion title="عنوان رئيسي هنا">
-              <p>Content for Accordion 2</p>
-            </FaqAccordion>
-            <FaqAccordion title="عنوان رئيسي هنا">
-              <p>Content for Accordion 3</p>
-            </FaqAccordion>
+            {
+              faqs.map((item, index) => (
+                <>
+                  <FaqAccordion title={item.question}>
+                    <p>{item.answer}</p>
+                  </FaqAccordion>
+                </>
+              ))}
           </div>
         </div>
         <Footer />

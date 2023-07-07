@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import first from "../assests/Photo car.png";
 import "../scss/media-page.scss";
+import axios from "../api/axios"
 import mediaImg from "../assests/Sale.1.jpg";
 import Banner from "../components/Banner";
 import Navigation from "../components/Navigation";
@@ -11,7 +12,18 @@ import { GoShareAndroid } from "react-icons/go";
 import { BiDotsVerticalRounded, BiGridAlt } from "react-icons/bi";
 import MediaSlider from "../components/MediaSlider";
 import { BsFillArrowDownCircleFill } from "react-icons/bs";
+import MediaModal from "../components/MediaModal"
 const MediaPage = () => {
+  const [show, setShow] = useState(false);
+  const [blogs, setBlogs] = useState([]);
+  const getSlides = async () => {
+    const { data } = await axios.get("/api/v1/media/blogs");
+    setBlogs(data);
+  };
+  useEffect(() => {
+    getSlides()
+  }, [])
+
   return (
     <>
       <Navigation nav={[]} />
@@ -33,94 +45,34 @@ const MediaPage = () => {
               </div>
             </div>
             <div className="boxes-top">
-              <div className="box">
-                <img src={mediaImg} alt="" />
-                <h2>داخل وخارج المملكة</h2>
-                <p>لدينا خطة توسع شاملة للوصول ا</p>
-                <div className="bottom-box">
-                  <span>كانوا</span>
-                  <div className="icons">
-                    <GoShareAndroid />
-                    <BiDotsVerticalRounded />
-                  </div>
-                </div>
-              </div>
-              <div className="box">
-                <img src={mediaImg} alt="" />
-                <h2>داخل وخارج المملكة</h2>
-                <p>لدينا خطة توسع شاملة للوصول ا</p>
-                <div className="bottom-box">
-                  <span>كانوا</span>
-                  <div className="icons">
-                    <GoShareAndroid />
-                    <BiDotsVerticalRounded />
-                  </div>
-                </div>
-              </div>
-              <div className="box">
-                <img src={mediaImg} alt="" />
-                <h2>داخل وخارج المملكة</h2>
-                <p>لدينا خطة توسع شاملة للوصول ا</p>
-                <div className="bottom-box">
-                  <span>كانوا</span>
-                  <div className="icons">
-                    <GoShareAndroid />
-                    <BiDotsVerticalRounded />
-                  </div>
-                </div>
-              </div>
+              {
+                blogs.map((item) => {
+                  return (
+                    <div className="box" >
+                      <img src={item?.image?.url} alt="" />
+                      <h2>{item.title}</h2>
+                      <p>لدينا خطة توسع شاملة للوصول ا</p>
+                      <div className="bottom-box">
+                        <span>كانوا</span>
+                        <div className="icons">
+                          <GoShareAndroid />
+                          <BiDotsVerticalRounded />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+
             </div>
-            <div className="box-heading">
-              <span>داخل</span>
-              <div></div>
-            </div>
-            <div className="boxes-bottom">
-              <div className="box">
-                <img src={mediaImg} alt="" />
-                <h2>داخل وخارج المملكة</h2>
-                <p>لدينا خطة توسع شاملة للوصول ا</p>
-                <div className="bottom-box">
-                  <span>كانوا</span>
-                  <div className="icons">
-                    <GoShareAndroid />
-                    <BiDotsVerticalRounded />
-                  </div>
-                </div>
-              </div>
-              <div className="box">
-                <img src={mediaImg} alt="" />
-                <h2>داخل وخارج المملكة</h2>
-                <p>لدينا خطة توسع شاملة للوصول ا</p>
-                <div className="bottom-box">
-                  <span>كانوا</span>
-                  <div className="icons">
-                    <GoShareAndroid />
-                    <BiDotsVerticalRounded />
-                  </div>
-                </div>
-              </div>
-              <div className="box">
-                <img src={mediaImg} alt="" />
-                <h2>داخل وخارج المملكة</h2>
-                <p>لدينا خطة توسع شاملة للوصول ا</p>
-                <div className="bottom-box">
-                  <span>كانوا</span>
-                  <div className="icons">
-                    <GoShareAndroid />
-                    <BiDotsVerticalRounded />
-                  </div>
-                </div>
-              </div>
-            </div>
+
+
           </div>
           <div className="grid-2">
             <div className="main-box">
-              <img src={mediaImg} alt="" />
+              <img src={blogs[0]?.image?.url} alt="" />
               <h2>
-                لدينا خطة توسع شاملة للوصول إلى عملائنا أينما كانوا داخل وخارج
-                الدينا خطة توسع شاملة للوصول إلى عملائنا أينما كانوا داخل وخارج
-                ا لدينا خطة توسع شاملة للوصول إلى عملائنا أينما كانولمملكة
-                العربية السعوديةلمملكة العربية السعودية
+                {blogs[0]?.content}
               </h2>
 
               <div className="bottom-box">
@@ -154,7 +106,9 @@ const MediaPage = () => {
           </div>
         </div>
       </section>
-
+      {
+        show && <MediaModal />
+      }
       <Footer />
     </>
   );
