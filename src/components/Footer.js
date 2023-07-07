@@ -32,10 +32,11 @@ const Footer = () => {
       h4: "              الخدمات     ",
       h5: "             الفروع      ",
       h6: "             المركز الإعلامي     ",
-      h7: "                         المركز الإعلامي          ",
+      h7: "                        من نحن          ",
       link1: "/fleet",
       link2: "/services",
       link3: "/media",
+      link4: "/about-us",
     },
   ];
   window.addEventListener("scroll", () => {
@@ -76,7 +77,7 @@ const Footer = () => {
                         navigate("/privacy-policy");
                         window.scroll(0, 0);
                       }}
-                      style={{ color: 'black' }}
+                      style={{ color: "black" }}
                     >
                       {i.h2}
                     </Link>
@@ -113,7 +114,7 @@ const Footer = () => {
                       <li>{i.h6}</li>
                     </Link>
                     <Link
-                      to={""}
+                      to={i.link4}
                       onClick={() => {
                         window.scroll(0, 0);
                       }}
@@ -130,7 +131,7 @@ const Footer = () => {
           <div className="center">
             <p>ترفل حلول تأجير السيارات</p>
             <span>مزود خدمة التنقل السعودي لحلول تأجير السيارات</span>
-            <span>Travel LTD شركة ترفل المحدودة  ©  2023 </span>
+            <span>Travel LTD شركة ترفل المحدودة © 2023 </span>
           </div>
           <div className="chatbot">
             {chat && <ChatBox />}

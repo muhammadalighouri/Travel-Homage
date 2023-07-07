@@ -6,7 +6,6 @@ import { Input, Select } from "@material-ui/core";
 import Banner from "../components/Banner";
 import first from "../assests/Photo car.png";
 import { Link } from "react-router-dom";
-
 const CareerPage = () => {
   return (
     <>
