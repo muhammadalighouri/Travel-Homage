@@ -351,7 +351,7 @@ const Booking = () => {
             carId: car,
             user: user._id,
             address: deliveryAddress,
-            returnLocation,
+            returnLocation: returnLocation.value,
             startDate: pickupTime,
             endDate: returnTime,
             addons,
@@ -371,13 +371,13 @@ const Booking = () => {
             setBookingLoading(false);
             setConfirmBooking(false);
           });
-      } else {
+      } else if (option === "perDay") {
         dispatch(
           createBooking({
             carId: car,
             user: user._id,
             pickupLocation: pickupLocation.value,
-            returnLocation: returnLocation.value,
+            returnLocation: differentReturnLocation ? returnLocation.value : null,
             startDate: pickupTime,
             endDate: returnTime,
             addons,
@@ -387,7 +387,7 @@ const Booking = () => {
               calculateDiscountAmount(price, selectedCar?.discount),
             rate: option,
             delivery: option === "delivery" ? true : false,
-            hours: diffInHours,
+
             days: diffInDays,
           })
         )
