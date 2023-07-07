@@ -83,7 +83,7 @@ const Footer = () => {
               <img className="second" src={img2} alt="" />
             </div>
             <div className="media-icon">
-              <div className="social-icons">
+\              <div className="social-icons">
                 {icons.map((e) => {
                   return (
                     <a href={e.link}>
