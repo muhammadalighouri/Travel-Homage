@@ -9,7 +9,7 @@ const GeocoderAutocompleteWrapper = ({ onSuggest }) => {
 
     useEffect(() => {
         if (containerRef.current) {
-            geocoderRef.current = new GeocoderAutocomplete(containerRef.current, 'YOUR_API_KEY', {
+            geocoderRef.current = new GeocoderAutocomplete(containerRef.current, '66ddd881d22a46d9bc78e260c5dbb0fa', {
                 /* Geocoder options */
             });
 
@@ -27,7 +27,7 @@ const GeocoderAutocompleteWrapper = ({ onSuggest }) => {
     return <div ref={containerRef}></div>;
 };
 
-const MapComponent = () => {
+const Test = () => {
     const mapContainerRef = useRef(null);
     const [location, setLocation] = useState(null);
 
@@ -52,4 +52,4 @@ const MapComponent = () => {
     );
 };
 
-export default MapComponent;
+export default Test;

@@ -14,7 +14,7 @@ const CareerPage = () => {
       <section id="career-form-page">
         <div className="container">
           <div className="heading">
-            <h1>وظائف يلو</h1>
+            <h1>Travel Jobs</h1>
           </div>
           <div className="content">
             {[1, 2, 3, 4].map((e) => {
