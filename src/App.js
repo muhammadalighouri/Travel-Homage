@@ -47,7 +47,6 @@ function App() {
     <div className="App">
       <CookieModal />
       {loading && <Loader />}
-      <Test />
       <>
         <Routes>
           <Route exact path="/" element={<HomePage />} />

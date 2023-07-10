@@ -6,7 +6,7 @@ import {
 } from '@geoapify/react-geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 
-const App = () => {
+const TestMap = () => {
     const [type, setType] = useState();
     const [language, setLanguage] = useState();
 
@@ -157,4 +157,4 @@ const App = () => {
     </div>
 }
 
-export default App
+export default TestMap

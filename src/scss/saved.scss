@@ -63,7 +63,7 @@
     .saved-box {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
 
       .box {
         display: flex;
@@ -101,9 +101,13 @@
           color: #a2a9ad;
           color: #a2a9ad;
           width: 100%;
-          text-align: end;
 
           color: #a2a9ad;
+          display: flex;
+          justify-content: space-between;
+          div {
+            color: #373a36;
+          }
         }
       }
     }
