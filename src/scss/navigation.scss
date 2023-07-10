@@ -20,9 +20,11 @@ header {
     display: none;
     z-index: 22;
   }
+
   li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
     color: black !important;
   }
+
   .outer {
     position: relative;
 
@@ -295,8 +297,8 @@ header {
                 text-decoration: none;
                 font-family: "Cairo", sans-serif;
 
-                > img {
-                  > &:nth-child(3) {
+                >img {
+                  >&:nth-child(3) {
                     flex: 3;
                     filter: invert(1);
                   }
@@ -406,8 +408,7 @@ header {
           width: 100%;
         }
 
-        @include mobile {
-        }
+        @include mobile {}
 
         .dropdown {
           .dropdown-menu {
@@ -516,6 +517,7 @@ header {
             align-items: center;
             gap: 16px;
             transform: translateX(0%);
+
             @include md {
               position: fixed;
               top: 0px;
@@ -718,7 +720,7 @@ header {
               }
             }
 
-            > li {
+            >li {
               position: relative;
               transition: all 0.3s;
               width: fit-content;
@@ -753,7 +755,7 @@ header {
                 width: 100%;
               }
 
-              > a {
+              >a {
                 align-items: center;
                 background-position: center 0;
                 border-radius: 4px;
@@ -961,7 +963,7 @@ header {
   z-index: 1001;
   transform: scale(0);
 
-  > svg {
+  >svg {
     width: 50px;
     background: #ffcd00;
     height: 50px;
