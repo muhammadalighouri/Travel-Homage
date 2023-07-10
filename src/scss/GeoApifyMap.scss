@@ -1,0 +1,29 @@
+.geoapify-autocomplete-items {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: none;
+  background-color: #fff;
+  z-index: 10000;
+  top: 100%;
+  left: 0;
+  right: 0;
+  * {
+    color: #00000099 !important;
+  }
+}
+.geoapify-autocomplete-input {
+  padding: 0 31px 0 7px;
+  width: calc(100% - 40px);
+  outline: none;
+  line-height: 36px;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  color: black;
+  width: 100%;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+}
+.leaflet-touch .leaflet-bar a span {
+  color: grey;
+}

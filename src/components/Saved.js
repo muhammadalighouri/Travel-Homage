@@ -96,24 +96,16 @@ const Saved = () => {
                 return (
                   <>
                     <div className="saved-box">
-                      <div className="btns">
 
-                        <div className="btn2">
-                          <Link onClick={() => setEdit(a._id)}>
-                            تعديل العنوان  <img src={i2} alt="" />{" "}
-                          </Link>
-                        </div>
-                      </div>
 
                       <div className="box">
                         <div className="content">
                           <img style={{ cursor: 'pointer' }} onClick={() => deleteAddress(a._id)} src={t1} alt="" />
                           <h1>{a.title}</h1>
                         </div>
-                        <p>City: {a.city}</p>
-                        <p>State: {a.state}</p>
-                        <p>Street: {a.street}</p>
-                        <p>Zip: {a.zip}</p>
+                        <p><div>City: {a.city}</div> <div>State: {a.state}</div></p>
+                        <p><div>Street: {a.street}</div> <div>Zip: {a.postalCode}</div></p>
+
                       </div>
                     </div>
                   </>

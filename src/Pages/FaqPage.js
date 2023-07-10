@@ -88,7 +88,7 @@ const FaqPage = () => {
               faqs.map((item, index) => (
                 <>
                   <FaqAccordion title={item.question}>
-                    <p>{item.answer}</p>
+                    <p style={{ textAlign: 'end' }}>{item.answer}</p>
                   </FaqAccordion>
                 </>
               ))}

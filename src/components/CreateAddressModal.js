@@ -1,207 +1,149 @@
-import React, { useState, useEffect } from 'react';
-import GoogleMapReact from 'google-map-react';
-import Autocomplete from 'react-google-autocomplete';
-import { Modal, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { createAddress, getAllAddresses } from '../Redux/actions/addressActions';
-import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useRef, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
+import "@geoapify/geocoder-autocomplete/styles/minimal.css";
+import {
+    GeoapifyGeocoderAutocomplete,
+    GeoapifyContext,
+} from "@geoapify/react-geocoder-autocomplete";
+import Test from "../Pages/Test";
+import "../scss/GeoApifyMap.scss";
+import icon from "../assests/location.png";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Modal } from "react-bootstrap";
+import { createAddress, getAllAddresses } from "../Redux/actions/addressActions";
+import { toast } from "react-toastify";
 import closeIcon from "../assests/close.png"
 const MapComponent = ({ setActiveButton, setShow }) => {
-    const [map, setMap] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [selectedLocation, setSelectedLocation] = useState(null);
+    const [clickedLocation, setClickedLocation] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const mapRef = useRef(null);
+    const [location, setLocation] = useState(null);
+    const [selectedPlace, setSelectedPlace] = useState(null);
+    const [addressData, setAddressData] = useState({
+        address: "",
+        city: "",
+        title: "",
+        state: "",
+        lat: "",
+        lng: "",
+        postalCode: "",
+    });
     const [modalVisible, setModalVisible] = useState(false);
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState("");
     const [locations, setLocations] = useState([]);
-    const dispatch = useDispatch()
-    const { user } = useSelector((state) => state.UserLogin.userInfo)
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setSelectedLocation({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    });
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
-        }
-    }, []);
-
-    const handleApiLoaded = (map, maps) => {
-        setMap(map);
-    };
-
-    const handlePlaceSelect = (place) => {
-        const postalCodeComponent = place.address_components.find((component) =>
-            component.types.includes('postal_code')
-        );
-        const postalCode = postalCodeComponent
-            ? postalCodeComponent.long_name
-            : null;
-        const name = place.name ? place.name : place.formatted_address;
-
-        const cityComponent = place.address_components.find((component) =>
-            component.types.includes('locality')
-        );
-        const city = cityComponent ? cityComponent.long_name : 'N/A';
-
-        const stateComponent = place.address_components.find((component) =>
-            component.types.includes('administrative_area_level_1')
-        );
-        const state = stateComponent ? stateComponent.long_name : 'N/A';
-
-        const address = place.formatted_address ? place.formatted_address : 'N/A';
-
-        const location = {
-            name: name,
-            postalCode: postalCode,
-            city: city,
-            state: state,
-            address: address,
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-        };
-
-        setSelectedLocation(location);
-
-        if (map) {
-            setMap(null); // Reset the map to trigger re-rendering
-            setTimeout(() => {
-                setSelectedLocation(location);
-                setMap(map);
-            }, 100);
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.UserLogin.userInfo);
+    const handleMapClick = (e) => {
+        const { lat, lng } = e.latlng;
+        setClickedLocation({ lat, lng });
+        reverseGeocode(lat, lng);
+        console.log(lat, lng);
+        if (mapRef.current) {
+            mapRef.current.setView([lat, lng]);
         }
     };
-
-
-
-
-    const handleSearch = () => {
-        if (!searchQuery) {
-            return;
-        }
-
-        const autocompleteService = new window.google.maps.places.AutocompleteService();
-        const placesService = new window.google.maps.places.PlacesService(map);
-
-        autocompleteService.getPlacePredictions(
-            {
-                input: searchQuery,
-                types: ['geocode'],
-                componentRestrictions: { country: 'SA' },
-            },
-            (predictions, status) => {
-                if (
-                    status ===
-                    window.google.maps.places.PlacesServiceStatus.OK &&
-                    predictions &&
-                    predictions.length > 0
-                ) {
-                    const placeId = predictions[0].place_id;
-                    placesService.getDetails({ placeId }, (placeResult, status) => {
-                        if (
-                            status === window.google.maps.places.PlacesServiceStatus.OK
-                        ) {
-                            setSelectedLocation({
-                                lat: placeResult.geometry.location.lat(),
-                                lng: placeResult.geometry.location.lng(),
-                            });
-                            setModalVisible(true);
-                        }
-                    });
-                } else {
-                    console.error('Failed to retrieve place predictions:', status);
-                }
+    function onPlaceSelect(value) {
+        // setSelectedPlace(value);
+        // console.log(value);
+        if (value) {
+            const { lon, lat } = value.properties;
+            // setClickedLocation({ lat, lng: lon });
+            console.log(value);
+            if (mapRef.current) {
+                mapRef.current.setView([lat, lon], 15);
             }
-        );
-    };
-
-
-
-    const handleAddLocation = () => {
-        if (selectedLocation && title) {
-            const newLocation = {
-                title: title,
-                location: selectedLocation,
-            };
-
         }
-        setModalVisible(true);
-        setSearchQuery('');
-        setTitle('');
-        dispatch(createAddress({ ...selectedLocation, title, user: user._id })).then((res) => {
-            dispatch(getAllAddresses());
-            setActiveButton('addresses');
-            toast.success('Address created successfully!');
-        }).catch(error => {
-            toast.error(error.message || 'Failed to create address. Please try again.');
-        });
+    }
+
+    const reverseGeocode = async (lat, lng) => {
+        const apiKey = "66ddd881d22a46d9bc78e260c5dbb0fa";
+        const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (response.ok) {
+                const address = data.features[0].properties;
+                setAddressData({
+                    address: address.address_line1,
+                    city: address.city,
+                    state: address.state,
+                    lat: address.lat,
+                    lng: address.lon,
+                    postalCode: address.postcode,
+                });
+                console.log("data:", addressData);
+            } else {
+                console.error("Reverse Geocoding Error:", data.message);
+            }
+        } catch (error) {
+            console.error("Reverse Geocoding Error:", error);
+        }
     };
 
+    const LocationMarker = () => {
+        const map = useMapEvents({
+            click: handleMapClick,
+        });
+
+        const markerIcon = L.icon({
+            iconUrl: icon,
+            iconSize: [41, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -41],
+        });
+
+        return clickedLocation ? (
+            <Marker position={clickedLocation} icon={markerIcon} />
+        ) : null;
+    };
+
+    const handleSearchInputChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+    const handleSelect = (result) => {
+        setLocation(result.location);
+    };
     const handleModalConfirm = async () => {
         setModalVisible(false);
         try {
-            dispatch(createAddress({ ...selectedLocation, title, user: user._id })).then((res) => {
-                dispatch(getAllAddresses())
-                setActiveButton('addresses')
-                toast.success("Address created successfully!");
-
-            })
-
-
+            dispatch(createAddress({ ...addressData, title, user: user._id }))
+            dispatch(getAllAddresses())
+            toast.success("Address created successfully!");
+            setShow(false)
+            setModalVisible(false);
         } catch (error) {
             toast.error(
                 error.message || "Failed to create address. Please try again."
             );
         }
     };
-    const handleAddCurrentLocation = () => {
-        if (selectedLocation) {
-            setLocations([...locations, {
-                title: 'Current Location',
-                location: selectedLocation
-            }]);
-        }
+    const handleAddLocation = () => {
+        setModalVisible(true);
     };
     return (
         <div className="map__modal">
             <div className="container-md wrapper" style={{ gap: '10px' }}>
                 <img src={closeIcon} className="close__ico" alt="" onClick={() => setShow(false)} />
-                <div className="form-group row">
-                    <div className="col">
-                        <Autocomplete
-                            apiKey="AIzaSyA9wHLQcW2_cSLKnvcQ57jKsg48ltRpY0U"
-                            onPlaceSelected={handlePlaceSelect}
-                            componentRestrictions={{ country: 'SA' }}
-                            className="form-control custom-autocomplete"
-                            placeholder="Search for a location"
-                        />
 
-                    </div>
-                    <div className="col">
-                        <button onClick={handleSearch} style={{ marginRight: '10px' }} className="btn mr-3 btn-warning">
-                            Search
-                        </button>
-                        <button onClick={handleAddCurrentLocation} className="btn btn-warning">
-                            Add Current Location
-                        </button>
-                    </div>
+                <div>
+                    <GeoapifyContext apiKey="00a9862ac01f454887fc285e220d8460">
+                        <GeoapifyGeocoderAutocomplete placeSelect={onPlaceSelect} />
+                    </GeoapifyContext>
                 </div>
-                <div style={{ height: '400px', width: '100%' }}>
-                    <GoogleMapReact
-                        bootstrapURLKeys={{ key: 'AIzaSyDrW-XJ6MTOBsxqqI0Cyq_yIFYWqSKxRLs' }}
-                        defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
-                        defaultZoom={12}
-                        center={selectedLocation}
-                        yesIWantToUseGoogleMapApiInternals
-                        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-                    />
-                </div>
+                <MapContainer
+                    center={[31.5656822, 74.3141829]}
+                    zoom={13}
+                    style={{ height: "400px", width: "100%" }}
+                    ref={mapRef}
+                >
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    <LocationMarker />
+                </MapContainer>
                 <div className="mt-3">
                     <button onClick={handleAddLocation} className="btn btn-warning">
                         Add Location
@@ -210,7 +152,7 @@ const MapComponent = ({ setActiveButton, setShow }) => {
                 {modalVisible && (
                     <Modal show={modalVisible} onHide={() => setModalVisible(false)}>
                         <Modal.Header closeButton>
-                            <Modal.Title className='text-dark'>Location Title</Modal.Title>
+                            <Modal.Title className="text-dark">Location Title</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <input
@@ -222,16 +164,13 @@ const MapComponent = ({ setActiveButton, setShow }) => {
                             />
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" >
-                                Close
-                            </Button>
+                            <Button variant="secondary">Close</Button>
                             <Button variant="primary" onClick={handleModalConfirm}>
                                 Save Location
                             </Button>
                         </Modal.Footer>
                     </Modal>
                 )}
-
             </div>
         </div>
     );

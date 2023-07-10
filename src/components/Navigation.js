@@ -44,7 +44,7 @@ const Navigation = ({ nav }) => {
   const userInfo = useSelector((state) => state.UserLogin.userInfo);
   const success = userInfo?.success;
   const user = userInfo?.user;
-  const [selectedCurrency, setSelectedCurrency] = useState(null);
+  const [selectedCurrency, setSelectedCurrency] = useState("SAR");
   const currencies = [
     { code: "SAR", name: "Saudi Riyal" },
     { code: "AED", name: "United Arab Emirates Dirham" },
@@ -244,6 +244,7 @@ const Navigation = ({ nav }) => {
               <div className="translate">
                 <Select
                   id="currency-select"
+                  defaultValue={currencies[0]}
                   value={selectedCurrency}
                   onChange={handleCurrencyChange}
                   styles={customStyles}
